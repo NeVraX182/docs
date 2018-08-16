@@ -1,0 +1,1003 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>A better Java/Maven project</title>
+<date>2018-08-16</date>
+</info>
+<simpara>Version 1.18-SNAPSHOT
+2018-08-16
+:toc:
+:toclevels: 3</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>History</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="12.5*"/>
+<colspec colname="col_2" colwidth="12.5*"/>
+<colspec colname="col_3" colwidth="75*"/>
+<thead>
+<row>
+<entry align="center" valign="top">Date</entry>
+<entry align="center" valign="top">Author</entry>
+<entry align="left" valign="top">Detail
+Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\target/generated-docs/history/better-java-project.adoc.psv[]</entry>
+</row>
+</thead>
+</tgroup>
+</table>
+<section xml:id="_eclipse_plugins">
+<title>Eclipse plugins</title>
+<warning>
+<simpara>TODO : put it inline here</simpara>
+</warning>
+<simpara><link xl:href="developer-guide.adoc">Developer Guide</link></simpara>
+</section>
+<section xml:id="_useful_java_libraries">
+<title>Useful Java libraries</title>
+<section xml:id="_mockito_powermockito">
+<title>Mockito / PowerMockito</title>
+<formalpara>
+<title>Usage for static classes</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">@RunWith(PowerMockRunner.class)
+@PrepareForTest({ TypeUtils.class })
+@PowerMockIgnore("javax.management.*")
+public class OpenPojoWebTest {
+
+	@Before
+	public void before() throws Exception {
+		PowerMockito.mockStatic(TypeUtils.class);
+		PowerMockito.when(TypeUtils.setterDate((Date) Mockito.any(), (Date) Mockito.any()))
+				.thenAnswer(invocation -&gt; invocation.getArgumentAt(1, Date.class));
+	}
+
+}</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_openpojo_auto_test_pojo_classes_for_coverage">
+<title>OpenPojo : Auto test Pojo classes for coverage</title>
+<note>
+<simpara><link xl:href="https://github.com/OpenPojo/openpojo">https://github.com/OpenPojo/openpojo</link></simpara>
+</note>
+<simpara>OpenPojo au tests Pojo classes, especially getters and setters. Very handy for large beans / auto generated classes for whom testing is boring.</simpara>
+<formalpara>
+<title>Usage</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">import com.openpojo.reflection.filters.FilterNonConcrete;
+import com.openpojo.validation.Validator;
+import com.openpojo.validation.ValidatorBuilder;
+import com.openpojo.validation.test.impl.GetterTester;
+import com.openpojo.validation.test.impl.SetterTester;
+
+public class OpenPojoTest {
+
+	public static void validateBeans(String javaPackage) {
+		Validator validator = ValidatorBuilder.create().with(new SetterTester()).with(new GetterTester()).build();
+		//exclude enums, abstracts, interfaces
+		validator.validateRecursively(javaPackage, new FilterNonConcrete());
+	}
+
+	@Test <co xml:id="CO1-1"/>
+	public void testPojoRecursiv() {
+		// recursive
+		validateBeans("my.full.java.package.with.sub.packages");
+	}
+
+	@Test <co xml:id="CO1-2"/>
+	public void testExludingSomeClasses() {
+		List&lt;PojoClass&gt; listOfPojoClassInDto = PojoClassFactory.getPojoClasses("my.full.java.package.with.sub.packages", null);
+		listOfPojoClassInDto.remove(PojoClassFactory.getPojoClass(SomeSpecialClassNotToTest.class));
+		validator.validate(listOfPojoClassInDto);
+	}
+
+}</programlisting>
+</para>
+</formalpara>
+<calloutlist>
+<callout arearefs="CO1-1">
+<para>Fully recursive example</para>
+</callout>
+<callout arearefs="CO1-2">
+<para>Excluding some classes</para>
+</callout>
+</calloutlist>
+<formalpara>
+<title>Maven dependency</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">    &lt;dependency&gt;
+        &lt;groupId&gt;com.openpojo&lt;/groupId&gt;
+        &lt;artifactId&gt;openpojo&lt;/artifactId&gt;
+        &lt;version&gt;0.8.6&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_slf4j_abstract_logging">
+<title>SLF4J : Abstract logging</title>
+<formalpara>
+<title>Maven dependencies</title>
+<para>
+<literallayout class="monospaced">&lt;dependency&gt;
+	&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+	&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+	&lt;version&gt;1.7.21&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+	&lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;
+	&lt;version&gt;1.7.21&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+	&lt;artifactId&gt;log4j-api&lt;/artifactId&gt;
+	&lt;version&gt;2.7&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+	&lt;artifactId&gt;log4j-core&lt;/artifactId&gt;
+	&lt;version&gt;2.7&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
+	&lt;artifactId&gt;log4j-slf4j-impl&lt;/artifactId&gt;
+	&lt;version&gt;2.7&lt;/version&gt;
+&lt;/dependency&gt;</literallayout>
+</para>
+</formalpara>
+</section>
+<section xml:id="_aspect4log_logging_functions_starts_stops_with_inputs_outputs">
+<title>Aspect4log : Logging functions starts/stops with inputs/outputs</title>
+<note>
+<simpara><link xl:href="http://aspect4log.sourceforge.net">http://aspect4log.sourceforge.net</link></simpara>
+</note>
+<simpara>Use Aspect4Log, which logs functions start/stop with inputs/outputs using AOP.</simpara>
+<formalpara>
+<title>Result log example</title>
+<para>
+<literallayout class="monospaced">07-31_14:13:48.491 DEBUG org.a.utils.ConfigUtils        - &gt; getParameter(test)
+07-31_14:13:48.491 DEBUG org.a.utils.wmcall.WmHelper    - &gt; 	getPackageName(true)
+07-31_14:13:48.492 DEBUG g.a.utils.wmcall.WmCallEclipse - &gt; 		getPackageName(true)
+07-31_14:13:48.492 DEBUG g.a.utils.wmcall.WmCallEclipse - . 		getPackageName(true) -&gt; DEFAULT
+07-31_14:13:48.492 DEBUG org.a.utils.wmcall.WmHelper    - . 	getPackageName(true) -&gt; DEFAULT
+07-31_14:13:48.492 DEBUG org.a.utils.ConfigUtils        - &gt; 	getParameter(DEFAULT, test)
+07-31_14:13:48.494 DEBUG persistence.PersistenceManager - &gt; 		findParameterValue(test, MONO_IS)
+07-31_14:13:48.500 DEBUG persistence.PersistenceManager - . 		findParameterValue(test, MONO_IS) -&gt; (null)
+07-31_14:13:48.501 DEBUG org.a.utils.file.ConfigReader  - &gt; 		getValueFromConfigFile(DEFAULT, test)
+07-31_14:13:48.501 DEBUG org.a.utils.file.ConfigReader  - &gt; 			getValueFromConfigFile(DEFAULT, config.properties, test)
+07-31_14:13:48.501 DEBUG org.a.utils.file.ConfigReader  - &gt; 				getConfigFileKeyValues(DEFAULT, config.properties)
+07-31_14:13:48.501 DEBUG org.a.utils.file.ConfigReader  - &gt; 					getConfigPath(DEFAULT)
+07-31_14:13:48.502 DEBUG org.a.utils.wmcall.WmHelper    - &gt; 						getServerConfigFolder()
+07-31_14:13:48.502 DEBUG g.a.utils.wmcall.WmCallEclipse - &gt; 							getServerConfigFolder()
+07-31_14:13:48.502 DEBUG g.a.utils.wmcall.WmCallEclipse - . 							getServerConfigFolder() -&gt; src/test/resources/config
+07-31_14:13:48.502 DEBUG org.a.utils.wmcall.WmHelper    - . 						getServerConfigFolder() -&gt; src/test/resources/config
+07-31_14:13:48.503 DEBUG org.a.utils.file.ConfigReader  - . 					getConfigPath(DEFAULT) -&gt; src/test/resources/config/packages/DEFAULT
+07-31_14:13:48.503 DEBUG org.a.utils.file.ConfigReader  - . 				getConfigFileKeyValues(DEFAULT, config.properties) -&gt; {unitTest=OK, MaxAnomaliesSelectedForResubmission=100, useDbParameters=false}
+07-31_14:13:48.504 DEBUG org.a.utils.file.ConfigReader  - . 			getValueFromConfigFile(DEFAULT, config.properties, test) -&gt; (null)
+07-31_14:13:48.504 DEBUG org.a.utils.file.ConfigReader  - . 		getValueFromConfigFile(DEFAULT, test) -&gt; (null)
+07-31_14:13:48.505 DEBUG org.a.utils.ConfigUtils        - . 	getParameter(DEFAULT, test) -&gt; (null)
+07-31_14:13:48.506 DEBUG org.a.utils.ConfigUtils        - . getParameter(test) -&gt; (null)</literallayout>
+</para>
+</formalpara>
+<formalpara>
+<title>LOGGER declaration</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">import net.sf.aspect4log.Log;
+import static net.sf.aspect4log.Log.Level.TRACE;
+
+@Log <co xml:id="CO2-1"/>
+public class FooDao {
+
+    public void tooLowLevelFunction(){ <co xml:id="CO2-2"/>
+        //[...]
+    }
+
+    @Log(enterLevel = Level.TRACE, exitLevel = Level.TRACE) <co xml:id="CO2-3"/>
+	public void delete(String foo) {
+        //[...]
+	}
+
+	@Log(argumentsTemplate = "[...skipped...]", resultTemplate = "[...skipped...]") <co xml:id="CO2-4"/>
+	public void find(String bigXML) {
+        //[...]
+	}
+
+	@Log(on = { @Exceptions(exceptions = { CgException.class }, level = Level.INFO) }) <co xml:id="CO2-5"/>
+	public void saveOrUpdate(String foo) {
+        //[...]
+	}
+}</programlisting>
+</para>
+</formalpara>
+<calloutlist>
+<callout arearefs="CO2-1">
+<para>@Log on a class will affect every methods not annotated</para>
+</callout>
+<callout arearefs="CO2-2">
+<para>So this method will be logged, in DEBUG by default</para>
+</callout>
+<callout arearefs="CO2-3">
+<para>Lower the level to TRACE if some methods pollute the logs</para>
+</callout>
+<callout arearefs="CO2-4">
+<para>You can skip only the arguments/results if they are too verbose</para>
+</callout>
+<callout arearefs="CO2-5">
+<para>Some advanced functionnality are available, see the website</para>
+</callout>
+</calloutlist>
+<simpara>For runtime, have log4j &amp; aspect4log configuration files in the classpath, examples : link:log4j2.xml &amp; link:aspect4log.xml.</simpara>
+<formalpara>
+<title>Dependencies</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">&lt;dependencies&gt;
+    &lt;!-- for @Log --&gt;
+    &lt;dependency&gt;
+    	&lt;groupId&gt;net.sf.aspect4log&lt;/groupId&gt;
+    	&lt;artifactId&gt;aspect4log&lt;/artifactId&gt;
+    	&lt;version&gt;1.0.7&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- AspectJ for instrumentation --&gt;
+    &lt;dependency&gt;
+    	&lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+    	&lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;
+    	&lt;version&gt;1.8.9&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+    	&lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+    	&lt;artifactId&gt;aspectjtools&lt;/artifactId&gt;
+    	&lt;version&gt;1.8.9&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+
+&lt;plugins&gt;
+    &lt;plugin&gt;
+    	&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+    	&lt;artifactId&gt;aspectj-maven-plugin&lt;/artifactId&gt;
+    	&lt;version&gt;1.7&lt;/version&gt;
+    	&lt;executions&gt;
+    		&lt;execution&gt;
+    			&lt;goals&gt;
+    				&lt;goal&gt;compile&lt;/goal&gt;
+    			&lt;/goals&gt;
+    		&lt;/execution&gt;
+    	&lt;/executions&gt;
+    	&lt;configuration&gt;
+    		&lt;showWeaveInfo&gt;false&lt;/showWeaveInfo&gt;
+    		&lt;Xlint&gt;adviceDidNotMatch=ignore,noGuardForLazyTjp=ignore&lt;/Xlint&gt;
+    		&lt;aspectLibraries&gt;
+    			&lt;aspectLibrary&gt;
+    				&lt;groupId&gt;net.sf.aspect4log&lt;/groupId&gt;
+    				&lt;artifactId&gt;aspect4log&lt;/artifactId&gt;
+    			&lt;/aspectLibrary&gt;
+    		&lt;/aspectLibraries&gt;
+    	&lt;/configuration&gt;
+    	&lt;dependencies&gt;
+    		&lt;dependency&gt;
+    			&lt;groupId&gt;org.aspectj&lt;/groupId&gt;
+    			&lt;artifactId&gt;aspectjtools&lt;/artifactId&gt;
+    			&lt;version&gt;1.8.9&lt;/version&gt;
+    		&lt;/dependency&gt;
+    	&lt;/dependencies&gt;
+    &lt;/plugin&gt;
+&lt;/plugins&gt;</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_log_methods_duration">
+<title>Log methods duration</title>
+<section xml:id="_using_jcabi_loggable">
+<title>using JCabi @Loggable</title>
+<note>
+<simpara><link xl:href="https://aspects.jcabi.com/annotation-loggable.html">https://aspects.jcabi.com/annotation-loggable.html</link></simpara>
+</note>
+<simpara>With AOP, get selected methods duration :</simpara>
+<literallayout class="monospaced">2016-10-11 14:22:52.716 [main] INFO  PERFORMANCES - #setTestMode(...): in 30,51ms
+2016-10-11 14:22:52.857 [main] INFO  PERFORMANCES - #setTestMode(...): in 1,20ms</literallayout>
+<formalpara>
+<title>Loggable example</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">@Loggable(skipArgs = true, skipResult = true, name = "PERFORMANCES")
+public static void topLevelJarFunction(IData pipeline) throws ServiceException {
+    //[...]
+}</programlisting>
+</para>
+</formalpara>
+</section>
+</section>
+</section>
+<section xml:id="_best_practices">
+<title>Best practices</title>
+<section xml:id="_java">
+<title>Java</title>
+<section xml:id="_java_packages_classes_naming">
+<title>Java packages &amp; classes naming</title>
+<itemizedlist>
+<listitem>
+<simpara>Best package organization is by fonctionnality first, and then technically when many classes of the same type</simpara>
+</listitem>
+<listitem>
+<simpara>Always put classes in subpackage of the project</simpara>
+<itemizedlist>
+<listitem>
+<simpara>If a java project is <emphasis role="strong">bar-a-b</emphasis>, all packages are <emphasis role="strong">mycorp.bar.a.b.</emphasis>*</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Don’t use different packages for a few classes, regroup them (if below or equal 3 classes by package)</simpara>
+</listitem>
+<listitem>
+<simpara>Don’t put in the class name what is already in the package name, except for too generic file name</simpara>
+</listitem>
+</itemizedlist>
+<formalpara>
+<title>Some naming conventions</title>
+<para><link xl:href="http://stackoverflow.com/questions/3226282/are-there-best-practices-for-java-package-organisation">http://stackoverflow.com/questions/3226282/are-there-best-practices-for-java-package-organisation</link>
+<link xl:href="http://www.javapractices.com/topic/TopicAction.do?Id=205">http://www.javapractices.com/topic/TopicAction.do?Id=205</link></para>
+</formalpara>
+<formalpara>
+<title>Some widely used examples</title>
+<para><link xl:href="http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/overview-tree.html">http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/overview-tree.html</link>
+<link xl:href="https://commons.apache.org/proper/commons-lang/apidocs/overview-tree.html">https://commons.apache.org/proper/commons-lang/apidocs/overview-tree.html</link></para>
+</formalpara>
+</section>
+<section xml:id="_java_7_try_with_closable_objects">
+<title>Java 7 try with closable objects</title>
+<simpara>Before Java 7, you had to close() streams and other closable objects in a try/catch/finally. Now Java handles everything if you use the right pattern :</simpara>
+<formalpara>
+<title>try-with-resource</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">try (
+	ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(dstDirectory + "/" + fileName + ".zip"));
+	FileInputStream in = new FileInputStream(foundFile.getAbsolutePath())
+	) {
+	ZipEntry ze = new ZipEntry(fileName);
+	zos.putNextEntry(ze);
+
+	int len;
+	while ((len = in.read(buffer)) &gt; 0) {
+		zos.write(buffer, 0, len);
+	}
+
+	if (delete)
+		foundFile.delete();
+} catch (IOException e) {
+	LOGGER.error("Unable to zip or delete the file=" + srcDirectory + "/" + fileName + ", dest=" + dstDirectory, e);
+	throw e;
+}</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_static_java_maps">
+<title>Static Java Maps</title>
+<simpara>When a <emphasis role="strong">Map</emphasis> is static (and then accessed by multiple threads), declare it Map and instantiate it <emphasis role="strong">ConcurrentHashMap</emphasis> :</simpara>
+<formalpara>
+<title>Thread-safe Map</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">Map&lt;a,b&gt; myMap == new ConcurrentHashMap&lt;&gt;();</programlisting>
+</para>
+</formalpara>
+<simpara>Idem for a <emphasis role="strong">Set</emphasis> but this is a bit tricky :</simpara>
+<formalpara>
+<title>Thread-safe Set</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">Set&lt;String&gt;
+mySet = Collections.newSetFromMap(new ConcurrentHashMap&lt;String,Boolean&gt;());</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_init_on_demand">
+<title>Init on demand</title>
+<simpara>For objects used by static functions, try to initialize them only once and do it in thread safe mode.</simpara>
+<formalpara>
+<title>Init on demand pattern</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">public class Something {
+    private Something() {}
+
+    private static class LazyHolder {
+        private static final Something INSTANCE = new Something();
+    }
+
+    public static Something getInstance() {
+        return LazyHolder.INSTANCE;
+    }
+}</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_enum_and_string">
+<title>Enum and String</title>
+<simpara>A String from an Enum must be used with a custom <emphasis role="strong">toString()</emphasis>, never with <emphasis role="strong">getName()</emphasis> or default <emphasis role="strong">toString()</emphasis>.</simpara>
+<formalpara>
+<title>Enum.toString() pattern</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">// Natures d echange
+public enum EsbNatureType {
+     DIFFUSION_FICHIER("DiffusionFichier"), DIFFUSION_MESSAGES("DiffusionMessages");
+
+     private String name = null;
+
+     EsbNatureType(String nameString) {
+            this.name = nameString;
+     }
+
+     @Override
+     public String toString() {
+            return this.name;
+     }
+
+};</programlisting>
+</para>
+</formalpara>
+<simpara>If you don’t do this way, we loose the flexibility to rename either the Enum or the String.</simpara>
+</section>
+<section xml:id="myenum.toenumstring">
+<title>MyEnum.toEnum(String)</title>
+<simpara>Comment déclarer l’Enum :</simpara>
+<formalpara>
+<title>toEnum pattern</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">public enum ServiceOption {
+	COMPLEMENTS,
+	RESTRICTIONS,
+	RISQUES,
+	SNGI_EM_DECEDE,
+	SNGI_EM_NON_IDENT,
+	SNGI_ID_OBLIGATOIRE,
+	DCR,
+	DCR_STATUT,
+	DCR_DELAI,
+	LISTE_PSORTANTS,
+	ID_TIERS,
+	NOM_FLUX_SORTIE,
+	ABO_ACTIF,
+	DENOM_METIER,
+	REF_ABO,
+	UNKNOWN;
+
+	public static ServiceOption toEnum(String optionName) {
+		switch (optionName) {
+		case "priseEnCptLstRisque":
+			return RISQUES;
+		case "priseEnCptLstCompl":
+			return COMPLEMENTS;
+		default:
+			return UNKNOWN;
+		}
+	}
+}</programlisting>
+</para>
+</formalpara>
+<simpara>Puis ton Builder tu fais un <emphasis role="strong">ServiceOption.toEnum(tonOption)</emphasis> et le tour est joué.</simpara>
+<warning>
+<simpara>Never write files outside of target/</simpara>
+</warning>
+</section>
+</section>
+<section xml:id="_maven">
+<title>Maven</title>
+<section xml:id="_config_files_location">
+<title>Config files location</title>
+<simpara>Config files have to be put in the right folder in Eclipse.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">src/main/resources/</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>Only files that will is not likely to be modified, because it will be in the jar</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">config/</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>Files that is likely to be modified on IS</simpara>
+</listitem>
+<listitem>
+<simpara>Don’t forget to put them manually on IS</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">src/test/resources/</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>File used in JUnit tests only for this sub-module</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">../src/test/shared-resources</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>Files used in JUnit tests accross multiple modules</simpara>
+</listitem>
+<listitem>
+<simpara>requires some maven configuration</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<warning>
+<simpara>TODO give Maven details for shared-resources</simpara>
+</warning>
+</section>
+<section xml:id="_checkstyle_check_javadoc">
+<title>Checkstyle : check javadoc</title>
+<simpara>With Checkstyle, you can enforce continuous javadoc check</simpara>
+<formalpara>
+<title>pom.xml plugin</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">	&lt;!-- checkstyle to fail the build on javadoc warnings --&gt;
+	&lt;!-- to skip : mvn install -Dcheckstyle.skip=true --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
+		&lt;version&gt;2.17&lt;/version&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;id&gt;validate&lt;/id&gt;
+				&lt;phase&gt;validate&lt;/phase&gt;
+				&lt;configuration&gt;
+					&lt;configLocation&gt;checkstyle-javadoc.xml&lt;/configLocation&gt;
+					&lt;encoding&gt;UTF-8&lt;/encoding&gt;
+					&lt;consoleOutput&gt;true&lt;/consoleOutput&gt;
+					&lt;failsOnError&gt;true&lt;/failsOnError&gt;
+					&lt;linkXRef&gt;false&lt;/linkXRef&gt;
+				&lt;/configuration&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;check&lt;/goal&gt;
+				&lt;/goals&gt;
+			&lt;/execution&gt;
+		&lt;/executions&gt;
+	&lt;/plugin&gt;</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>checkstyle-javadoc.xml</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">    &lt;?xml version="1.0"?&gt;
+    &lt;!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd"&gt;
+    &lt;module name="Checker"&gt;
+        &lt;module name="TreeWalker"&gt;
+            &lt;module name="JavadocMethod"/&gt;
+            &lt;module name="JavadocType"/&gt;
+            &lt;module name="JavadocVariable"/&gt;
+            &lt;module name="JavadocStyle"/&gt;
+        &lt;/module&gt;
+    &lt;/module&gt;</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_add_version_and_date_to_asciidoc_pdfs">
+<title>Add version and date to Asciidoc PDFs</title>
+<formalpara>
+<title>pom.xml</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">&lt;plugins&gt;
+
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+		&lt;artifactId&gt;buildnumber-maven-plugin&lt;/artifactId&gt;
+		&lt;version&gt;1.2&lt;/version&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;phase&gt;validate&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;create-timestamp&lt;/goal&gt;
+				&lt;/goals&gt;
+			&lt;/execution&gt;
+		&lt;/executions&gt;
+		&lt;configuration&gt;
+			&lt;timestampFormat&gt;yyyy-MM-dd&lt;/timestampFormat&gt;
+			&lt;timestampPropertyName&gt;build.date&lt;/timestampPropertyName&gt;
+		&lt;/configuration&gt;
+	&lt;/plugin&gt;
+
+	&lt;!-- Ant tasks plugin --&gt;
+	&lt;!-- single usage : mvn antrun:run --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+		&lt;version&gt;1.7&lt;/version&gt;
+		&lt;inherited&gt;true&lt;/inherited&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;!-- add version to generated pdf filenames --&gt;
+				&lt;id&gt;pdfsAddVersion&lt;/id&gt;
+				&lt;configuration&gt;
+					&lt;failOnError&gt;false&lt;/failOnError&gt;
+					&lt;target name="add version and date to all generated pdf filenames"&gt;
+						&lt;move todir="${project.build.directory}/generated-docs" includeemptydirs="false"&gt;
+							&lt;fileset dir="${project.build.directory}/generated-docs" /&gt;
+							&lt;mapper type="glob" from="*.pdf" to="*_V${project.version}_${build.date}.pdf" /&gt;
+						&lt;/move&gt;
+					&lt;/target&gt;
+				&lt;/configuration&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;run&lt;/goal&gt;
+				&lt;/goals&gt;
+			&lt;/execution&gt;
+		&lt;/executions&gt;
+	&lt;/plugin&gt;
+
+&lt;/plugins&gt;</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_javadoc_generation_with_uml_diagrams">
+<title>Javadoc generation with UML diagrams</title>
+<formalpara>
+<title>pom.xml</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">	&lt;!-- javadoc html, fix or generate --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;
+		&lt;version&gt;2.10.4&lt;/version&gt;
+		&lt;configuration&gt;
+			&lt;!-- usage : javadoc:javadoc or javadoc:jar --&gt;
+			&lt;show&gt;public&lt;/show&gt;
+			&lt;reportOutputDirectory&gt;${project.reporting.outputDirectory}&lt;/reportOutputDirectory&gt;
+			&lt;destDir&gt;javadoc&lt;/destDir&gt;
+			&lt;!-- for UML diagram in javadoc:javadoc --&gt;
+			&lt;!-- Locally : need http://www.graphviz.org/Download_windows.php to work --&gt;
+			&lt;!-- and add "C:\Program Files (x86)\Graphviz\bin" to windows path --&gt;
+			&lt;doclet&gt;org.umlgraph.doclet.UmlGraphDoc&lt;/doclet&gt;
+			&lt;docletArtifact&gt;
+				&lt;groupId&gt;org.umlgraph&lt;/groupId&gt;
+				&lt;artifactId&gt;umlgraph&lt;/artifactId&gt;
+				&lt;version&gt;5.6.6&lt;/version&gt;
+			&lt;/docletArtifact&gt;
+			&lt;additionalparam&gt;-views -attributes -visibility -types -enumerations -enumconstants&lt;/additionalparam&gt;
+			&lt;useStandardDocletOptions&gt;true&lt;/useStandardDocletOptions&gt;
+		&lt;/configuration&gt;
+	&lt;/plugin&gt;</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_install_provided_dependencies_in_local_repository">
+<title>Install provided dependencies in local repository</title>
+<formalpara>
+<title>pom.xml</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">&lt;plugins&gt;
+	&lt;!-- install WM jars in local repository --&gt;
+	&lt;!-- part of mvn clean because maven check them early in the process --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-install-plugin&lt;/artifactId&gt;
+		&lt;version&gt;2.5.2&lt;/version&gt;
+		&lt;!-- We do not want children attempting to install these jars to the repository --&gt;
+		&lt;inherited&gt;false&lt;/inherited&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;id&gt;wm-isclient95&lt;/id&gt;
+				&lt;phase&gt;clean&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;install-file&lt;/goal&gt;
+				&lt;/goals&gt;
+				&lt;configuration&gt;
+					&lt;file&gt;lib/wm9.5/wm-isclient-9.5.jar&lt;/file&gt;
+					&lt;groupId&gt;webmethods&lt;/groupId&gt;
+					&lt;artifactId&gt;wm-isclient&lt;/artifactId&gt;
+					&lt;version&gt;9.5&lt;/version&gt;
+					&lt;packaging&gt;jar&lt;/packaging&gt;
+				&lt;/configuration&gt;
+			&lt;/execution&gt;
+	&lt;/plugin&gt;
+&lt;/plugins&gt;</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_to_generate_asciidoc_pdf_files">
+<title>To generate AsciiDoc PDF files</title>
+<formalpara>
+<title>pom.xml</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">&lt;plugins&gt;
+	&lt;!-- to generate asciidoc pdf documents --&gt;
+	&lt;!-- part of mvn install --&gt;
+	&lt;!-- single usage : mvn asciidoctor:process-asciidoc --&gt;
+	&lt;!-- We don't bind it to the official phase to choose the moment in Jenkins pipeline --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+		&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt;
+		&lt;version&gt;1.5.5&lt;/version&gt;
+		&lt;dependencies&gt;
+			&lt;dependency&gt;
+				&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+				&lt;artifactId&gt;asciidoctorj-pdf&lt;/artifactId&gt;
+				&lt;version&gt;1.5.0-alpha.14&lt;/version&gt;
+			&lt;/dependency&gt;
+			&lt;dependency&gt;
+				&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+				&lt;artifactId&gt;asciidoctorj-diagram&lt;/artifactId&gt;
+				&lt;version&gt;1.5.4&lt;/version&gt;
+			&lt;/dependency&gt;
+		&lt;/dependencies&gt;
+		&lt;configuration&gt;
+			&lt;backend&gt;pdf&lt;/backend&gt;
+			&lt;sourceDirectory&gt;src/docs/asciidoc&lt;/sourceDirectory&gt;
+			&lt;sourceHighlighter&gt;rouge&lt;/sourceHighlighter&gt;
+			&lt;requires&gt;
+				&lt;require&gt;asciidoctor-diagram&lt;/require&gt;
+			&lt;/requires&gt;
+			&lt;!-- Attributes common to all output formats --&gt;
+			&lt;attributes&gt;
+				&lt;imagesdir&gt;${project.build.directory}/generated-docs/images&lt;/imagesdir&gt;
+				&lt;pdf-style&gt;${user.dir}/src/docs/asciidoc/themes/cg-theme.yml&lt;/pdf-style&gt;
+				&lt;icons&gt;font&lt;/icons&gt;
+				&lt;pagenums /&gt;
+				&lt;toc /&gt;
+				&lt;idprefix /&gt;
+				&lt;idseparator&gt;-&lt;/idseparator&gt;
+				&lt;!-- custom --&gt;
+				&lt;source-dir&gt;../../main/java&lt;/source-dir&gt;
+				&lt;test-dir&gt;../../test/java&lt;/test-dir&gt;
+				&lt;project-version&gt;${project.version}&lt;/project-version&gt;
+				&lt;root-project-dir&gt;${user.dir}&lt;/root-project-dir&gt;
+				&lt;history-dir&gt;${project.build.directory}/generated-docs/history&lt;/history-dir&gt;
+				&lt;project-images-dir&gt;${project.basedir}/src/main/resources/images&lt;/project-images-dir&gt;
+			&lt;/attributes&gt;
+		&lt;/configuration&gt;
+	&lt;/plugin&gt;
+&lt;/plugins&gt;</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_sonarqube_with_jacoco_for_coverage">
+<title>SonarQube with Jacoco for coverage</title>
+<note>
+<simpara><link xl:href="https://www.sonarqube.org">https://www.sonarqube.org</link></simpara>
+</note>
+<simpara>SonarQube ensures code quality with static analysis and Jacoco checks code coverage.</simpara>
+<formalpara>
+<title>pom.xml properties</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">&lt;properties&gt;
+    &lt;custom.ut.skip&gt;${skipTests}&lt;/custom.ut.skip&gt;
+	&lt;sonar.java.coveragePlugin&gt;jacoco&lt;/sonar.java.coveragePlugin&gt;
+	&lt;jacoco.reportPath&gt;../target/jacoco.exec&lt;/jacoco.reportPath&gt;
+	&lt;jacoco.itReportPath&gt;../target/jacoco-it.exec&lt;/jacoco.itReportPath&gt;
+	&lt;sonar.jacoco.reportPaths&gt;${jacoco.reportPath}, ${jacoco.itReportPath}&lt;/sonar.jacoco.reportPaths&gt;
+	&lt;sonar.coverage.exclusions&gt;**/WmCall.*,**/Broker*.*,**/UniversalMessaging*.*,**/MsgServerBroker.*,**/UmListener.*,**/PerfLogger.*,**/elastic/*DataSender.*&lt;/sonar.coverage.exclusions&gt;
+	&lt;sonar.host.url&gt;http://localhost:9000&lt;/sonar.host.url&gt;
+	&lt;sonar.scm.disabled&gt;true&lt;/sonar.scm.disabled&gt;
+	&lt;sonar.scm.provider&gt;git&lt;/sonar.scm.provider&gt;
+&lt;/properties&gt;</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>pom.xml without powermock static</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">&lt;dependencies&gt;
+
+	&lt;!-- For unit tests coverage in Sonar --&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;org.sonarsource.java&lt;/groupId&gt;
+		&lt;artifactId&gt;sonar-jacoco-listeners&lt;/artifactId&gt;
+		&lt;version&gt;4.9.0.9858&lt;/version&gt;
+		&lt;scope&gt;test&lt;/scope&gt;
+	&lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+
+&lt;plugins&gt;
+
+	&lt;!-- SonarQube --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+		&lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
+		&lt;version&gt;3.2&lt;/version&gt;
+	&lt;/plugin&gt;
+
+	&lt;!-- handling unit tests coverage with Jacco --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+		&lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
+		&lt;version&gt;0.8.0&lt;/version&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;id&gt;pre-unit-test&lt;/id&gt;
+				&lt;phase&gt;test-compile&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;prepare-agent&lt;/goal&gt;
+				&lt;/goals&gt;
+				&lt;configuration&gt;
+					&lt;destFile&gt;${sonar.jacoco.reportPath}&lt;/destFile&gt;
+					&lt;dataFile&gt;${sonar.jacoco.reportPath}&lt;/dataFile&gt;
+					&lt;append&gt;true&lt;/append&gt;
+				&lt;/configuration&gt;
+			&lt;/execution&gt;
+			&lt;execution&gt;
+				&lt;id&gt;prepare-jacoco-agent-it&lt;/id&gt;
+				&lt;phase&gt;pre-integration-test&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;prepare-agent-integration&lt;/goal&gt;
+				&lt;/goals&gt;
+				&lt;configuration&gt;
+					&lt;destFile&gt;${sonar.jacoco.itReportPath}&lt;/destFile&gt;
+					&lt;dataFile&gt;${sonar.jacoco.itReportPath}&lt;/dataFile&gt;
+					&lt;append&gt;true&lt;/append&gt;
+				&lt;/configuration&gt;
+			&lt;/execution&gt;
+		&lt;/executions&gt;
+	&lt;/plugin&gt;
+
+	&lt;!-- Unit Tests --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+		&lt;!-- version 2.19.1 is broken on jenkins --&gt;
+		&lt;version&gt;2.18.1&lt;/version&gt;
+		&lt;configuration&gt;
+			&lt;testFailureIgnore&gt;false&lt;/testFailureIgnore&gt;
+			&lt;runOrder&gt;alphabetical&lt;/runOrder&gt;
+			&lt;skipTests&gt;${custom.ut.skip}&lt;/skipTests&gt;
+			&lt;properties&gt;
+				&lt;property&gt;
+					&lt;name&gt;listener&lt;/name&gt;
+					&lt;value&gt;org.sonar.java.jacoco.JUnitListener&lt;/value&gt;
+				&lt;/property&gt;
+			&lt;/properties&gt;
+		&lt;/configuration&gt;
+	&lt;/plugin&gt;
+
+	&lt;!-- Integration Tests --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
+		&lt;!-- version 2.19.1 is broken on jenkins --&gt;
+		&lt;version&gt;2.18.1&lt;/version&gt;
+		&lt;configuration&gt;
+			&lt;runOrder&gt;alphabetical&lt;/runOrder&gt;
+			&lt;properties&gt;
+				&lt;property&gt;
+					&lt;name&gt;listener&lt;/name&gt;
+					&lt;value&gt;org.sonar.java.jacoco.JUnitListener&lt;/value&gt;
+				&lt;/property&gt;
+			&lt;/properties&gt;
+		&lt;/configuration&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;id&gt;integration-tests&lt;/id&gt;
+				&lt;phase&gt;integration-test&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;integration-test&lt;/goal&gt;
+				&lt;/goals&gt;
+			&lt;/execution&gt;
+			&lt;!-- to exit in error on test fail --&gt;
+			&lt;execution&gt;
+				&lt;id&gt;verify&lt;/id&gt;
+				&lt;phase&gt;verify&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;verify&lt;/goal&gt;
+				&lt;/goals&gt;
+			&lt;/execution&gt;
+		&lt;/executions&gt;
+	&lt;/plugin&gt;
+
+&lt;/plugins&gt;</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>pom.xml with powermock : instrumentation in conflict, offline jacoco instrumentation is needed</title>
+<para>
+<programlisting language="xml" linenumbering="unnumbered">&lt;dependencies&gt;
+
+	&lt;!-- For unit tests coverage in Sonar --&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+		&lt;artifactId&gt;org.jacoco.agent&lt;/artifactId&gt;
+		&lt;classifier&gt;runtime&lt;/classifier&gt;
+		&lt;version&gt;0.8.0&lt;/version&gt;
+		&lt;scope&gt;test&lt;/scope&gt;
+	&lt;/dependency&gt;
+
+&lt;/dependencies&gt;
+
+
+&lt;plugins&gt;
+
+	&lt;!-- SonarQube --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+		&lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
+		&lt;version&gt;3.2&lt;/version&gt;
+	&lt;/plugin&gt;
+
+	&lt;!-- handling unit tests coverage with Jacco --&gt;
+	&lt;!-- offline instrumentation is mandatory when using other instrumentation framework such as PowerMock --&gt;
+	&lt;!-- https://github.com/powermock/powermock/wiki/Code-coverage-with-JaCoCo --&gt;
+	&lt;!-- to separate UT and IT : --&gt;
+	&lt;!-- (1) mvn test jacoco:restore-instrumented-classes --&gt;
+	&lt;!-- (2) mvn install -Dcustom.ut.skip=true -Dcheckstyle.skip=true --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+		&lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
+		&lt;version&gt;0.8.0&lt;/version&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;id&gt;jacoco-instrument&lt;/id&gt;
+				&lt;phase&gt;test-compile&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;instrument&lt;/goal&gt;
+				&lt;/goals&gt;
+				&lt;configuration&gt;
+					&lt;skip&gt;${skipTests}&lt;/skip&gt;
+				&lt;/configuration&gt;
+			&lt;/execution&gt;
+			&lt;execution&gt;
+				&lt;id&gt;jacoco-restore-instrumented-classes&lt;/id&gt;
+				&lt;phase&gt;post-integration-test&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;restore-instrumented-classes&lt;/goal&gt;
+				&lt;/goals&gt;
+				&lt;configuration&gt;
+					&lt;skip&gt;${skipTests}&lt;/skip&gt;
+				&lt;/configuration&gt;
+			&lt;/execution&gt;
+		&lt;/executions&gt;
+	&lt;/plugin&gt;
+
+    &lt;!-- Unit Tests --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+		&lt;!-- version 2.19.1 is broken on jenkins --&gt;
+		&lt;version&gt;2.18.1&lt;/version&gt;
+		&lt;configuration&gt;
+			&lt;testFailureIgnore&gt;false&lt;/testFailureIgnore&gt;
+			&lt;runOrder&gt;alphabetical&lt;/runOrder&gt;
+			&lt;skipTests&gt;${custom.ut.skip}&lt;/skipTests&gt;
+			&lt;systemPropertyVariables&gt;
+				&lt;jacoco-agent.destfile&gt;${jacoco.reportPath}&lt;/jacoco-agent.destfile&gt;
+			&lt;/systemPropertyVariables&gt;
+		&lt;/configuration&gt;
+	&lt;/plugin&gt;
+
+	&lt;!-- Integration Tests --&gt;
+	&lt;!-- usage full test : mvn integration-test --&gt;
+	&lt;!-- usage only IT (but does not fill jacoco-it) : mvn test-compile failsafe:integration-test --&gt;
+	&lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
+		&lt;!-- version 2.19.1 is broken on jenkins --&gt;
+		&lt;version&gt;2.18.1&lt;/version&gt;
+		&lt;configuration&gt;
+			&lt;runOrder&gt;alphabetical&lt;/runOrder&gt;
+			&lt;systemPropertyVariables&gt;
+				&lt;jacoco-agent.destfile&gt;${jacoco.itReportPath}&lt;/jacoco-agent.destfile&gt;
+			&lt;/systemPropertyVariables&gt;
+		&lt;/configuration&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;id&gt;integration-tests&lt;/id&gt;
+				&lt;phase&gt;integration-test&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;integration-test&lt;/goal&gt;
+				&lt;/goals&gt;
+			&lt;/execution&gt;
+			&lt;execution&gt;
+				&lt;id&gt;verify&lt;/id&gt;
+				&lt;phase&gt;verify&lt;/phase&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;verify&lt;/goal&gt;
+				&lt;/goals&gt;
+			&lt;/execution&gt;
+		&lt;/executions&gt;
+	&lt;/plugin&gt;</programlisting>
+</para>
+</formalpara>
+</section>
+</section>
+</section>
+</article>

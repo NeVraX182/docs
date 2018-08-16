@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc maxdepth="3"?>
+<?asciidoc-numbered?>
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
+<info>
+<title>Sujets d&#8217;oral technique nvx Rennes </title>
+<subtitle>Benoit COUETIL</subtitle>
+<date>2018-08-16</date>
+<author>
+<personname>
+<firstname>Version 1.18-SNAPSHOT</firstname>
+</personname>
+</author>
+<authorinitials>V</authorinitials>
+</info>
+<table frame="all" rowsep="1" colsep="1">
+<title>History</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="12.5*"/>
+<colspec colname="col_2" colwidth="12.5*"/>
+<colspec colname="col_3" colwidth="75*"/>
+<thead>
+<row>
+<entry align="center" valign="top">Date</entry>
+<entry align="center" valign="top">Author</entry>
+<entry align="left" valign="top">Detail
+Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\target/generated-docs/history/oral-technique.adoc.psv[]</entry>
+</row>
+</thead>
+</tgroup>
+</table>
+<simpara><?asciidoc-pagebreak?></simpara>
+<section xml:id="_introduction">
+<title>Introduction</title>
+<simpara>Lors d&#8217;un entretien d&#8217;embauche, de stage ou d&#8217;alternance, l&#8217;idéal est de déterminer, en un temps très limité, si le candidat :</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara><emphasis role="strong">S&#8217;intègrera</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>Il a un bon contact / état d&#8217;esprit / projet professionnel / posture, il correspond à la culture nvx</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">A une tête bien pleine</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>Il a des diplômes et compétences informatique directement utilisables sur les projets</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">A une tête bien faite</emphasis></simpara>
+<itemizedlist>
+<listitem>
+<simpara>Est capable de résoudre les problèmes techniques quotidiens, sera autonome à moyen terme pour produire un code de qualité suffisante</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+<simpara>Les points 1 et 2 sont assurés par l&#8217;entretien RH, et confirmé par un entretien opérationnel (non technique la plupart du temps).</simpara>
+<simpara>L&#8217;on peut s&#8217;arrêter là, en considérant que le dernier point sera jugé en fin de période d&#8217;essai ou de stage. Mais il est possible d&#8217;éviter cette période incertaine, en tout cas réduire les chances de non transformation de l&#8217;essai.</simpara>
+<simpara>C&#8217;est l&#8217;objet et l&#8217;ambition de cet oral technique : déterminer, en projection, l&#8217;autonomie technique du candidat à 1 an.</simpara>
+<simpara>Il va sans dire que nvx Rennes, dans notre ambition de forte croissante à long terme, n&#8217;a pas vocation à trier pour ne prendre que les meilleurs ingénieurs : une productivité moyenne est suffisante. Les algorithmes sélectionnés doivent donc rester simples !</simpara>
+<formalpara>
+<title>Exemple d&#8217;algorithme trop complexe : zig zag conversion</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">public String convert(String s, int numRows) {
+	if (numRows == 1)
+		return s;
+
+	StringBuilder sb = new StringBuilder();
+	// step
+	int step = 2 * numRows - 2;
+
+	for (int i = 0; i &lt; numRows; i++) {
+		//first &amp; last rows
+		if (i == 0 || i == numRows - 1) {
+			for (int j = i; j &lt; s.length(); j = j + step) {
+				sb.append(s.charAt(j));
+			}
+		//middle rows
+		} else {
+			int j = i;
+			boolean flag = true;
+			int step1 = 2 * (numRows - 1 - i);
+			int step2 = step - step1;
+
+			while (j &lt; s.length()) {
+				sb.append(s.charAt(j));
+				if (flag)
+					j = j + step1;
+				else
+					j = j + step2;
+				flag = !flag;
+			}
+		}
+	}
+	return sb.toString();
+}</programlisting>
+</para>
+</formalpara>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+<section xml:id="_algorithme_1_le_palindrome">
+<title>Algorithme 1 : le palindrome</title>
+<section xml:id="_définition">
+<title>Définition</title>
+<simpara>Un palindrome est un mot que l&#8217;on peut lire dans les deux sens. "kayak", "Laval", "radar", sont des palindromes.</simpara>
+</section>
+<section xml:id="_exercice">
+<title>Exercice</title>
+<simpara>Ecrivez une fonction (réutilisable ailleurs dans un programme), permettant de vérifier si un mot donné est un palindrome ou non.</simpara>
+<simpara>Vous pouvez utiliser la fonction <guibutton>String.charAt(int)</guibutton> qui récupère un charactère à une position donnée dans une chaîne.</simpara>
+<programlisting language="java" linenumbering="unnumbered">"kayak".charAt(0) == "kayak".charAt(4);//true</programlisting>
+<simpara>Vous pouvez également utiliser la fonction <guibutton>String.substring(int,int)</guibutton> qui retourne une sous-partie d&#8217;une chaine en prenant l&#8217;index initial et la longueur.</simpara>
+<programlisting language="java" linenumbering="unnumbered">String ay = "kayak".substring(1, 2)</programlisting>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+<section xml:id="_solutions">
+<title>Solutions</title>
+<formalpara>
+<title>Algorithme classique</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">public static boolean isPalindrome(String word) {
+    for (int i = 0; i &lt;= sub.length() / 2; i++) {
+        if (word.charAt(i) != word.charAt(sub.length() - 1 - i)) {
+            return false;
+        }
+    }
+    return true;
+}</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>Algorithme récursif</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">public static boolean isPalindrome(String word) {
+    if(word.length() == 0 || word.length() == 1) {
+        return true;
+    }
+    if(word.charAt(0) == word.charAt(word.length()-1)) {
+        return isPalindrome(word.substring(1, word.length()-1));
+    }
+}</programlisting>
+</para>
+</formalpara>
+<formalpara>
+<title>Algorithme le plus concis</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">public static boolean isPalindrome(String word) {
+    return new StringBuilder(word).reverse().equals(word);
+}</programlisting>
+</para>
+</formalpara>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+<section xml:id="_notation">
+<title>Notation</title>
+<simpara>Pour chaque point :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>1/1 : en autonomie</simpara>
+</listitem>
+<listitem>
+<simpara>0.5/1 : avec un peu d&#8217;aide ou partiel</simpara>
+</listitem>
+<listitem>
+<simpara>0/1 : non réussi ou trop aidé</simpara>
+</listitem>
+</itemizedlist>
+<table frame="all" rowsep="1" colsep="1">
+<title>Tableau de notations</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Point</entry>
+<entry align="left" valign="top">Note</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Ecriture lisible</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Communication orale claire</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Signature : boolean isPalindrome(String mot)</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Boucle for() + if</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Parcours s&#8217;arrêtant à la moitié du mot (perf)</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Conditions aux limites vérifiées</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1 solution terminée parmi les 3</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>&#8230;&#8203;en moins de 15 minutes</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2 solutions terminées parmi les 3</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>&#8230;&#8203;en moins de 20 minutes</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+</section>
+<section xml:id="_algorithme_2_traversée_de_tableau_en_biais">
+<title>Algorithme 2 : traversée de tableau en biais</title>
+<section xml:id="_définition_et_exercice">
+<title>Définition et exercice</title>
+<simpara>Traversez un tableau de n lignes et m colonnes en biais et afficher le contenu des cases.</simpara>
+<simpara><inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/oral-zig-zag.png"/>
+</imageobject>
+<textobject><phrase>oral zig zag</phrase></textobject>
+</inlinemediaobject></simpara>
+<formalpara>
+<title>Affichage pour cet exemple</title>
+<para>
+<literallayout class="monospaced">a00, a10, a01, a20, a11, a02, a30, a21, a12, a03, a31, a22, a13, a32, a23, a33</literallayout>
+</para>
+</formalpara>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+<section xml:id="_solutions_2">
+<title>Solutions</title>
+<formalpara>
+<title>Algorithme en 2 blocs</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">String[][] table = { { "a00", "a01", "a02", "a03" }, { "a10", "a11", "a12", "a13" },
+		{ "a20", "a21", "a22", "a23" }, { "a30", "a31", "a32", "a33" } };
+int n = table.length;
+int m = table[0].length;
+
+int iAlternate;
+for (int i = 0; i &lt; n; i++) {
+	iAlternate = i;
+	for (int j = 0; j &lt;= i; j++) {
+		if (j &lt; n) {
+			System.out.print(table[iAlternate][j] + " ");
+			iAlternate--;
+		}
+	}
+}
+
+int jAlternate;
+for (int j = 1; j &lt; m; j++) {
+	jAlternate = j;
+	for (int i = n - 1; i &gt; 0; i--) {
+		if (jAlternate &lt; m)
+			System.out.print(table[i][jAlternate] + " ");
+		jAlternate++;
+	}
+}
+// a00 a10 a01 a20 a11 a02 a30 a21 a12 a03 a31 a22 a13 a32 a23 a33</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_notation_2">
+<title>Notation</title>
+<simpara>Pour chaque point :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>1/1 : en autonomie</simpara>
+</listitem>
+<listitem>
+<simpara>0.5/1 : avec un peu d&#8217;aide ou partiel</simpara>
+</listitem>
+<listitem>
+<simpara>0/1 : non réussi ou trop aidé</simpara>
+</listitem>
+</itemizedlist>
+<table frame="all" rowsep="1" colsep="1">
+<title>Tableau de notations</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Point</entry>
+<entry align="left" valign="top">Note</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Ecriture lisible</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Communication orale claire</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Concept maitrisé (présentation a main levée)</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2 parties/boucles</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Boucle 1 : 2 for() 1 if</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Boucle 1 : conditions aux limites</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Moins de 15 minutes</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Boucle 1 : 2 for() 1 if</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Boucle 1 : conditions aux limites</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Moins de 20 minutes</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+</section>
+<section xml:id="_algorithme_3_arbre_de_recherche_binaire">
+<title>Algorithme 3 : arbre de recherche binaire</title>
+<section xml:id="_définition_2">
+<title>Définition</title>
+<simpara>Un arbre de recherche binaire est un arbre ou la valeur de chaque noeud ("Node") est :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>plus grande ou égale à la valeur de tous les sous-nœuds de gauche</simpara>
+</listitem>
+<listitem>
+<simpara>plus petite ou égale à la valeur de tous les sous-nœuds de droite</simpara>
+</listitem>
+</itemizedlist>
+<formalpara>
+<title>Arbre binaire</title>
+<para>
+<literallayout class="monospaced">(*) --&gt; "&lt;b&gt;Node a&lt;/b&gt;\n&lt;i&gt;value = 5&lt;/i&gt;" as NA
+NA --&gt; "&lt;b&gt;Node b&lt;/b&gt;\n&lt;i&gt;value = 3&lt;/i&gt;" as NB
+NA --&gt; "&lt;b&gt;Node c&lt;/b&gt;\n&lt;i&gt;value = 10&lt;/i&gt;" as NC
+NB --&gt; "&lt;b&gt;Node d&lt;/b&gt;\n&lt;i&gt;value = 1&lt;/i&gt;" as ND
+NB --&gt; "&lt;b&gt;Node e&lt;/b&gt;\n&lt;i&gt;value = 4&lt;/i&gt;" as NE</literallayout>
+</para>
+</formalpara>
+</section>
+<section xml:id="_exercice_2">
+<title>Exercice</title>
+<simpara>Ecrire une fonction <guibutton>contains(node, value)</guibutton> qui vérifie si un certain arbre contient une certaine valeur. Avant de commencer, pour s&#8217;assurer de la compréhension de l&#8217;exercice, indiquer le résultat de <guibutton>contains(n2, 3)</guibutton> avec l&#8217;exemple suivant :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>n1 (Value: 2, Left: null, Right: null)</simpara>
+</listitem>
+<listitem>
+<simpara>n2 (Value: 4, Left: n1, Right: n3)</simpara>
+</listitem>
+<listitem>
+<simpara>n3 (Value: 6, Left: null, Right: null)</simpara>
+</listitem>
+</itemizedlist>
+<formalpara>
+<title>Node.java</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">class Node {
+    public int value;
+    public Node left;
+    public Node right;
+
+    public Node(int value, Node left, Node right) {
+        this.value = value;
+        this.left = left;
+        this.right = right;
+    }
+}</programlisting>
+</para>
+</formalpara>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+<section xml:id="_solutions_3">
+<title>Solutions</title>
+<formalpara>
+<title>Algorithme basique</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">public static boolean contains(Node root, int value) {
+	if (root == null) return false;
+	if (root.value == value)
+		return true;
+	if (root.value &gt; value)
+		return contains(root.left, value);
+	if (root.value &lt; value)
+		return contains(root.right, value);
+	return false;
+}</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_notation_3">
+<title>Notation</title>
+<simpara>Pour chaque point :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>1/1 : en autonomie</simpara>
+</listitem>
+<listitem>
+<simpara>0.5/1 : avec un peu d&#8217;aide ou partiel</simpara>
+</listitem>
+<listitem>
+<simpara>0/1 : non réussi</simpara>
+</listitem>
+</itemizedlist>
+<table frame="all" rowsep="1" colsep="1">
+<title>Tableau de notations</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Point</entry>
+<entry align="left" valign="top">Note</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Ecriture lisible</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Communication orale claire</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Exemple</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Signature de fonction</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Condition null</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Condition true</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Condition false</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Condition récursive droite</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Condition récursive gauche</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Moins de 10 minutes</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+</section>
+<section xml:id="_algorithme_4_deviner_un_chiffre">
+<title>Algorithme 4 : deviner un chiffre</title>
+<section xml:id="_exercice_3">
+<title>Exercice</title>
+<simpara>Il s&#8217;agit d&#8217;un jeu de devinette.</simpara>
+<simpara>Je m&#8217;appelle Ben. Vous me demandez de choisir un nombre entre 1 et n. J&#8217;indique pour chaque essai si c&#8217;est "plus" ou "moins". Il s&#8217;agit de créer une fonction de recherche qui simule votre comportement de joueur. Cette fonction s&#8217;arrête donc quand elle a trouvé le nombre que j&#8217;avais en tête depuis le début.</simpara>
+<simpara>Dans cette fonction à créer, il faut appeler une fonction existante qui simule mon comportement :</simpara>
+<literallayout class="monospaced">int askBen(int num)</literallayout>
+<simpara>Elle me demande si un certain nombre est celui que j&#8217;avais en tête et retourne 3 valeurs possibles :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>-1 : Mon nombre est plus petit</simpara>
+</listitem>
+<listitem>
+<simpara>1 : Mon nombre est plus grand</simpara>
+</listitem>
+<listitem>
+<simpara>0 : Bravo ! vous avez deviné mon nombre</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="_exemple">
+<title>Exemple</title>
+<simpara>Si n = 10, et que je choisis 6 (sans le dire), votre fonction retourne 6.</simpara>
+<simpara><?asciidoc-pagebreak?></simpara>
+</section>
+</section>
+<section xml:id="_solutions_4">
+<title>Solutions</title>
+<formalpara>
+<title>Algorithme basique</title>
+<para>
+<programlisting language="java" linenumbering="unnumbered">public int guessNumber(int n) {
+    int low=1;
+    int high=n;
+
+    while(low &lt;= high){
+        int mid = low+((high-low)/2);
+        int result = askBen(mid);
+        if(result==0){
+            return mid;
+        }else if(result==1){
+            low = mid+1;
+        }else{
+            high=mid-1;
+        }
+    }
+    return -1;
+}</programlisting>
+</para>
+</formalpara>
+</section>
+<section xml:id="_notation_4">
+<title>Notation</title>
+<simpara>Pour chaque point :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>1/1 : en autonomie</simpara>
+</listitem>
+<listitem>
+<simpara>0.5/1 : avec un peu d&#8217;aide ou partiel</simpara>
+</listitem>
+<listitem>
+<simpara>0/1 : non réussi</simpara>
+</listitem>
+</itemizedlist>
+<table frame="all" rowsep="1" colsep="1">
+<title>Tableau de notations</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Point</entry>
+<entry align="left" valign="top">Note</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Ecriture lisible</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Communication orale claire</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Exemple</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Signature de fonction</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Algo valide</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Cas aux limites</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Performance</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>En moins de 20 minutes</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>En Moins de 10 minutes</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Solution récursive</simpara></entry>
+<entry align="left" valign="top"></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+</section>
+</article>
