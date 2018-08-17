@@ -516,7 +516,7 @@ table.CodeRay td.code>pre{padding:0}
 <h1>Indus Production Line : Configuration Guide</h1>
 <div class="details">
 <span id="author" class="author">Version 1.18-SNAPSHOT</span><br>
-<span id="revdate">2018-08-16</span>
+<span id="revdate">2018-08-17</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -538,164 +538,160 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 </ul>
 </li>
-<li><a href="#ldap-account-manager-lam">3. LDAP Account Manager (lam)</a>
+<li><a href="#deploy-asciidoc-to-github">3. Deploy asciidoc to github</a></li>
+<li><a href="#ldap-account-manager-lam">4. LDAP Account Manager (lam)</a>
 <ul class="sectlevel2">
-<li><a href="#mailing-list">3.1. Mailing list</a></li>
+<li><a href="#mailing-list">4.1. Mailing list</a></li>
 </ul>
 </li>
-<li><a href="#fusionforge">4. FusionForge</a>
+<li><a href="#fusionforge">5. FusionForge</a>
 <ul class="sectlevel2">
-<li><a href="#add-admin-rights">4.1. Add admin rights</a></li>
-<li><a href="#create-project">4.2. Create project</a></li>
-<li><a href="#create-tracker">4.3. Create tracker</a></li>
-<li><a href="#add-users">4.4. Add users</a></li>
-<li><a href="#change-your-name">4.5. Change your name</a></li>
+<li><a href="#add-admin-rights">5.1. Add admin rights</a></li>
+<li><a href="#create-project">5.2. Create project</a></li>
+<li><a href="#create-tracker">5.3. Create tracker</a></li>
+<li><a href="#add-users">5.4. Add users</a></li>
+<li><a href="#change-your-name">5.5. Change your name</a></li>
 </ul>
 </li>
-<li><a href="#gerrit">5. Gerrit</a>
+<li><a href="#gerrit">6. Gerrit</a>
 <ul class="sectlevel2">
-<li><a href="#initialization">5.1. Initialization</a>
+<li><a href="#initialization">6.1. Initialization</a>
 <ul class="sectlevel3">
-<li><a href="#permissions">5.1.1. Permissions</a></li>
-<li><a href="#verified-status">5.1.2. Verified status</a></li>
-<li><a href="#fast-forward">5.1.3. Fast Forward</a></li>
+<li><a href="#permissions">6.1.1. Permissions</a></li>
+<li><a href="#verified-status">6.1.2. Verified status</a></li>
+<li><a href="#fast-forward">6.1.3. Fast Forward</a></li>
 </ul>
 </li>
-<li><a href="#user-preferences">5.2. User preferences</a></li>
-<li><a href="#project-creation">5.3. Project creation</a>
+<li><a href="#user-preferences">6.2. User preferences</a></li>
+<li><a href="#project-creation">6.3. Project creation</a>
 <ul class="sectlevel3">
-<li><a href="#project-git-address">5.3.1. Project git address</a></li>
-<li><a href="#users-groups-creation">5.3.2. Users groups creation</a></li>
+<li><a href="#project-git-address">6.3.1. Project git address</a></li>
+<li><a href="#users-groups-creation">6.3.2. Users groups creation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#jenkins">6. Jenkins</a>
+<li><a href="#jenkins">7. Jenkins</a>
 <ul class="sectlevel2">
-<li><a href="#plugins-installation">6.1. Plugins installation</a></li>
-<li><a href="#change-theme">6.2. Change Theme</a></li>
-<li><a href="#gerrit-trigger-configuration">6.3. Gerrit Trigger Configuration</a></li>
-<li><a href="#administration-2">6.4. Administration</a>
+<li><a href="#plugins-installation">7.1. Plugins installation</a></li>
+<li><a href="#change-theme">7.2. Change Theme</a></li>
+<li><a href="#gerrit-trigger-configuration">7.3. Gerrit Trigger Configuration</a></li>
+<li><a href="#administration-2">7.4. Administration</a>
 <ul class="sectlevel3">
-<li><a href="#overall-configuration">6.4.1. Overall configuration</a></li>
-<li><a href="#tools-configuration">6.4.2. Tools configuration</a></li>
+<li><a href="#overall-configuration">7.4.1. Overall configuration</a></li>
+<li><a href="#tools-configuration">7.4.2. Tools configuration</a></li>
 </ul>
 </li>
-<li><a href="#allow-css-on-published-html">6.5. Allow CSS on published HTML</a></li>
-<li><a href="#sonarqube-token">6.6. SonarQube token</a></li>
-<li><a href="#ssh-key-on-remote-server">6.7. ssh key on remote server</a></li>
-<li><a href="#pipelines-creations">6.8. Pipelines creations</a>
+<li><a href="#allow-css-on-published-html">7.5. Allow CSS on published HTML</a></li>
+<li><a href="#sonarqube-token">7.6. SonarQube token</a></li>
+<li><a href="#ssh-key-on-remote-server">7.7. ssh key on remote server</a></li>
+<li><a href="#pipelines-creations">7.8. Pipelines creations</a>
 <ul class="sectlevel3">
-<li><a href="#the-review-pipeline">6.8.1. The Review pipeline</a></li>
-<li><a href="#the-deploy-pipeline">6.8.2. The Deploy pipeline</a></li>
-<li><a href="#the-deploy-int-pipeline">6.8.3. The Deploy Int pipeline</a></li>
-<li><a href="#the-release-pipeline">6.8.4. The Release pipeline</a></li>
+<li><a href="#the-review-pipeline">7.8.1. The Review pipeline</a></li>
+<li><a href="#the-deploy-pipeline">7.8.2. The Deploy pipeline</a></li>
+<li><a href="#the-deploy-int-pipeline">7.8.3. The Deploy Int pipeline</a></li>
+<li><a href="#the-release-pipeline">7.8.4. The Release pipeline</a></li>
 </ul>
 </li>
-<li><a href="#troobleshooting">6.9. Troobleshooting</a>
+<li><a href="#troobleshooting">7.9. Troobleshooting</a>
 <ul class="sectlevel3">
-<li><a href="#disk-space-usage-90">6.9.1. Disk space usage &gt; 90 %</a></li>
+<li><a href="#disk-space-usage-90">7.9.1. Disk space usage &gt; 90 %</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#sonarqube">7. SonarQube</a>
+<li><a href="#sonarqube">8. SonarQube</a>
 <ul class="sectlevel2">
-<li><a href="#quality-gates">7.1. Quality Gates</a></li>
-<li><a href="#update">7.2. Update</a></li>
-<li><a href="#rules-quality-profile">7.3. Rules / quality profile</a>
+<li><a href="#quality-gates">8.1. Quality Gates</a></li>
+<li><a href="#update">8.2. Update</a></li>
+<li><a href="#rules-quality-profile">8.3. Rules / quality profile</a>
 <ul class="sectlevel3">
-<li><a href="#export">7.3.1. Export</a></li>
-<li><a href="#import">7.3.2. Import</a></li>
-<li><a href="#create">7.3.3. Create</a></li>
+<li><a href="#export">8.3.1. Export</a></li>
+<li><a href="#import">8.3.2. Import</a></li>
+<li><a href="#create">8.3.3. Create</a></li>
 </ul>
 </li>
-<li><a href="#technical-debt">7.4. Technical Debt</a></li>
+<li><a href="#technical-debt">8.4. Technical Debt</a></li>
 </ul>
 </li>
-<li><a href="#nexus3">8. Nexus3</a>
+<li><a href="#nexus3">9. Nexus3</a>
 <ul class="sectlevel2">
-<li><a href="#url">8.1. URL</a></li>
-<li><a href="#set-snapshot-retention">8.2. Set SNAPSHOT retention</a></li>
-<li><a href="#add-a-proxy-remote-repository">8.3. Add a proxy (=remote) repository</a></li>
+<li><a href="#url">9.1. URL</a></li>
+<li><a href="#set-snapshot-retention">9.2. Set SNAPSHOT retention</a></li>
+<li><a href="#add-a-proxy-remote-repository">9.3. Add a proxy (=remote) repository</a></li>
 </ul>
 </li>
-<li><a href="#jira">9. JIRA</a>
+<li><a href="#jira">10. JIRA</a>
 <ul class="sectlevel2">
-<li><a href="#jira-access-restriction">9.1. JIRA Access restriction</a></li>
-<li><a href="#project">9.2. Project</a>
+<li><a href="#jira-access-restriction">10.1. JIRA Access restriction</a></li>
+<li><a href="#project">10.2. Project</a>
 <ul class="sectlevel3">
-<li><a href="#add-time-estimated">9.2.1. Add Time Estimated</a></li>
-<li><a href="#configure-emails-notification">9.2.2. Configure emails notification</a></li>
+<li><a href="#add-time-estimated">10.2.1. Add Time Estimated</a></li>
+<li><a href="#configure-emails-notification">10.2.2. Configure emails notification</a></li>
 </ul>
 </li>
-<li><a href="#version">9.3. Version</a>
+<li><a href="#version">10.3. Version</a>
 <ul class="sectlevel3">
-<li><a href="#add-new-members">9.3.1. Add new members</a></li>
-<li><a href="#create-the-version">9.3.2. Create the version</a></li>
-<li><a href="#add-tickets">9.3.3. Add tickets</a></li>
+<li><a href="#add-new-members">10.3.1. Add new members</a></li>
+<li><a href="#create-the-version">10.3.2. Create the version</a></li>
+<li><a href="#add-tickets">10.3.3. Add tickets</a></li>
 </ul>
 </li>
-<li><a href="#bigpicture">9.4. BigPicture</a>
+<li><a href="#bigpicture">10.4. BigPicture</a>
 <ul class="sectlevel3">
-<li><a href="#gantt">9.4.1. Gantt</a></li>
-<li><a href="#configure-layout">9.4.2. Configure layout</a></li>
-<li><a href="#regroup-tasks">9.4.3. Regroup tasks</a></li>
-<li><a href="#add-deadlines">9.4.4. Add deadlines</a></li>
+<li><a href="#gantt">10.4.1. Gantt</a></li>
+<li><a href="#configure-layout">10.4.2. Configure layout</a></li>
+<li><a href="#regroup-tasks">10.4.3. Regroup tasks</a></li>
+<li><a href="#add-deadlines">10.4.4. Add deadlines</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#nexus2">10. Nexus2</a>
+<li><a href="#nexus2">11. Nexus2</a>
 <ul class="sectlevel2">
-<li><a href="#define-rights-of-technical-account">10.1. Define rights of technical account</a></li>
-<li><a href="#set-snapshot-retention-2">10.2. Set SNAPSHOT retention</a></li>
-<li><a href="#add-a-proxy-remote-repository-2">10.3. Add a proxy (=remote) repository</a></li>
+<li><a href="#define-rights-of-technical-account">11.1. Define rights of technical account</a></li>
+<li><a href="#set-snapshot-retention-2">11.2. Set SNAPSHOT retention</a></li>
+<li><a href="#add-a-proxy-remote-repository-2">11.3. Add a proxy (=remote) repository</a></li>
 </ul>
 </li>
-<li><a href="#additionnal-nvx-vm-webmethods-elastic-servers">11. Additionnal nvx VM : webMethods &amp; Elastic servers</a>
+<li><a href="#additionnal-nvx-vm-webmethods-elastic-servers">12. Additionnal nvx VM : webMethods &amp; Elastic servers</a>
 <ul class="sectlevel2">
-<li><a href="#initialize-vm">11.1. Initialize VM</a></li>
-<li><a href="#install-docker">11.2. Install Docker</a>
+<li><a href="#initialize-vm">12.1. Initialize VM</a></li>
+<li><a href="#install-docker">12.2. Install Docker</a>
 <ul class="sectlevel3">
-<li><a href="#define-nexus3-as-the-docker-registry">11.2.1. Define Nexus3 as the Docker registry</a></li>
+<li><a href="#define-nexus3-as-the-docker-registry">12.2.1. Define Nexus3 as the Docker registry</a></li>
 </ul>
 </li>
-<li><a href="#setup-a-dockerized-oracle12c-database">11.3. Setup a dockerized Oracle12c database</a></li>
-<li><a href="#install-elastic-items">11.4. Install Elastic items</a>
+<li><a href="#setup-a-dockerized-oracle12c-database">12.3. Setup a dockerized Oracle12c database</a></li>
+<li><a href="#install-elastic-items">12.4. Install Elastic items</a>
 <ul class="sectlevel3">
-<li><a href="#migration-prerequisites">11.4.1. Migration prerequisites</a></li>
-<li><a href="#elasticsearch">11.4.2. Elasticsearch</a></li>
+<li><a href="#migration-prerequisites">12.4.1. Migration prerequisites</a></li>
+<li><a href="#elasticsearch">12.4.2. Elasticsearch</a></li>
 </ul>
 </li>
-<li><a href="#kibana">11.5. Kibana</a>
+<li><a href="#kibana">12.5. Kibana</a>
 <ul class="sectlevel3">
-<li><a href="#troubleshoot">11.5.1. Troubleshoot</a></li>
+<li><a href="#troubleshoot">12.5.1. Troubleshoot</a></li>
 </ul>
 </li>
-<li><a href="#curator">11.6. Curator</a>
+<li><a href="#curator">12.6. Curator</a>
 <ul class="sectlevel3">
-<li><a href="#automation">11.6.1. Automation</a></li>
-<li><a href="#configuration">11.6.2. Configuration</a></li>
+<li><a href="#automation">12.6.1. Automation</a></li>
+<li><a href="#configuration">12.6.2. Configuration</a></li>
 </ul>
 </li>
-<li><a href="#heartbeat">11.7. Heartbeat</a></li>
-<li><a href="#logstash">11.8. Logstash</a></li>
-<li><a href="#filebeat">11.9. Filebeat</a></li>
-<li><a href="#metricbeat">11.10. Metricbeat</a></li>
-<li><a href="#grafana">11.11. Grafana</a></li>
-<li><a href="#jaeger-tracing-openzipkin-like">11.12. Jaeger Tracing (OpenZipkin-like)</a></li>
-<li><a href="#install-wm-servers">11.13. Install WM servers</a>
+<li><a href="#heartbeat">12.7. Heartbeat</a></li>
+<li><a href="#logstash">12.8. Logstash</a></li>
+<li><a href="#filebeat">12.9. Filebeat</a></li>
+<li><a href="#metricbeat">12.10. Metricbeat</a></li>
+<li><a href="#grafana">12.11. Grafana</a></li>
+<li><a href="#jaeger-tracing-openzipkin-like">12.12. Jaeger Tracing (OpenZipkin-like)</a></li>
+<li><a href="#install-wm-servers">12.13. Install WM servers</a>
 <ul class="sectlevel3">
-<li><a href="#prerequisites-2">11.13.1. Prerequisites</a></li>
-<li><a href="#install-is-um-manually">11.13.2. Install IS &amp; UM manually</a></li>
+<li><a href="#prerequisites-2">12.13.1. Prerequisites</a></li>
+<li><a href="#install-is-um-manually">12.13.2. Install IS &amp; UM manually</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#appendix">12. Appendix</a>
-<ul class="sectlevel2">
-<li><a href="#revision-marks">12.1. Revision marks</a></li>
 </ul>
 </li>
 </ul>
@@ -727,7 +723,7 @@ Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\tar
 <h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document describe, from scratch, how to configure CI Platform on BPM Factory.</p>
+<p>This document describes, from scratch, how to configure CI Platform on BPM Factory.</p>
 </div>
 <div class="paragraph">
 <p>This should work for any project using the Production Line from CG Indus team.</p>
@@ -904,7 +900,32 @@ Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\tar
 </div>
 </div>
 <div class="sect1">
-<h2 id="ldap-account-manager-lam"><a class="anchor" href="#ldap-account-manager-lam"></a>3. LDAP Account Manager (lam)</h2>
+<h2 id="deploy-asciidoc-to-github"><a class="anchor" href="#deploy-asciidoc-to-github"></a>3. Deploy asciidoc to github</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>mkdir docs
+cd docs
+git init
+git checkout --orphan gh-pages</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Copy a first version of the site in the directory, then :</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git add *
+git commit -m "initial site content"
+git remote add origin "https://github.com/NeVraX182/docs.git"
+git push --set-upstream origin gh-pages</pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ldap-account-manager-lam"><a class="anchor" href="#ldap-account-manager-lam"></a>4. LDAP Account Manager (lam)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Choose the service <strong>lam</strong> on your production line :</p>
@@ -950,7 +971,7 @@ Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\tar
 </ul>
 </div>
 <div class="sect2">
-<h3 id="mailing-list"><a class="anchor" href="#mailing-list"></a>3.1. Mailing list</h3>
+<h3 id="mailing-list"><a class="anchor" href="#mailing-list"></a>4.1. Mailing list</h3>
 <div class="ulist">
 <div class="title">Follow these steps if and when you need to create a mailing list :</div>
 <ul>
@@ -993,7 +1014,7 @@ Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\tar
 </div>
 </div>
 <div class="sect1">
-<h2 id="fusionforge"><a class="anchor" href="#fusionforge"></a>4. FusionForge</h2>
+<h2 id="fusionforge"><a class="anchor" href="#fusionforge"></a>5. FusionForge</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -1014,7 +1035,7 @@ Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\tar
 <a href="https://bpmfactory.s2-eu.nvx.com/fusionforge/" class="bare">https://bpmfactory.s2-eu.nvx.com/fusionforge/</a></p>
 </div>
 <div class="sect2">
-<h3 id="add-admin-rights"><a class="anchor" href="#add-admin-rights"></a>4.1. Add admin rights</h3>
+<h3 id="add-admin-rights"><a class="anchor" href="#add-admin-rights"></a>5.1. Add admin rights</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1040,7 +1061,7 @@ Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\tar
 </div>
 </div>
 <div class="sect2">
-<h3 id="create-project"><a class="anchor" href="#create-project"></a>4.2. Create project</h3>
+<h3 id="create-project"><a class="anchor" href="#create-project"></a>5.2. Create project</h3>
 <div class="paragraph">
 <p>In the <strong>Site Admin</strong> tab, section <strong>Project Maintenance</strong>, click on the link <strong>Register New Project</strong>.</p>
 </div>
@@ -1052,7 +1073,7 @@ Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\tar
 </div>
 </div>
 <div class="sect2">
-<h3 id="create-tracker"><a class="anchor" href="#create-tracker"></a>4.3. Create tracker</h3>
+<h3 id="create-tracker"><a class="anchor" href="#create-tracker"></a>5.3. Create tracker</h3>
 <div class="paragraph">
 <p>On the project homepage, click on  <strong>Tracker</strong> &#8594; <strong>Administration</strong>.</p>
 </div>
@@ -1061,7 +1082,7 @@ Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\tar
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-users"><a class="anchor" href="#add-users"></a>4.4. Add users</h3>
+<h3 id="add-users"><a class="anchor" href="#add-users"></a>5.4. Add users</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1090,7 +1111,7 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect2">
-<h3 id="change-your-name"><a class="anchor" href="#change-your-name"></a>4.5. Change your name</h3>
+<h3 id="change-your-name"><a class="anchor" href="#change-your-name"></a>5.5. Change your name</h3>
 <div class="ulist">
 <div class="title">Your name can be "Forge Admin" at PL reception, here is how to change it :</div>
 <ul>
@@ -1110,13 +1131,13 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect1">
-<h2 id="gerrit"><a class="anchor" href="#gerrit"></a>5. Gerrit</h2>
+<h2 id="gerrit"><a class="anchor" href="#gerrit"></a>6. Gerrit</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Choose the service <strong>Gerrit</strong> on your production line : <a href="https://bpmfactory.s2-eu.nvx.com/gerrit" class="bare">https://bpmfactory.s2-eu.nvx.com/gerrit</a></p>
 </div>
 <div class="sect2">
-<h3 id="initialization"><a class="anchor" href="#initialization"></a>5.1. Initialization</h3>
+<h3 id="initialization"><a class="anchor" href="#initialization"></a>6.1. Initialization</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1132,7 +1153,7 @@ The user must have connected at least once on FusionForge to be available.
 </table>
 </div>
 <div class="sect3">
-<h4 id="permissions"><a class="anchor" href="#permissions"></a>5.1.1. Permissions</h4>
+<h4 id="permissions"><a class="anchor" href="#permissions"></a>6.1.1. Permissions</h4>
 <div class="sect4">
 <h5 id="jenkins-user-push"><a class="anchor" href="#jenkins-user-push"></a>Jenkins user push</h5>
 <div class="ulist">
@@ -1182,7 +1203,7 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect3">
-<h4 id="verified-status"><a class="anchor" href="#verified-status"></a>5.1.2. Verified status</h4>
+<h4 id="verified-status"><a class="anchor" href="#verified-status"></a>6.1.2. Verified status</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1232,7 +1253,7 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect3">
-<h4 id="fast-forward"><a class="anchor" href="#fast-forward"></a>5.1.3. Fast Forward</h4>
+<h4 id="fast-forward"><a class="anchor" href="#fast-forward"></a>6.1.3. Fast Forward</h4>
 <div class="paragraph">
 <p>By default, when projet submissions are not fast forward, final submitting a change will create a merge commit. The history is potentially doubled.</p>
 </div>
@@ -1249,14 +1270,14 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-preferences"><a class="anchor" href="#user-preferences"></a>5.2. User preferences</h3>
+<h3 id="user-preferences"><a class="anchor" href="#user-preferences"></a>6.2. User preferences</h3>
 <div class="paragraph">
 <p>Click on  <strong>YourName</strong> &#8594; <strong>Settings</strong> &#8594; <strong>Diff Preferences</strong> and set <strong>columns = 120</strong>
 (you will probably have to paste it due to a GUI bug)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="project-creation"><a class="anchor" href="#project-creation"></a>5.3. Project creation</h3>
+<h3 id="project-creation"><a class="anchor" href="#project-creation"></a>6.3. Project creation</h3>
 <div class="paragraph">
 <p>Create your GIT project by clicking on <strong>Projects</strong> &#8594; <strong>Create New Project</strong></p>
 </div>
@@ -1274,7 +1295,7 @@ The user must have connected at least once on FusionForge to be available.
 </ul>
 </div>
 <div class="sect3">
-<h4 id="project-git-address"><a class="anchor" href="#project-git-address"></a>5.3.1. Project git address</h4>
+<h4 id="project-git-address"><a class="anchor" href="#project-git-address"></a>6.3.1. Project git address</h4>
 <div class="paragraph">
 <p>The git is visible in <strong>Projects</strong> &#8594; <b class="button">(gitweb)</b>.</p>
 </div>
@@ -1296,7 +1317,7 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect3">
-<h4 id="users-groups-creation"><a class="anchor" href="#users-groups-creation"></a>5.3.2. Users groups creation</h4>
+<h4 id="users-groups-creation"><a class="anchor" href="#users-groups-creation"></a>6.3.2. Users groups creation</h4>
 <div class="paragraph">
 <p>For each project, create a reviewer list and a validator list.</p>
 </div>
@@ -1369,10 +1390,10 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect1">
-<h2 id="jenkins"><a class="anchor" href="#jenkins"></a>6. Jenkins</h2>
+<h2 id="jenkins"><a class="anchor" href="#jenkins"></a>7. Jenkins</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="plugins-installation"><a class="anchor" href="#plugins-installation"></a>6.1. Plugins installation</h3>
+<h3 id="plugins-installation"><a class="anchor" href="#plugins-installation"></a>7.1. Plugins installation</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1529,7 +1550,7 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect2">
-<h3 id="change-theme"><a class="anchor" href="#change-theme"></a>6.2. Change Theme</h3>
+<h3 id="change-theme"><a class="anchor" href="#change-theme"></a>7.2. Change Theme</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1573,7 +1594,7 @@ The user must have connected at least once on FusionForge to be available.
 </div>
 </div>
 <div class="sect2">
-<h3 id="gerrit-trigger-configuration"><a class="anchor" href="#gerrit-trigger-configuration"></a>6.3. Gerrit Trigger Configuration</h3>
+<h3 id="gerrit-trigger-configuration"><a class="anchor" href="#gerrit-trigger-configuration"></a>7.3. Gerrit Trigger Configuration</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1793,7 +1814,7 @@ more /root/.ssh/id_rsa.pub</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="administration-2"><a class="anchor" href="#administration-2"></a>6.4. Administration</h3>
+<h3 id="administration-2"><a class="anchor" href="#administration-2"></a>7.4. Administration</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1809,7 +1830,7 @@ more /root/.ssh/id_rsa.pub</pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="overall-configuration"><a class="anchor" href="#overall-configuration"></a>6.4.1. Overall configuration</h4>
+<h4 id="overall-configuration"><a class="anchor" href="#overall-configuration"></a>7.4.1. Overall configuration</h4>
 <div class="paragraph">
 <p>Connect to Jenkins configuration page : <a href="https://bpmfactory.s2-eu.nvx.com/jenkins/configure" class="bare">https://bpmfactory.s2-eu.nvx.com/jenkins/configure</a></p>
 </div>
@@ -1868,7 +1889,7 @@ more /root/.ssh/id_rsa.pub</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="tools-configuration"><a class="anchor" href="#tools-configuration"></a>6.4.2. Tools configuration</h4>
+<h4 id="tools-configuration"><a class="anchor" href="#tools-configuration"></a>7.4.2. Tools configuration</h4>
 <div class="paragraph">
 <p>Connect to Jenkins tools configuration page : <a href="https://bpmfactory.s2-eu.nvx.com/jenkins/configureTools/" class="bare">https://bpmfactory.s2-eu.nvx.com/jenkins/configureTools/</a></p>
 </div>
@@ -1914,7 +1935,7 @@ more /root/.ssh/id_rsa.pub</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="allow-css-on-published-html"><a class="anchor" href="#allow-css-on-published-html"></a>6.5. Allow CSS on published HTML</h3>
+<h3 id="allow-css-on-published-html"><a class="anchor" href="#allow-css-on-published-html"></a>7.5. Allow CSS on published HTML</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1972,7 +1993,7 @@ println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sonarqube-token"><a class="anchor" href="#sonarqube-token"></a>6.6. SonarQube token</h3>
+<h3 id="sonarqube-token"><a class="anchor" href="#sonarqube-token"></a>7.6. SonarQube token</h3>
 <div class="paragraph">
 <p>To be able to upload quality results to SonarQube, you have to create a token.</p>
 </div>
@@ -1989,7 +2010,7 @@ println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ssh-key-on-remote-server"><a class="anchor" href="#ssh-key-on-remote-server"></a>6.7. ssh key on remote server</h3>
+<h3 id="ssh-key-on-remote-server"><a class="anchor" href="#ssh-key-on-remote-server"></a>7.7. ssh key on remote server</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2025,9 +2046,9 @@ println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pipelines-creations"><a class="anchor" href="#pipelines-creations"></a>6.8. Pipelines creations</h3>
+<h3 id="pipelines-creations"><a class="anchor" href="#pipelines-creations"></a>7.8. Pipelines creations</h3>
 <div class="sect3">
-<h4 id="the-review-pipeline"><a class="anchor" href="#the-review-pipeline"></a>6.8.1. The Review pipeline</h4>
+<h4 id="the-review-pipeline"><a class="anchor" href="#the-review-pipeline"></a>7.8.1. The Review pipeline</h4>
 <div class="paragraph">
 <p>This will be the review pipeline with steps from checkout to quality check. This pipeline is a "pipeline as code".</p>
 </div>
@@ -2270,7 +2291,7 @@ node {
 </div>
 </div>
 <div class="sect3">
-<h4 id="the-deploy-pipeline"><a class="anchor" href="#the-deploy-pipeline"></a>6.8.2. The Deploy pipeline</h4>
+<h4 id="the-deploy-pipeline"><a class="anchor" href="#the-deploy-pipeline"></a>7.8.2. The Deploy pipeline</h4>
 <div class="paragraph">
 <p>This will be the main pipeline with everything from checkout to deployment. This pipeline is a “pipeline as code”.</p>
 </div>
@@ -2511,7 +2532,7 @@ node {
 </div>
 </div>
 <div class="sect3">
-<h4 id="the-deploy-int-pipeline"><a class="anchor" href="#the-deploy-int-pipeline"></a>6.8.3. The Deploy Int pipeline</h4>
+<h4 id="the-deploy-int-pipeline"><a class="anchor" href="#the-deploy-int-pipeline"></a>7.8.3. The Deploy Int pipeline</h4>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -2526,7 +2547,7 @@ Describe this pipeline when stable
 </div>
 </div>
 <div class="sect3">
-<h4 id="the-release-pipeline"><a class="anchor" href="#the-release-pipeline"></a>6.8.4. The Release pipeline</h4>
+<h4 id="the-release-pipeline"><a class="anchor" href="#the-release-pipeline"></a>7.8.4. The Release pipeline</h4>
 <div class="paragraph">
 <p>This is the release pipeline launched manually at will when an external release is needed. This pipeline is a "pipeline as code".</p>
 </div>
@@ -2733,9 +2754,9 @@ node {
 </div>
 </div>
 <div class="sect2">
-<h3 id="troobleshooting"><a class="anchor" href="#troobleshooting"></a>6.9. Troobleshooting</h3>
+<h3 id="troobleshooting"><a class="anchor" href="#troobleshooting"></a>7.9. Troobleshooting</h3>
 <div class="sect3">
-<h4 id="disk-space-usage-90"><a class="anchor" href="#disk-space-usage-90"></a>6.9.1. Disk space usage &gt; 90 %</h4>
+<h4 id="disk-space-usage-90"><a class="anchor" href="#disk-space-usage-90"></a>7.9.1. Disk space usage &gt; 90 %</h4>
 <div class="paragraph">
 <p>If the disk space usage is too high and your build fails a the start for this reason, you can purge some folders with the below actions.</p>
 </div>
@@ -2775,10 +2796,10 @@ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="sonarqube"><a class="anchor" href="#sonarqube"></a>7. SonarQube</h2>
+<h2 id="sonarqube"><a class="anchor" href="#sonarqube"></a>8. SonarQube</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="quality-gates"><a class="anchor" href="#quality-gates"></a>7.1. Quality Gates</h3>
+<h3 id="quality-gates"><a class="anchor" href="#quality-gates"></a>8.1. Quality Gates</h3>
 <div class="paragraph">
 <p>Click on <strong>Quality Gate</strong></p>
 </div>
@@ -2809,7 +2830,7 @@ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="update"><a class="anchor" href="#update"></a>7.2. Update</h3>
+<h3 id="update"><a class="anchor" href="#update"></a>8.2. Update</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2842,9 +2863,9 @@ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="rules-quality-profile"><a class="anchor" href="#rules-quality-profile"></a>7.3. Rules / quality profile</h3>
+<h3 id="rules-quality-profile"><a class="anchor" href="#rules-quality-profile"></a>8.3. Rules / quality profile</h3>
 <div class="sect3">
-<h4 id="export"><a class="anchor" href="#export"></a>7.3.1. Export</h4>
+<h4 id="export"><a class="anchor" href="#export"></a>8.3.1. Export</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2865,7 +2886,7 @@ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="import"><a class="anchor" href="#import"></a>7.3.2. Import</h4>
+<h4 id="import"><a class="anchor" href="#import"></a>8.3.2. Import</h4>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -2890,7 +2911,7 @@ for an import to be successful, SonarQube must know the rules, so SonarJava and 
 </div>
 </div>
 <div class="sect3">
-<h4 id="create"><a class="anchor" href="#create"></a>7.3.3. Create</h4>
+<h4 id="create"><a class="anchor" href="#create"></a>8.3.3. Create</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2934,7 +2955,7 @@ for an import to be successful, SonarQube must know the rules, so SonarJava and 
 </div>
 </div>
 <div class="sect2">
-<h3 id="technical-debt"><a class="anchor" href="#technical-debt"></a>7.4. Technical Debt</h3>
+<h3 id="technical-debt"><a class="anchor" href="#technical-debt"></a>8.4. Technical Debt</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2974,7 +2995,7 @@ for an import to be successful, SonarQube must know the rules, so SonarJava and 
 </div>
 </div>
 <div class="sect1">
-<h2 id="nexus3"><a class="anchor" href="#nexus3"></a>8. Nexus3</h2>
+<h2 id="nexus3"><a class="anchor" href="#nexus3"></a>9. Nexus3</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -3003,7 +3024,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </table>
 </div>
 <div class="sect2">
-<h3 id="url"><a class="anchor" href="#url"></a>8.1. URL</h3>
+<h3 id="url"><a class="anchor" href="#url"></a>9.1. URL</h3>
 <div class="paragraph">
 <p>Repositories, release, snapshot and group, should already be created.</p>
 </div>
@@ -3025,7 +3046,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-snapshot-retention"><a class="anchor" href="#set-snapshot-retention"></a>8.2. Set SNAPSHOT retention</h3>
+<h3 id="set-snapshot-retention"><a class="anchor" href="#set-snapshot-retention"></a>9.2. Set SNAPSHOT retention</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3080,7 +3101,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-proxy-remote-repository"><a class="anchor" href="#add-a-proxy-remote-repository"></a>8.3. Add a proxy (=remote) repository</h3>
+<h3 id="add-a-proxy-remote-repository"><a class="anchor" href="#add-a-proxy-remote-repository"></a>9.3. Add a proxy (=remote) repository</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3221,13 +3242,13 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect1">
-<h2 id="jira"><a class="anchor" href="#jira"></a>9. JIRA</h2>
+<h2 id="jira"><a class="anchor" href="#jira"></a>10. JIRA</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Jira is used here in association with BugPicture, to have a Gantt chart.</p>
 </div>
 <div class="sect2">
-<h3 id="jira-access-restriction"><a class="anchor" href="#jira-access-restriction"></a>9.1. JIRA Access restriction</h3>
+<h3 id="jira-access-restriction"><a class="anchor" href="#jira-access-restriction"></a>10.1. JIRA Access restriction</h3>
 <div class="ulist">
 <div class="title">To restrict the access to stay under the 10 members for the cheapest license ($12 with tax once and for all) :</div>
 <ul>
@@ -3254,9 +3275,9 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect2">
-<h3 id="project"><a class="anchor" href="#project"></a>9.2. Project</h3>
+<h3 id="project"><a class="anchor" href="#project"></a>10.2. Project</h3>
 <div class="sect3">
-<h4 id="add-time-estimated"><a class="anchor" href="#add-time-estimated"></a>9.2.1. Add Time Estimated</h4>
+<h4 id="add-time-estimated"><a class="anchor" href="#add-time-estimated"></a>10.2.1. Add Time Estimated</h4>
 <div class="ulist">
 <div class="title">To add <strong>time estimated</strong> in Kanban</div>
 <ul>
@@ -3299,7 +3320,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect3">
-<h4 id="configure-emails-notification"><a class="anchor" href="#configure-emails-notification"></a>9.2.2. Configure emails notification</h4>
+<h4 id="configure-emails-notification"><a class="anchor" href="#configure-emails-notification"></a>10.2.2. Configure emails notification</h4>
 <div class="paragraph">
 <p>To disable emails notification :</p>
 </div>
@@ -3313,12 +3334,12 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect2">
-<h3 id="version"><a class="anchor" href="#version"></a>9.3. Version</h3>
+<h3 id="version"><a class="anchor" href="#version"></a>10.3. Version</h3>
 <div class="paragraph">
 <p>Perform these actions for each new version.</p>
 </div>
 <div class="sect3">
-<h4 id="add-new-members"><a class="anchor" href="#add-new-members"></a>9.3.1. Add new members</h4>
+<h4 id="add-new-members"><a class="anchor" href="#add-new-members"></a>10.3.1. Add new members</h4>
 <div class="paragraph">
 <p>If you have new members in this version, add them in LAM and especially in the <strong>jira</strong> group.</p>
 </div>
@@ -3337,7 +3358,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect3">
-<h4 id="create-the-version"><a class="anchor" href="#create-the-version"></a>9.3.2. Create the version</h4>
+<h4 id="create-the-version"><a class="anchor" href="#create-the-version"></a>10.3.2. Create the version</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3353,7 +3374,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-tickets"><a class="anchor" href="#add-tickets"></a>9.3.3. Add tickets</h4>
+<h4 id="add-tickets"><a class="anchor" href="#add-tickets"></a>10.3.3. Add tickets</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -3368,7 +3389,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect2">
-<h3 id="bigpicture"><a class="anchor" href="#bigpicture"></a>9.4. BigPicture</h3>
+<h3 id="bigpicture"><a class="anchor" href="#bigpicture"></a>10.4. BigPicture</h3>
 <div class="paragraph">
 <p>BigPictures is a 10$ plugin that adds Gantt capabilities to JIRA. Install this plugin if you have a license or want to try it for a month.</p>
 </div>
@@ -3376,7 +3397,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 <p><span class="image"><img src="./images/jira-bigpicture.png" alt="jira bigpicture"></span></p>
 </div>
 <div class="sect3">
-<h4 id="gantt"><a class="anchor" href="#gantt"></a>9.4.1. Gantt</h4>
+<h4 id="gantt"><a class="anchor" href="#gantt"></a>10.4.1. Gantt</h4>
 <div class="paragraph">
 <p>To see Gantt chart, go to <strong>BigPicture</strong> &#8594; <strong>YourProject</strong> &#8594; <strong>Gantt</strong>.</p>
 </div>
@@ -3396,7 +3417,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect3">
-<h4 id="configure-layout"><a class="anchor" href="#configure-layout"></a>9.4.2. Configure layout</h4>
+<h4 id="configure-layout"><a class="anchor" href="#configure-layout"></a>10.4.2. Configure layout</h4>
 <div class="ulist">
 <div class="title">To obtain the layout of the picture</div>
 <ul>
@@ -3435,7 +3456,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect3">
-<h4 id="regroup-tasks"><a class="anchor" href="#regroup-tasks"></a>9.4.3. Regroup tasks</h4>
+<h4 id="regroup-tasks"><a class="anchor" href="#regroup-tasks"></a>10.4.3. Regroup tasks</h4>
 <div class="ulist">
 <div class="title">To regroup tasks under bigger subjects in Gantt view</div>
 <ul>
@@ -3452,7 +3473,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-deadlines"><a class="anchor" href="#add-deadlines"></a>9.4.4. Add deadlines</h4>
+<h4 id="add-deadlines"><a class="anchor" href="#add-deadlines"></a>10.4.4. Add deadlines</h4>
 <div class="ulist">
 <div class="title">To add a deadline in Gantt view</div>
 <ul>
@@ -3467,7 +3488,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect1">
-<h2 id="nexus2"><a class="anchor" href="#nexus2"></a>10. Nexus2</h2>
+<h2 id="nexus2"><a class="anchor" href="#nexus2"></a>11. Nexus2</h2>
 <div class="sectionbody">
 <div class="admonitionblock warning">
 <table>
@@ -3482,7 +3503,7 @@ Deprecated, use Nexus3
 </table>
 </div>
 <div class="sect2">
-<h3 id="define-rights-of-technical-account"><a class="anchor" href="#define-rights-of-technical-account"></a>10.1. Define rights of technical account</h3>
+<h3 id="define-rights-of-technical-account"><a class="anchor" href="#define-rights-of-technical-account"></a>11.1. Define rights of technical account</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3540,7 +3561,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect2">
-<h3 id="set-snapshot-retention-2"><a class="anchor" href="#set-snapshot-retention-2"></a>10.2. Set SNAPSHOT retention</h3>
+<h3 id="set-snapshot-retention-2"><a class="anchor" href="#set-snapshot-retention-2"></a>11.2. Set SNAPSHOT retention</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -3605,7 +3626,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-a-proxy-remote-repository-2"><a class="anchor" href="#add-a-proxy-remote-repository-2"></a>10.3. Add a proxy (=remote) repository</h3>
+<h3 id="add-a-proxy-remote-repository-2"><a class="anchor" href="#add-a-proxy-remote-repository-2"></a>11.3. Add a proxy (=remote) repository</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3672,7 +3693,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </div>
 </div>
 <div class="sect1">
-<h2 id="additionnal-nvx-vm-webmethods-elastic-servers"><a class="anchor" href="#additionnal-nvx-vm-webmethods-elastic-servers"></a>11. Additionnal nvx VM : webMethods &amp; Elastic servers</h2>
+<h2 id="additionnal-nvx-vm-webmethods-elastic-servers"><a class="anchor" href="#additionnal-nvx-vm-webmethods-elastic-servers"></a>12. Additionnal nvx VM : webMethods &amp; Elastic servers</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -3685,7 +3706,7 @@ The technical account has to be created in CORP and defined in LAM as an adminis
 </ul>
 </div>
 <div class="sect2">
-<h3 id="initialize-vm"><a class="anchor" href="#initialize-vm"></a>11.1. Initialize VM</h3>
+<h3 id="initialize-vm"><a class="anchor" href="#initialize-vm"></a>12.1. Initialize VM</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3772,7 +3793,7 @@ deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-backports main restric
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="install-docker"><a class="anchor" href="#install-docker"></a>11.2. Install Docker</h3>
+<h3 id="install-docker"><a class="anchor" href="#install-docker"></a>12.2. Install Docker</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -3967,7 +3988,7 @@ docker run hello-world</pre>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="define-nexus3-as-the-docker-registry"><a class="anchor" href="#define-nexus3-as-the-docker-registry"></a>11.2.1. Define Nexus3 as the Docker registry</h4>
+<h4 id="define-nexus3-as-the-docker-registry"><a class="anchor" href="#define-nexus3-as-the-docker-registry"></a>12.2.1. Define Nexus3 as the Docker registry</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4041,7 +4062,7 @@ User Password: dockerPWdbpmfactory</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="setup-a-dockerized-oracle12c-database"><a class="anchor" href="#setup-a-dockerized-oracle12c-database"></a>11.3. Setup a dockerized Oracle12c database</h3>
+<h3 id="setup-a-dockerized-oracle12c-database"><a class="anchor" href="#setup-a-dockerized-oracle12c-database"></a>12.3. Setup a dockerized Oracle12c database</h3>
 <div class="paragraph">
 <p>Database found here : <a href="https://hub.docker.com/r/sath89/oracle-12c/" class="bare">https://hub.docker.com/r/sath89/oracle-12c/</a></p>
 </div>
@@ -4091,7 +4112,7 @@ Database ready to use. Enjoy! ;)</pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="install-elastic-items"><a class="anchor" href="#install-elastic-items"></a>11.4. Install Elastic items</h3>
+<h3 id="install-elastic-items"><a class="anchor" href="#install-elastic-items"></a>12.4. Install Elastic items</h3>
 <div class="paragraph">
 <p>Configuration files are given in next associated sections below. For some of them, some chmod change is needed :</p>
 </div>
@@ -4102,7 +4123,7 @@ chmod go-w ./*.yml</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="migration-prerequisites"><a class="anchor" href="#migration-prerequisites"></a>11.4.1. Migration prerequisites</h4>
+<h4 id="migration-prerequisites"><a class="anchor" href="#migration-prerequisites"></a>12.4.1. Migration prerequisites</h4>
 <div class="ulist">
 <div class="title">If you are upgrading from a previous version of Elastic, you have to do this before anything :</div>
 <ul>
@@ -4139,7 +4160,7 @@ chmod go-w ./*.yml</pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="elasticsearch"><a class="anchor" href="#elasticsearch"></a>11.4.2. Elasticsearch</h4>
+<h4 id="elasticsearch"><a class="anchor" href="#elasticsearch"></a>12.4.2. Elasticsearch</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4197,7 +4218,7 @@ chmod go-w ./*.yml</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="kibana"><a class="anchor" href="#kibana"></a>11.5. Kibana</h3>
+<h3 id="kibana"><a class="anchor" href="#kibana"></a>12.5. Kibana</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4408,7 +4429,7 @@ GET _cluster/health</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="troubleshoot"><a class="anchor" href="#troubleshoot"></a>11.5.1. Troubleshoot</h4>
+<h4 id="troubleshoot"><a class="anchor" href="#troubleshoot"></a>12.5.1. Troubleshoot</h4>
 <div class="paragraph">
 <p>Here is a list of problems and solutions.</p>
 </div>
@@ -4450,7 +4471,7 @@ GET _cluster/health</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="curator"><a class="anchor" href="#curator"></a>11.6. Curator</h3>
+<h3 id="curator"><a class="anchor" href="#curator"></a>12.6. Curator</h3>
 <div class="literalblock">
 <div class="content">
 <pre>wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -</pre>
@@ -4479,7 +4500,7 @@ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.y
 </div>
 </div>
 <div class="sect3">
-<h4 id="automation"><a class="anchor" href="#automation"></a>11.6.1. Automation</h4>
+<h4 id="automation"><a class="anchor" href="#automation"></a>12.6.1. Automation</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -4520,7 +4541,7 @@ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.y
 </div>
 </div>
 <div class="sect3">
-<h4 id="configuration"><a class="anchor" href="#configuration"></a>11.6.2. Configuration</h4>
+<h4 id="configuration"><a class="anchor" href="#configuration"></a>12.6.2. Configuration</h4>
 <div class="listingblock">
 <div class="title">~/elastic/curator.config.yml</div>
 <div class="content">
@@ -4581,7 +4602,7 @@ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.y
 </div>
 </div>
 <div class="sect2">
-<h3 id="heartbeat"><a class="anchor" href="#heartbeat"></a>11.7. Heartbeat</h3>
+<h3 id="heartbeat"><a class="anchor" href="#heartbeat"></a>12.7. Heartbeat</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -4676,7 +4697,7 @@ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.y
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="logstash"><a class="anchor" href="#logstash"></a>11.8. Logstash</h3>
+<h3 id="logstash"><a class="anchor" href="#logstash"></a>12.8. Logstash</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4757,7 +4778,7 @@ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.y
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="filebeat"><a class="anchor" href="#filebeat"></a>11.9. Filebeat</h3>
+<h3 id="filebeat"><a class="anchor" href="#filebeat"></a>12.9. Filebeat</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -4825,7 +4846,7 @@ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.y
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="metricbeat"><a class="anchor" href="#metricbeat"></a>11.10. Metricbeat</h3>
+<h3 id="metricbeat"><a class="anchor" href="#metricbeat"></a>12.10. Metricbeat</h3>
 <div class="paragraph">
 <p>This chmod has to be done again after each VM reboot before starting Metricbeat :</p>
 </div>
@@ -4926,7 +4947,7 @@ stress --cpu 2</pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="grafana"><a class="anchor" href="#grafana"></a>11.11. Grafana</h3>
+<h3 id="grafana"><a class="anchor" href="#grafana"></a>12.11. Grafana</h3>
 <div class="literalblock">
 <div class="content">
 <pre>wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.4.3_amd64.deb</pre>
@@ -4957,7 +4978,7 @@ stress --cpu 2</pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="jaeger-tracing-openzipkin-like"><a class="anchor" href="#jaeger-tracing-openzipkin-like"></a>11.12. Jaeger Tracing (OpenZipkin-like)</h3>
+<h3 id="jaeger-tracing-openzipkin-like"><a class="anchor" href="#jaeger-tracing-openzipkin-like"></a>12.12. Jaeger Tracing (OpenZipkin-like)</h3>
 <div class="literalblock">
 <div class="title">To start it</div>
 <div class="content">
@@ -4967,9 +4988,9 @@ stress --cpu 2</pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="install-wm-servers"><a class="anchor" href="#install-wm-servers"></a>11.13. Install WM servers</h3>
+<h3 id="install-wm-servers"><a class="anchor" href="#install-wm-servers"></a>12.13. Install WM servers</h3>
 <div class="sect3">
-<h4 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>11.13.1. Prerequisites</h4>
+<h4 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>12.13.1. Prerequisites</h4>
 <div class="sect4">
 <h5 id="enable-x11-ssh-graphical"><a class="anchor" href="#enable-x11-ssh-graphical"></a>Enable X11, ssh graphical</h5>
 <div class="ulist">
@@ -5042,7 +5063,7 @@ apt-get install libxi6</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="install-is-um-manually"><a class="anchor" href="#install-is-um-manually"></a>11.13.2. Install IS &amp; UM manually</h4>
+<h4 id="install-is-um-manually"><a class="anchor" href="#install-is-um-manually"></a>12.13.2. Install IS &amp; UM manually</h4>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -5055,21 +5076,6 @@ TODO
 </tr>
 </table>
 </div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="appendix"><a class="anchor" href="#appendix"></a>12. Appendix</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="revision-marks"><a class="anchor" href="#revision-marks"></a>12.1. Revision marks</h3>
-<div class="listingblock">
-<div class="title">Differences since last tag</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="diff"><span class="line comment">Unresolved directive in subdocs/_closure.adoc - include::D:\workspaceJava\cg-wm\target/generated-docs/history/ci-pf-configuration.adoc.diff[]</span></code></pre>
-</div>
 </div>
 </div>
 </div>
@@ -5077,7 +5083,7 @@ TODO
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-11 18:32:59 CEST
+Last updated 2018-08-17 11:42:18 CEST
 </div>
 </div>
 </body>
