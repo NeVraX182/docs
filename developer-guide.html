@@ -5,7 +5,6 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.5">
-<meta name="author" content="Version 1.18-SNAPSHOT">
 <title>CG WM Developer Guide</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -514,10 +513,6 @@ table.CodeRay td.code>pre{padding:0}
 <body class="article toc2 toc-left">
 <div id="header">
 <h1>CG WM Developer Guide</h1>
-<div class="details">
-<span id="author" class="author">Version 1.18-SNAPSHOT</span><br>
-<span id="revdate">2018-08-17</span>
-</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -566,7 +561,17 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#rebase">5.3.3. Rebase</a></li>
 <li><a href="#reset-mixed">5.3.4. Reset Mixed</a></li>
 <li><a href="#end">5.3.5. End</a></li>
-<li><a href="#troubleshooting">5.3.6. Troubleshooting</a></li>
+<li><a href="#troubleshooting">5.3.6. Troubleshooting</a>
+<ul class="sectlevel4">
+<li><a href="#two-commits-at-the-same-time">Two commits at the same time</a></li>
+<li><a href="#pull-from-another-developer">Pull from another developer</a></li>
+<li><a href="#missing-change-id-in-commit-message-footer">Missing Change-Id in commit message footer</a></li>
+<li><a href="#classpath-and-other-not-to-push-files">.classpath and other not-to-push files</a></li>
+<li><a href="#see-sonarqube-for-an-older-build">See SonarQube for an older build</a></li>
+<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">Double remote : get latest commits from gitlab into gerrit</a></li>
+<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#maven">5.4. Maven</a></li>
@@ -579,23 +584,7 @@ table.CodeRay td.code>pre{padding:0}
 <div id="preamble">
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. History</caption>
-<colgroup>
-<col style="width: 12.5%;">
-<col style="width: 12.5%;">
-<col style="width: 75%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-center valign-top">Date</th>
-<th class="tableblock halign-center valign-top">Author</th>
-<th class="tableblock halign-left valign-top">Detail
-Unresolved directive in subdocs/_init.adoc - include::D:\workspaceJava\cg-wm\target/generated-docs/history/developer-guide.adoc.psv[]</th>
-</tr>
-</thead>
-</table>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. References</caption>
+<caption class="title">Table 1. References</caption>
 <colgroup>
 <col style="width: 6.25%;">
 <col style="width: 6.25%;">
@@ -2102,7 +2091,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-17 11:42:07 CEST
+Last updated 2018-08-17 12:37:44 UTC
 </div>
 </div>
 </body>
