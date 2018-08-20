@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
-<title>Sujets d&#8217;oral technique nvx Rennes : Benoit COUETIL</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
-<style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
 /* Remove comment around @import statement below when using as a custom stylesheet */
 /*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
@@ -17,6 +7,7 @@ audio:not([controls]){display:none;height:0}
 [hidden],template{display:none}
 script{display:none!important}
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
 a{background:transparent}
 a:focus{outline:thin dotted}
 a:active,a:hover{outline:0}
@@ -51,7 +42,7 @@ textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 *,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
 html,body{font-size:100%}
-body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
 a:hover{cursor:pointer}
 img,object,embed{max-width:100%;height:auto}
 object,embed{height:100%}
@@ -63,6 +54,7 @@ img{-ms-interpolation-mode:bicubic}
 .text-center{text-align:center!important}
 .text-justify{text-align:justify!important}
 .hide{display:none}
+body{-webkit-font-smoothing:antialiased}
 img,object,svg{display:inline-block;vertical-align:middle}
 textarea{height:auto;min-height:50px}
 select{width:100%}
@@ -89,12 +81,13 @@ strong,b{font-weight:bold;line-height:inherit}
 small{font-size:60%;line-height:inherit}
 code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
 ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
-ul,ol{margin-left:1.5em}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
 ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
 ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -116,25 +109,18 @@ table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
 table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
 table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+body{tab-size:4}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
 .clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
 .clearfix:after,.float-group:after{clear:both}
-*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
-*:not(pre)>code.nobreak{word-wrap:normal}
-*:not(pre)>code.nowrap{white-space:nowrap}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
-em em{font-style:normal}
-strong strong{font-weight:400}
 .keyseq{color:rgba(51,51,51,.8)}
 kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
 .keyseq kbd:first-child{margin-left:0}
 .keyseq kbd:last-child{margin-right:0}
-.menuseq,.menuref{color:#000}
-.menuseq b:not(.caret),.menuref{font-weight:inherit}
-.menuseq{word-spacing:-.02em}
-.menuseq b.caret{font-size:1.25em;line-height:.8}
-.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
 b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
 b.button:before{content:"[";padding:0 3px 0 2px}
 b.button:after{content:"]";padding:0 2px 0 3px}
@@ -201,7 +187,7 @@ table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
 table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
 .admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
 .admonitionblock>table td.icon{text-align:center;width:80px}
-.admonitionblock>table td.icon img{max-width:initial}
+.admonitionblock>table td.icon img{max-width:none}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
 .admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
@@ -257,13 +243,13 @@ table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
 table.tableblock{max-width:100%;border-collapse:separate}
 table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
-table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
-table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
-table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
-table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px 0}
-table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0 0}
-table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
-table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
 table.frame-all{border-width:1px}
 table.frame-sides{border-width:0 1px}
 table.frame-topbot{border-width:1px 0}
@@ -284,12 +270,10 @@ ul li ol{margin-left:1.5em}
 dl dd{margin-left:1.125em}
 dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
 ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
-ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
-ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
-ul.unstyled,ol.unstyled{margin-left:0}
-ul.checklist{margin-left:.625em}
-ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
-ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
 ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
 ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
 ul.inline>li>*{display:block}
@@ -306,8 +290,7 @@ ol.lowergreek{list-style-type:lower-greek}
 td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
 td.hdlist1{font-weight:bold;padding-bottom:1.25em}
 .literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
-.colist>table tr>td:first-of-type{padding:.4em .75em 0 .75em;line-height:1;vertical-align:top}
-.colist>table tr>td:first-of-type img{max-width:initial}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
 .colist>table tr>td:last-of-type{padding:.25em 0}
 .thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
 .imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
@@ -370,7 +353,6 @@ div.unbreakable{page-break-inside:avoid}
 .yellow{color:#bfbf00}
 .yellow-background{background-color:#fafa00}
 span.icon>.fa{cursor:default}
-a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
 .admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
 .admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
@@ -423,737 +405,3 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .print-only{display:block!important}
 .hide-for-print{display:none!important}
 .show-for-print{display:inherit!important}}
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-</head>
-<body class="article toc2 toc-left">
-<div id="header">
-<h1>Sujets d&#8217;oral technique nvx Rennes : Benoit COUETIL</h1>
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#algorithme-1-le-palindrome">2. Algorithme 1 : le palindrome</a>
-<ul class="sectlevel2">
-<li><a href="#définition">2.1. Définition</a></li>
-<li><a href="#exercice">2.2. Exercice</a></li>
-<li><a href="#solutions">2.3. Solutions</a></li>
-<li><a href="#notation">2.4. Notation</a></li>
-</ul>
-</li>
-<li><a href="#algorithme-2-traversée-de-tableau-en-biais">3. Algorithme 2 : traversée de tableau en biais</a>
-<ul class="sectlevel2">
-<li><a href="#définition-et-exercice">3.1. Définition et exercice</a></li>
-<li><a href="#solutions-2">3.2. Solutions</a></li>
-<li><a href="#notation-2">3.3. Notation</a></li>
-</ul>
-</li>
-<li><a href="#algorithme-3-arbre-de-recherche-binaire">4. Algorithme 3 : arbre de recherche binaire</a>
-<ul class="sectlevel2">
-<li><a href="#définition-2">4.1. Définition</a></li>
-<li><a href="#exercice-2">4.2. Exercice</a></li>
-<li><a href="#solutions-3">4.3. Solutions</a></li>
-<li><a href="#notation-3">4.4. Notation</a></li>
-</ul>
-</li>
-<li><a href="#algorithme-4-deviner-un-chiffre">5. Algorithme 4 : deviner un chiffre</a>
-<ul class="sectlevel2">
-<li><a href="#exercice-3">5.1. Exercice</a>
-<ul class="sectlevel3">
-<li><a href="#exemple">5.1.1. Exemple</a></li>
-</ul>
-</li>
-<li><a href="#solutions-4">5.2. Solutions</a></li>
-<li><a href="#notation-4">5.3. Notation</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Lors d&#8217;un entretien d&#8217;embauche, de stage ou d&#8217;alternance, l&#8217;idéal est de déterminer, en un temps très limité, si le candidat :</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>S&#8217;intègrera</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Il a un bon contact / état d&#8217;esprit / projet professionnel / posture, il correspond à la culture nvx</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>A une tête bien pleine</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Il a des diplômes et compétences informatique directement utilisables sur les projets</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>A une tête bien faite</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Est capable de résoudre les problèmes techniques quotidiens, sera autonome à moyen terme pour produire un code de qualité suffisante</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Les points 1 et 2 sont assurés par l&#8217;entretien RH, et confirmé par un entretien opérationnel (non technique la plupart du temps).</p>
-</div>
-<div class="paragraph">
-<p>L&#8217;on peut s&#8217;arrêter là, en considérant que le dernier point sera jugé en fin de période d&#8217;essai ou de stage. Mais il est possible d&#8217;éviter cette période incertaine, en tout cas réduire les chances de non transformation de l&#8217;essai.</p>
-</div>
-<div class="paragraph">
-<p>C&#8217;est l&#8217;objet et l&#8217;ambition de cet oral technique : déterminer, en projection, l&#8217;autonomie technique du candidat à 1 an.</p>
-</div>
-<div class="paragraph">
-<p>Il va sans dire que nvx Rennes, dans notre ambition de forte croissante à long terme, n&#8217;a pas vocation à trier pour ne prendre que les meilleurs ingénieurs : une productivité moyenne est suffisante. Les algorithmes sélectionnés doivent donc rester simples !</p>
-</div>
-<div class="listingblock">
-<div class="title">Exemple d&#8217;algorithme trop complexe : zig zag conversion</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public String convert(String s, int numRows) {
-	if (numRows == 1)
-		return s;
-
-	StringBuilder sb = new StringBuilder();
-	// step
-	int step = 2 * numRows - 2;
-
-	for (int i = 0; i &lt; numRows; i++) {
-		//first &amp; last rows
-		if (i == 0 || i == numRows - 1) {
-			for (int j = i; j &lt; s.length(); j = j + step) {
-				sb.append(s.charAt(j));
-			}
-		//middle rows
-		} else {
-			int j = i;
-			boolean flag = true;
-			int step1 = 2 * (numRows - 1 - i);
-			int step2 = step - step1;
-
-			while (j &lt; s.length()) {
-				sb.append(s.charAt(j));
-				if (flag)
-					j = j + step1;
-				else
-					j = j + step2;
-				flag = !flag;
-			}
-		}
-	}
-	return sb.toString();
-}</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="algorithme-1-le-palindrome"><a class="anchor" href="#algorithme-1-le-palindrome"></a>2. Algorithme 1 : le palindrome</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="définition"><a class="anchor" href="#définition"></a>2.1. Définition</h3>
-<div class="paragraph">
-<p>Un palindrome est un mot que l&#8217;on peut lire dans les deux sens. "kayak", "Laval", "radar", sont des palindromes.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercice"><a class="anchor" href="#exercice"></a>2.2. Exercice</h3>
-<div class="paragraph">
-<p>Ecrivez une fonction (réutilisable ailleurs dans un programme), permettant de vérifier si un mot donné est un palindrome ou non.</p>
-</div>
-<div class="paragraph">
-<p>Vous pouvez utiliser la fonction <b class="button">String.charAt(int)</b> qui récupère un charactère à une position donnée dans une chaîne.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">"kayak".charAt(0) == "kayak".charAt(4);//true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Vous pouvez également utiliser la fonction <b class="button">String.substring(int,int)</b> qui retourne une sous-partie d&#8217;une chaine en prenant l&#8217;index initial et la longueur.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String ay = "kayak".substring(1, 2)</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="solutions"><a class="anchor" href="#solutions"></a>2.3. Solutions</h3>
-<div class="listingblock">
-<div class="title">Algorithme classique</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    for (int i = 0; i &lt;= sub.length() / 2; i++) {
-        if (word.charAt(i) != word.charAt(sub.length() - 1 - i)) {
-            return false;
-        }
-    }
-    return true;
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Algorithme récursif</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    if(word.length() == 0 || word.length() == 1) {
-        return true;
-    }
-    if(word.charAt(0) == word.charAt(word.length()-1)) {
-        return isPalindrome(word.substring(1, word.length()-1));
-    }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Algorithme le plus concis</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    return new StringBuilder(word).reverse().equals(word);
-}</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="notation"><a class="anchor" href="#notation"></a>2.4. Notation</h3>
-<div class="paragraph">
-<p>Pour chaque point :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1/1 : en autonomie</p>
-</li>
-<li>
-<p>0.5/1 : avec un peu d&#8217;aide ou partiel</p>
-</li>
-<li>
-<p>0/1 : non réussi ou trop aidé</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Tableau de notations</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Point</th>
-<th class="tableblock halign-left valign-top">Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ecriture lisible</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication orale claire</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signature : boolean isPalindrome(String mot)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle for() + if</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Parcours s&#8217;arrêtant à la moitié du mot (perf)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Conditions aux limites vérifiées</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 solution terminée parmi les 3</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;en moins de 15 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2 solutions terminées parmi les 3</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;en moins de 20 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="algorithme-2-traversée-de-tableau-en-biais"><a class="anchor" href="#algorithme-2-traversée-de-tableau-en-biais"></a>3. Algorithme 2 : traversée de tableau en biais</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="définition-et-exercice"><a class="anchor" href="#définition-et-exercice"></a>3.1. Définition et exercice</h3>
-<div class="paragraph">
-<p>Traversez un tableau de n lignes et m colonnes en biais et afficher le contenu des cases.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/oral-zig-zag.png" alt="oral zig zag"></span></p>
-</div>
-<div class="literalblock">
-<div class="title">Affichage pour cet exemple</div>
-<div class="content">
-<pre>a00, a10, a01, a20, a11, a02, a30, a21, a12, a03, a31, a22, a13, a32, a23, a33</pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="solutions-2"><a class="anchor" href="#solutions-2"></a>3.2. Solutions</h3>
-<div class="listingblock">
-<div class="title">Algorithme en 2 blocs</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String[][] table = { { "a00", "a01", "a02", "a03" }, { "a10", "a11", "a12", "a13" },
-		{ "a20", "a21", "a22", "a23" }, { "a30", "a31", "a32", "a33" } };
-int n = table.length;
-int m = table[0].length;
-
-int iAlternate;
-for (int i = 0; i &lt; n; i++) {
-	iAlternate = i;
-	for (int j = 0; j &lt;= i; j++) {
-		if (j &lt; n) {
-			System.out.print(table[iAlternate][j] + " ");
-			iAlternate--;
-		}
-	}
-}
-
-int jAlternate;
-for (int j = 1; j &lt; m; j++) {
-	jAlternate = j;
-	for (int i = n - 1; i &gt; 0; i--) {
-		if (jAlternate &lt; m)
-			System.out.print(table[i][jAlternate] + " ");
-		jAlternate++;
-	}
-}
-// a00 a10 a01 a20 a11 a02 a30 a21 a12 a03 a31 a22 a13 a32 a23 a33</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="notation-2"><a class="anchor" href="#notation-2"></a>3.3. Notation</h3>
-<div class="paragraph">
-<p>Pour chaque point :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1/1 : en autonomie</p>
-</li>
-<li>
-<p>0.5/1 : avec un peu d&#8217;aide ou partiel</p>
-</li>
-<li>
-<p>0/1 : non réussi ou trop aidé</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. Tableau de notations</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Point</th>
-<th class="tableblock halign-left valign-top">Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ecriture lisible</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication orale claire</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Concept maitrisé (présentation a main levée)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2 parties/boucles</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle 1 : 2 for() 1 if</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle 1 : conditions aux limites</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Moins de 15 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle 1 : 2 for() 1 if</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle 1 : conditions aux limites</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Moins de 20 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="algorithme-3-arbre-de-recherche-binaire"><a class="anchor" href="#algorithme-3-arbre-de-recherche-binaire"></a>4. Algorithme 3 : arbre de recherche binaire</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="définition-2"><a class="anchor" href="#définition-2"></a>4.1. Définition</h3>
-<div class="paragraph">
-<p>Un arbre de recherche binaire est un arbre ou la valeur de chaque noeud ("Node") est :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>plus grande ou égale à la valeur de tous les sous-nœuds de gauche</p>
-</li>
-<li>
-<p>plus petite ou égale à la valeur de tous les sous-nœuds de droite</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/oral-binary-tree.png" alt="oral binary tree" width="251" height="301">
-</div>
-<div class="title">Figure 1. Arbre binaire</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercice-2"><a class="anchor" href="#exercice-2"></a>4.2. Exercice</h3>
-<div class="paragraph">
-<p>Ecrire une fonction <b class="button">contains(node, value)</b> qui vérifie si un certain arbre contient une certaine valeur. Avant de commencer, pour s&#8217;assurer de la compréhension de l&#8217;exercice, indiquer le résultat de <b class="button">contains(n2, 3)</b> avec l&#8217;exemple suivant :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>n1 (Value: 2, Left: null, Right: null)</p>
-</li>
-<li>
-<p>n2 (Value: 4, Left: n1, Right: n3)</p>
-</li>
-<li>
-<p>n3 (Value: 6, Left: null, Right: null)</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="title">Node.java</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class Node {
-    public int value;
-    public Node left;
-    public Node right;
-
-    public Node(int value, Node left, Node right) {
-        this.value = value;
-        this.left = left;
-        this.right = right;
-    }
-}</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="solutions-3"><a class="anchor" href="#solutions-3"></a>4.3. Solutions</h3>
-<div class="listingblock">
-<div class="title">Algorithme basique</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean contains(Node root, int value) {
-	if (root == null) return false;
-	if (root.value == value)
-		return true;
-	if (root.value &gt; value)
-		return contains(root.left, value);
-	if (root.value &lt; value)
-		return contains(root.right, value);
-	return false;
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="notation-3"><a class="anchor" href="#notation-3"></a>4.4. Notation</h3>
-<div class="paragraph">
-<p>Pour chaque point :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1/1 : en autonomie</p>
-</li>
-<li>
-<p>0.5/1 : avec un peu d&#8217;aide ou partiel</p>
-</li>
-<li>
-<p>0/1 : non réussi</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 3. Tableau de notations</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Point</th>
-<th class="tableblock halign-left valign-top">Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ecriture lisible</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication orale claire</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exemple</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signature de fonction</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition true</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition false</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition récursive droite</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition récursive gauche</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Moins de 10 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="algorithme-4-deviner-un-chiffre"><a class="anchor" href="#algorithme-4-deviner-un-chiffre"></a>5. Algorithme 4 : deviner un chiffre</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="exercice-3"><a class="anchor" href="#exercice-3"></a>5.1. Exercice</h3>
-<div class="paragraph">
-<p>Il s&#8217;agit d&#8217;un jeu de devinette.</p>
-</div>
-<div class="paragraph">
-<p>Je m&#8217;appelle Ben. Vous me demandez de choisir un nombre entre 1 et n. J&#8217;indique pour chaque essai si c&#8217;est "plus" ou "moins". Il s&#8217;agit de créer une fonction de recherche qui simule votre comportement de joueur. Cette fonction s&#8217;arrête donc quand elle a trouvé le nombre que j&#8217;avais en tête depuis le début.</p>
-</div>
-<div class="paragraph">
-<p>Dans cette fonction à créer, il faut appeler une fonction existante qui simule mon comportement :</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>int askBen(int num)</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Elle me demande si un certain nombre est celui que j&#8217;avais en tête et retourne 3 valeurs possibles :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>-1 : Mon nombre est plus petit</p>
-</li>
-<li>
-<p>1 : Mon nombre est plus grand</p>
-</li>
-<li>
-<p>0 : Bravo ! vous avez deviné mon nombre</p>
-</li>
-</ul>
-</div>
-<div class="sect3">
-<h4 id="exemple"><a class="anchor" href="#exemple"></a>5.1.1. Exemple</h4>
-<div class="paragraph">
-<p>Si n = 10, et que je choisis 6 (sans le dire), votre fonction retourne 6.</p>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="solutions-4"><a class="anchor" href="#solutions-4"></a>5.2. Solutions</h3>
-<div class="listingblock">
-<div class="title">Algorithme basique</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public int guessNumber(int n) {
-    int low=1;
-    int high=n;
-
-    while(low &lt;= high){
-        int mid = low+((high-low)/2);
-        int result = askBen(mid);
-        if(result==0){
-            return mid;
-        }else if(result==1){
-            low = mid+1;
-        }else{
-            high=mid-1;
-        }
-    }
-    return -1;
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="notation-4"><a class="anchor" href="#notation-4"></a>5.3. Notation</h3>
-<div class="paragraph">
-<p>Pour chaque point :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1/1 : en autonomie</p>
-</li>
-<li>
-<p>0.5/1 : avec un peu d&#8217;aide ou partiel</p>
-</li>
-<li>
-<p>0/1 : non réussi</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 4. Tableau de notations</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Point</th>
-<th class="tableblock halign-left valign-top">Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ecriture lisible</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication orale claire</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exemple</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signature de fonction</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Algo valide</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cas aux limites</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">En moins de 20 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">En Moins de 10 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solution récursive</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div id="footer">
-<div id="footer-text">
-Last updated 2018-08-20 17:30:11 UTC
-</div>
-</div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
-</body>
-</html>
