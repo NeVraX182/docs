@@ -498,10 +498,10 @@ assembly:
   #  - master
 
 documentation:
-  stage: deploy
+  stage: build
   script:
     #- ./src/scripts/asciidocOnlyModified.sh
-    #- ./src/scripts/asciidocHistory.sh .
+    - ./src/scripts/asciidocHistory.sh .
     - apt-get update -qq &amp;&amp; apt-get install -qq --assume-yes graphviz
     - git config --global user.email "gitlab@noreply.com"
     - git config --global user.name "GitLab"
@@ -516,7 +516,7 @@ documentation:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-21 17:21:38 UTC
+Last updated 2018-08-21 17:47:48 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
