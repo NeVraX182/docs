@@ -1,0 +1,2530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Etude d&#8217;Architecture: Systeme de Gestion des Echanges</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:initial}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px 0}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:.4em .75em 0 .75em;line-height:1;vertical-align:top}
+.colist>table tr>td:first-of-type img{max-width:initial}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Etude d&#8217;Architecture: Systeme de Gestion des Echanges</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#contextual">2. Contextual</a>
+<ul class="sectlevel2">
+<li><a href="#business-mission-vision">2.1. Business Mission &amp; Vision</a></li>
+<li><a href="#business-strategy">2.2. Business Strategy</a></li>
+<li><a href="#organization-model">2.3. Organization Model</a></li>
+<li><a href="#assumptions">2.4. Assumptions</a></li>
+<li><a href="#scope">2.5. Scope</a>
+<ul class="sectlevel3">
+<li><a href="#in-scope">2.5.1. In scope</a></li>
+<li><a href="#out-of-scope">2.5.2. Out of scope</a></li>
+</ul>
+</li>
+<li><a href="#constraints">2.6. Constraints</a></li>
+<li><a href="#policies-principles">2.7. Policies/Principles</a></li>
+<li><a href="#context-diagrams">2.8. Context diagrams</a></li>
+</ul>
+</li>
+<li><a href="#conceptual-business">3. Conceptual Business</a></li>
+<li><a href="#conceptual-information">4. Conceptual Information</a>
+<ul class="sectlevel2">
+<li><a href="#information-interaction-model">4.1. Information Interaction Model</a></li>
+</ul>
+</li>
+<li><a href="#conceptual-information-systems">5. Conceptual Information Systems</a>
+<ul class="sectlevel2">
+<li><a href="#is-service-interaction-model-cas-d-utilisation">5.1. IS Service Interaction Model [cas d’utilisation]</a>
+<ul class="sectlevel3">
+<li><a href="#diffusion-fichier">5.1.1. Diffusion Fichier</a>
+<ul class="sectlevel4">
+<li><a href="#diagramme-de-séquence">Diagramme de séquence</a></li>
+<li><a href="#cas-d-utilisation">Cas d’utilisation</a></li>
+<li><a href="#services-webmethods-et-java">Services webMethods et Java</a></li>
+</ul>
+</li>
+<li><a href="#diffusion-message">5.1.2. Diffusion Message</a>
+<ul class="sectlevel4">
+<li><a href="#diagramme-de-séquence-avec-temps-réel">Diagramme de séquence (avec temps réel)</a>
+<ul class="sectlevel5">
+<li><a href="#sans-tiers">Sans Tiers</a></li>
+<li><a href="#avec-tiers">Avec Tiers</a></li>
+</ul>
+</li>
+<li><a href="#cas-d-utilisation-2">Cas d’utilisation</a>
+<ul class="sectlevel5">
+<li><a href="#temps-réel">Temps Réel</a></li>
+</ul>
+</li>
+<li><a href="#services-connecteur">Services connecteur</a></li>
+<li><a href="#services-routage-et-applications">Services routage et applications</a></li>
+<li><a href="#services-principaux">Services principaux</a></li>
+<li><a href="#services-liés-à-l-ordonnancement">Services liés à l&#8217;ordonnancement</a></li>
+</ul>
+</li>
+<li><a href="#médiation-ester">5.1.3. Médiation / ESTER</a></li>
+</ul>
+</li>
+<li><a href="#détail-par-nature-d-échange-utilisatrice">5.2. Détail par nature d’échange utilisatrice</a></li>
+<li><a href="#potentielles-évolutions-sge-v3">5.3. Potentielles évolutions SGE V3</a></li>
+</ul>
+</li>
+<li><a href="#logical-information-systems">6. Logical Information Systems</a>
+<ul class="sectlevel2">
+<li><a href="#components">6.1. Components</a></li>
+<li><a href="#lisc-interaction-model">6.2. LISC Interaction Model</a></li>
+<li><a href="#lisc-collaboration-contracts-contrats-d-interface">6.3. LISC Collaboration Contracts [contrats d’interface]</a></li>
+<li><a href="#integration-view">6.4. Integration View</a></li>
+<li><a href="#migration-view">6.5. Migration View</a></li>
+<li><a href="#database-objects-interactions">6.6. Database objects interactions</a></li>
+</ul>
+</li>
+<li><a href="#physical-information-system">7. Physical Information System</a>
+<ul class="sectlevel2">
+<li><a href="#pis-component-composants-techniques">7.1. PIS Component [composants techniques]</a></li>
+<li><a href="#pisc-interaction-model-architecture-logicielle">7.2. PISC Interaction Model [architecture logicielle]</a>
+<ul class="sectlevel3">
+<li><a href="#dm-abonnement-sur-individu">7.2.1. DM: Abonnement sur individu</a>
+<ul class="sectlevel4">
+<li><a href="#solution-a-avec-mise-en-cache">Solution A : avec mise en cache</a></li>
+<li><a href="#solution-b-avec-accès-direct">Solution B : avec accès direct</a></li>
+<li><a href="#solution-c-avec-accès-direct">Solution C : avec accès direct</a></li>
+</ul>
+</li>
+<li><a href="#ester-besoin-statistiques-médiation">7.2.2. ESTER: Besoin statistiques médiation</a></li>
+</ul>
+</li>
+<li><a href="#pis-gap-view-effort-sur-l-existant">7.3. PIS Gap View [Effort sur l’existant]</a></li>
+</ul>
+</li>
+<li><a href="#conceptual-technology-infrastructure">8. Conceptual Technology Infrastructure</a></li>
+<li><a href="#logical-technology-infrastructure">9. Logical Technology Infrastructure</a>
+<ul class="sectlevel2">
+<li><a href="#ti-solution-alternatives-view">9.1. TI Solution Alternatives View</a></li>
+</ul>
+</li>
+<li><a href="#physical-technology-infrastructure">10. Physical Technology Infrastructure</a>
+<ul class="sectlevel2">
+<li><a href="#pti-transaction-view-dimensionnement">10.1. PTI Transaction View [dimensionnement]</a>
+<ul class="sectlevel3">
+<li><a href="#sge-v1-volumétrie-réelle">10.1.1. SGE V1: volumétrie réelle</a></li>
+<li><a href="#sge-v2-volumétrie-estimée">10.1.2. SGE V2: volumétrie estimée</a>
+<ul class="sectlevel4">
+<li><a href="#volumétrie-diffusion-fichier">Volumétrie Diffusion Fichier</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#physical-is-ti-mapping-logique-physique">10.2. Physical IS-TI mapping [logique &#8658; physique]</a>
+<ul class="sectlevel3">
+<li><a href="#environnements-de-pré-production-et-production">10.2.1. Environnements de pré-production et production</a></li>
+<li><a href="#environnements-usine-dev-int-qua">10.2.2. Environnements usine (DEV/INT/QUA)</a></li>
+</ul>
+</li>
+<li><a href="#pti-disaster-recovery-view">10.3. PTI Disaster Recovery View</a></li>
+<li><a href="#pti-component-interaction-model-architecture-physique">10.4. PTI Component Interaction Model [architecture physique]</a>
+<ul class="sectlevel3">
+<li><a href="#focus-médiation">10.4.1. Focus médiation</a></li>
+</ul>
+</li>
+<li><a href="#pti-component-security-view-architecture-réseau">10.5. PTI Component Security View [architecture réseau]</a></li>
+</ul>
+</li>
+<li><a href="#annexes">11. Annexes</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Il s&#8217;agit du dossier d&#8217;étude d&#8217;architecture du SGE V2. Ce dossier d’architecture est construit avec le support de la méthode IAF 4.5.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contextual"><a class="anchor" href="#contextual"></a>2. Contextual</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The contextual layer is about understanding the WHY questions. It sets the stake in the ground for the rest of the architecture by providing context.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="business-mission-vision"><a class="anchor" href="#business-mission-vision"></a>2.1. Business Mission &amp; Vision</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Business Mission : fundamental purpose of an organization (why it exists, how it supports the move towars achieving the vision).</p>
+</div>
+<div class="paragraph">
+<p>Business Vision : the desired or intended future state of a specific organization in terms of its fundamental objective and/or strategic direction.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La mission de la SNSV évolue vers une centralisation des données de carrières françaises.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image4.jpeg" alt="SGE_V2_SFG_Diagramme_Acteurs_V01" width="696" height="412"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="business-strategy"><a class="anchor" href="#business-strategy"></a>2.2. Business Strategy</h3>
+<div class="paragraph">
+<p>La direction stratégique de la SNSV pour atteindre son objectif de mission est:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Se doter d’une BDD uniformisant et consolidant les données des différentes caisses</p>
+</li>
+<li>
+<p>Se doter d’un système d’échange entre les caisses et cette BDD et entre les organismes de santé.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="organization-model"><a class="anchor" href="#organization-model"></a>2.3. Organization Model</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It takes the form of an organization chart and is useful for determining hierarchical connections, key reporting lines and stakeholders.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="assumptions"><a class="anchor" href="#assumptions"></a>2.4. Assumptions</h3>
+<div class="paragraph">
+<p>Hypothèses:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pas de restriction de licences dans l’utilisation des modules WM possédés par la SNSV <em>[Noël BRETON]</em></p>
+</li>
+<li>
+<p>L’appel direct est plus performant que l’appel SOAP</p>
+</li>
+<li>
+<p>Ce qui n’est pas dans l’expression du besoin, n’est pas demandé</p>
+</li>
+<li>
+<p>Ce qui n’est pas spécifié techniquement, n’a pas été développé</p>
+</li>
+<li>
+<p>Ce qui n’est pas spécifié fonctionnellement, n’est pas à développer</p>
+</li>
+<li>
+<p>Un connecteur par nature d’échange</p>
+</li>
+<li>
+<p>1 seul UM pour les IS routage (car 100x +perf que Broker)</p>
+</li>
+<li>
+<p>Séparations possibles IS : Fichier/WS, RGCU/autres, rapide/lent, partenaires/applications, échanger/métier</p>
+</li>
+<li>
+<p>OK pour une séparation des BDD catalogue/adhésion du reste des traitement. Si pb de perf, réplication BDD</p>
+</li>
+<li>
+<p>Temps réel signifie WS synchrone (1WS) ou WS asynchrone rapide (2WS, Req+callback)</p>
+</li>
+<li>
+<p>Gestion de version de service sur médiation: considéré comme nouveau service</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ServA &#8658; endpointV1, servB, endpointV2</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="scope"><a class="anchor" href="#scope"></a>2.5. Scope</h3>
+<div class="paragraph">
+<p>Le périmètre est de concevoir et réaliser une version V2 du SGE, système de gestion des échanges entre applications et partenaires SNSV.</p>
+</div>
+<div class="sect3">
+<h4 id="in-scope"><a class="anchor" href="#in-scope"></a>2.5.1. In scope</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Plate forme de médiation : SAG WM Mediator</p>
+</li>
+<li>
+<p>Inclusion des fonctionnalités SGE V1</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="out-of-scope"><a class="anchor" href="#out-of-scope"></a>2.5.2. Out of scope</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Licences WM</p>
+</li>
+<li>
+<p>SNGI</p>
+</li>
+<li>
+<p>RGCU</p>
+</li>
+<li>
+<p>Couche échange TOM/SAA/SFG</p>
+</li>
+<li>
+<p>Sécurisation: INTEROPS-A, suite jetons.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="constraints"><a class="anchor" href="#constraints"></a>2.6. Constraints</h3>
+<div class="paragraph">
+<p>Contraintes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le SGE réalisé sur un socle WebMethods, avec des serveurs JBoss pour l’accès aux données de référentiel, et des serveurs WebLogic pour les IHMs de part l’intégration avec EOPPS.</p>
+</li>
+<li>
+<p>Décision conjointe Architecture /Étude / Production</p>
+</li>
+<li>
+<p>Les IHMs à adosser à EOPPS devront être développées pour WLS (Architectes techniques d’Orléans)</p>
+</li>
+<li>
+<p>La médiation sera assurée par le produit SAG Mediator</p>
+</li>
+<li>
+<p>Des travaux sont en cours pour porter le standard Interops-A dans l’architecture REST. En l’état, le SGE ne pourrait pas exposer de services temps réel de type REST.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Contraintes techniques génériques basées sur expériences antérieures :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Acquittement technique après sauvegarde du message</p>
+</li>
+<li>
+<p>Supervision en asynchrone</p>
+</li>
+<li>
+<p>Pas de mise en erreur du service appelant si erreur de gestion de message de supervision</p>
+</li>
+<li>
+<p>Faire de l’asynchrone autant que possible pour appeler les applications et partenaires</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Permet de les protéger en débit</p>
+</li>
+<li>
+<p>Permet de bloquer le flux sur indisponibilité</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="policies-principles"><a class="anchor" href="#policies-principles"></a>2.7. Policies/Principles</h3>
+<div class="paragraph">
+<p><em>A short statement of principles that outlines and guides future decisions.</em></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Performance</p>
+</li>
+<li>
+<p>Scalabilité</p>
+</li>
+<li>
+<p>Généricité</p>
+</li>
+<li>
+<p>Utiliser SGE V1 autant que possible (Reuse before buy before build)</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="context-diagrams"><a class="anchor" href="#context-diagrams"></a>2.8. Context diagrams</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Context Diagram is usually a high-level picture, illustrating the mail parts of the entreprise and its interaction with external entities in the environment.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image6.jpeg" alt="SGE_V2_SFG_Diagramme_Contexte_V01" width="697" height="655"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conceptual-business"><a class="anchor" href="#conceptual-business"></a>3. Conceptual Business</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Describe processes, organizations, people, resources. A business object is a physical ressource used by the business.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Le projet ne traitant ni d’objets physiques ni d’interactions interpersonnelles, la section business est ignorée au profit des sections information et système d’information.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conceptual-information"><a class="anchor" href="#conceptual-information"></a>4. Conceptual Information</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Information architecture starts by defining which information the business service need, create, and change, to be able to deliver the defined service.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="information-interaction-model"><a class="anchor" href="#information-interaction-model"></a>4.1. Information Interaction Model</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The information interaction model is a cross reference between business services and information objects. It is specially important when you arre planning to create a logical information architecture.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>T</strong>ransform, <strong>G</strong>et and <strong>W</strong>rite.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-center valign-top"><strong>PEntrant</strong></th>
+<th class="tableblock halign-center valign-top"><strong>SGE</strong></th>
+<th class="tableblock halign-center valign-top"><strong>PSortant</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Echanger un MSG/FIC</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>W</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>T</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>G</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Echanger un ARLE</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>G</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>W</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">**</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Echanger un CRF</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>G</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>W</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">**</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Echanger un ARLS</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">**</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>G</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>W</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Echanger un CR</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>G</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>T</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>W</strong></p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conceptual-information-systems"><a class="anchor" href="#conceptual-information-systems"></a>5. Conceptual Information Systems</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>What we now need to do is to define the extent and type of automated support that the business needs.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="is-service-interaction-model-cas-d-utilisation"><a class="anchor" href="#is-service-interaction-model-cas-d-utilisation"></a>5.1. IS Service Interaction Model [cas d’utilisation]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We analyze the Business information services (within the components) and define the corresponding IS services.</p>
+</div>
+<div class="paragraph">
+<p>The purpose of the Information System Service Interfaction Model is to develop more clarity toward understanding the IS services and their collaboration.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les cas d’utilisation / natures d’échange sont décrits dans le document <strong>[3]</strong>.</p>
+</div>
+<div class="sect3">
+<h4 id="diffusion-fichier"><a class="anchor" href="#diffusion-fichier"></a>5.1.1. Diffusion Fichier</h4>
+<div class="sect4">
+<h5 id="diagramme-de-séquence"><a class="anchor" href="#diagramme-de-séquence"></a>Diagramme de séquence</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-df-sequence.png" alt="archi df sequence" width="409" height="507">
+</div>
+<div class="title">Figure 1. DF : Diagramme de séquence</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cas-d-utilisation"><a class="anchor" href="#cas-d-utilisation"></a>Cas d’utilisation</h5>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image8.png" alt="image" width="456" height="395"></span><span class="image"><img src="./images/image9.png" alt="image" width="159" height="351"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image10.png" alt="image" width="399" height="187"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image11.png" alt="image" width="372" height="124"></span></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services-webmethods-et-java"><a class="anchor" href="#services-webmethods-et-java"></a>Services webMethods et Java</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/df-services.png" alt="df services" width="1175" height="1162">
+</div>
+<div class="title">Figure 2. DF : Enchainement des services webMethods &amp; Java</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="diffusion-message"><a class="anchor" href="#diffusion-message"></a>5.1.2. Diffusion Message</h4>
+<div class="sect4">
+<h5 id="diagramme-de-séquence-avec-temps-réel"><a class="anchor" href="#diagramme-de-séquence-avec-temps-réel"></a>Diagramme de séquence (avec temps réel)</h5>
+<div class="paragraph">
+<p>Détails descriptifs dans la SFG (document <strong>[3]</strong>).</p>
+</div>
+<div class="sect5">
+<h6 id="sans-tiers"><a class="anchor" href="#sans-tiers"></a>Sans Tiers</h6>
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-dm-sequence.png" alt="archi dm sequence" width="427" height="841">
+</div>
+<div class="title">Figure 3. DM : Diagramme de séquence</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="avec-tiers"><a class="anchor" href="#avec-tiers"></a>Avec Tiers</h6>
+<div class="paragraph">
+<p>Pour plus de lisibilité, les échanges SAA ne sont pas indiqués.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-dm-tiers-sequence.png" alt="archi dm tiers sequence" width="532" height="1034">
+</div>
+<div class="title">Figure 4. DM Tiers : Diagramme de séquence</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="cas-d-utilisation-2"><a class="anchor" href="#cas-d-utilisation-2"></a>Cas d’utilisation</h5>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image13.png" alt="image" width="463" height="320"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image14.png" alt="image" width="458" height="549"></span><span class="image"><img src="./images/image15.png" alt="image" width="171" height="506"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image16.png" alt="image" width="424" height="245"></span><span class="image"><img src="./images/image17.png" alt="image" width="203" height="282"></span></p>
+</div>
+<div class="sect5">
+<h6 id="temps-réel"><a class="anchor" href="#temps-réel"></a>Temps Réel</h6>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image20.png" alt="image" width="516" height="509"></span><span class="image"><img src="./images/image21.png" alt="image" width="154" height="452"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image18.png" alt="image" width="459" height="252"></span></p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services-connecteur"><a class="anchor" href="#services-connecteur"></a>Services connecteur</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dm-wm-services-connecteur-tiers-sans-aspects.png" alt="dm wm services connecteur tiers sans aspects" width="1250" height="1574">
+</div>
+<div class="title">Figure 5. Services webMethods connecteur hors Tiers (Entree Batch)</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dm-wm-services-connecteur-temps-reel.png" alt="dm wm services connecteur temps reel" width="1418" height="653">
+</div>
+<div class="title">Figure 6. Services webMethods connecteur (Temps réel)</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dm-wm-services-connecteur-tiers-aspects.png" alt="dm wm services connecteur tiers aspects" width="1446" height="1044">
+</div>
+<div class="title">Figure 7. Services webMethods connecteur aspects Tiers</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services-routage-et-applications"><a class="anchor" href="#services-routage-et-applications"></a>Services routage et applications</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dm-wm-services-routage.png" alt="dm wm services routage" width="1004" height="1109">
+</div>
+<div class="title">Figure 8. DM : Services webMethods routage</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services-principaux"><a class="anchor" href="#services-principaux"></a>Services principaux</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dm-services-main.png" alt="dm services main" width="1801" height="1654">
+</div>
+<div class="title">Figure 9. DM : services déclenchés par un fichier DM_ENTREE</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="services-liés-à-l-ordonnancement"><a class="anchor" href="#services-liés-à-l-ordonnancement"></a>Services liés à l&#8217;ordonnancement</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/dm-services-ordo.png" alt="dm services ordo" width="2093" height="979">
+</div>
+<div class="title">Figure 10. DM : services déclenchés par l&#8217;ordonnancement</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="médiation-ester"><a class="anchor" href="#médiation-ester"></a>5.1.3. Médiation / ESTER</h4>
+<div class="paragraph">
+<p>Diagramme de séquence:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image22.png" alt="image22" width="449" height="148"></span></p>
+</div>
+<div class="paragraph">
+<p>Cas d’utilisation:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image23.png" alt="image" width="271" height="397"></span></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="détail-par-nature-d-échange-utilisatrice"><a class="anchor" href="#détail-par-nature-d-échange-utilisatrice"></a>5.2. Détail par nature d’échange utilisatrice</h3>
+<div class="paragraph">
+<p><span class="image"><img src="./images/archi-cas-utilisations-natures-1.png" alt="archi cas utilisations natures 1"></span></p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/archi-cas-utilisations-natures-2.png" alt="archi cas utilisations natures 2"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="potentielles-évolutions-sge-v3"><a class="anchor" href="#potentielles-évolutions-sge-v3"></a>5.3. Potentielles évolutions SGE V3</h3>
+<div class="paragraph">
+<p>Les évolutions envisageables dans des versions ultérieuressont les suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gestion des versions de médiation en: serviceA, version1; serviceA, version2</p>
+<div class="ulist">
+<ul>
+<li>
+<p>(actuellement serviceA, version 1, serviceB, version2)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Automatiser la mise à jour de MEDIATOR depuis le catalogue</p>
+</li>
+<li>
+<p>Afficher les anomalies dans le suivi IHM</p>
+</li>
+<li>
+<p>Ajouter une option de chiffrement du message métier en BDD</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logical-information-systems"><a class="anchor" href="#logical-information-systems"></a>6. Logical Information Systems</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="components"><a class="anchor" href="#components"></a>6.1. Components</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A LISC is the basic element of an ‘ideal’ or ‘to be’ application structure created by the grouping of one or more IS services. Combine the architecture principles with package knowleSGE to construct LISCs that reflect what the business wants from a package that is to be selected later on in physical level.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="lisc-interaction-model"><a class="anchor" href="#lisc-interaction-model"></a>6.2. LISC Interaction Model</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The LISC interaction model is derived from the IS Service interaction model. Here you also need to investigate if you can <em>merge collaboration contracts</em>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="lisc-collaboration-contracts-contrats-d-interface"><a class="anchor" href="#lisc-collaboration-contracts-contrats-d-interface"></a>6.3. LISC Collaboration Contracts [contrats d’interface]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The LISC collaboration contract documents the agreed interaction between LISC components. You can merge collaboration contracts id the behavior and communication mechanism are practically equal.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ci-dessous le format pivot (interne) couplé avec l’utilisation (en interface externe) des champs par phase et par nature, extrait du document <strong>[2]</strong>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/archi-contrat-interface-global.png" alt="image" width="501" height="945"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="integration-view"><a class="anchor" href="#integration-view"></a>6.4. Integration View</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The view can be constructed to validate and communicate which integration mechanisms are to be used to realize the communication between the LISCs.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Peuvent être détaillés ici les modes de communication intra-SGE.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="migration-view"><a class="anchor" href="#migration-view"></a>6.5. Migration View</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The view can be constructed to validate and communicate which integration mechanisms are to be used to realize the communication between the LISCs.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="database-objects-interactions"><a class="anchor" href="#database-objects-interactions"></a>6.6. Database objects interactions</h3>
+<div class="paragraph">
+<p>Interactions et agrégation des objets BDD catalogue:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/image27.png" alt="image27" width="696" height="368"></span></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="physical-information-system"><a class="anchor" href="#physical-information-system"></a>7. Physical Information System</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>What do I buy?</p>
+</li>
+<li>
+<p>What do I build?</p>
+</li>
+<li>
+<p>How long will it take?</p>
+</li>
+<li>
+<p>How much will it cost?</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="pis-component-composants-techniques"><a class="anchor" href="#pis-component-composants-techniques"></a>7.1. PIS Component [composants techniques]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Once you have allocated the logical IS components to physical, real life things you can buy or build, you have created the physical IS components.</p>
+</div>
+<div class="paragraph">
+<p>Most of the time the architect has to stay impartial because he is an advisor to the organization, not a decision maker.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les composants sont en accord avec les choix de la SNSV : WebMethods + JBoss + WebLogic.</p>
+</div>
+<div class="paragraph">
+<p><strong>OS</strong> : Linux Red Hat RHEL 6.x ou 7.x</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Type de module SGE</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Module technique</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Médiation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WM Centrasite + Mediator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WM 9.9</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connecteurs et traitement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WM Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WM 9.7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Messaging / bus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WM Universal Messaging</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WM 9.7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BDD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12c</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Accès/MAJ de référentiel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serveurs Jboss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JBOSS EAP 6.3.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IHM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serveurs WebLogic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WLS 10.3.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supervision technique<br>
+&amp; exploitation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MyWebMethods Server<br>
++ WM Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WM 9.7</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><span class="image"><img src="./images/archi-fonc-to-phys.png" alt="image" width="535" height="945"></span></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pisc-interaction-model-architecture-logicielle"><a class="anchor" href="#pisc-interaction-model-architecture-logicielle"></a>7.2. PISC Interaction Model [architecture logicielle]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The PISC Interfaction Model gives insight into how these components are interacting.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/diagram-archi-fonc.png" alt="diagram archi fonc" width="1397" height="788">
+</div>
+<div class="title">Figure 11. Architecture fonctionnelle</div>
+</div>
+<div class="paragraph">
+<p>TN n’est finalement pas utilisé pour les raisons suivantes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La gouvernance offerte n’est pas jugée utile pour le nombre de flux et les protocoles, et peut même être considérée comme lourde à l’usage</p>
+</li>
+<li>
+<p>La gestion des adhésions est déjà gérée par le catalogue</p>
+</li>
+<li>
+<p>Les interfaces WS et S/FTP sont déjà proposées en natif sur WM</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="dm-abonnement-sur-individu"><a class="anchor" href="#dm-abonnement-sur-individu"></a>7.2.1. DM: Abonnement sur individu</h4>
+<div class="paragraph">
+<p>La nature «Diffusion Message» offre une option d’abonnement sur individu. Ainsi le partenaire sortant peut ne recevoir les messages que concernant une liste configurée d’individus.</p>
+</div>
+<div class="paragraph">
+<p>Le nombre d’individus était potentiellement très important et leur utilisation très dispersée dans le temps, une optimisation de l’accès aux données de routage par abonnement s’impose.</p>
+</div>
+<div class="paragraph">
+<p>Trois scénarios d’architecture sont proposés.</p>
+</div>
+<div class="sect4">
+<h5 id="solution-a-avec-mise-en-cache"><a class="anchor" href="#solution-a-avec-mise-en-cache"></a>Solution A : avec mise en cache</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-scenario-abo-a.png" alt="archi scenario abo a" width="622" height="254">
+</div>
+<div class="title">Figure 12. Solution avec mise en cache</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Solution simple à mettre en place</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Les données d&#8217;individus étant très dispersées, le cache peut rapidement être inefficace</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>La cellule d’architecture de la SNSV propose une variante du scénario A : un cache côté «Services». Problème supplémentaire soulevé: une non optimisation des appels WS «SGE» «Services» qui sont systématiquement effectués.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="solution-b-avec-accès-direct"><a class="anchor" href="#solution-b-avec-accès-direct"></a>Solution B : avec accès direct</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-scenario-abo-b.png" alt="archi scenario abo b" width="615" height="113">
+</div>
+<div class="title">Figure 13. Solution avec mise en cache</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Solution simple à mettre en place</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Pas pleinement dans les règles de l&#8217;art de l&#8217;architecture SI</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="solution-c-avec-accès-direct"><a class="anchor" href="#solution-c-avec-accès-direct"></a>Solution C : avec accès direct</h5>
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-scenario-abo-c.png" alt="archi scenario abo c" width="716" height="167">
+</div>
+<div class="title">Figure 14. Solution avec réplication</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Dans les règles de l&#8217;art de l&#8217;architecture SI</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Infrastructure de réplication à mettre en place</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Pour le scénario C, la réplication peut être effectuée par la fonctionnalité <em>Oracle Streams</em>, qui permet d’envoyer les informations aux deux BDD. Cette fonctionnalité est offerte en standard dans la licence Oracle, donc sans surcoût de licence.</p>
+</div>
+<div class="paragraph">
+<p>&#8658; Solution Retenue : Pas de gestion de cache pour les abonnements sur individu. Une solution pourra être évaluée en évolution si des besoins de performance accrus se présentent.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ester-besoin-statistiques-médiation"><a class="anchor" href="#ester-besoin-statistiques-médiation"></a>7.2.2. ESTER: Besoin statistiques médiation</h4>
+<div class="paragraph">
+<p>WM Mediator propose 2 canaux EDA pour la remontée de statistiques :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>EDA vers UM</p>
+<div class="ulist">
+<ul>
+<li>
+<p>avec des publications par service</p>
+</li>
+<li>
+<p>agrégé par service pour les métriques à intervalles configurable (5 min)</p>
+</li>
+<li>
+<p>un par erreur (avec les détails de l&#8217;erreur)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>EDA vers BDD</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Écriture dans des tables WM en asynchrone</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La cellule architecture a retenu la solution «EDA vers Broker» pour son utilisation de l’UM et profiter de la robustesse de celui-ci. Voici donc l’architecture ciblée:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/diagram-archi-mediator-stats.png" alt="diagram archi mediator stats" width="513" height="721">
+</div>
+</div>
+<div class="paragraph">
+<p>Les statistiques sont publiées à intervalle régulier par service, sur l’UM de suivi. Le serveur de Suivi/Stats s’abonne aux documents publiés par l’IS Mediator, consolide les données dans la table de statistiques du SGE, qui peuvent alors être consultées via l’IHM d’activité.</p>
+</div>
+<div class="paragraph">
+<p>Plusieurs types de données peuvent être remontés par WM Mediator :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Métriques (voir documentation «Administering Mediator»)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Availability</p>
+</li>
+<li>
+<p>Average Response Time</p>
+</li>
+<li>
+<p>Fault Count</p>
+</li>
+<li>
+<p>Maximum Response Time</p>
+</li>
+<li>
+<p>Minimum Response Time</p>
+</li>
+<li>
+<p>Successfull Request Count</p>
+</li>
+<li>
+<p>Total Request Count</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cycle de vie (Arrêt / (re)démarrage)</p>
+</li>
+<li>
+<p>Violation de policy</p>
+</li>
+<li>
+<p>Erreurs (unitairement)</p>
+</li>
+<li>
+<p>Transactions</p>
+</li>
+<li>
+<p>Monitoring</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Les besoins exprimés quand aux données remontées sont les suivants, par service:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le nombre total d’appels</p>
+</li>
+<li>
+<p>Le nombre d’appels KO</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Le nombre d’appels KO est transformé en pourcentage par l’IHM pour affichage en temps que tel. Cette donnée est issue de la valeur «Fault Count» des métriques Mediator, donc n’inclus que les problèmes d’accès au back office (pas les SOAP-FAULT).</p>
+</div>
+<div class="paragraph">
+<p>La donnée «temps de traitement moyen», affichée pour d’autres natures, est disponible dans les données remontées par WM Mediator, mais ne fait pas partie des besoins de SGE V2 pour ESTER.</p>
+</div>
+<div class="paragraph">
+<p>Le besoin de pouvoir distinguer les statistiques par correspondant appelant n’est pas couvert: les données ne sont pas disponibles dans les statistiques Mediator.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pis-gap-view-effort-sur-l-existant"><a class="anchor" href="#pis-gap-view-effort-sur-l-existant"></a>7.3. PIS Gap View [Effort sur l’existant]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Show gap between baseline and target architecture.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Les écarts déterminés entre les domaines fonctionnels et l’existant SGE V1 nous permet d’évaluer l’effort à fournir pour atteindre la cible SGE V2, avec:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><em>Design</em>: à (re)définir</p>
+</li>
+<li>
+<p><em>New</em>: nouveau</p>
+</li>
+<li>
+<p><em>Upgrade</em>: à améliorer</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Regroupement fonctionnel</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Écart SGE V1</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Diffusion de fichier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BPM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Constituer batch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Envoyer requête ordonnancée</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Envoyer CRF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trace interne</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Catalogue / Adhésion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intégrer requête</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Design + New</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Médiation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SISO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Abonnement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Anomalies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Suivi technique</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deploiement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gestion de conf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Traiter messages</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade + Design + New</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conceptual-technology-infrastructure"><a class="anchor" href="#conceptual-technology-infrastructure"></a>8. Conceptual Technology Infrastructure</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>There are services that are used generically throughout the organization. It is hard to define one owner who can govern the service. Often services like that are managed centrally, typically by some form of IT department.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="logical-technology-infrastructure"><a class="anchor" href="#logical-technology-infrastructure"></a>9. Logical Technology Infrastructure</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All components, and the most important connections between components are visualized using logical forms. This keeps people away from thinking physical, and getting confused as a result.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="ti-solution-alternatives-view"><a class="anchor" href="#ti-solution-alternatives-view"></a>9.1. TI Solution Alternatives View</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The real technology choices are made and analyzed at this point in time. If cost efficiency had been one of the principles, the shared components sceneario is better.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="physical-technology-infrastructure"><a class="anchor" href="#physical-technology-infrastructure"></a>10. Physical Technology Infrastructure</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>What do I buy? How long will it take? How much will it cost?</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="pti-transaction-view-dimensionnement"><a class="anchor" href="#pti-transaction-view-dimensionnement"></a>10.1. PTI Transaction View [dimensionnement]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The number of transactions per second might be critical for certain components in the architecture. The transaction characteristics will enable you to determine average and peak transaction volumes per component.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Le document <strong>[1]</strong> contient la projection de volumétrie cible SGE V2 en message par type de flux.</p>
+</div>
+<div class="sect3">
+<h4 id="sge-v1-volumétrie-réelle"><a class="anchor" href="#sge-v1-volumétrie-réelle"></a>10.1.1. SGE V1: volumétrie réelle</h4>
+<div class="paragraph">
+<p><strong>«en moyenne 85 fichiers par jour de 10 messages »</strong></p>
+</div>
+<div class="paragraph">
+<p>85 x 10 / 86400 = <strong>0.01 TPS</strong></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sge-v2-volumétrie-estimée"><a class="anchor" href="#sge-v2-volumétrie-estimée"></a>10.1.2. SGE V2: volumétrie estimée</h4>
+<div class="paragraph">
+<p>La volumétrie sera principalement liée à celle du RGCU. Les données sont consolidées dans le document <strong>[1]</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Le nombre de transactions entrantes par secondes (TPS) est obtenu par division à la seconde du nombre de messages annuels échangés. Il ne prend donc pas en compte les pics et creux de charge. Il s’agit d’une granularité message, le nombre réel de sollicitations des partenaires entrant est donc inférieur grâce aux injections d’agrégations de messages.</p>
+</div>
+<div class="paragraph">
+<p>Le débit message annuel estimé est de <strong>8 000000</strong> messages E/S par jour, soit <strong>91 TPS</strong> d’après le document <strong>[1]</strong> en version V0.6.</p>
+</div>
+<div class="paragraph">
+<p>Ensemble des paramètres retenus:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Average Message Size: 150 KB</p>
+</li>
+<li>
+<p>Expected Throughput: <strong>100 TPS</strong></p>
+</li>
+<li>
+<p>Number of Package: 100+</p>
+</li>
+<li>
+<p>Process Speed Assumed: 2.8 GHz</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour supporter ces caractéristiques en pic, nous proposons la configuration type suivante:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Item</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Product</strong></th>
+<th class="tableblock halign-left valign-top"><strong>CPU (Cores)</strong></th>
+<th class="tableblock halign-left valign-top"><strong>JVM (GB)</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Nodes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS B2B (x4)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 (Actif/Actif)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS MET</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 (A/A)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS A2A</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 (A/A)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS ANO</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 (A/A)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>REF/SUIVI (x4)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JBoss / WebLogic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 (A/A)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Messaging (x2)</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Universal Messaging</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 (A/P)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Monitoring</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MWS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">My webMethods Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>SAN:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Répertoire partagé par les UMs</p>
+</li>
+<li>
+<p>Répertoire partagé transverse aux serveurs IS pour les installations</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Les items scalables sont indiqués dans le schéma du paragraphe <em>1.6.2</em> <em>PISC Interaction Model [architecture logicielle]</em>
+WARNING: faire un renvoi</p>
+</div>
+<div class="paragraph">
+<p>Chaque item, indiqué comme tel, pourra être redondé suivant l’augmentation progressive du nombre de messages traités.</p>
+</div>
+<div class="paragraph">
+<p>Le dimensionnement reste à affiner avec des tests de charge et une décomposition réelle du trafic.</p>
+</div>
+<div class="sect4">
+<h5 id="volumétrie-diffusion-fichier"><a class="anchor" href="#volumétrie-diffusion-fichier"></a>Volumétrie Diffusion Fichier</h5>
+<div class="paragraph">
+<p>Basé sur les chiffres du document <strong>[1]</strong>, la volumétrie simplifiée est la suivante:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/archi-volumetrie.png" alt="archi volumetrie"></span></p>
+</div>
+<div class="ulist">
+<div class="title">Informations RGCU :</div>
+<ul>
+<li>
+<p>DF / Alimentation: Si nous prenons le cas métier le plus volumineux en terme d&#8217;assuré (la DSN), nous aurions en moyenne par assuré 2 éléments de carrière. En prenant l&#8217;encapsulation de la Norme R, on peut dire qu&#8217;en moyenne par assuré il faut compter 1,5 à 2 ko max. <em>[Bastien PERRIN]</em></p>
+</li>
+<li>
+<p>DF / Restitution: Un élément de carrière, dans sa structure la plus complexe, ne devrait pas dépasser 500 octets ou que dans des cas exceptionnels, mais de toute façon pas au dessus de 1ko. On considère qu&#8217;une carrière représentative (dans 5 à 10 ans donc intégrant le passage à la DSN) ne devrait pas excéder les 300 à 400 éléments. <em>[Manuel HUBERT]</em></p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Hypothèses résultantes :</div>
+<ul>
+<li>
+<p>En mode Diffusion Fichier</p>
+<div class="ulist">
+<ul>
+<li>
+<p>une alimentation ne dépasse pas 2Ko.</p>
+</li>
+<li>
+<p>une restitution dépasse rarement 200Ko (500 octets x 400 éléments).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Calculs :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nature</th>
+<th class="tableblock halign-left valign-top">flux</th>
+<th class="tableblock halign-left valign-top">msg entrants / an</th>
+<th class="tableblock halign-left valign-top">desti / msg</th>
+<th class="tableblock halign-left valign-top">msg sortants / an</th>
+<th class="tableblock halign-left valign-top">Ko / msg</th>
+<th class="tableblock halign-left valign-top">jours ouvrés / an</th>
+<th class="tableblock halign-left valign-top"><strong>Go / jour</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DF</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alimentation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">700 000 000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">700 000 000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">250</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>90</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restitution</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100 000 000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100 000 000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>L’estimation de débit sortant du SGE, en mode Diffusion Fichier, pour les flux RGCU est de <strong>90 Go / jour</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="physical-is-ti-mapping-logique-physique"><a class="anchor" href="#physical-is-ti-mapping-logique-physique"></a>10.2. Physical IS-TI mapping [logique &#8658; physique]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This view shows the relevant relationships between the physical IS and TI components.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Règles :</div>
+<ul>
+<li>
+<p>Les BDD métier et technique doivent être sur des VM séparées. <em>[Thomas PERELLE]</em></p>
+</li>
+<li>
+<p><strong class="line-through">Pas de mutualisation des BDD des environnements sur un même serveur BDD, même en séparant les SID. <em>[Yoann GERARD]</em></strong> Mutualisation serveur BDD possible, séparation des SID. <em>[Thomas PERELLE]</em></p>
+</li>
+<li>
+<p>L’IS admin doit être sur une VM séparée et regroupée pour les environnements usine. <em>[Thomas PERELLE]</em></p>
+</li>
+<li>
+<p>Les serveurs logiques Jboss et Weblogic doivent être sur des VM séparées. <em>[Thomas PERELLE]</em></p>
+</li>
+<li>
+<p>Universal Messaging: Un seul serveur pour les environnements usine. <em>[Thomas PERELLE]</em></p>
+</li>
+<li>
+<p>Les SID des bases ont un nommage réglementé. <em>[Thomas PERELLE]</em></p>
+</li>
+<li>
+<p>Les VMs ont un gabarit et ont, sauf exception, une taille initiale de 4Go de RAM. <em>[Thomas PERELLE]</em></p>
+</li>
+<li>
+<p>Les users admin BDD doivent être des comptes nominatifs SNSV (Windows). <em>[Thomas PERELLE]</em></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="environnements-de-pré-production-et-production"><a class="anchor" href="#environnements-de-pré-production-et-production"></a>10.2.1. Environnements de pré-production et production</h4>
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-regroup-phys-prod.png" alt="archi regroup phys prod" width="1538" height="451">
+</div>
+<div class="title">Figure 15. VMs de production</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="environnements-usine-dev-int-qua"><a class="anchor" href="#environnements-usine-dev-int-qua"></a>10.2.2. Environnements usine (DEV/INT/QUA)</h4>
+<div class="paragraph">
+<p>2 chaînes d’environnement avec chacun :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un environnement de développement (DEV)</p>
+</li>
+<li>
+<p>Un environnement d’intégration (INT)</p>
+</li>
+<li>
+<p>Un environnement de qualification (QUA)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Chaîne 1(DEV1/INT1/QUA1) :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-regroup-phys-usine.png" alt="archi regroup phys usine" width="1591" height="697">
+</div>
+<div class="title">Figure 16. VMs usine</div>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Item</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Product</strong></th>
+<th class="tableblock halign-left valign-top"><strong>CPU (Cores)</strong></th>
+<th class="tableblock halign-left valign-top"><strong>JVM (GB)</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Nodes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Mono IS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integration Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>S-REF</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jboss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>S-SUIVI</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jboss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IHM-REF</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WebLogic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IHM-SUIVI</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WebLogic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UM ESB</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Universal Messaging</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>UM SUIVI</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Universal Messaging</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>MWS</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">My webMethods Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>BDD</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Terracotta</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Terracotta Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>VM</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Serveurs logiques</strong></th>
+<th class="tableblock halign-left valign-top"><strong>RAM</strong></th>
+<th class="tableblock halign-left valign-top"><strong>CPU</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-ESB-DEV1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mono IS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 Go</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-ESB-INT1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mono IS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 Go</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-ESB-QUA1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5xIS + Terracotta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>12 Go</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-BPM-QUA1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2xIS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 Go</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-MSG-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3xUM ESB + 3xUM SUIVI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>6 Go</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-ADMIN-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IS+MWS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 Go</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-WLO-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3xIHM-REF+3xIHM-SUIVI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>6 Go</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-JBOSS-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3xIHM-REF+3xIHM-SUIVI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>6 Go</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-BDD-WM-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3xBDD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>6 Go</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VMU-BDD-MET-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4xBDD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>8 Go</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pti-disaster-recovery-view"><a class="anchor" href="#pti-disaster-recovery-view"></a>10.3. PTI Disaster Recovery View</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>No detail in document reference</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>L’architecture qui prévaut afin d’assurer un service continu, doit être, dans l’ordre de sécurisation décroissante :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Les 2 nœuds sur 2 sites différents</p>
+</li>
+<li>
+<p>Les 2 nœuds dans 2 salles différentes d’un seul site</p>
+</li>
+<li>
+<p>Les 2 nœuds sur 2 baies de serveurs différents d’une seule salle d’un seul site</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Il existe 2 sites de production, mais avec des capacités d’accueil différente. Le site principal est dans les locaux de la SNSV, avec une seule salle. Le site secondaire, de capacité d’accueil moindre, ne peut être utilisé comme un hébergeur de nœud. Il est à envisager uniquement comme un site de backup en cas d’incident grave sur le premier site.</p>
+</div>
+<div class="paragraph">
+<p>En l’état actuel, la mise en place des nœuds dans 2 baies de serveurs différentes est la seule solution de sécurisation de continuité de service envisagée.</p>
+</div>
+<div class="paragraph">
+<p>Pour assurer la continuité de service, les UM actif/passif stockent leurs données dans un répertoire SAN partagé listé au paragraphe précédent.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pti-component-interaction-model-architecture-physique"><a class="anchor" href="#pti-component-interaction-model-architecture-physique"></a>10.4. PTI Component Interaction Model [architecture physique]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This model is constructed in the same way as in the logical architecture. The relevant interactions are superimposed on top of the model of the physical components. As stated earlier, focus on the relevant interactions, and not all interactions, or it would turn into an interaction blur.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ci-dessous l’architecture physique noeud1 / noeud2 obtenue.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/archi-physique.jpeg" alt="archi physique"></span></p>
+</div>
+<div class="sect3">
+<h4 id="focus-médiation"><a class="anchor" href="#focus-médiation"></a>10.4.1. Focus médiation</h4>
+<div class="paragraph">
+<p><span class="image"><img src="./images/archi-physique-mediation.png" alt="archi physique mediation"></span></p>
+</div>
+<div class="paragraph">
+<p>La fonctionnalité de médiation ESTER est assurée par une succession de 3 modules:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Un Reverse Proxy (Beeware)</dt>
+<dd>
+<p>Assure un premier niveau de sécurité, notamment la limitation instantanée de flux</p>
+</dd>
+<dt class="hdlist1">Une gateway (Axway ou Morpho)</dt>
+<dd>
+<p>Assure la gestion de jetons Interops-A</p>
+</dd>
+<dt class="hdlist1">Un serveur de médiation (WM Mediator)</dt>
+<dd>
+<p>Assure les fonctions de virtualisation, routage de services et remontée de statistiques</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pti-component-security-view-architecture-réseau"><a class="anchor" href="#pti-component-security-view-architecture-réseau"></a>10.5. PTI Component Security View [architecture réseau]</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Check if the security attributes of the TI services in the physical TI components are in line with each other.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Ci-dessous l’architecture réseau retenue.</p>
+</div>
+<div class="ulist">
+<div class="title">Règles :</div>
+<ul>
+<li>
+<p>VM ESB / BPM / UM dans le même VLAN <em>[Mathieu Crogiez]</em></p>
+</li>
+<li>
+<p>VM WLS &amp; JBOSS dans VLAN distinct des IS <em>[Mathieu Crogiez]</em></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/archi-reseau.png" alt="archi reseau"></span></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="annexes"><a class="anchor" href="#annexes"></a>11. Annexes</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-08-21 17:21:38 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
