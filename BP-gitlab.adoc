@@ -7,6 +7,41 @@ ifndef::imagesdir[:imagesdir: images]
 
 Connect to Gitlab homepage.
 
+
+=== Merge Requests workflow
+
+.Initialize the change
+* Go to *Issues* -> *New issue*
+* Set information and create
+* Click *Create merge request*
+* In Eclipse, right click on your repo -> *Pull*
+** The branch should appear under *Branches* -> *Remote Tracking*
+* Update the files...
+* Commit
+* Right click on local/master -> Push Branch...
+** Toggle
+*** [ ] Configure Pull
+*** [ ] Force
+**  Next -> Finish
+
+.On each new dev iteration
+** Commit with amend, ignore the warning
+** Right click on local/master -> Push Branch...
+** Toggle
+*** [ ] Configure Pull
+*** [x] Force
+** Next -> Finish
+
+.Merge in Gitlab
+* Browse the Merge Request in Gitlab
+* [x] Remove source branch
+* Remove the Remote branch in your git repo -> Branches -> Remote Tracking
+* Right click on your repo -> *Pull*
+** If you get an error, you have obviously configure Pull for the dead branch, so use *Pull...* instead and select *master* branch
+
+
+=== Pipeline creation
+
 //[source, yaml] does not seem to work with highlight.js :(
 [source,bash]
 .Pipeline content

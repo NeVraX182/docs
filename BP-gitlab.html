@@ -432,7 +432,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#server-configuration">1. Server configuration</a></li>
+<li><a href="#server-configuration">1. Server configuration</a>
+<ul class="sectlevel2">
+<li><a href="#merge-requests-workflow">1.1. Merge Requests workflow</a></li>
+<li><a href="#pipeline-creation">1.2. Pipeline creation</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -450,6 +455,115 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Connect to Gitlab homepage.</p>
 </div>
+<div class="sect2">
+<h3 id="merge-requests-workflow"><a class="anchor" href="#merge-requests-workflow"></a>1.1. Merge Requests workflow</h3>
+<div class="ulist">
+<div class="title">Initialize the change</div>
+<ul>
+<li>
+<p>Go to <strong>Issues</strong> &#8594; <strong>New issue</strong></p>
+</li>
+<li>
+<p>Set information and create</p>
+</li>
+<li>
+<p>Click <strong>Create merge request</strong></p>
+</li>
+<li>
+<p>In Eclipse, right click on your repo &#8594; <strong>Pull</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The branch should appear under <strong>Branches</strong> &#8594; <strong>Remote Tracking</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Update the files&#8230;&#8203;</p>
+</li>
+<li>
+<p>Commit</p>
+</li>
+<li>
+<p>Right click on local/master &#8594; Push Branch&#8230;&#8203;</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Toggle</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Configure Pull</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Force</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Next &#8594; Finish</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">On each new dev iteration</div>
+<ul>
+<li>
+<p>Commit with amend, ignore the warning</p>
+</li>
+<li>
+<p>Right click on local/master &#8594; Push Branch&#8230;&#8203;</p>
+</li>
+<li>
+<p>Toggle</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Configure Pull</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Force</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Next &#8594; Finish</p>
+</li>
+</ul>
+</div>
+<div class="ulist checklist">
+<div class="title">Merge in Gitlab</div>
+<ul class="checklist">
+<li>
+<p>Browse the Merge Request in Gitlab</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Remove source branch</p>
+</li>
+<li>
+<p>Remove the Remote branch in your git repo &#8594; Branches &#8594; Remote Tracking</p>
+</li>
+<li>
+<p>Right click on your repo &#8594; <strong>Pull</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>If you get an error, you have obviously configure Pull for the dead branch, so use <strong>Pull&#8230;&#8203;</strong> instead and select <strong>master</strong> branch</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pipeline-creation"><a class="anchor" href="#pipeline-creation"></a>1.2. Pipeline creation</h3>
 <div class="listingblock">
 <div class="title">Pipeline content</div>
 <div class="content">
@@ -491,7 +605,7 @@ pages:
     - cp -R src/docs/asciidoc/subdocs target/generated-docs/
     - mvn scm-publish:publish-scm
     - mkdir public
-    - cp -R target/generated-docs/ public/
+    - mv target/generated-docs/* public/
   artifacts:
     paths:
       - public
@@ -523,9 +637,10 @@ assembly:
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-22 11:06:25 UTC
+Last updated 2018-08-22 11:12:19 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
