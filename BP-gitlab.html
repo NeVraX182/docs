@@ -465,10 +465,10 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
-cache:
-  paths:
-    - .m2/repository/
-    - target/
+#cache:
+#  paths:
+#    - .m2/repository/
+#    - target/
 
 build:
   stage: build
@@ -478,7 +478,8 @@ build:
     - mvn install -DskipTests -Dassembly.skipAssembly=true
 
 
-documentation:
+# the pipeline step must be named 'pages' for gitlab to deploy locally (in addition to github)
+pages:
   stage: build
   script:
     #- ./src/scripts/asciidocOnlyModified.sh
@@ -490,6 +491,9 @@ documentation:
     - cp src/docs/asciidoc/*.adoc target/generated-docs/
     - cp -R src/docs/asciidoc/subdocs target/generated-docs/
     - mvn scm-publish:publish-scm
+  artifacts:
+    paths:
+      - target/generated-docs
   #only:
   #  - master
 
@@ -520,7 +524,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-22 08:40:44 UTC
+Last updated 2018-08-22 09:19:37 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
