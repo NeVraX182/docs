@@ -1,0 +1,699 @@
+= Gestion du routage : Dispositif de Gestion des Echanges
+include::subdocs/_init-fr.adoc[]
+ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
+
+.Références
+[cols="^,^,^2,6,6",options="header"]
+|====================================================================================================================================================
+|Réf. |Ver. |Date |Document |Description
+|[01] |01.6 |27/04/2017 |DGE_V2_SFG_Spécifications_Fonctionnelles_Générales.docx |Spécifications fonctionnelles générales du DGE V2
+|[02] | |{localdate} |SAF-architecture.pdf |Cadre d’architecture DGE V2, contenant notamment les noms des IS
+|[03] |01.4 |27/04/2017 |DGE_V2_DSF_Dossier_de_Spécifications_Fonctionnelles.docx |Spécifications fonctionnelles détaillées du DGE V2
+|[04] |01.0 |29/09/2016 |DGE_V2_FS_Diffuser_un_fichier_(DF).docx |Fiche Solution décrivant le routage pour la nature Diffusion Fichier pour le DGE V2
+|[05] | |{localdate}|STS-Cache-Catalogue.pdf |Description du cache du catalogue DGE V2
+|[06] |xxx |xxx |Ajouter FS DM Batch |
+|[07] |xxx |xxx |Ajouter FS DM TR |
+|[08] |xxx |xxx |DGE_V2_DSF_Liste_des_codes_d_erreurs.xlsx |Liste des codes d’erreurs DGE V2
+|====================================================================================================================================================
+
+// TODO : vérifier noms document, dates et versions.
+
+<<<
+
+== Introduction
+
+Ce document décrit les opérations de routage réalisées par l’IS « MET » de l’application DGE V2 pour les natures d’échanges suivantes :
+
+* Diffusion Fichier
+* Diffusion Messages
+
+== Contexte
+
+=== Architecture fonctionnelle
+
+include::subdocs/_archi-fonc.adoc[]
+
+=== Services webMethods
+
+==== Routage Diffusion Messages
+
+include::subdocs/_dm-routage-services-wm.adoc[]
+
+<<<
+
+== Packages webMethods
+
+=== DgeBpmDf : routage Diffusion Fichier
+
+Le routage de la nature Diffusion Fichier est réalisé par le package webMethods *DgeBpmDf* :
+
+image:DgeBpmDf_package.png[image,width=162,height=71]image:DgeBpmDfTech_package.png[image,width=160,height=72]
+
+==== Services publics
+
+===== dgeBpmDf.pub:routeFile
+
+====== Déclenchement
+
+Le module de routage de la Diffusion Fichier se déclenche sur réception du document *dgeCommonsDocs.docs.df.bpm:StartBpmDf* publié par l’IS « B2B-FIC-PE-n », lorsque le résultat des contrôles d’entrée effectués sur le fichier est OK.
+
+Ce document contient les données d’entête du fichier à router :
+
+image::entete.png[image,width=150,height=133]
+
+Sur réception de ce document, le trigger *dgeBpmDf.triggers:routeFile* est déclenché et le service associé démarre.
+
+
+====== Traitement
+
+Le service *dgeBpmDf.pub:routeFile* réalise le routage du fichier(cf. algorithmes fonctionnels : doc [04]) :
+
+* Prise en compte de la liste restrictive (*) :
+** appel à <<GenericRoutingManager.routeWithRestriction, routeWithRestriction>>
+* Prise en compte de la liste des risques :
+** appel à <<GenericRoutingManager.routeWithRisques, routeWithRisques>>
+* Prise en compte de la liste complémentaire (*) :
+** appel à <<GenericRoutingManager.routeWithComplement, routeWithComplement>>
+* Détermination du résultat final de routage :
+** appel à <<GenericRoutingManager.getFinalResult, getFinalResult>>
+* Stockage des demandes de routage, pour chaque destinataire (*) :
+** appel à <<DfRoutingManager.storeRoutingResult, storeRoutingResult>>
+* Construction des données d’ARLE :
+** appel à <<DfRoutingManager.buildEndBpmDfData, buildEndBpmDfData>>
+
+_(*) accès au cache du catalogue, cf. document_ _[05]_
+
+En fin de traitement, le service publie le document *dgeCommonsDocs.docs.df.bpm:EndBpmDf*, contenant les données nécessaires à la construction de l’ARLE et des entêtes de SORTIE :
+
+image::echange_origine.png[image,width=134,height=277]
+
+
+====== Cycle de vie du traitement
+
+Dans la base de données ESB, l’état est mis à jour au fur et à mesure du traitement dans la table ESB.DEMANDES :
+
+[cols=",5",options="header",]
+|==========================================================================================================================================================================================================================
+|*Phases* |*Etats*
+|ROUTAGE a|
+* ENCOURS : traitement en cours
+* ERREUR : traitement en erreur
+* OK : traitement terminé, au moins un destinataire trouvé
+* KO : traitement terminé, aucun destinataire trouvé
+
+Dans le cas OK, une ligne pour chaque destinataire est créée dans la table DEMANDE_ROUTAGES : phase INITIALISATION, état OK. Dans le cas KO, une seule ligne est créée (sans destinataire) : phase INITIALISATION, état KO.
+
+image::traitement.jpg[image,width=224,height=69]
+
+|==========================================================================================================================================================================================================================
+
+
+=== DgeBpmDm : routage Diffusion Messages
+
+Le routage de la nature Diffusion Messages est réalisé par le package webMethods *DgeBpmDm* :
+
+image:DgeBpmDf_package.png[image,width=162,height=71]image:DgeBpmDfTech_package.png[image,width=160,height=72]
+
+// TODO :Copies d’écran à maj
+
+==== Services publics
+
+===== dgeCommonsDocs.docs.dm.bpm:StartBpmDm
+
+====== Déclenchement
+
+Le module de routage de la Diffusion Messages se déclenche sur réception du document *dgeCommonsDocs.docs.dm.bpm:StartBpmDm* publié par l’IS B2B-FIC lorsque le résultat des contrôles d’entrée effectués sur la demande est OK. Ce document contient les informations du message à router.
+
+_Cf. paragraphe "Documents WM" pour la description des documents webMethods._
+
+Sur réception de ce document, le trigger *dgeBpmDm.triggers:startMsg* est déclenché et le service associé démarre.
+
+====== Traitement
+
+Le traitement est réalisé en quatre étapes correspondant aux services suivants :
+
+* *dgeBpmDm.pub:startMsg*: appel à <<DmRoutingManager.startMsg,DmRoutingManager.startMsg>>
+* *dgeBpmDm.pub:startRouteMsg*: appel à <<DmRoutingManager.startRouteMsg,DmRoutingManager.startRouteMsg>>
+* *dgeBpmDm.pub:endRouteMsg*: appel à <<DmRoutingManager.endRouteMsg,DmRoutingManager.endRouteMsg>>
+* *dgeBpmDm.pub:endMsg*: appel à <<DmRoutingManager.endMsg,DmRoutingManager.endMsg>>
+
+Le schéma suivant représente les enchainements possibles de ces étapes :
+
+image::schema2.png[image,width=631,height=326]
+
+En fin de traitement, le service publie le document *dgeCommonsDocs.docs.dm.bpm:EndBpmDm*, signalant la fin de traitement d’un message. Ce document contient les informations nécessaires au connecteur DM pour créer le message de CRF ainsi que les messages de sortie à destination de chaque consommateur.
+
+====== Cycle de vie du traitement
+
+Dans la base de données ESB, l’état est mis à jour au fur et à mesure du traitement dans la table ESB.MESSAGES :
+
+[cols=",5",options="header",]
+|======================================================================================================================================================================================================================================
+|*Phases* |*Etats*
+|VALIDATION a|
+* ENCOURS : traitement en cours
+* ATT_SNGI : traitement en attente de réponse SNGI
+* ERREUR : traitement en erreur
+* OK : traitement terminé, tous les contrôles sont OK
+* KO : traitement terminé, au moins un contrôle est KO
+
+image::validation.jpg[]
+
+|ROUTAGE a|
+* ENCOURS : traitement en cours
+* ATT_DCR : traitement en attente de réponse DCR
+* ERREUR : traitement en erreur
+* OK : traitement terminé, aucune erreur de routage relevée
+* OK_WARN : traitement terminé, au moins une erreur de routage relevée
+* KO : traitement terminé, aucun destinataire trouvé
+
+image::routage.png[]
+
+Dans les cas OK et OK_WARN, une ligne pour chaque destinataire est créée dans la table MESSAGE_ROUTAGES : phase INITIALISATION, état OK. Dans le cas KO, une seule ligne est créée (sans destinataire) : phase INITIALISATION, état KO.
+
+|======================================================================================================================================================================================================================================
+
+
+=== Gestion des anomalies
+
+En cas d’erreur technique lors du traitement du routage :
+
+* en BDD ESB, l’état *ERREUR* est positionné sur la phase en cours :
+** pour DF : tables DEMANDES et/ou DEMANDE_ROUTAGES
+** pour DM : tables MESSAGES et/ou MESSAGE_ROUTAGES
+* un log d’avancement *logERREUR* est émis vers le suivi pour signaler l’erreur.
+* une anomalie technique est générée et stockée dans le gestionnaire des anomalies. Si l’erreur est temporaire (exemple : problème d’accès base de données), l’anomalie peut être rejouée et le traitement reprend alors. Si l’erreur est définitive (exemple : donnée incorrecte), l’anomalie ne peut pas être rejouée.
+
+=== Documents WM
+
+==== dgeCommonsDocs.docs.dm.bpm:Data (non publiable)
+
+Ce document contient la structure commune des données partagées par tous les documents webMethods du BPM DM :
+
+* Message
+** Identifiant
+** Horodatage
+** Type
+** CleSelectVersion
+** RefConversation
+** Individu
+** Fonction
+* Service : Reference / Version
+* Routage
+** Risques : Identifiant[]
+** Restriction[] : Identifiant / Type
+** Complement[] : Identifiant / Type
+* Filtrage[] : Key / Value
+* Rattachement[] : Identifiant / Etat / DateCloture
+* IdentiteIndividu => Bloc IdentiteIndividu complet (cf. Contrat d’Interface DM)
+* Producteur
+** Identifiant/ Type / Libelle
+** Resultat
+*** Statut
+*** Complement[] : Code / Libelle
+** Option[] : Key / Value
+* Consommateur[]
+** IdDemandeRoutage
+** Identifiant/ Type / Libelle
+** FrequenceIndividu / CleRegroupement / PrioRegroupement
+** Enrichissement[] : Key / Value
+** Resultat
+*** Statut
+*** Complement[] : Code / Libelle
+** Option[] : Key / Value
+
+Selon les étapes, tous les champs ne sont pas forcément renseignés. Les données sont enrichies au fur et à mesure du traitement.
+
+Cette structure est utilisée par les documents suivants :
+
+* dgeCommonsDocs.docs.dm.bpm:StartBpmDm
+* dgeCommonsDocs.docs.dm.bpm:StartRouteMsg
+* dgeCommonsDocs.docs.dm.bpm:EndRouteMsg
+* dgeCommonsDocs.docs.dm.bpm:EndMsg
+* dgeCommonsDocs.docs.dm.bpm:EndBpmDm
+* dgeCommonsDocs.docs.dm.bpm:CallSNGI
+* dgeCommonsDocs.docs.dm.bpm:CallDCR
+
+Ces documents ont tous la même structure :
+
+* IdDemande : identifiant de la demande d’entrée (champ Identifiant de la table DEMANDES)
+* IdMessage : identifiant du message d’entrée (champ Identifiant de la table MESSAGES)
+* IdMessageTech : identifiant technique du message (champ Id de la tables MESSAGES)
+* Entete :
+** structure dgeCommonsDocs.docs.dm.bpm:Data
+
+*Note : c'est « IdMessageTech » qui est utilisé pour retrouver le message en BDD (table MESSAGES).*
+
+=== DgeBpmCommons
+
+Les services webMethods de routage sont regroupés dans le package *DgeBpmCommons*.
+
+==== Services publics
+
+===== dgeBpmCommons.sched:reinitCacheRFO
+
+Ce service est schédulé à intervalles réguliers (tous les jours). Il réalise la réinitialisation du cache RFO après récupération des risques et domaines, via appel de la méthode JAVA <<CacheRFO.initRisqueListFromRFO, initRisqueListFromRFO>>
+
+== Jars
+
+Les méthodes JAVA de routage sont regroupées dans le jar du package *DgeBpmCommons*.
+
+=== CacheRFO.initRisqueListFromRFO
+
+Ce service réalise l’appel, en remoteInvoke sur l’IS A2A (sur le premier nœud disponible, via utilisation de la méthode remoteInvokeMultiNodes), du service suivant du connecteur RFO :
+
+* dgeConnectorRFO.pub:getAllRisquesRDomainesValides
+
+Il est utilisé :
+
+* soit par le service de consultation du cache, lors de la première consultation;
+* soit par le service de réinitialisation du cache, à intervalles réguliers (tous les jours).
+
+=== CacheRFO.getRisqueListFromRFO
+
+[cols=",5",]
+|===============================================================================================================================================
+|*Entrées* a|
+* N/A
+
+|*Sorties* a|
+* *ConcurrentMap<String, List<String>> risqueListFromRFO =* liste des risques issus du RFO et des domaines associés à chacun de ces risques**.**
+
+|===============================================================================================================================================
+
+Ce service, commun aux natures d’échange DF et DM, retourne la liste des risques et domaines du RFO conservés en cache dans une ConcurrentHashMap. Si la liste est nulle ou vide, la méthode JAVA <<CacheRFO.initRisqueListFromRFO, initRisqueListFromRFO>> est appelée pour l’initialiser avant de la retourner. Si la liste est vide suite à cette initialisation, une exception est levée.
+
+=== GenericRoutingManager.routeWithRestriction
+
+Ce service, commun aux natures d’échange DF et DM, implémente l’algorithme fonctionnel de prise en compte de la liste restrictive, décrit dans le document [04]. Selon la nature d’échange, la liste restrictive donnée en paramètre du service est différente (récupérée au niveau du fichier pour DF, ou bien récupérée au niveau du message pour DM).
+
+
+=== GenericRoutingManager.routeWithRisques
+
+Ce service, commun aux natures d’échange DF et DM, implémente l’algorithme fonctionnel de prise en compte de la liste des risques, décrit dans le document [04]. Selon la nature d’échange, la liste des risques donnée en paramètre du service est différente (récupérée au niveau du fichier pour DF, ou bien récupérée au niveau du message pour DM).
+
+=== GenericRoutingManager.routeWithComplement
+
+Ce service, commun aux natures d’échange DF et DM, implémente l’algorithme fonctionnel de prise en compte de la liste complémentaire, décrit dans le document [04]. Selon la nature d’échange, la liste complémentaire donnée en paramètre du service est différente (récupérée au niveau du fichier pour DF, ou bien récupérée au niveau du message pour DM).
+
+=== GenericRoutingManager.routeWithAbonnement
+
+Ce service, spécifique à la nature d’échange DM, implémente l’algorithme fonctionnel de prise en compte des abonnements individus, décrit dans les documents [06] et [07]. L’algorithme est identique quel que soit le mode de communication d’entrée utilisé (batch ou temps réel).
+
+=== GenericRoutingManager.routeWithDCR
+
+Ce service, spécifique à la nature d’échange DM, implémente l’algorithme fonctionnel de prise en compte des DCR, décrit dans les documents [06] et [07]. L’algorithme est identique quel que soit le mode de communication d’entrée utilisé (batch ou temps réel).
+
+=== GenericRoutingManager.getFinalResult
+
+Ce service, commun aux natures d’échange DF et DM, implémente l’algorithme fonctionnel de détermination du résultat final de routage, décrit dans le document [04].
+
+=== DfRoutingManager.storeRoutingResult
+
+Ce service, spécifique à la nature d’échange DF, permet de stocker en base de données les demandes de routage pour le fichier courant :
+
+* Autant de demandes de routage que de consommateurs « OK »
+* Ou bien, si aucun consommateur « OK », une ligne « demande de routage KO »
+
+==== Entrées/Sorties
+
+[cols="h,5",]
+|=====================================================================================================
+|Entrées a|
+* *Demande demande =* demande (table ESB.DEMANDES) concernée par le routage
+* *RoutingResult routingResult =* résultat de routage
+* *String serviceRef =* référence du service d’échange
+* *String fonction =* fonction de la demande d’échange courante
+
+|Sorties a|
+* *Map<String, String> demandeRoutageIdList =* liste des identifiants BDD de la table DEMANDE_ROUTAGES
+
+|=====================================================================================================
+
+
+==== Algorithme
+
+Si fonction!= 53 (pas de stockage dans le cas « 53 » = « test par le producteur ») :
+
+* Pour chaque consommateur dont le résultat de routage est OK :
+** Insertion d’un tuple dans la table DEMANDE_ROUTAGES pour la demande courante avec :
+*** Référence du service
+*** Identifiant du consommateur
+*** Nature = « DiffusionFichier » / Phase = « DF_SORTIE »
+*** Phase = « INITIALISATION » / Etat = « OK »
+** Ajout de l’identifiant du tuple au résultat *demandeRoutageIdList*, pour le consommateur courant
+* Si aucun consommateur OK :
+** Insertion d’un tuple dans la table DEMANDE_ROUTAGES pour la demande courante avec :
+*** Référence du service
+*** <pas d’identifiant consommateur>
+*** Nature = « DiffusionFichier » / Phase = « DF_SORTIE »
+*** Phase = « INITIALISATION » / Etat = « KO »
+
+
+=== DfRoutingManager.buildEndBpmDfData
+
+Ce service, spécifique à la nature d’échange DF, permet de construire le document EndBpmDf contenant :
+
+* les données d’ARLE à remettre au producteur (décrit dans le document [04])
+* les options d’envoi pour la construction des fichiers DF_ARLE et DF_SORTIE
+
+
+==== Entrées/Sorties
+
+[cols="h,5",]
+|=====================================================================================================
+|Entrées a|
+* *RoutingResult routingResult =* résultat de routage
+* *String serviceRef =* référence du service d’échange
+* *String echangeId =* identifiant de la demande d’échange courante
+* *String producteurId =* identifiant du producteur de l’échange courant
+* *String fonction =* fonction de la demande d’échange courante
+* *Map<String, String> demandeRoutageIdList =* liste des identifiants BDD de la table DEMANDE_ROUTAGES
+
+|Sorties a|
+* *IData EndBpmDf =* contenu du document EndBpmDf à publier
+
+|=====================================================================================================
+
+
+==== Algorithme
+
+Construction du document EndBpmDf avec les valeurs suivantes :
+
+* EchangeOrigine/Identifiant = <echangeId>
+* ARLE/Statut = « A » si résultat globalde routage OK, « R » sinon
+* ARLE/Complement= Codes et Libelles du résultat global de routage
+* ARLE/Option :
+** Key=SendARLE => Value= « false » si fonction = 54, « true » sinon
+** Key=ListeConsommateurs => Value= « true » si option producteur « communiquer la liste des destinataires » = OUI, « false » sinon
+* Pour chaque consommateurdu résultat de routage :
+** Consommateur/Identifiant = identifiant RFO du consommateur
+** Consommateur/IdDemandeRoutage = si statut OK, identifiant du tuple sauvegardé dans la table DEMANDE_ROUTAGES pour ce consommateur, champ absent sinon
+** Consommateur/Type = « RFO »
+** Consommateur/Libelle = libellé du consommateur issu du catalogue
+** Consommateur/Resultat/Statut = résultat du consommateur (« OK » ou « KO »)
+** Consommateur/Resultat/Complement[]= Codes et Libelles du consommateur
+** Consommateur/Option :
+*** Key=SendSORTIE => Value= « false » si fonction = 53, « true » sinon
+*** Key=ListeConsommateurs => Value=« true » si option service et option consommateur « communiquer la liste des destinataires » = OUI, « false » sinon
+
+
+=== DmRoutingManager.startMsg
+
+Ce service, spécifique à la nature d’échange DM, est la première étape du processus de traitement d’un message, et consiste, pour le message courant, à contrôler les données puis à déclencher l’appel au SNGI si nécessaire ou bien à déclencher l’étape suivante du processus.
+
+La liste détaillée des contrôles et codes d’erreur associés est présente dans les fichiers [03] et [08]. En cas d’échec de l’un des contrôles, les contrôles se poursuivent afin de remonter toutes les erreurs relevées.
+
+==== Déclenchement
+
+* Sur réception d’un document *StartBpmDm* en provenance du connecteur DM
+
+==== Entrées/Sorties
+
+[cols="h,5",]
+|============================================================================================
+|Entrées a|
+* *Doc StartBpmDm* contenant les données du message à contrôler
+
+|Sorties a|
+* *Doc CallSNGI ou StartRouteMsgou EndMsg* contenant les données du message enrichies avec :
+** résultat courant des contrôles (statut et codes/libellés)
+
+|============================================================================================
+
+==== Algorithme
+
+Contrôles d’entrée
+
+* Mise à jour BDD MESSAGES : Phase = *VALIDATION* / Etat =*ENCOURS*
+* Contrôle de l’entête du message
+* Contrôle des données métier du message récupérées en BDD MESSAGES, selon options
+* Contrôle des balises SNGI du message, selon options SNGI et DCR
+* Construction des données à publier :
+** Données reçues en entrée du service + résultat courant des contrôles
+* Si au moins un contrôle est KO :
+** Mise à jour BDD MESSAGES : Phase =*VALIDATION* / Etat =*KO*
+** Publication du document *EndMsg* pour déclencher l’étape de fin de traitement
+* Sinon :
+** Si un appel au SNGI est nécessaire :
+*** Mise à jour BDD MESSAGES : Phase =*VALIDATION* / Etat =*ATT_SNGI*
+*** Publication du document *CallSNGI* vers l’IS A2A pour déclencher l’appel au SNGI
+** Sinon :
+*** Mise à jour BDD MESSAGES : Phase =*VALIDATION* / Etat =*OK*
+*** Publication du document *StartRouteMsg* pour déclencher l’étape de routage
+
+=== DmRoutingManager.startRouteMsg
+
+Ce service, spécifique à la nature d’échange DM, est la deuxième étape du processus de traitement d’un message, et consiste, pour le message courant, à contrôler le résultat SNGI si un appel SNGI a eu lieu, à démarrer la détermination des destinataires, puis à déclencher l’appel au DCR si nécessaire ou bien à déclencher l’étape suivante du processus.
+
+==== Déclenchement
+
+* Sur réception d’un document *StartRouteMsg* en provenance :
+** de l’étape startMsg du processus (si pas d’appel SNGI)
+** ou du connecteur SNGI (réponse SNGI)
+
+==== Entrées/Sorties
+
+[cols="h,5",]
+|===========================================================================================
+|Entrées a|
+* *Doc StartRouteMsg* contenant les données du message enrichies avec :
+** résultat courant des contrôles (statut et codes/libellés)
+** résultat SNGI (si appel SNGI)
+
+|Sorties a|
+* **Doc EndMsg ou CallDCR ou EndRouteMsg**contenant les données du message enrichies avec :
+** résultat final des contrôles (statut et codes/libellés), y compris contrôle SNGI
+** résultat courant du routage, par consommateur (statut et codes/libellés)
+** données issues du routage par abonnement individu (enrichissement, regroupement…)
+
+|===========================================================================================
+
+
+==== Algorithme
+
+_Si déclenché par une réponse SNGI, finalisation des contrôles d’entrée (état courant = ATT_SNGI) :_
+
+* Contrôle de la réponse SNGI
+* Construction des données à publier :
+** Données reçues en entrée du service + résultat final des contrôles
+** Réponse et résultat SNGI
+* Mise à jour BDD MESSAGES : Phase *VALIDATION* / Etat = *OK ou KO*
+* Si au moins un contrôle est KO :
+** Publication du document *EndMsg* pour déclencher l’étape de fin de traitement
+
+_Détermination des destinataires_
+
+* Si tous les contrôles sont OK:
+** Mise à jour BDD MESSAGES: Phase =*ROUTAGE* / Etat =*ENCOURS*
+** Prise en compte de la liste restrictive (_1_): appel à <<GenericRoutingManager.routeWithRestriction, routeWithRestriction>>
+** Prise en compte de la liste des risques(_2_) : appel à <<GenericRoutingManager.routeWithRisques, routeWithRisques>>
+** Prise en compte des abonnements individus(_3_) : appel à <<GenericRoutingManager.routeWithAbonnement, routeWithAbonnement>>
+** Construction des données à publier:
+*** Données reçues en entrée du service + résultat courant du routage
+*** Si abonnementindividu :
+**** clés/valeurs d’enrichissement
+**** identifiant et priorité de regroupement
+**** fréquence du message
+** Si un appel au DCR est nécessaire:
+*** Mise à jour BDD MESSAGES: Phase =*ROUTAGE* / Etat =*ATT_DCR*
+*** Publication du document *CallDCR* vers l’IS A2A pour déclencher l’appel au DCR
+** Sinon:
+*** Publication du document *EndRouteMsg* pour déclencher l’étape de fin de routage
+
+_(1) accès au cache du catalogue, cf. document_ [05]
+
+_(2) accès au cache RFO_
+
+_(3) accès direct au référentiel des abonnements individus, cf. document_ _[05]_
+
+
+
+=== DmRoutingManager.endRouteMsg
+
+Ce service, spécifique à la nature d’échange DM, est la troisième étape du processus de traitement d’un message, et consiste, pour le message courant, à contrôler le résultat DCR si un appel DCR a eu lieu, à finaliser la détermination des destinataires, puis à déclencher l’étape suivante du processus.
+
+
+==== Déclenchement
+
+* Sur réception d’un document *EndRouteMsg* en provenance :
+** de l’étape startRouteMsg du processus (si pas d’appel DCR)
+** ou du connecteur DCR (réponse DCR)
+
+
+==== Entrées/Sorties
+
+[cols="h,5",]
+|===================================================================================
+|Entrées a|
+* **Doc EndRouteMsg**contenant les données du message enrichies avec :
+** résultat final des contrôles (statut et codes/libellés), y compris contrôle SNGI
+** résultat courant du routage, par consommateur (statut et codes/libellés)
+** données issues du routage par abonnement individu (enrichissement, regroupement…)
+** résultat DCR (si appel DCR)
+
+|Sorties a|
+* *Doc EndMsg* contenant les données du message enrichies avec :
+** résultat final du routage, par consommateur (statut et codes/libellés)
+
+|===================================================================================
+
+
+==== Algorithme
+
+_Finalisation de la détermination des destinataires_
+
+* Si déclenché par une réponse DCR (état courant = ATT_DCR) :
+** Prise en compte des DCR : appel à <<GenericRoutingManager.routeWithDCR, routewithdcr>>
+* Prise en compte de la liste complémentaire(*) : appel à <<GenericRoutingManager.routeWithComplement, routeWithComplement>>
+* Détermination du résultat final de routage : appel à <<GenericRoutingManager.getFinalResult, getFinalResult>>
+* Construction des données à publier :
+** Données reçues en entrée du service + résultat final du routage
+* Publication du document *EndMsg* pour déclencher l’étape de fin de traitement
+
+_(*) accès au cache du catalogue, cf. document_ [05]
+
+
+=== DmRoutingManager.endMsg
+
+Ce service, spécifique à la nature d’échange DM, est la dernière étape du processus de traitement d’un message, et consiste, pour le message courant, à stocker les demandes de routage en base de données, puis à signaler la fin de traitement du message au connecteur DM en lui transmettant les informations nécessaires à la création des messages CRF et des messages de SORTIE.
+
+
+==== Déclenchement
+
+* Sur réception d’un document *EndMsg* en provenance :
+** de l’étape startMsg du processus (si contrôle KO)
+** ou de l’étape startRouteMsg du processus (si contrôle KO)
+** ou de l’étape endRouteMsg du processus
+
+
+==== Entrées/Sorties
+
+[cols="h,5",]
+|==================================================================================
+|Entrées a|
+* **Doc EndRouteMsg**contenant les données du message enrichies avec :
+** résultat final des contrôles (statut et codes/libellés), y compris contrôle SNGI
+** résultat final du routage, par consommateur (statut et codes/libellés)
+
+|Sorties a|
+* *Doc EndBpmDm* contenant les données du message enrichies avec :
+** options d’envoi vers le producteur et les consommateurs du message
+
+|==================================================================================
+
+
+==== Algorithme
+
+_Finalisation des contrôles d’entrée_
+
+* Si Phase *ROUTAGE*, stockage des demandes de routage, pour chaque destinataire : appel à <<DmRoutingManager.storeRoutingResult, storeRoutingResult>>
+* Mise à jour BDD MESSAGES : Phase *ROUTAGE* / Etat = *OK, OK_WARN ou KO*
+* Construction des données à publier vers le connecteur : appel à <<DmRoutingManager.buildEndBpmDmData, buildEndBpmDmData>>
+* Publication du document *EndBpmDm* pour signaler la fin du processsus
+
+
+=== DmRoutingManager.storeRoutingResult
+
+Ce service, spécifique à la nature d’échange DM, permet de stocker en base de données les demandes de routage pour le message courant :
+
+* Autant de demandes de routage que de consommateurs « OK »
+* Ou bien, si aucun consommateur « OK », une ligne « demande de routage KO »
+
+
+==== Entrées/Sorties
+
+[cols="h,5",]
+|=====================================================================================================
+|Entrées a|
+* *String id =* identifiant du message concerné par le routage (table ESB.MESSAGES)
+* *RoutingResult routingResult =* résultat de routage
+* *String serviceRef =* référence du service d’échange
+* *String fonction =* fonction de la demande d’échange courante
+
+|Sorties a|
+* *Map<String, String> messageRoutageIdList =* liste des identifiants BDD de la table MESSAGE_ROUTAGES
+
+|=====================================================================================================
+
+
+==== Algorithme
+
+_Enrichissement et stockage du message à router_
+
+Si fonction!= 53 (pas de stockage dans le cas « 53 » = « test par le producteur ») :
+
+* Pour chaque consommateur dont le résultat de routage est OK :
+** Création d’un tuple MESSAGE_ROUTAGES en BDD pour le message courant avec :
+*** Référence du service
+*** Identifiant du consommateur
+*** Nature = « DiffusionMessages » / Phase = « DM_SORTIE »
+*** Phase = « INITIALISATION » / Etat = « OK »
+*** Identifiant de regroupement = si abonnement, issu de l’abonnement, sinon, du service
+*** Priorité de regroupement = si abonnement, issu de l’abonnement
+*** Date d’envoi prévue = si abonnement, calculé avec fréquence abonnement individu
+** Ajout de l’identifiant du tuple au résultat *messageRoutageIdList*, pour le consommateur courant
+* Si aucun consommateur OK :
+** Création d’un tuple MESSAGE_ROUTAGES en BDD pour le message courant avec :
+*** Référence du service
+*** <pas d’identifiant consommateur>
+*** Nature = « DiffusionMessages » / Phase = «DM_SORTIE»
+*** Phase = « INITIALISATION » / Etat = « KO »
+
+
+=== DmRoutingManager.buildEndBpmDmData
+
+Ce service, spécifique à la nature d’échange DM, permet de construire le document EndBpmDm contenant :
+
+* les données de CRF à remettre au producteur (décrit dans le document [03])
+* les options d’envoi pour la construction des messages de CRF, ainsi que des messages de sortie à destination de chaque consommateur.
+
+
+==== Entrées/Sorties
+
+[cols="h,5",]
+|=====================================================================================================
+|Entrées a|
+* *Doc enteteEndMsg* contenant les données de l'entete du message
+* *String serviceRef =* référence du service d’échange
+* *String producteurId =* identifiant du producteur de l’échange courant
+* *String fonction =* fonction de la demande d’échange courante
+* *Map<String, String> messageRoutageIdList =* liste des identifiants BDD de la table MESSAGE_ROUTAGES
+
+|Sorties a|
+* *IData EndBpmDm =* contenu du document EndBpmDm à publier
+
+|=====================================================================================================
+
+==== Algorithme
+
+Construction du document EndBpmDm avec les valeurs suivantes :
+
+* Données du message d’entrée (hors listes de routage, clés et valeurs de filtrage)
+* Données d’enrichissement du message :
+** Clés et valeurs d’enrichissement
+** Résultat et réponse SNGI, si un appel SNGI a eu lieu
+* Données producteur :
+** Resultat/Statut = « OK », « OK avec signalement » ou « KO »
+** Resultat/Complement[] = Codes et Libellés de validation et de routage
+** Options :
+*** Key=Send => Value=« false » si fonction = 54, « true » sinon
+*** Key=Consommateurs => Value=« true » si option producteur « communiquer la liste des destinataires » = OUI, « false » sinon
+*** Key=SNGI => Value=« true » si option producteur « communiquer le résultat d’identification SNGI » = OUI, « false » sinon
+* _Pour chaque consommateur,_
+** Données consommateur :
+*** Identifiant = identifiant RFO du consommateur
+*** IdDemandeRoutage = si statut OK, identifiant du tuple sauvegardé dans la table MESSAGE_ROUTAGES pour ce consommateur, champ absent sinon
+*** Type = « RFO »
+*** Libelle = libellé du consommateur issu du catalogue
+*** Resultat/Statut = résultat du consommateur (« OK » ou « KO »)
+*** Resultat/Complement[]= Codes et Libelles du consommateur
+*** Options :
+**** Key=Send => Value=« false » si fonction = 53, « true » sinon
+**** Key=Consommateurs => Value=« true » si option service et option consommateur « communiquer la liste des destinataires » = OUI, « false » sinon
+**** Key=SNGI => Value=« true » si option consommateur « communiquer le résultat d’identification SNGI » = OUI, « false » sinon
+
+<<<
+== Annexes
+
+include::subdocs/_closure-fr.adoc[]

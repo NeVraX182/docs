@@ -1,0 +1,189 @@
+= CG WM Developer Guide
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+.References
+[cols="^,^,^2,6,6",options="header"]
+|=============================
+|Réf.|Ver.|Date|Document|Description
+|[01]|{project-version}|{localdate}|ci-pf-configuration.pdf|Configuration guide for the whole CI/CD platform
+|[02]|{project-version}|{localdate}|cgutils-utility-methods.pdf|CgUtils utility methods
+|[04]|{project-version}|{localdate}|cgutils-ano-handling.pdf|CgUtils ano handling
+|[05]|{project-version}|{localdate}|cgmsgtracker-user-manual.pdf|CgMsgTracker, UM/Broker documents tracker
+|[06]|{project-version}|{localdate}|cgelastic-user-manual|CgElastic, Elastic Stack custom webMethods module
+|=============================
+
+<<<
+== Introduction
+
+image:dilbert-collaboration.png[]
+
+The purpose of this document is to guide you in the setup of the development environment for CG webMethods (CG-WM) project.
+
+CG-WM gather is mainly composed of 3 projects :
+
+* **cg-utils** (java 8)
+** utility java methods for any webMethods project (see [02])
+** includes asynchronous ano handling (see [03])
+* **cg-msg-tracker** (java 8)
+** Swing application for monitoring Broker / Universal Messaging publish/subscribe documents
+* **cg-elastic** (java 8)
+** Elastic Stack custom webMethods module for continuous monitoring
+
+Developements on this project are heavily relying on the production line https://cric.pl.s2-eu.nvx.com/ to implement Continuous Integration / Continuous Deployment / Continuous Performance Testing / Continuous Monitoring.
+
+These projects are maintained in an Open Source mode within nvx. This can be volontary to increase personnel knowledge, overall projects quality, or this can be part of a future or actual client need.
+
+image:OpenSource-realite.jpg[]
+
+<<<
+== Touring the interfaces
+
+=== FusionForge
+
+https://cric.pl.s2-eu.nvx.com/fusionforge/tracker/?atid=101&func=browse&group_id=6
+
+Everything starts in FusionForge where tasks and tickets are put in decreasing order of need. But anyone can work on anything.
+
+image:FusionForge.png[]
+
+<<<
+=== AsciiDocFX
+
+All documentations on the project, including this one, are written as part of DevOps principle Documentation-As-Code using AsciiDocFX and compiled with Asciidoctor under maven to produce PDF.
+
+image:AsciidocFX.png[]
+
+<<<
+=== Eclipse
+
+Eclipse is the preferred tool for development.
+
+image:Eclipse.png[]
+
+<<<
+=== Gerrit
+
+https://cric.pl.s2-eu.nvx.com/gerrit/#/q/status:open
+
+image:Gerrit.png[]
+
+Collaborative Code Review is applied on the project inspired from open sources projects for better scalability, quality and developer localizations tackling.
+
+image:dilbert-homeworking.png[]
+
+<<<
+=== Jenkins
+
+https://cric.pl.s2-eu.nvx.com/jenkins/
+
+Jenkins is used for both review and merge modes to automate build and deployement. As part of DevOps principle, Pipeline-As-Code are used. The Jenkins Blue sexy interface is deployed.
+
+image:Jenkins.png[]
+
+<<<
+=== SonarQube
+
+https://cric.pl.s2-eu.nvx.com/sonarqube/
+
+SonarQube helps maintain a continuous high quality with gateways used on each Jenkins pipeline.
+
+image:SonarQube.png[]
+
+<<<
+=== Nexus
+
+https://cric.pl.s2-eu.nvx.com/nexus/
+
+Nexus stores binary produced on the project, SNAPSHOTS and RELEASES.
+
+image:Nexus.png[]
+
+<<<
+=== Integration Server
+
+http://frpardge.corp.nvx.com:5555/
+
+A basic webMethods 9.12 ecosystem, including Integration Server, Oracle XE Database, CentraSite, Mediator, Universal Messaging, is accessible for development and tests. Assets are automatically deployed on merges by Jenkins.
+
+image:IntegrationServer.png[]
+
+<<<
+=== Elastic Stack
+
+http://frpardge:5601/app/kibana#/dashboard/44bbf690-ab4d-11e7-80b8-ef10d01e4f2a
+
+The Elastic Stack is used for Continuous Monitoring.
+
+image:Kibana.png[]
+
+<<<
+=== Jaeger tracing
+
+http://frpardge.corp.nvx.com:16686/
+
+image:jaeger-detail.png[]
+
+image:jaeger-relation.png[scaledwidth="50%"]
+
+CgUtils implements open-tracing, and send them to a Jaeger server. This allows a fine grained follow up on the business process level, a field where the Elastic Stack cannot go for now.
+
+<<<
+=== Maven
+
+- Change the conf/setting.xml of the installed maven, by adding the below tags
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=server,indent=0]
+------ 
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=mirrors,indent=0]
+------ 
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=profiles,indent=0]
+------
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=activeProfiles,indent=0]
+------ 
+
+- Change the conf/setting.xml of the installed maven, by adding the below tags
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=server,indent=0]
+------ 
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=mirrors,indent=0]
+------ 
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=profiles,indent=0]
+------
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=activeProfiles,indent=0]
+------ 
+
+- Change the conf/setting.xml of the installed maven, by adding the below tags
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=server,indent=0]
+------ 
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=mirrors,indent=0]
+------ 
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=profiles,indent=0]
+------
+[source,xml]
+------
+include::../../../cg-settings.xml[tags=activeProfiles,indent=0]
+------ 
+
+include::subdocs/_closure.adoc[]

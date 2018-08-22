@@ -1,0 +1,92 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+
+.DM : services déclenchés par un fichier DM_ENTREE
+[plantuml, dm-services-main, png]
+....
+(*) --> [SFTP DM_ENTREE] "<b>dgeConnectorDmPe.pub:receiveDmEntreeBatch</b>
+            <i>cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeBatch</i>
+            contrôles + découpages messages
+            <color:blue>DEMANDES : INITIALISATION > VALIDATION</color>" as RECEIVE
+
+    RECEIVE --> [KO] ===GENERATE_ARLE===
+    RECEIVE --> [OK] ===RECEIVE_MESSAGE===
+
+    (*) --> [WS] "receiveDmEntreeTR
+        <color:blue>DEMANDES : INITIALISATION > VALIDATION > ENVOI_ARLE</color>"
+    --> [OK] ===RECEIVE_MESSAGE===
+
+    ===RECEIVE_MESSAGE=== -[dashed]-> [dgeCommonsDocs.docs.dm.internal:DmMessage] "<b>dgeConnectorDmPe.pub:receiveDmEntreeMessage</b>
+        <i>cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeMessage</i>
+        <color:blue>MESSAGES : INITIALISATION</color>"
+
+partition "IS MET : Routage" {
+    -[dashed]right-> [dgeCommonsDocs.docs.dm.bpm:StartBpmDm] "<b>dgeBpmDm.pub:startMsg</b>
+            <i>cnav.isic.dge.bpm.dm.DmRoutingManager.startMsg</i>
+            Contrôle Entête + données métier + Balise SNGI/DCR
+            <color:blue>MESSAGES : VALIDATION (ATT_SNGI/OK/KO)</color>" as START_MSG
+
+    START_MSG  --> [KO] ===END_MSG===
+
+    START_MSG --> [sans SNGI] ===START_SRM===
+
+    ===START_SRM=== -[dashed]-> [dgeCommonsDocs.docs.dm.bpm:StartRouteMsg] "<b>dgeBpmDm.pub:startRouteMsg</b>
+            <i>cnav.isic.dge.bpm.dm.DmRoutingManager.startRouteMsg</i>
+            Contrôles SNGI + Restrictions + Risques + RoutageAbonnement
+            <color:blue>MESSAGES : ROUTAGE (ENCOURS/ATT_DCR)</color>" as END_SRM
+    --> [sans DCR] ===END_ROUTE===
+ 
+    END_SRM --> [KO] ===END_MSG===
+
+    ===END_ROUTE=== -[dashed]-> [dgeCommonsDocs.docs.dm.bpm:EndRouteMsg] "<b>dgeBpmDm.pub:endRouteMsg</b>
+        <i>cnav.isic.dge.bpm.dm.DmRoutingManager.EndRouteMsg</i>
+        Contrôles DCR + RoutageComplement + RésultatFinal"
+    -right-> ===END_MSG===
+
+    ===END_MSG=== -[dashed]-> [dgeCommonsDocs.docs.dm.bpm:EndMsg] "<b>geBpmDm.pub:endMsg</b>
+<i>cnav.isic.dge.bpm.dm.DmRoutingManager.endMsg </i>
+    MessageCRF + Fin de traitement
+    <color:blue>MESSAGES : ROUTAGE (OK/OK_WARN/KO)</color>"
+
+    -[dashed]-> [dgeCommonsDocs.docs.dm.bpm:EndBpmDm] ===APRES_ROUTAGE===
+}
+
+partition "IS A2A" {
+    START_MSG -[dashed]left-> [dgeCommonsDocs.docs.dm.bpm:CallSNGI] "<b>dgeConnectorSngi.pub:callSngi</b>"
+    --> ===START_SRM===
+
+    END_SRM -[dashed]left-> [dgeCommonsDocs.docs.dm.bpm:CallDCR] "<b>dgeConnectorDcr.pub:callDcr</b>"
+    --> ===END_ROUTE===
+    }
+
+===APRES_ROUTAGE=== --> "<b>dgeConnectorDmPe.pub:handleEndDmPs</b>
+            <i>cnav.isic.dge.b2b.dm.ps.Generator.handleEndDmPs</i>
+            Préparation message de sortie + Entete en BDD
+            <color:blue>MESSAGE_ROUTAGES : PREPARATION</color>"
+--> [ordonnancement] (*)
+
+===APRES_ROUTAGE=== --> "<b>dgeConnectorDmPe.pub:handleEndDmPe</b>
+    <i>cnav.isic.dge.b2b.dm.pe.Receiver.handleEndDmPe</i>
+    Préparation des données CRF
+    <color:blue>MESSAGES : CREATION_CRF (OK/OK_WARN/KO)</color>
+    <color:blue>MESSAGE_ROUTAGES : PREPARATION</color>"
+
+-[dotted]-> [quand CRFs finalisés] "<b>dgeConnecteurDmPe.sched:checkAllCrf</b>
+    <i>cnav.isic.dge.b2b.dm.pe.ArleManager.checkAllCrf</i>
+    Publier un ordre de préparation DM_ARLE
+    <color:blue>DEMANDES : ENVOI_ARLE ENCOURS</color>"
+
+--> ===GENERATE_ARLE===
+
+===GENERATE_ARLE=== -[dashed]-> [dgeCommonsDocs.docs.dm.internal:DmArle] "<b>dgeConnectorDmPe.pub:generateDmArle</b>
+    <i>cnav.isic.dge.b2b.dm.pe.ArleManager.generateDmArle</i>
+    GénérerDM_ARLE
+    <color:blue>DEMANDES : ENVOI_ARLE</color>
+    <color:blue>AGREGATS : GENERATION</color>"
+-[dashed]-> [dgeCommonsDocs.docs.b2b:SendOrder] "<b>dgeConnectorDmPe.pub:sendDmArle</b>
+<i>cnav.isic.dge.b2b.dm.pe.ArleManager.sendDmArle</i>
+    Envoyer l'ARLE via SFTP + Compresser et archiver l'ARLE
+    <color:blue>AGREGATS : EMISSION</color>"
+
+--> [SFTP vers partenaire entrant] (*)
+....
+

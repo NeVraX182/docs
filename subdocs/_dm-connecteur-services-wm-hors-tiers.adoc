@@ -1,0 +1,85 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+.Services webMethods connecteur hors Tiers (Entree Batch)
+[plantuml, dm-wm-services-connecteur-tiers-sans-aspects, png] 
+....
+|IS FIC : connecteurs|
+start
+-> SFTP DM_ENTREE;
+:**dgeConnectorDmPe.pub:receiveDmEntreeBatch**
+//cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeBatch//
+    - Insertion en BDD Demandes
+    - Contrôles OK/KO + découpages en messages;
+if (Contrôle) then (Si KO dgeCommonsDocs.docs.dm.internal:DmArle)
+-[dashed]->
+else
+-> Si OK dgeCommonsDocs.docs.dm.internal:DmMessage;
+:**dgeConnectorDmPe.pub:receiveDmEntreeMessage**
+//cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeMessage//
+    - Insertion en BDD Messages
+    - Publier l'ordre du routage du message;
+-[dashed]-> dgeCommonsDocs.docs.dm.bpm:StartBpmDm;
+|IS MET : Routage|
+stop
+start
+-[dashed]-> dgeCommonsDocs.docs.dm.bpm:EndBpmDm;
+|IS FIC : connecteurs|
+split
+:**dgeConnectorDmPe.pub:handleEndDmPs**
+//cnav.isic.dge.b2b.dm.ps.Generator.handleEndDmPs//
+    - Préparation message de sortie;
+stop
+split again
+:**dgeConnectorDmPe.pub:handleEndDmPe**
+//cnav.isic.dge.b2b.dm.pe.Receiver.handleEndDmPe//
+    - Préparation des données CRF
+    - Publier l'ordre de génération de l'ARLE;
+-[dashed]-> dgeCommonsDocs.docs.dm.internal:DmArle;
+end split;
+endif;
+:**dgeConnectorDmPe.pub:generateDmArle**
+//cnav.isic.dge.b2b.dm.pe.ArleManager.generateDmArle//
+    - Générer le fichier DM_ARLE
+    - Référencer l'ARLE dans ESB.AGREGATS
+    - Publier l'ordre d'envoi du DM_ARLE;
+floating note left: Si dernier CRF
+-[dashed]-> dgeCommonsDocs.docs.b2b:SendOrder;
+:**dgeConnectorDmPe.pub:sendDmArle**
+//cnav.isic.dge.b2b.dm.pe.ArleManager.sendDmArle//
+    - Envoyer l'ARLE via SFTP
+    - Compresser et archiver l'ARLE;
+stop
+|IS MET : Routage|
+start;
+-[dashed]-> dgeCommonsDocs.docs.b2b:GenOrder DM_CRF;
+|IS FIC : connecteurs|
+:**dgeConnectorDmPe.pub:generateDmCrf**
+//cnav.isic.dge.b2b.dm.pe.CrfManager.generateDmCrf//
+    - Récupérer les CRF à traiter
+    - Générer le fichier DM_CRF
+    - Référencer le CRF dans la table AGREGATS
+    - Publier l'ordre d'envoi du fichier DM_;
+    -> dgeCommonsDocs.docs.b2b:SendOrder;
+:**dgeConnectorDmPe.pub:sendDmCrf**
+//cnav.isic.dge.b2b.dm.ps.Sender.sendDmCrf//
+    - Envoyer le fichier DM_CRF via SFTP
+    - Compresser et archiver le fichier DM_CRF;
+stop;
+|IS MET : Routage|
+start
+-> ordo dgeCommonsDocs.docs.b2b:GenOrder DM_SORTIE;
+|IS FIC : connecteurs|
+:**dgeConnectorDmPs.pub:aggregateDMSortie**
+//cnav.isic.dge.b2b.dm.ps.Generator.aggregateDmSortie//
+    - Aggrégation des messages selon options
+    - Si options Tiers = NON, générer fichiers DM_SORTIE;
+if (option Tiers) then 
+-> Non dgeCommonsDocs.docs.b2b:SendOrder;
+:**dgeConnectorDmPs.pub:sendDmSortie**
+//cnav.isic.dge.b2b.dm.ps.Sender.sendDmSortie//
+    - Envoyer DM_SORTIE vers le consomateur
+    - Compresser et archiver DM_SORTIE;
+else (Oui)
+stop
+endif
+stop
+....

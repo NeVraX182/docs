@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="BP-Gitlab.pdf">[PDF]</a></p>
+<p><a href="BP-gitlab.adoc">[SRC]</a> <a href="BP-gitlab.pdf">[PDF]</a></p>
 </div>
 </div>
 </div>
@@ -477,6 +477,23 @@ build:
     - mvn clean dependency:purge-local-repository
     - mvn install -DskipTests -Dassembly.skipAssembly=true
 
+
+documentation:
+  stage: build
+  script:
+    #- ./src/scripts/asciidocOnlyModified.sh
+    - ./src/scripts/asciidocHistory.sh .
+    - apt-get update -qq &amp;&amp; apt-get install -qq --assume-yes graphviz
+    - git config --global user.email "gitlab@noreply.com"
+    - git config --global user.name "GitLab"
+    - mvn generate-resources -Dadoc.skip=false --non-recursive
+    - cp src/docs/asciidoc/*.adoc target/generated-docs/
+    - cp -R src/docs/asciidoc/subdocs target/generated-docs/
+    - mvn scm-publish:publish-scm
+  #only:
+  #  - master
+
+
 unit-test:
   stage: test
   script:
@@ -495,19 +512,6 @@ assembly:
     - mvn clean
     - mvn install -DskipTests -Dcheckstyle.skip=true -pl cg-utils
   #only:
-  #  - master
-
-documentation:
-  stage: build
-  script:
-    #- ./src/scripts/asciidocOnlyModified.sh
-    - ./src/scripts/asciidocHistory.sh .
-    - apt-get update -qq &amp;&amp; apt-get install -qq --assume-yes graphviz
-    - git config --global user.email "gitlab@noreply.com"
-    - git config --global user.name "GitLab"
-    - mvn generate-resources -Dadoc.skip=false --non-recursive
-    - mvn scm-publish:publish-scm
-  #only:
   #  - master</code></pre>
 </div>
 </div>
@@ -516,7 +520,7 @@ documentation:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-21 17:47:48 UTC
+Last updated 2018-08-22 08:10:33 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">

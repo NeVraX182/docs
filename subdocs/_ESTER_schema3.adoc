@@ -1,0 +1,31 @@
+ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
+[plantuml, diagram-archi-mediator-stats, png]
+// .Architecture remontée stats Mediator
+....
+left to right direction
+storage "<size:20>Serveur</size>" as serveur #white
+rectangle "Médiation" as med #lightgrey {
+	rectangle "<color:grey><size:18>Mediator</size></color>" as mediator
+	rectangle "Gateway" as gateway
+	rectangle "Reverse Proxy" as reverseProxy   
+}
+storage "<size:20>Client</size>" as client #white
+rectangle "DGE" as dge #lightgrey {
+    queue "UM SUIVI" as umSuivi #darkgrey
+    rectangle "Service SME Suivi\n&#34;Enregistrer statistiques&#34;" as restSrv #darkgrey
+	database "Stats DGE" as dbStats
+	rectangle "IHM Stats <size:30><&browser>" as ihm
+}
+actor "Exploitant <img:administrateur-utilisateur.png{scale=0.3}>" as exploit #red
+
+mediator -[#406BA4,bold]^ umSuivi : "<color:#406BA4><b><size:16>Agrégation </size>\n<color:#406BA4><b><size:16>par service <size:25><&bar-chart>"
+
+client -down-|> med
+reverseProxy -> gateway
+gateway -> mediator
+med -right-|> serveur
+umSuivi -> restSrv
+restSrv -> dbStats
+dbStats -> ihm
+ihm <-[#red,bold]- exploit
+....

@@ -1,0 +1,80 @@
+= SonarQube Configuration Details
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Server configuration
+
+=== Quality Gates
+
+Click on *Quality Gate*
+
+Create a new one for your project and select your quality gate rules :
+
+* Comments is less than 30 then 25
+* Coverage is less than 86 then 80
+* Maintainability Raiting is worse than A then C
+* Reliability Raiting is worse than A then C
+* Security Raiting is worse than A then C
+* Unit Test Success (%) is worse than A then C
+
+=== Update
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+*Administration* -> *System* -> *Update Center*
+
+- SonarJava : install or update to latest
+- Findbugs : install
+- SoftVis3D : install
+
+=== Rules / quality profile
+
+==== Export
+
+* Navigate to *Quality Profiles* -> *BCT* (or your profile) -> *Actions* -> *Back Up*
+* This will download a XML
+* On CG-WM, the common java XML quality profile is saved here :
+
+ src\docs\SonarQube.qualityProfile.BCT.xml
+
+==== Import
+
+WARNING: for an import to be successful, SonarQube must know the rules, so SonarJava and Findbugs must be up to date
+
+* Navigate to *Quality Profiles* -> dropdown menu next to *Create* -> *Restore Profile*
+* Provide the saved XML
+
+==== Create
+
+[NOTE]
+====
+This has to be done only if you want to define a custom set of rules
+====
+
+* Choose *Quality Profiles* -> *Java* -> *Sonar way* -> *Copy*
+* Select the newly created profile
+* Now you can :
+** Click on the number of active rules to deactivate some
+** Click on *Activate More*
+** Go to *Rules*, search one and change its value
+
+
+=== Technical Debt
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+* Select *Administration* -> *Configuration* -> *General Settings* -> *Technical Debt*
+* Set Maintainability rating grid = 0.01,0.02,0.03,0.05
+
+** _This means that a tech debt < 1% is rated A, a tech debt > 5% is rated E._
+
+* Hit *save technical debt*
+
+include::subdocs/_closure.adoc[]

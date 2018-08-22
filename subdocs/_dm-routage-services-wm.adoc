@@ -1,0 +1,54 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+[plantuml, dm-wm-services-routage, png]
+.DM : Services webMethods routage
+....
+|IS FIC : Connecteur|
+start
+-[dashed]-> dgeCommonsDocs.docs.dm.bpm:StartBpmDm; 
+|IS MET : routage|
+:**dgeBpmDm.pub:startMsg**
+//cnav.isic.dge.bpm.dm.DmRoutingManager.startMsg//
+- Contrôle Entête
+- Données métier
+- Balises SNGI/DCR;
+if (OK ?) then (oui)
+    if (Appel SNGI ?) then (oui)
+        -[dashed]-> dgeCommonsDocs.docs.dm.bpm:CallSNGI;
+|IS A2A : applications|
+        :**dgeConnectorSngi.pub:callSngi**;
+|IS MET : routage|
+    else (non)
+    endif
+    -[dashed]-> dgeCommonsDocs.docs.dm.bpm:StartRouteMsg;
+    :**dgeBpmDm.pub:startRouteMsg**
+    //cnav.isic.dge.bpm.dm.DmRoutingManager.startRouteMsg//
+    - Contrôles SNGI
+    - Restrictions, Risques
+    - RoutageAbonnement;
+    if (OK ?) then (oui)
+        if(Appel DCR ?) then (oui)
+|IS A2A : applications|
+            -[dashed]-> dgeCommonsDocs.docs.dm.bpm:CallDCR;
+            :**dgeConnectorDcr.pub:callDcr**;
+        else (non)
+        endif
+|IS MET : routage|
+        -[dashed]-> dgeCommonsDocs.docs.dm.bpm:EndRouteMsg;
+        :**dgeBpmDm.pub:endRouteMsg**
+        //cnav.isic.dge.bpm.dm.DmRoutingManager.EndRouteMsg//
+        - Contrôles DCR
+        - RoutageComplement
+        - RésultatFinal;
+    else (non : on termine KO)
+    endif
+else (non : on termine KO)
+endif
+-[dashed]-> dgeCommonsDocs.docs.dm.bpm:EndMsg;
+:**dgeBpmDm.pub:endMsg**
+//cnav.isic.dge.bpm.dm.DmRoutingManager.endMsg//
+- MessageCRF
+- Fin de traitement;
+|IS FIC : Connecteur|
+-[dashed]-> dgeCommonsDocs.docs.dm.bpm:EndBpmDm;
+stop
+....

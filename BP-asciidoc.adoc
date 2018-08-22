@@ -1,0 +1,94 @@
+= AsciiDoc & doc-as-code Best Practices
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Documentation-as-code with AsciiDoc
+
+All documentations on the project, including this one, are written as part of DevOps principle Documentation-As-Code using AsciiDocFX and compiled with Asciidoctor under maven to produce PDF.
+
+To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF.
+
+image:AsciidocFX.png[]
+
+Download and install :
+
+* AsciidocFX, to create and edit your documents
+* Graphviz, to add the extension for your AsciidocFX installation
+
+.Rules to produce AsciiDoc files :
+* file names are in kebab-case, except the type at the beginning
+* use *\kbd:[myShortcut]* for keyboard shortcuts
+* use *\*myButton** for buttons
+* High level title should be on new pages (use *<<<*)
+* don't forget init/closure includes at beginning/end of the adoc
+* For STS, use TMP-STS-webmethods-template.adoc as a template
+
+To show a in progress diagram to colleagues, you can generate a link using this page : http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
+
+=== Generation using Maven
+
+.AsciiDoctor plugin configuration
+[source,xml]
+------
+include::../../../pom.xml[tags=asciidoc-plugin,indent=0]
+------
+
+To generate the PDF locally, use the maven command :
+
+ mvn generate-resources -Dadoc.skip=false --non-recursive
+ 
+You might have some some errors about the history : It will be automatically generated on Jenkins. If you want too see how it looks like, use the script asciidocHistory.sh in src -> scripts, with cg-wm directory path in argument.
+
+=== .doc to .adoc
+
+If the initial documentation is of Microsoft Word, you have to first migrate it to AsciiDoc file.
+
+Download and install pandoc.
+
+To migrate a document, use it in command line
+
+ pandoc --from=docx --to=asciidoc --wrap=none --atx-headers --normalize --extract-media=images monDoc.docx > monDoc.adoc
+
+=== Publish HTML & PDF to github
+
+==== Initialize Github space
+
+  mkdir docs
+  cd docs
+  git init
+  git checkout --orphan gh-pages
+  
+Copy a first version of the site in the directory, then :
+
+  git add *
+  git commit -m "initial site content"
+  git remote add origin "https://github.com/NeVraX182/docs.git"
+  git push --set-upstream origin gh-pages
+
+==== Configure Maven plugin
+
+.Maven SCM plugin configuration
+[source,xml]
+------
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-scm-publish-plugin</artifactId>
+	<version>3.0.0</version>
+	<inherited>false</inherited>
+	<configuration>
+		<scmBranch>gh-pages</scmBranch>
+		<!-- token generated from github > settings > Developer settings > Personal access tokens > public_repo -->
+		<pubScmUrl>scm:git:https://USER:TOKEN@github.com/USER/docs.git</pubScmUrl>
+		<content>target/generated-docs</content>
+	</configuration>
+</plugin>
+------
+
+==== Use in pipelines
+
+To use in Jenkins Pipelines, see link:BP-jenkins.html[Jenkins Best Practices]
+
+To use in Gitlab Pipelines, see link:BP-gitlab.html[Gitlab Best Practices]
+
+include::subdocs/_closure.adoc[]

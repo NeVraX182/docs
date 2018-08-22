@@ -1,0 +1,27 @@
+//NO BLANK LINE ALLOWED IN THE HEADER, here and before the include of this file
+//Only PDF
+ifdef::backend-pdf[]
+:title-logo-image: image:{root-project-dir}/src/docs/asciidoc/themes/logo-zenika.png[pdfwidth=3in,align=left]
+Version {project-version} du {localdate}
+:toc:
+:toc-title: Sommaire
+:toclevels: 3
+
+.Historique
+[cols="^,^,<6",options="header"]
+|===================================================
+|Date|Auteur|Détail
+include::{history-dir}/{docname}.adoc.psv[]
+|===================================================
+
+endif::backend-pdf[]
+ifdef::backend-html5[]
+link:{docname}.adoc[[SRC\]] link:{docname}.pdf[[PDF\]]
+endif::backend-html5[]
+
+ifndef::source-dir[:source-dir: ../../main/java]
+ifndef::test-dir[:test-dir: ../../test/java]
+//For the sections to be numbered
+:numbered:
+//For the keyboard/buttons nice print
+:experimental:

@@ -1,0 +1,60 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+.Services webMethods connecteur aspects Tiers
+[plantuml, dm-wm-services-connecteur-tiers-aspects, png]
+....
+|IS FIC|
+fork
+start
+->SFTP DM_TIERS_ENTREE;
+:**dgeConnectorDmPe.pub:receiveDmEntreeTiers**
+//cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeTiers//
+    - Controler le fichier
+    - Publier l'ordre de génération de l'ARLE;
+    -[dashed]-> dgeCommonsDocs.docs.dm.internal:DmArle;
+fork again
+|IS MET : Routage|
+start;
+-[dashed]-> dgeCommonsDocs.docs.b2b:TimeOut;
+|IS FIC|
+:**dgeConnectorDmPe.pub:receiveDmEntreeTiersTO**
+//cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeTiersTO//
+    - Publier l'ordre de génération de l'ARLE KO;
+-[dashed]-> dgeCommonsDocs.docs.dm.internal:DmArle;
+endfork
+:**dgeConnectorDmPe.pub:generateDmArleTiers**
+//cnav.isic.dge.b2b.dm.pe.ArleManager.generateDmArleTiers//
+    - Générer le fichier DM_TIERS_ARLE
+    - Référencer l'ARLE TIERS dans ESB.AGREGATS
+    - Publier l'ordre d'envoi du DM_TIERS_ARLE;
+-> dgeCommonsDocs.docs.b2b:SendOrder;
+:**dgeConnectorDmPe.pub:sendDmArle**
+//cnav.isic.dge.b2b.dm.pe.ArleManager.sendDmArle//
+    - Envoyer l'ARLE via SFTP
+    - Compresser et archiver l'ARLE;
+stop;
+|IS MET : Routage|
+start
+-[dashed]-> ordo dgeCommonsDocs.docs.b2b:GenOrder DM_TIERS_SORTIE ou DM_SORTIE_POST_TIERS;
+|IS FIC| 
+:**dgeConnectorDmPs.pub:generateDmSortieTiers**
+//cnav.isic.dge.b2b.dm.ps.Generator.generateDmSortie//
+- Récupérer les messages à traiter
+- Générer le DM_SORTIE ou DM_TIERS_SORTIE
+- Référencer les fichiers de sortie dans AGREGATS
+- Publier l'ordre d'envoi des DM_SORTIE ou DM_TIERS_SORTIE;
+-[dashed]-> dgeCommonsDocs.docs.b2b:SendOrder;
+:**dgeConnectorDmPs.pub:sendDmSortie**
+//cnav.isic.dge.b2b.dm.ps.Sender.sendDmSortie//
+- Enoyer DM_SORTIE ou DM_TIERS_SORTIE
+- Compresser et archiver DM_SORTIE ou DM_TIERS_SORTIE;
+-> Vers consommateur ou Tiers;
+stop
+
+start
+->SFTP DM_ARLS ou DM_TIERS_ARLS;
+:**dgeConnectorDmPs.pub:receiveDmArls**
+//cnav.isic.dge.b2b.dm.ps.ArlsManager.receiveDmArls//
+- Mettre à jour le statut de l'ARLS dans AGREGATS
+- Envoyer un mail si ARLS KO;
+stop
+....

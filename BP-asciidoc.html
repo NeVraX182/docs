@@ -452,7 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="BP-asciidoc.pdf">[PDF]</a></p>
+<p><a href="BP-asciidoc.adoc">[SRC]</a> <a href="BP-asciidoc.pdf">[PDF]</a></p>
 </div>
 </div>
 </div>
@@ -553,23 +553,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 	&lt;/configuration&gt;
 	&lt;executions&gt;
 		&lt;execution&gt;
-			&lt;id&gt;asciidoc-to-pdf&lt;/id&gt;
-			&lt;phase&gt;generate-resources&lt;/phase&gt;
-			&lt;goals&gt;
-				&lt;goal&gt;process-asciidoc&lt;/goal&gt;
-			&lt;/goals&gt;
-			&lt;configuration&gt;
-				&lt;backend&gt;pdf&lt;/backend&gt;
-				&lt;sourceHighlighter&gt;rouge&lt;/sourceHighlighter&gt;
-				&lt;attributes&gt;
-					&lt;imagesdir&gt;${project.build.directory}/generated-docs/images&lt;/imagesdir&gt;
-					&lt;pdf-style&gt;${user.dir}/src/docs/asciidoc/themes/cg-theme.yml&lt;/pdf-style&gt;
-					&lt;pagenums /&gt;
-					&lt;toc /&gt;
-				&lt;/attributes&gt;
-			&lt;/configuration&gt;
-		&lt;/execution&gt;
-		&lt;execution&gt;
 			&lt;id&gt;asciidoc-to-html&lt;/id&gt;
 			&lt;phase&gt;generate-resources&lt;/phase&gt;
 			&lt;goals&gt;
@@ -590,6 +573,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 					&lt;!-- do it here, in .adoc this does not work --&gt;
 					&lt;!-- &lt;stylesheet&gt;italian-pop.blue.css&lt;/stylesheet&gt; --&gt;
 					&lt;!-- &lt;stylesdir&gt;themes&lt;/stylesdir&gt; --&gt;
+				&lt;/attributes&gt;
+			&lt;/configuration&gt;
+		&lt;/execution&gt;
+		&lt;execution&gt;
+			&lt;id&gt;asciidoc-to-pdf&lt;/id&gt;
+			&lt;phase&gt;generate-resources&lt;/phase&gt;
+			&lt;goals&gt;
+				&lt;goal&gt;process-asciidoc&lt;/goal&gt;
+			&lt;/goals&gt;
+			&lt;configuration&gt;
+				&lt;backend&gt;pdf&lt;/backend&gt;
+				&lt;sourceHighlighter&gt;rouge&lt;/sourceHighlighter&gt;
+				&lt;attributes&gt;
+					&lt;imagesdir&gt;${project.build.directory}/generated-docs/images&lt;/imagesdir&gt;
+					&lt;pdf-style&gt;${user.dir}/src/docs/asciidoc/themes/cg-theme.yml&lt;/pdf-style&gt;
+					&lt;pagenums /&gt;
+					&lt;toc /&gt;
 				&lt;/attributes&gt;
 			&lt;/configuration&gt;
 		&lt;/execution&gt;
@@ -685,7 +685,7 @@ git push --set-upstream origin gh-pages</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-21 17:47:48 UTC
+Last updated 2018-08-22 08:10:33 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">

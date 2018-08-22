@@ -1,0 +1,136 @@
+= Gerrit Configuration & Code Review Best Practices
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Server configuration
+
+image:dilbert-collaboration.png[]
+
+Connect to Gerrit homepage.
+
+=== Initialization
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+==== Permissions
+
+===== Jenkins user push
+
+* Click on *People* -> *List Groups* -> *Non-interactive Users* 
+* Add Jenkins (your technical account) in the list
+
+===== Deleting tags
+
+* Click on *Projects* -> *List* -> btn:[All-projects] -> section *Access* -> *Edit*
+* Under btn:[Reference: refs/tags/*]
+** Click on btn:[Add Permission...] and select *Push*
+** Select group *Administrator* and click *Force Push*
+** Save Changes
+
+Now you can delete tags from your projects, for ex :
+
+  git push --force --delete origin cg-wm-1.17.6
+  
+==== Verified status
+
+* Click on *Projects* -> *List* -> btn:[All-Projects] -> section *General* -> *Edit Config*
+* Add this
+
+ [label "Verified"]
+    function = MaxWithBlock
+    value = -1 Fails
+    value =  0 No score
+    value = +1 Verified
+       
+* Click on *Save*, then *Close*
+* Click on *Publish Edit*, then *Publish*, btn:[Code-Review+2], *Submit*
+* Click on *Projects* -> *List* -> btn:[All-Projects] -> *Access* -> *Edit*
+* Under btn:[Reference:	refs/heads/*]
+** Click on btn:[Add Permission...] and select *Label Verified*
+** Select group *Administrator*
+** Select group btn:[Non-Interactive Users]
+** Save Changes
+
+==== Fast Forward
+
+By default, when projet submissions are not fast forward, final submitting a change will create a merge commit. The history is potentially doubled.
+
+* Click on *Projects* -> *List* -> btn:[All-Projects] -> *General*
+* Under *Submit Type*, select *Rebase if Necessary*
+
+=== User preferences
+
+Click on  *YourName* -> *Settings* -> *Diff Preferences* and set *columns = 120*
+(you will probably have to paste it due to a GUI bug)
+
+=== Project creation
+
+Create your GIT project by clicking on *Projects* -> *Create New Project*
+
+* Project Name = *cg-wm*
+* Rights Inherit From = *All-Projects*
+* Check that it has inherited correctly "Rebase if necessary", else change and save
+
+==== Project git address
+
+The git is visible in *Projects* -> btn:[(gitweb)].
+
+Something like : 
+
+* https://cric.pl.s2-eu.nvx.com/gerrit/cg-wm.git
+
+==== Users groups creation
+
+For each project, create a reviewer list and a validator list.
+
+* Go to *Projects* -> *Create New Group*
+* Reviewers list
+** Give a name, for example btn:[dge-reviewers]
+** Add every developers / primary reviewers on the project
+** Click on *General*
+** Description = Reviewers (first level : +1)
+** Click *Save Description*
+** Check btn:[Make group visible to all registered users.]
+** Click *Save Group Options*
+* Validators list
+** Give a name for example btn:[dge-validators]
+** Add technical responsible and a backup
+** Click on *General*
+** Description = "Validators (level 2 : +2)"
+** Click *Save Description*
+** check btn:[Make group visible to all registered users.]
+** Click *Save Group Options*
+
+== Code review golden rules (using Gerrit)
+
+image:gerrit-process.png[]
+
+.These are rules to be followed for a smooth overall development process :
+. The team has to know that you are taking responsability of the current development task.
+. If not sure of what to achieve, confirm with task responsible
+. Target a complete realization in delays estimated by team leader. Alert on time shortage.
+. Update documentation along with code whenever it's needed.
+. Do not group functionnalities in commit, to avoid long run reviews.
+.. It is possible to handle multiple review in parallel.
+. Commit text has to be explicit, complete, and synthetic.
+.. Commit text must be one line for the sake of history and documentation readability (replace ':' with '()' and '-' with '+'). No limit to the lengh of the line.
+.. If the commit include documentation, set a first line commit text suitable for documentation. Put other information on other lines (they won't appear in documentation history)
+. Commit often, at least on tuesdays and thursdays (even on unfinished current task).
+. No "related changes" should appear on the change in Gerrit, or you did not handle multiple review properly.
+. Fixing Jenkins failures is always a top priority.
+. On "Cannot merge" Gerrit message, you have to pull/commit/push to rebase properly
+. When Jenkins give a +1, add the *reviewers* list as reviewers, this should add all reviewing people.
+. When added as a reviewer, try to give a review in the next half day, knowing that it blocks the process.
+.. You don't have to be an expert to do a review. At least try to spot pieces of code not well explained and missing javadoc. Try to imagine yourself as a future bug fixer who needs clean code to work properly.
+.. If suitable, test the application or check the auto IT tests.
+.. If any, check that the generated documention looks good in PDF.
+.. Check that there is UT specifically testing the new/modified code.
+. When one or two +1 from the team have been given (depending on the size of the team), add the *validators* list of reviewers for a final +2 review followed by a submit to the master branch.
+
+image:git-messages.png[scaledwidth="50%"]
+
+include::subdocs/_closure.adoc[]

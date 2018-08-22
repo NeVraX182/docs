@@ -1,0 +1,75 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+[plantuml, archi-dm-tiers-sequence, png]
+.DM Tiers : Diagramme de séquence
+....
+participant Producteur
+participant C1
+participant Cn
+participant DGE #orange
+participant Tiers
+
+==Entrée Fichier==
+activate Producteur
+Producteur -> DGE : DM_ENTREE
+deactivate Producteur
+activate DGE
+DGE -> Producteur : DM_ARLE
+activate Producteur
+deactivate Producteur
+DGE -> Producteur : DM_CRF
+deactivate DGE
+activate Producteur
+deactivate Producteur
+
+==Entrée WS==
+Producteur -> DGE : DM_ENTREE
+activate DGE
+DGE -> Producteur : DM_ENTREE (retour WS)
+deactivate Producteur
+DGE -> Producteur : DM_CRF
+activate Producteur
+deactivate Producteur
+
+==Enrichissement Tiers (optionnel)==
+DGE -> Tiers : DM_SORTIE (C1)
+activate Tiers
+DGE -> Tiers : DM_SORTIE (Cn)
+deactivate DGE
+Tiers -> DGE : DM_ARLS
+activate DGE
+deactivate DGE
+Tiers -> DGE : DM_ARLS
+activate DGE
+deactivate DGE
+deactivate Tiers
+Tiers -> DGE : DM_TIERS_ENTREE (C1)
+activate Tiers
+activate DGE
+deactivate Tiers
+DGE -> Tiers : DF_ARLE
+deactivate DGE
+activate Tiers
+Tiers -> DGE : DM_TIERS_ENTREE (Cn)
+deactivate Tiers
+activate DGE
+DGE -> Tiers : DF_ARLE
+deactivate DGE
+activate Tiers
+
+==Sortie Fichier==
+DGE -> C1 : DM_SORTIE (C1)
+deactivate Tiers
+activate DGE
+activate C1
+DGE -> Cn : DM_SORTIE (Cn)
+activate Cn
+deactivate DGE
+C1 -> DGE : DM_ARLS
+activate DGE
+deactivate C1
+deactivate DGE
+Cn -> DGE : DM_ARLS
+activate DGE
+deactivate Cn
+deactivate DGE
+....

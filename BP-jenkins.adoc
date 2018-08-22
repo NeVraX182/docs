@@ -1,0 +1,384 @@
+= Jenkins Configuration Details
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Server configuration
+
+Connect to Jenkins homepage.
+
+=== Plugins installation
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+* Go to *Jenkins* -> *Administration Jenkins* -> *Gestion des plugins*
+* Update all plugins which have an update available
+* Select *Disponibles* (=available) and install :
+** Pipeline Maven Integration
+** Throttle Concurrent Builds Plug-in
+*** To be able to force non concurrent builds
+** Xvnc
+*** To have a virtual screen if needed in tests
+** Naginator
+*** For retry on failure
+** Gerrit Trigger
+*** To launch job on gerrit update
+** HTML Publisher plugin 
+//Seems to be core lately
+*** To have the *Maven Reporting* link when "maven site" is launched
+** Monitoring
+*** To see nice health data of Jenkins on https://bpmfactory.s2-eu.nvx.com/jenkins/monitoring
+** JUnit Attachments
+*** for enhanced job reporting
+** Logstash
+*** To send jenkins jobs output to logstash then elastic
+** diskcheck
+*** Check filesystem space on slave before a build
+** disk-usage
+*** Show disk usage per build, configuration in *Administrer Jenkins* -> btn:[Configurer le système] -> *Utilisation du disque*
+** AnsiColor
+*** To allow colors in build logs
+** Simple Theme Plugin
+*** to change Jenkins basic theme
+
+=== Change Theme
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+* Have the Simple Theme Plugin installed
+* Navigate *Administrer Jenkins* -> btn:[Configurer le système] -> *Theme* section
+** URL of theme CSS = https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-cyan.css
+*** see the author's page for other colors : http://afonsof.com/jenkins-material-theme/
+** Save
+
+=== Gerrit Trigger Configuration
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+On Jenkins :
+
+* Create the console-master job if not already existing
+** Create a new freestyle job.
+** Name it console-master
+** General
+** [x] btn:[Restreindre où le projet peut être exécuté]
+*** master
+** Put this *Build* -> btn:[Ajouter une étape au build] -> btn:[Exécuter un script shell] -> paste this and save :
+
+ ssh-keygen -y -f /root/.ssh/id_rsa > /root/.ssh/id_rsa.pub
+ ls -lart /root/.ssh/
+ more /root/.ssh/id_rsa.pub
+
+* Add 1 executor on the master node
+** *Home* -> btn:[État du lanceur de compilations] -> btn:[maître] -> *Configurer*
+* Execute the console-master
+* Keep track of what the execution gave for later Gerrit configuration, example :
+
+ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKGER5oLwkNhcCYtTzmUQooA+1mdrjIGi84AVsOHyNpsMqFBhkpxfImvopvKlYiztXUA15dwwDsPWq1tUcy/4NWqKnMTQA57xxxT2r8suF/DVlH6fNn8T73mGz9+kT77FXHuaMfmDTqrwPngUYQMm2Y9kTjGhIcH/jseq6jCUawITAOs/6EUbs7jtJ/S+jMb6Ed60S7S/nR3IzQwVrXMiQjDdFsL8RWEBQ54T4cNia/HMI8MK7mEEF5K008g4Ru3Bidk+VSisPUYFPmNc/tE12RyAjvkcwWxrYqFEB5h6RlS0yWXAjCUzjv8T0ov4Wus+ZqNgqUMYtBBf+zQvQC1ub
+
+* When finished, remove the executor from master node
+* Create a local trigger server
+** *Home* -> *Administrer Jenkins* -> *Gerrit Trigger* -> *Add New Server*
+*** Gerrit Connection Setting
+**** Name = local_server
+**** Hostname = gerrit
+**** Frontend URL = http://gerrit/
+**** SSH Port = 29418
+**** Username = svc-fr-bpmfact
+**** SSH Keyfile = /root/.ssh/id_rsa
+*** Gerrit Reporting Values
+**** Verify = <vide>, 1, -1, -1, -1
+**** Code Review = <vide>, 1, -1, -1, -1
+*** Gerrit Verified Commandes
+**** Started = vide
+**** Successful =
+
+ gerrit review <CHANGE>,<PATCHSET> --message 'Build Successful (◕‿◕) <BUILDS_STATS>' --verified <VERIFIED>
+
+**** Failed =
+
+ gerrit review <CHANGE>,<PATCHSET> --message 'Build Failed (ಠ_ಠ) <BUILDS_STATS>' --verified <VERIFIED>
+
+**** Unstable =
+
+ gerrit review <CHANGE>,<PATCHSET> --message 'Build Unstable ( ͠° ͟ʖ ͡°)  <BUILDS_STATS>' --verified <VERIFIED>
+
+**** Not Built =
+
+ gerrit review <CHANGE>,<PATCHSET> --message 'No Builds Executed (╯︵╰,)  <BUILDS_STATS>' --verified <VERIFIED>
+
+*** Save
+
+On Gerrit :
+
+* Connect with the technical user (svc-fr-bpmfact / Bpm-fact0ry)
+** You may have to use a secondary browser, since authentication is very persistent on Gerrit
+* Click on the user top right -> *Settings* -> *SSH Public Keys* -> btn:[Add Key...]
+* Add the public key content from Jenkins server (the one asked to be kept track earlier), starting with **ssh-rsa**
+
+On Jenkins :
+
+* Test the earlier configured connection of the trigger with *Test Connection* while editing local_server
+* Restart jenkins with : https://bpmfactory.s2-eu.nvx.com/jenkins/safeRestart
+* The Gerrit trigger should be up and running
+
+=== Administration
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+==== Overall configuration
+
+Connect to Jenkins configuration page : https://bpmfactory.s2-eu.nvx.com/jenkins/configure
+
+Propriétés globales::
+- JAVA_HOME = /usr/
+
+Jenkins Location::
+- Adresse email de l'administrateur système = xxxxx@nvx.com
+
+Extended E-mail Notification::
+- SMTP server = smtp.nvx.fr
+- Default user E-mail suffix = @nvx.com
+
+Notification par email::
+- Serveur SMTP = smtp.nvx.fr
+- Suffixe par défaut des emails des utilisateurs = @nvx.com
+
+Save.
+
+==== Tools configuration
+
+Connect to Jenkins tools configuration page : https://bpmfactory.s2-eu.nvx.com/jenkins/configureTools/
+
+Maven::
+- Nom = Maven 3.5
+- Version = 3.5.2
+
+Logstash Plugin::
+- Indexer type = ELASTICSEARCH
+- Host name = http://frpardge.corp.nvx.com
+- Port = 9200
+- Key = /jenkins/builds
+
+Save.
+
+=== Allow CSS on published HTML
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+* Create a pipeline "css-support"
+* Build Triggers
+** Construire périodiquement
+*** Planning = 0 10,15,20 * * *
+* Pipeline
+
+  println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))
+  System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
+  println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))
+
+** Uncheck *Use Groovy Sandbox* and save
+
+=== SonarQube token
+
+To be able to upload quality results to SonarQube, you have to create a token.
+
+Go to SonarQube application on the PL -> *YourName* -> *My Account* -> *Security* -> Name = Jenkins -> *Generate*
+
+Now maven can upload results to SonarQube with something like :
+
+ mvn sonar:sonar -Dsonar.login=ab7451586619e21d0e2bb50389899ce3595e3 -Dsonar.host.url=http://sonarqube:9000/sonarqube
+
+=== ssh key on remote server
+
+[NOTE]
+====
+This has to be done only for a new remote server
+====
+
+If you have a remote server where you deploy your artifacts for further developments or tests :
+* note the result of the slavePrep.sh script under **Here is this server's ssh public key**. Here is an example
+
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZRLfTsI+cTRjbhYhnDvIOI3lsexMiJpwcBmeuJrISnEdh1LRPlviQjtI1h7NCihejVIPgvzyMVn3tMLsvABBXLTbVFIetOudpJn+8isnYAWWaaqX2fce/BqjLC26ygR4n25sqTO/GE9AhV5uBPbYTr4HCrH9Wzd8nU13DXm8COhxUKh1+Uwm47KB11fVH/boIUygocIRu1FXS9TJyMU0qFf3GGmDXs56VTe4ZQtPBHJ1klRXQQc6UIhTbdLpedo4Khvzr7TpdVZg13qXZt35/t7Gu4lbImHSlN64TKhaxAYgCPjYKgl9tAWJpEkk3WzXghohLivIQPInu5h3uvckH jenkins@b43496a2520e
+
+* Connect on the remote server via SSH
+* add the key to **~/.ssh/authorized_keys** file
+
+=== Pipelines creations
+
+==== The Review pipeline
+
+This will be the review pipeline with steps from checkout to quality check. This pipeline is a "pipeline as code".
+
+Go to Jenkins home page :
+
+https://bpmfactory.s2-eu.nvx.com/jenkins
+
+* Click *New Item*
+* Choose a name : CG-WM_P1_Review
+* Choose Pipeline type
+
+===== General
+
+* Description = This is the review pipeline fired by Gerrit on non yet validated push
+* Check *Supprimer les anciens builds*
+** Strategy = Log Rotation
+** Nombre de builds à conserver = 10
+
+===== Build Triggers
+
+WARNING: In the field *Choose a Server*, *Any Server* won't work
+
+* Choose *Gerrit event*
+
+Gerrit Trigger
+
+* Choose a Server = local_server
+* Trigger on = Patchset Created
+* Gerrit Project
+** Type = Plain
+** Pattern = cg-wm
+** Branches
+*** Type = Plain
+*** Pattern = master
+
+===== Advanced Project Options
+None.
+
+===== Pipeline
+
+* Definition = Pipeline script
+
+[source,groovy]
+.Pipeline content to copy/paste
+----
+include::../../../Jenkinsfile-1-review[]
+----
+
+==== The Deploy pipeline
+
+This will be the main pipeline with everything from checkout to deployment. This pipeline is a “pipeline as code”.
+
+Go to Jenkins home page :
+
+https://bpmfactory.s2-eu.nvx.com/jenkins
+
+* Click *New Item*
+* Choose a name : CG-WM_P2_Deploy
+* Choose *Pipeline* type
+
+===== General
+
+* Check *Supprimer les anciens builds*
+** Strategy = Log Rotation
+** Nombre de builds à conserver = 10
+
+===== Build Triggers
+
+* Choose « Scrutation de l'outil de gestion de version »
+* Planning = H * * * *
+
+===== Advanced Project Options
+None.
+
+===== Pipeline
+
+* Definition = Pipeline script from SCM
+* SCM = Git
+** Repositories
+*** Repository URL = http://bpmfactory.s2-eu.nvx.com/gerrit/p/cg-wm.git
+*** Credentials = svc-fr-bpmfact / Bpm-fact0ry
+** Branches to build : */master
+* Script Path = Jenkinsfile-2-deploy-to-dev
+* [x] Lightweight checkout
+
+[source,groovy]
+.Pipeline content (for information)
+----
+include::../../../Jenkinsfile-2-deploy-to-dev[]
+----
+
+==== The Deploy Int pipeline
+
+WARNING: Describe this pipeline when stable
+
+==== The Release pipeline
+
+This is the release pipeline launched manually at will when an external release is needed. This pipeline is a "pipeline as code".
+
+Go to Jenkins home page :
+
+https://bpmfactory.s2-eu.nvx.com/jenkins
+
+* Click *New Item*
+* Choose a name : CG-WM_P3_Release
+* Choose *Pipeline* type
+
+===== General
+
+* Check *Ce build a des paramètres*
+** Paramètre texte
+*** RELEASE_VERSION
+*** the release version, with pattern 1.YY.MM[.increment] (ex : 1.17.5.9)
+* Check *Supprimer les anciens builds*
+** Strategy = Log Rotation
+** Nombre de builds à conserver = 10
+
+===== Build Triggers
+
+No trigger (manual launch).
+
+===== Advanced Project Options
+
+None.
+
+===== Pipeline
+
+* Definition = Pipeline script from SCM
+* SCM = Git
+** Repositories
+*** Repository URL = http://bpmfactory.s2-eu.nvx.com/gerrit/p/cg-wm.git
+*** Credentials = svc-fr-bpmfact / Bpm-fact0ry
+** Branches to build : */master
+* Script Path = Jenkinsfile-4-release
+* [x] Lightweight checkout
+
+[source,groovy]
+.Pipeline content (for information)
+----
+include::../../../Jenkinsfile-4-release[]
+----
+
+=== Troobleshooting
+
+==== Disk space usage > 90 %
+
+If the disk space usage is too high and your build fails a the start for this reason, you can purge some folders with the below actions.
+
+* Edit the **console** job.
+* Put these lines and save :
+
+ du --max-depth=1 /home/jenkins/workspace/ | sort -n -r | head -n 30
+ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print
+
+* Launch the job
+* Following the results, do the necessary deletions
+* If there are some ws-cleanup directory, you can delete them safely :
+
+ rm -rf /home/jenkins/workspace/\*ws-cleanup*/ ???
+
+include::subdocs/_closure.adoc[]

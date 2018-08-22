@@ -1,0 +1,52 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+
+[plantuml, df-services, png] 
+.DF : Enchainement des services webMethods & Java
+....
+(*) --> ===INPUT===
+--> [Tout fichier FTP] "<b>dgeCommonsFiles.pub:dispatchSAAFiles</b>"
+-[dashed]-> [dgeCommonsDocs.docs.file:FileNature] ===FILE_NATURE===
+--> [DF_ARLS] "**dgeConnectorDfPs.pub:receiveDF_ARLS**
+        <i>cnav.isic.dge.b2b.df.ps.ArlsManager.receiveDfArls</i>
+        <color:blue>AGREGATS : RECEPTION_ARLS</color>"
+-[dotted]-> (*)
+
+===FILE_NATURE=== --> [DF_ENTREE] "<b>dgeConnectorDfPe.pub:receiveDF_ENTREE</b>
+        <i>cnav.isic.dge.b2b.df.pe.Receiver.receiveDfEntree</i>
+        <color:blue>DEMANDES : INITIALISATION > VALIDATION</color>" as REC_DF_ENTREE
+
+-[dashed]-> [dgeCommonsDocs.docs.df.bpm:StartBpmDf] "**dgeBpmDf.pub:routeFile**
+        <i>cnav.isic.dge.bpm.df.DfRoutingManager.routeFile</i>
+        <color:blue>DEMANDES : ROUTAGE</color>
+        <color:blue>DEMANDE_ROUTAGES : INITIALISATION</color>"
+
+
+-[dashed]-> [dgeCommonsDocs.docs.df.bpm:EndBpmDf]  ===EndBpmDf===
+--> [DF_ARLE] "**dgeConnectorDfPe.pub:handleEndDfPe**
+        <i>cnav.isic.dge.b2b.df.pe.Receiver.handleEndDfPe</i>"
+--> ===DF_ARLE===
+-[dashed]-> [dgeCommonsDocs.docs.df.internal:DfArle] "**dgeConnectorDfPe.pub:generateDF_ARLE**
+        <i>cnav.isic.dge.b2b.df.pe.ArleManager.generateDfArle</i>
+        <color:blue>DEMANDES : ENVOI_ARLE</color>
+        <color:blue>AGREGATS : GENERATION</color>"
+-[dashed]-> [dgeCommonsDocs.docs.b2b:SendOrder\nDF_ARLE] "**dgeConnectorDfPe.pub:sendDF_ARLE**
+        <i>cnav.isic.dge.b2b.df.pe.ArleManager.sendDfArle</i>
+        <color:blue>AGREGATS : EMISSION</color>"
+-[dotted]-> [Envoi vers PEntrant] (*)
+
+===EndBpmDf=== --> [DF_SORTIE] "**dgeConnectorDfPs.pub:handleEndDfPs**
+    <i>cnav.isic.dge.b2b.df.ps.Generator.handleEndDfPs</i>
+    <color:blue>DEMANDE_ROUTAGES : PREPARATION</color>"
+-[dotted]-> [Quand date envoi atteinte] "<i>OrderGenerator.triggerOrdo</i>"
+-[dashed]-> [dgeCommonsDocs.docs.b2b:GenOrder] "**dgeConnectorDfPs.pub:generateDF_SORTIE**
+        <i>cnav.isic.dge.b2b.df.ps.Generator.generateDfSortie</i>
+        <color:blue>DEMANDE_ROUTAGES : AGREGATION</color>
+        <color:blue>AGREGATS : GENERATION</color>"
+-[dashed]-> [dgeCommonsDocs.docs.b2b:SendOrder\nDF_SORTIE] "**dgeConnectorDfPs.pub:sendDF_SORTIE**
+        <i>cnav.isic.dge.b2b.df.ps.Sender.sendDfSortie</i>
+        <color:blue>AGREGATS : EMISSION</color>"
+-[dotted]-> [Envoi\nvers\nPSortant] ===INPUT===
+
+REC_DF_ENTREE --> [KO] ===DF_ARLE===
+....
+

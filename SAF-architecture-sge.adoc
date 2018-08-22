@@ -1,0 +1,896 @@
+= Etude d'Architecture: Systeme de Gestion des Echanges
+include::subdocs/_init-fr.adoc[]
+ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
+
+<<<
+== Introduction
+Il s'agit du dossier d'étude d'architecture du SGE V2. Ce dossier d’architecture est construit avec le support de la méthode IAF 4.5.
+
+== Contextual
+
+[NOTE]
+====
+The contextual layer is about understanding the WHY questions. It sets the stake in the ground for the rest of the architecture by providing context.
+====
+
+=== Business Mission & Vision
+
+[NOTE]
+====
+Business Mission : fundamental purpose of an organization (why it exists, how it supports the move towars achieving the vision).
+
+Business Vision : the desired or intended future state of a specific organization in terms of its fundamental objective and/or strategic direction.
+====
+
+La mission de la SNSV évolue vers une centralisation des données de carrières françaises.
+
+image:image4.jpeg[SGE_V2_SFG_Diagramme_Acteurs_V01,width=696,height=412]
+
+=== Business Strategy
+
+La direction stratégique de la SNSV pour atteindre son objectif de mission est:
+
+* Se doter d’une BDD uniformisant et consolidant les données des différentes caisses
+* Se doter d’un système d’échange entre les caisses et cette BDD et entre les organismes de santé.
+
+=== Organization Model
+
+[NOTE]
+====
+It takes the form of an organization chart and is useful for determining hierarchical connections, key reporting lines and stakeholders.
+====
+
+=== Assumptions
+
+Hypothèses:
+
+* Pas de restriction de licences dans l’utilisation des modules WM possédés par la SNSV _[Noël BRETON]_
+* L’appel direct est plus performant que l’appel SOAP
+* Ce qui n’est pas dans l’expression du besoin, n’est pas demandé
+* Ce qui n’est pas spécifié techniquement, n’a pas été développé
+* Ce qui n’est pas spécifié fonctionnellement, n’est pas à développer
+* Un connecteur par nature d’échange
+* 1 seul UM pour les IS routage (car 100x +perf que Broker)
+* Séparations possibles IS : Fichier/WS, RGCU/autres, rapide/lent, partenaires/applications, échanger/métier
+* OK pour une séparation des BDD catalogue/adhésion du reste des traitement. Si pb de perf, réplication BDD
+* Temps réel signifie WS synchrone (1WS) ou WS asynchrone rapide (2WS, Req+callback)
+* Gestion de version de service sur médiation: considéré comme nouveau service
+** ServA => endpointV1, servB, endpointV2
+
+=== Scope
+
+Le périmètre est de concevoir et réaliser une version V2 du SGE, système de gestion des échanges entre applications et partenaires SNSV.
+
+==== In scope
+
+* Plate forme de médiation : SAG WM Mediator
+* Inclusion des fonctionnalités SGE V1
+
+==== Out of scope
+
+* Licences WM
+* SNGI
+* RGCU
+* Couche échange TOM/SAA/SFG
+* Sécurisation: INTEROPS-A, suite jetons.
+
+=== Constraints
+
+Contraintes:
+
+* Le SGE réalisé sur un socle WebMethods, avec des serveurs JBoss pour l’accès aux données de référentiel, et des serveurs WebLogic pour les IHMs de part l’intégration avec EOPPS.
+* Décision conjointe Architecture /Étude / Production
+* Les IHMs à adosser à EOPPS devront être développées pour WLS (Architectes techniques d’Orléans)
+* La médiation sera assurée par le produit SAG Mediator
+* Des travaux sont en cours pour porter le standard Interops-A dans l’architecture REST. En l’état, le SGE ne pourrait pas exposer de services temps réel de type REST.
+
+Contraintes techniques génériques basées sur expériences antérieures :
+
+* Acquittement technique après sauvegarde du message
+* Supervision en asynchrone
+* Pas de mise en erreur du service appelant si erreur de gestion de message de supervision
+* Faire de l’asynchrone autant que possible pour appeler les applications et partenaires
+** Permet de les protéger en débit
+** Permet de bloquer le flux sur indisponibilité
+
+=== Policies/Principles
+
+_A short statement of principles that outlines and guides future decisions._
+
+1.  Performance
+2.  Scalabilité
+3.  Généricité
+4.  Utiliser SGE V1 autant que possible (Reuse before buy before build)
+
+=== Context diagrams
+
+[NOTE]
+====
+The Context Diagram is usually a high-level picture, illustrating the mail parts of the entreprise and its interaction with external entities in the environment.
+====
+
+image:image6.jpeg[SGE_V2_SFG_Diagramme_Contexte_V01,width=697,height=655]
+
+== Conceptual Business
+
+[NOTE]
+====
+Describe processes, organizations, people, resources. A business object is a physical ressource used by the business.
+====
+
+Le projet ne traitant ni d’objets physiques ni d’interactions interpersonnelles, la section business est ignorée au profit des sections information et système d’information.
+
+<<<
+== Conceptual Information
+
+[NOTE]
+====
+Information architecture starts by defining which information the business service need, create, and change, to be able to deliver the defined service.
+====
+
+=== Information Interaction Model
+
+[NOTE]
+====
+The information interaction model is a cross reference between business services and information objects. It is specially important when you arre planning to create a logical information architecture.
+====
+
+**T**ransform, **G**et and **W**rite.
+
+[cols=",^,^,^",options="header",]
+|==================================
+| |*PEntrant* |*SGE* |*PSortant*
+|Echanger un MSG/FIC |*W* |*T* |*G*
+|Echanger un ARLE |*G* |*W* |**
+|Echanger un CRF |*G* |*W* |**
+|Echanger un ARLS |** |*G* |*W*
+|Echanger un CR |*G* |*T* |*W*
+|==================================
+
+<<<
+== Conceptual Information Systems
+
+[NOTE]
+====
+What we now need to do is to define the extent and type of automated support that the business needs.
+====
+
+=== IS Service Interaction Model [cas d’utilisation]
+
+[NOTE]
+====
+We analyze the Business information services (within the components) and define the corresponding IS services.
+
+The purpose of the Information System Service Interfaction Model is to develop more clarity toward understanding the IS services and their collaboration.
+====
+
+Les cas d’utilisation / natures d’échange sont décrits dans le document *[3]*.
+
+==== Diffusion Fichier
+
+===== Diagramme de séquence
+
+include::subdocs/_df-sequence.adoc[]
+
+===== Cas d’utilisation
+
+image:image8.png[image,width=456,height=395]image:image9.png[image,width=159,height=351]
+
+image:image10.png[image,width=399,height=187]
+
+image:image11.png[image,width=372,height=124]
+
+===== Services webMethods et Java
+
+include::subdocs/_df-services.adoc[]
+
+==== Diffusion Message
+
+===== Diagramme de séquence (avec temps réel)
+
+Détails descriptifs dans la SFG (document *[3]*).
+
+====== Sans Tiers
+
+include::subdocs/_dm-sans-tiers-sequence.adoc[]
+
+====== Avec Tiers
+
+Pour plus de lisibilité, les échanges SAA ne sont pas indiqués.
+
+include::subdocs/_dm-tiers-sequence.adoc[]
+
+===== Cas d’utilisation
+
+image:image13.png[image,width=463,height=320]
+
+image:image14.png[image,width=458,height=549]image:image15.png[image,width=171,height=506]
+
+image:image16.png[image,width=424,height=245]image:image17.png[image,width=203,height=282]
+
+====== Temps Réel
+
+image:image20.png[image,width=516,height=509]image:image21.png[image,width=154,height=452]
+
+image:image18.png[image,width=459,height=252]
+
+===== Services connecteur
+
+include::subdocs/_dm-connecteur-services-wm-hors-tiers.adoc[]
+include::subdocs/_dm-connecteur-services-wm-temps-reel.adoc[]
+include::subdocs/_dm-connecteur-services-wm-tiers.adoc[]
+
+
+===== Services routage et applications
+
+include::subdocs/_dm-routage-services-wm.adoc[]
+
+===== Services principaux
+
+include::subdocs/_dm-services-main.adoc[]
+
+===== Services liés à l'ordonnancement
+
+include::subdocs/_dm-services-ordo.adoc[]
+
+==== Médiation / ESTER
+
+Diagramme de séquence:
+
+image:image22.png[width=449,height=148]
+
+Cas d’utilisation:
+
+image:image23.png[image,width=271,height=397]
+
+=== Détail par nature d’échange utilisatrice
+
+image:archi-cas-utilisations-natures-1.png[]
+
+image:archi-cas-utilisations-natures-2.png[]
+
+=== Potentielles évolutions SGE V3
+
+Les évolutions envisageables dans des versions ultérieuressont les suivantes :
+
+* Gestion des versions de médiation en: serviceA, version1; serviceA, version2
+** (actuellement serviceA, version 1, serviceB, version2)
+* Automatiser la mise à jour de MEDIATOR depuis le catalogue
+* Afficher les anomalies dans le suivi IHM
+* Ajouter une option de chiffrement du message métier en BDD
+
+<<<
+== Logical Information Systems
+
+=== Components
+
+[NOTE]
+====
+A LISC is the basic element of an ‘ideal’ or ‘to be’ application structure created by the grouping of one or more IS services. Combine the architecture principles with package knowleSGE to construct LISCs that reflect what the business wants from a package that is to be selected later on in physical level.
+====
+
+=== LISC Interaction Model
+
+[NOTE]
+====
+The LISC interaction model is derived from the IS Service interaction model. Here you also need to investigate if you can _merge collaboration contracts_.
+====
+
+=== LISC Collaboration Contracts [contrats d’interface]
+
+[NOTE]
+====
+The LISC collaboration contract documents the agreed interaction between LISC components. You can merge collaboration contracts id the behavior and communication mechanism are practically equal.
+====
+
+Ci-dessous le format pivot (interne) couplé avec l’utilisation (en interface externe) des champs par phase et par nature, extrait du document *[2]*.
+
+image:archi-contrat-interface-global.png[image,width=501,height=945]
+
+=== Integration View
+
+[NOTE]
+====
+The view can be constructed to validate and communicate which integration mechanisms are to be used to realize the communication between the LISCs.
+====
+
+Peuvent être détaillés ici les modes de communication intra-SGE.
+
+=== Migration View
+
+[NOTE]
+====
+The view can be constructed to validate and communicate which integration mechanisms are to be used to realize the communication between the LISCs.
+====
+
+=== Database objects interactions
+
+Interactions et agrégation des objets BDD catalogue:
+
+image:image27.png[width=696,height=368]
+
+<<<
+== Physical Information System
+
+[NOTE]
+====
+* What do I buy?
+* What do I build?
+* How long will it take?
+* How much will it cost?
+====
+
+=== PIS Component [composants techniques]
+
+[NOTE]
+====
+Once you have allocated the logical IS components to physical, real life things you can buy or build, you have created the physical IS components.
+
+Most of the time the architect has to stay impartial because he is an advisor to the organization, not a decision maker.
+====
+
+Les composants sont en accord avec les choix de la SNSV : WebMethods + JBoss + WebLogic.
+
+*OS* : Linux Red Hat RHEL 6.x ou 7.x
+
+[cols=",,",options="header",]
+|=========================================================
+|*Type de module SGE* |*Module technique* |*Version*
+|Médiation |WM Centrasite + Mediator |WM 9.9
+|Connecteurs et traitement |WM Integration Server |WM 9.7
+|Messaging / bus |WM Universal Messaging |WM 9.7
+|BDD |Oracle |12c
+|Accès/MAJ de référentiel |Serveurs Jboss |JBOSS EAP 6.3.3
+|IHM |Serveurs WebLogic |WLS 10.3.5
+|Supervision technique +
+& exploitation |MyWebMethods Server +
++ WM Integration Server |WM 9.7
+|=========================================================
+
+image:archi-fonc-to-phys.png[image,width=535,height=945]
+
+=== PISC Interaction Model [architecture logicielle]
+
+[NOTE]
+====
+The PISC Interfaction Model gives insight into how these components are interacting.
+====
+
+include::subdocs/_archi-fonc.adoc[]
+
+
+TN n’est finalement pas utilisé pour les raisons suivantes:
+
+* La gouvernance offerte n’est pas jugée utile pour le nombre de flux et les protocoles, et peut même être considérée comme lourde à l’usage
+* La gestion des adhésions est déjà gérée par le catalogue
+* Les interfaces WS et S/FTP sont déjà proposées en natif sur WM
+
+
+==== DM: Abonnement sur individu
+
+La nature «Diffusion Message» offre une option d’abonnement sur individu. Ainsi le partenaire sortant peut ne recevoir les messages que concernant une liste configurée d’individus.
+
+Le nombre d’individus était potentiellement très important et leur utilisation très dispersée dans le temps, une optimisation de l’accès aux données de routage par abonnement s’impose.
+
+Trois scénarios d’architecture sont proposés.
+
+===== Solution A : avec mise en cache
+
+[plantuml, archi-scenario-abo-a, png] 
+.Solution avec mise en cache
+....
+left to right direction
+rectangle "Application Web" as aWeb
+rectangle Services
+rectangle Cache
+rectangle SGE
+database "Référentiel \ndes\nabonnements" as dbAbo
+aWeb --> Services : RW
+Services --> dbAbo : RW
+Services <-- Cache : R
+Cache <-- SGE : R
+Services <-- SGE : W
+....
+
+[TIP]
+====
+Solution simple à mettre en place
+====
+
+[WARNING]
+====
+Les données d'individus étant très dispersées, le cache peut rapidement être inefficace
+====
+
+La cellule d’architecture de la SNSV propose une variante du scénario A : un cache côté «Services». Problème supplémentaire soulevé: une non optimisation des appels WS «SGE» «Services» qui sont systématiquement effectués.
+
+===== Solution B : avec accès direct
+
+[plantuml, archi-scenario-abo-b, png] 
+.Solution avec mise en cache
+....
+left to right direction
+rectangle "Application Web" as aWeb
+rectangle Services
+rectangle SGE
+database "Référentiel \ndes\nabonnements" as dbAbo
+aWeb --> Services : RW
+Services --> dbAbo : RW
+Services <-- SGE : W
+SGE --> dbAbo : R
+....
+
+[TIP]
+====
+Solution simple à mettre en place
+====
+
+[WARNING]
+====
+Pas pleinement dans les règles de l'art de l'architecture SI
+====
+
+===== Solution C : avec accès direct
+
+[plantuml, archi-scenario-abo-c, png] 
+.Solution avec réplication
+....
+left to right direction
+rectangle "Application Web" as aWeb
+rectangle Services
+rectangle SGE
+database "Référentiel \ndes\nabonnements" as dbAbo
+database "Réplique" as dbRep
+aWeb --> Services : RW
+Services --> dbAbo : RW
+Services <-- SGE : RW
+SGE --> dbRep : R
+dbAbo --> dbRep : Réplication
+....
+
+[TIP]
+====
+Dans les règles de l'art de l'architecture SI
+====
+
+[WARNING]
+====
+Infrastructure de réplication à mettre en place
+====
+
+Pour le scénario C, la réplication peut être effectuée par la fonctionnalité _Oracle Streams_, qui permet d’envoyer les informations aux deux BDD. Cette fonctionnalité est offerte en standard dans la licence Oracle, donc sans surcoût de licence.
+
+=> Solution Retenue : Pas de gestion de cache pour les abonnements sur individu. Une solution pourra être évaluée en évolution si des besoins de performance accrus se présentent.
+
+==== ESTER: Besoin statistiques médiation
+
+WM Mediator propose 2 canaux EDA pour la remontée de statistiques :
+
+* EDA vers UM
+** avec des publications par service
+** agrégé par service pour les métriques à intervalles configurable (5 min)
+** un par erreur (avec les détails de l'erreur)
+* EDA vers BDD
+** Écriture dans des tables WM en asynchrone
+
+La cellule architecture a retenu la solution «EDA vers Broker» pour son utilisation de l’UM et profiter de la robustesse de celui-ci. Voici donc l’architecture ciblée:
+
+include::subdocs/_ESTER_schema3.adoc[]
+
+Les statistiques sont publiées à intervalle régulier par service, sur l’UM de suivi. Le serveur de Suivi/Stats s’abonne aux documents publiés par l’IS Mediator, consolide les données dans la table de statistiques du SGE, qui peuvent alors être consultées via l’IHM d’activité.
+
+Plusieurs types de données peuvent être remontés par WM Mediator :
+
+* Métriques (voir documentation «Administering Mediator»)
+** Availability
+** Average Response Time
+** Fault Count
+** Maximum Response Time
+** Minimum Response Time
+** Successfull Request Count
+** Total Request Count
+* Cycle de vie (Arrêt / (re)démarrage)
+* Violation de policy
+* Erreurs (unitairement)
+* Transactions
+* Monitoring
+
+Les besoins exprimés quand aux données remontées sont les suivants, par service:
+
+* Le nombre total d’appels
+* Le nombre d’appels KO
+
+Le nombre d’appels KO est transformé en pourcentage par l’IHM pour affichage en temps que tel. Cette donnée est issue de la valeur «Fault Count» des métriques Mediator, donc n’inclus que les problèmes d’accès au back office (pas les SOAP-FAULT).
+
+La donnée «temps de traitement moyen», affichée pour d’autres natures, est disponible dans les données remontées par WM Mediator, mais ne fait pas partie des besoins de SGE V2 pour ESTER.
+
+Le besoin de pouvoir distinguer les statistiques par correspondant appelant n’est pas couvert: les données ne sont pas disponibles dans les statistiques Mediator.
+
+=== PIS Gap View [Effort sur l’existant]
+
+[NOTE]
+====
+Show gap between baseline and target architecture.
+====
+
+Les écarts déterminés entre les domaines fonctionnels et l’existant SGE V1 nous permet d’évaluer l’effort à fournir pour atteindre la cible SGE V2, avec:
+
+* _Design_: à (re)définir
+* _New_: nouveau
+* _Upgrade_: à améliorer
+
+[cols=",",options="header",]
+|==========================================
+|*Regroupement fonctionnel* |*Écart SGE V1*
+|Diffusion de fichier |Design
+|BPM |Design
+|Constituer batch |Design
+|Envoyer requête ordonnancée |Design
+|Envoyer CRF |Design
+|Trace interne |Design
+|Catalogue / Adhésion |Design
+|Intégrer requête |Design + New
+|Médiation |New
+|SISO |New
+|Abonnement |New
+|Anomalies |New
+|Suivi technique |New
+|Deploiement |New
+|Gestion de conf |New
+|Traiter messages |Upgrade + Design + New
+|==========================================
+
+== Conceptual Technology Infrastructure
+
+[NOTE]
+====
+There are services that are used generically throughout the organization. It is hard to define one owner who can govern the service. Often services like that are managed centrally, typically by some form of IT department.
+====
+
+<<<
+== Logical Technology Infrastructure
+
+[NOTE]
+====
+All components, and the most important connections between components are visualized using logical forms. This keeps people away from thinking physical, and getting confused as a result.
+====
+
+=== TI Solution Alternatives View
+
+[NOTE]
+====
+The real technology choices are made and analyzed at this point in time. If cost efficiency had been one of the principles, the shared components sceneario is better.
+====
+
+<<<
+== Physical Technology Infrastructure
+
+[NOTE]
+====
+What do I buy? How long will it take? How much will it cost?
+====
+
+=== PTI Transaction View [dimensionnement]
+
+[NOTE]
+====
+The number of transactions per second might be critical for certain components in the architecture. The transaction characteristics will enable you to determine average and peak transaction volumes per component.
+====
+
+Le document *[1]* contient la projection de volumétrie cible SGE V2 en message par type de flux.
+
+==== SGE V1: volumétrie réelle
+
+*«en moyenne 85 fichiers par jour de 10 messages »*
+
+85 x 10 / 86400 = *0.01 TPS*
+
+==== SGE V2: volumétrie estimée
+
+La volumétrie sera principalement liée à celle du RGCU. Les données sont consolidées dans le document *[1]*.
+
+Le nombre de transactions entrantes par secondes (TPS) est obtenu par division à la seconde du nombre de messages annuels échangés. Il ne prend donc pas en compte les pics et creux de charge. Il s’agit d’une granularité message, le nombre réel de sollicitations des partenaires entrant est donc inférieur grâce aux injections d’agrégations de messages.
+
+Le débit message annuel estimé est de *8 000000* messages E/S par jour, soit *91 TPS* d’après le document *[1]* en version V0.6.
+
+Ensemble des paramètres retenus:
+
+* Average Message Size: 150 KB
+* Expected Throughput: *100 TPS*
+* Number of Package: 100+
+* Process Speed Assumed: 2.8 GHz
+
+Pour supporter ces caractéristiques en pic, nous proposons la configuration type suivante:
+
+[cols=",,,,",options="header",]
+|========================================================
+|*Item* |*Product* |*CPU (Cores)* |*JVM (GB)* |*Nodes*
+|*IS B2B (x4)* |Integration Server |2 |8 |2 (Actif/Actif)
+|*IS MET* |Integration Server |2 |8 |2 (A/A)
+|*IS A2A* |Integration Server |2 |8 |2 (A/A)
+|*IS ANO* |Integration Server |1 |4 |2 (A/A)
+|*REF/SUIVI (x4)* |JBoss / WebLogic |2 |8 |2 (A/A)
+|*Messaging (x2)* |Universal Messaging |1 |2 |2 (A/P)
+|*Monitoring* |Integration Server |1 |4 |1
+|*MWS* |My webMethods Server |1 |2 |1
+|========================================================
+
+SAN:
+
+* Répertoire partagé par les UMs
+* Répertoire partagé transverse aux serveurs IS pour les installations
+
+Les items scalables sont indiqués dans le schéma du paragraphe _1.6.2_ _PISC Interaction Model [architecture logicielle]_
+WARNING: faire un renvoi
+
+Chaque item, indiqué comme tel, pourra être redondé suivant l’augmentation progressive du nombre de messages traités.
+
+Le dimensionnement reste à affiner avec des tests de charge et une décomposition réelle du trafic.
+
+===== Volumétrie Diffusion Fichier
+
+Basé sur les chiffres du document *[1]*, la volumétrie simplifiée est la suivante:
+
+image:archi-volumetrie.png[]
+
+.Informations RGCU :
+* DF / Alimentation: Si nous prenons le cas métier le plus volumineux en terme d'assuré (la DSN), nous aurions en moyenne par assuré 2 éléments de carrière. En prenant l'encapsulation de la Norme R, on peut dire qu'en moyenne par assuré il faut compter 1,5 à 2 ko max. _[Bastien PERRIN]_
+* DF / Restitution: Un élément de carrière, dans sa structure la plus complexe, ne devrait pas dépasser 500 octets ou que dans des cas exceptionnels, mais de toute façon pas au dessus de 1ko. On considère qu'une carrière représentative (dans 5 à 10 ans donc intégrant le passage à la DSN) ne devrait pas excéder les 300 à 400 éléments. _[Manuel HUBERT]_
+
+.Hypothèses résultantes :
+* En mode Diffusion Fichier
+** une alimentation ne dépasse pas 2Ko.
+** une restitution dépasse rarement 200Ko (500 octets x 400 éléments).
+
+Calculs :
+
+[cols=",,2,,2,,,",options="header",]
+|=========================================================================================================
+|Nature |flux |msg entrants / an |desti / msg |msg sortants / an |Ko / msg |jours ouvrés / an |*Go / jour*
+|DF |Alimentation |700 000 000 |1 |700 000 000 |5 |250 |*90*
+| |Restitution |100 000 000 |1 |100 000 000 |200 | |
+|=========================================================================================================
+
+L’estimation de débit sortant du SGE, en mode Diffusion Fichier, pour les flux RGCU est de *90 Go / jour*.
+
+=== Physical IS-TI mapping [logique => physique]
+
+[NOTE]
+====
+This view shows the relevant relationships between the physical IS and TI components.
+====
+
+.Règles :
+* Les BDD métier et technique doivent être sur des VM séparées. _[Thomas PERELLE]_
+* [line-through]*Pas de mutualisation des BDD des environnements sur un même serveur BDD, même en séparant les SID. _[Yoann GERARD]_* Mutualisation serveur BDD possible, séparation des SID. _[Thomas PERELLE]_
+* L’IS admin doit être sur une VM séparée et regroupée pour les environnements usine. _[Thomas PERELLE]_
+* Les serveurs logiques Jboss et Weblogic doivent être sur des VM séparées. _[Thomas PERELLE]_
+* Universal Messaging: Un seul serveur pour les environnements usine. _[Thomas PERELLE]_
+* Les SID des bases ont un nommage réglementé. _[Thomas PERELLE]_
+* Les VMs ont un gabarit et ont, sauf exception, une taille initiale de 4Go de RAM. _[Thomas PERELLE]_
+* Les users admin BDD doivent être des comptes nominatifs SNSV (Windows). _[Thomas PERELLE]_
+
+==== Environnements de pré-production et production
+
+[plantuml,archi-regroup-phys-prod,png]
+.VMs de production
+....
+rectangle VM-ESB-1 {
+    rectangle "IS B2B-FIC"
+    rectangle "IS ANO"
+    rectangle "IS B2B-DATA"
+    rectangle "IS B2B-WS"
+}
+rectangle VM-WLO-1 {
+    rectangle "IHM-SUIVI"
+    rectangle "IHM-CAT"
+}
+rectangle VM-JBOSS-1 {
+    rectangle "S-SUIVI"
+    rectangle "S-CAT"
+}
+rectangle VM-BPM-1 {
+    rectangle "IS MET"
+    rectangle "IS A2A"
+}
+rectangle VM-ADMIN-1 {
+    rectangle "IS monitor"
+    rectangle MWS
+    rectangle CentraSite
+}
+rectangle VM-MSG-1 {
+    queue "UM ESB"
+    queue "UM SUIVI"
+    queue "UM STATS"
+}
+rectangle VM-MED-1 {
+    rectangle "IS B2B-MED"
+}
+rectangle VM-BDD-WM-1 {
+    database "Tech WM"
+}
+rectangle VM-BDD-MET-1 {
+    database "CATALOGUE"
+    database "MET"
+    database "SUIVI"
+}
+....
+
+==== Environnements usine (DEV/INT/QUA)
+
+2 chaînes d’environnement avec chacun :
+
+* Un environnement de développement (DEV)
+* Un environnement d’intégration (INT)
+* Un environnement de qualification (QUA)
+
+Chaîne 1(DEV1/INT1/QUA1) :
+
+[plantuml,archi-regroup-phys-usine,png]
+.VMs usine
+....
+
+rectangle VMU-ESB-DEV1 as esbDev {
+    rectangle "MONO IS" as monoDev
+}
+rectangle VMU-ESB-INT1 as esbInt {
+    rectangle "MONO IS" as monoInt
+}
+esbDev .. esbInt
+rectangle VMU-ADMIN-1 as admin {
+    rectangle "IS monitor" as ism
+    rectangle MWS as mws
+    rectangle CentraSite as cts
+    ism .. mws
+    mws .. cts
+}
+
+
+rectangle VMU-ESB-QUA1 as esbq {
+    rectangle "IS B2B-FIC" as isB2bFic
+    rectangle "IS ANO" as isAno
+    rectangle "IS B2B-DATA" as isData
+    rectangle "IS B2B-WS" as isWs
+    rectangle "IS B2B-MED" as medQua
+    isB2bFic .. isAno
+    isAno .. isData
+    isData .. isWs
+    isWs .. medQua
+}
+rectangle VMU-MSG-1 as msg {
+    rectangle DEV1 as msgDev {
+        queue "UM ESB" as umEsbDev
+        queue "UM SUIVI" as umSuiviDev
+        umEsbDev .. umSuiviDev
+    }
+    rectangle INT1 as msgInt {
+        queue "UM ESB" as umEsbInt
+        queue "UM SUIVI" as umSuiviInt
+        umEsbInt .. umSuiviInt
+    }
+    rectangle QUA1 as msgQua {
+        queue "UM ESB" as umEsbQua
+        queue "UM SUIVI" as umSuiviQua
+        umEsbQua .. umSuiviQua
+    }
+}
+rectangle VMU-BPM-QUA1 as bpm {
+    rectangle "IS MET" as bism
+    rectangle "IS A2A" as bisa
+    bism .. bisa
+}
+rectangle VM-BDD-WM-1 as dbWm {
+    database "DEV WM" as dbWmDev
+    database "INT WM" as dbWmInt
+    database "QUA WM" as dbWmQua
+    dbWmDev .. dbWmInt
+    dbWmInt .. dbWmQua
+}
+rectangle VM-BDD-MET-1 as dbMet {
+    rectangle DEV1 as dbDev {
+        database MET as dbMetDev
+    }
+    rectangle INT1 as dbInt {
+        database MET as dbMetInt
+    }
+    rectangle QUA1 as dbQua {
+        database MET as dbMetQua
+        database "REF-SU"
+    }
+    dbDev .. dbInt
+    dbInt .. dbQua
+}
+
+
+....
+
+[cols=",,,,",options="header",]
+|=====================================================
+|*Item* |*Product* |*CPU (Cores)* |*JVM (GB)* |*Nodes*
+|*IS* |Integration Server |1 |2 |1
+|*Mono IS* |Integration Server |2 |4 |1
+|*S-REF* |Jboss |1 |1 |1
+|*S-SUIVI* |Jboss |1 |1 |1
+|*IHM-REF* |WebLogic |1 |1 |1
+|*IHM-SUIVI* |WebLogic |1 |1 |1
+|*UM ESB* |Universal Messaging |1 |1 |1
+|*UM SUIVI* |Universal Messaging |1 |1 |1
+|*MWS* |My webMethods Server |1 |2 |1
+|*BDD* |Oracle Server |1 |2 |1
+|*Terracotta* |Terracotta Server |1 |1 |1
+|=====================================================
+
+[cols=",,,",options="header",]
+|=============================================
+|*VM* |*Serveurs logiques* |*RAM* |*CPU*
+|VMU-ESB-DEV1 |Mono IS |4 Go |2
+|VMU-ESB-INT1 |Mono IS |4 Go |2
+|VMU-ESB-QUA1 |5xIS + Terracotta |*12 Go* |2
+|VMU-BPM-QUA1 |2xIS |4 Go |2
+|VMU-MSG-1 |3xUM ESB + 3xUM SUIVI |*6 Go* |2
+|VMU-ADMIN-1 |IS+MWS |4 Go |2
+|VMU-WLO-1 |3xIHM-REF+3xIHM-SUIVI |*6 Go* |2
+|VMU-JBOSS-1 |3xIHM-REF+3xIHM-SUIVI |*6 Go* |2
+|VMU-BDD-WM-1 |3xBDD |*6 Go* |2
+|VMU-BDD-MET-1 |4xBDD |*8 Go* |2
+|=============================================
+
+=== PTI Disaster Recovery View
+
+[NOTE]
+====
+No detail in document reference
+====
+
+L’architecture qui prévaut afin d’assurer un service continu, doit être, dans l’ordre de sécurisation décroissante :
+
+* Les 2 nœuds sur 2 sites différents
+* Les 2 nœuds dans 2 salles différentes d’un seul site
+* Les 2 nœuds sur 2 baies de serveurs différents d’une seule salle d’un seul site
+
+Il existe 2 sites de production, mais avec des capacités d’accueil différente. Le site principal est dans les locaux de la SNSV, avec une seule salle. Le site secondaire, de capacité d’accueil moindre, ne peut être utilisé comme un hébergeur de nœud. Il est à envisager uniquement comme un site de backup en cas d’incident grave sur le premier site.
+
+En l’état actuel, la mise en place des nœuds dans 2 baies de serveurs différentes est la seule solution de sécurisation de continuité de service envisagée.
+
+Pour assurer la continuité de service, les UM actif/passif stockent leurs données dans un répertoire SAN partagé listé au paragraphe précédent.
+
+=== PTI Component Interaction Model [architecture physique]
+
+[NOTE]
+====
+This model is constructed in the same way as in the logical architecture. The relevant interactions are superimposed on top of the model of the physical components. As stated earlier, focus on the relevant interactions, and not all interactions, or it would turn into an interaction blur.
+====
+
+Ci-dessous l’architecture physique noeud1 / noeud2 obtenue.
+
+image:archi-physique.jpeg[]
+
+==== Focus médiation
+
+image:archi-physique-mediation.png[]
+
+La fonctionnalité de médiation ESTER est assurée par une succession de 3 modules:
+
+Un Reverse Proxy (Beeware):: Assure un premier niveau de sécurité, notamment la limitation instantanée de flux
+Une gateway (Axway ou Morpho):: Assure la gestion de jetons Interops-A
+Un serveur de médiation (WM Mediator):: Assure les fonctions de virtualisation, routage de services et remontée de statistiques
+
+=== PTI Component Security View [architecture réseau]
+
+[NOTE]
+====
+Check if the security attributes of the TI services in the physical TI components are in line with each other.
+====
+
+Ci-dessous l’architecture réseau retenue.
+
+.Règles :
+* VM ESB / BPM / UM dans le même VLAN _[Mathieu Crogiez]_
+* VM WLS & JBOSS dans VLAN distinct des IS _[Mathieu Crogiez]_
+
+image:archi-reseau.png[]
+
+<<<
+== Annexes
+
+include::subdocs/_closure-fr.adoc[]

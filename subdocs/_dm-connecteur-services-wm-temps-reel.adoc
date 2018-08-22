@@ -1,0 +1,41 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+.Services webMethods connecteur (Temps réel)
+[plantuml, dm-wm-services-connecteur-temps-reel, png]
+....
+|IS FIC : connecteurs|
+start
+-> ISB2B-WS appel WS;
+:**dgeConnectorDmPe.pub:receiveDmEntreeTr**
+//cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeTr//
+    - Insertion en BDD Demandes
+    - Contrôles OK/KO + découpages en messages + envoyer réponse via WS;
+if (Contrôle) then (KO)
+stop;
+else
+-> Si OK dgeCommonsDocs.docs.dm.internal:DmMessage;
+:**dgeConnectorDmPe.pub:receiveDmEntreeMessage**
+//cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeMessage//
+    - Insertion en BDD Messages
+    - Publier l'ordre du routage du message;
+-[dashed]-> dgeCommonsDocs.docs.dm.bpm:StartBpmDm;
+|IS MET : Routage|
+stop
+start
+split
+-[dashed]-> dgeCommonsDocs.docs.dm.bpm:EndBpmDm;
+|IS FIC : connecteurs|
+:**dgeConnectorDmPe.pub:handleEndDmPe**
+//cnav.isic.dge.b2b.dm.pe.Receiver.handleEndDmPe//
+    - Préparation des données CRF
+    - Publier l'ordre de génération de l'ARLE;
+-> dgeCommonsDocs.docs.dm.internal:DmArle (seulement si tous les CRF sont prêts);
+
+stop;
+
+split again
+:**dgeConnectorDmPe.pub:handleEndDmPs**
+//cnav.isic.dge.b2b.dm.ps.Generator.handleEndDmPs//
+    - Préparation message de sortie;
+stop
+end split
+....

@@ -1,0 +1,11 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+
+.Arbre binaire
+[plantuml, oral-binary-tree, png]
+....
+(*) --> "<b>Node a</b>\n<i>value = 5</i>" as NA
+NA --> "<b>Node b</b>\n<i>value = 3</i>" as NB
+NA --> "<b>Node c</b>\n<i>value = 10</i>" as NC
+NB --> "<b>Node d</b>\n<i>value = 1</i>" as ND
+NB --> "<b>Node e</b>\n<i>value = 4</i>" as NE
+....

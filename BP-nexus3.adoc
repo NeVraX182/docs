@@ -1,0 +1,66 @@
+= Nexus3 Configuration Details
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Server configuration
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+WARNING: The technical account has to be created in CORP and defined in LAM as an administrator
+
+=== URL
+
+Repositories, release, snapshot and group, should already be created.
+
+The public repository address can be found there :
+
+* Click on the wheel
+* *Repository* -> *Repositories* -> *maven-public*
+* Get the URL
+
+=== Set SNAPSHOT retention
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+* Go to *Administration* (wheel) -> *System* -> *Tasks* -> *Create task*
+* Type = Remove Snapshots From Maven Repository
+* Fields
+** Name = Delete old snapshots
+** Repository = (All Repositories)
+** Minimum snapshot count = 5
+** Snapshot retention (days) = 7
+** Delete immediately = [x]
+** Task frequency = Daily
+** Time to run this task = 8:00
+
+=== Add a proxy (=remote) repository
+
+* Connect to Nexus
+* Click on *Administration* (wheel) -> *Repositories* -> *Repository* -> *Create repository*
+* Choose *maven2 (proxy)*
+* Fill repository data
+** Name = Wakaleo
+** Remote Storage = http://www.wakaleo.com/maven/repos
+** Download Remote Indexes = False
+* Save
+* On the corresponding line in the list, click on *Analyze*
+
+Now artifacts should be accessible via maven if the settings.xml is well configured to reach the Nexus :
+
+[source,xml]
+.Settings.xml using Nexus
+----
+include::../../../cg-settings.xml[]
+----
+
+.Repositories to add
+* For SchemaSpy : http://www.wakaleo.com/maven/repos
+
+include::subdocs/_closure.adoc[]

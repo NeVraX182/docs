@@ -1,0 +1,111 @@
+= Jira Configuration Details
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Server configuration
+
+Jira is used here in association with BugPicture, to have a Gantt chart.
+
+=== JIRA Access restriction
+
+.To restrict the access to stay under the 10 members for the cheapest license ($12 with tax once and for all) :
+* in LAM, create the jira-users group, and put in all users you want to give access to JIRA
+* browse user management in JIRA : https://dge.pl.s2-eu.nvx.com/jira/secure/admin/user/UserBrowser.jspa
+** Give you the *jira-administrators* right and remove *pladmin* from this group
+** define *jira-users* as default group
+** remove all groups EXCEPT *jira-administrators* and *jira-users*
+
+=== Project
+
+==== Add Time Estimated
+
+.To add *time estimated* in Kanban
+* Edit an issue
+* Where is my field ? : "Time Tracking"
+* Click on the link to add it
+
+Now it is added. To define to days as default unit :
+
+* *Wheel* -> *Issues* -> Left pannel *Time Tracking* -> *Deactivate*
+* Change configuration
+** **Time format** = days
+** **Default Unit** = day
+* Click *Activate*
+
+==== Configure emails notification
+
+To disable emails notification :
+
+* *Projects* -> *MyProject* -> Bottom left corner *Project Settings* -> *Notifications* -> *Actions* -> *Select a scheme* -> *None*
+
+=== Version
+
+Perform these actions for each new version.
+
+==== Add new members
+
+If you have new members in this version, add them in LAM and especially in the *jira* group.
+
+Update JIRA rights :
+
+* Click on the wheel -> *User management* -> left section *User Directories*
+* Click *Synchronize*
+
+==== Create the version
+
+* *Projects* -> *MyProject* -> left section *Releases*
+* Fill The data name/dates/description
+* Click *Add*
+
+==== Add tickets
+
+* Add all tickets in JIRA
+* Import all in BigPicture
+
+<<<
+=== BigPicture
+
+BigPictures is a 10$ plugin that adds Gantt capabilities to JIRA. Install this plugin if you have a license or want to try it for a month.
+
+image:jira-bigpicture.png[]
+
+==== Gantt
+
+To see Gantt chart, go to *BigPicture* -> *YourProject* -> *Gantt*.
+
+[NOTE]
+====
+You can edit a ticket using "E" shortcuts when in GANTT view
+====
+
+==== Configure layout
+
+.To obtain the layout of the picture
+* *BigPicture* -> *Gantt*
+* *View* -> *Layout* -> *Compact*
+* *View* -> *Perspective* -> *Team*
+* *View* -> *Perspective* -> *Manager Perspectives*
+* using drag and drops, keep only these fields
+** Key, Summary, Priority, Assignee, Time Tracking
+* save
+* *BigPicture* -> *Gantt*
+* *Data* -> *Sort tasks A-Z* -> *Assignee*
+
+==== Regroup tasks
+
+.To regroup tasks under bigger subjects in Gantt view
+* *Task* -> *Create task* -> *Artificial Task*
+* Put it before all wanted subtasks with *up arrow* or *down arrow*
+* Select each task and make them subtask by clicking on *->*
+
+==== Add deadlines
+
+.To add a deadline in Gantt view
+* *Task* -> *Create task* -> *Artificial task*
+= Nexus3 Configuration Details
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+include::subdocs/_closure.adoc[]

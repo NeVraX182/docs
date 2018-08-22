@@ -1,0 +1,68 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+[plantuml, archi-dm-sequence, png]
+.DM : Diagramme de séquence
+....
+participant Producteur
+participant C1
+participant Cn
+participant SAA
+participant DGE #orange
+
+==Entrée Fichier==
+activate Producteur
+Producteur -> SAA : DM_ENTREE
+activate SAA
+deactivate Producteur
+SAA -> DGE : DM_ENTREE
+deactivate SAA
+activate DGE
+DGE -> SAA : DM_ARLE
+activate SAA
+SAA -> Producteur : DM_ARLE
+deactivate SAA
+activate Producteur
+DGE -> SAA : DM_CRF
+deactivate Producteur
+deactivate DGE
+activate SAA
+SAA -> Producteur : DM_CRF
+deactivate SAA
+activate Producteur
+
+==Entrée WS==
+Producteur -> DGE : DM_ENTREE
+activate DGE
+DGE -> Producteur : DM_ENTREE (retour WS)
+deactivate Producteur
+DGE -> SAA : DM_CRF
+activate SAA
+deactivate DGE
+SAA -> Producteur : DM_CRF
+deactivate SAA
+activate Producteur
+
+==Sortie Fichier==
+activate DGE
+DGE -> SAA : DM_SORTIE
+deactivate Producteur
+activate SAA
+SAA -> C1 : DM_SORTIE
+deactivate SAA
+activate C1
+DGE -> SAA : DM_SORTIE
+activate SAA
+SAA -> Cn : DM_SORTIE
+deactivate SAA
+activate Cn
+C1 -> SAA : DM_ARLS
+deactivate C1
+activate SAA
+SAA -> DGE : DM_ARLS
+deactivate SAA
+Cn -> SAA : DM_ARLS
+activate SAA
+deactivate Cn
+SAA -> DGE : DM_ARLS
+deactivate SAA
+deactivate DGE
+....

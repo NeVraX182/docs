@@ -1,0 +1,66 @@
+ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
+[plantuml, diagram-archi-fonc, png]
+.Architecture fonctionnelle
+....
+left to right direction
+rectangle "Partenaires" as part {
+    rectangle "Partenaires WS" as pWs
+    rectangle "Partenaires Batch" as pBatch
+}
+rectangle "Sécurité" as secur
+artifact "C:X/SFG/SAA" as saa
+rectangle Applications as apps {
+    rectangle SNGI
+    rectangle DCR
+    rectangle RFO
+}
+rectangle "Dispositif de Gestion des Echanges" as dge #LightBlue {
+    artifact "Serveur FTP" as sFtp
+    rectangle "B2B IS" as b2bIs #White {
+        node "IS\nB2B-MED" as isMed
+        rectangle "IS statefull" as sfullIs {
+        node "IS\nB2B-FIC" as isFic
+        node "IS\nB2B-WS" as isWs
+        node "IS\nB2B-DATA" as isData
+        }  
+    }
+    rectangle "Back IS" as backIs #White {
+        node "IS MET" as isMet
+        node "IS A2A" as isA2a
+        node "IS ANO" as isAno
+    }
+    rectangle DB #White {
+        database "DGE" as dbDge
+        database "ANO" as dbAno
+        database "WM\nTech" as wmTech
+    }
+    rectangle UM #White {
+        queue "UM SUIVI" as umSuivi
+        queue "UM ESB" as umEsb
+    } 
+    node "MWS\nIS Monitor" as isMonitor
+    rectangle "Suivi" as sSuivi
+    rectangle "Catalogue" as sCat
+}
+actor Exploit
+actor CDS
+actor Partenaires
+Partenaires <--> sSuivi
+sSuivi <--> b2bIs
+pBatch <--> saa
+saa <--> sFtp
+sFtp <--> isFic
+b2bIs <--> umSuivi
+pWs <--> secur
+secur <--> isMed
+b2bIs <--> wmTech
+dbDge <--> sfullIs
+sfullIs <--> umEsb
+sCat <-> sfullIs
+CDS <--> sCat
+umSuivi <--> backIs
+Exploit <--> isMonitor
+umEsb <--> backIs
+DB <--> backIs
+isA2a <--> apps
+....

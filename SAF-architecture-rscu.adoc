@@ -1,0 +1,197 @@
+= Etude d'Architecture webMethods Alimentation Masse: RSCU
+include::subdocs/_init-fr.adoc[]
+ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
+
+.Historique
+[cols="^2,^2,<10",options="header"]
+|===================================================
+|Date|Author|Detail
+include::{history-dir}/{docname}.adoc.psv[]
+|===================================================
+
+<<<
+== Introduction
+Il s'agit du dossier d'étude d'architecture du RSCU de point de vue du pôle expertise webMethods de Capgemini.
+
+== Exigences et contraintes
+* [x] Performances (y compris pour une alimentation unitaire en cours de batch d'un autre régime)
+* [x] Scalabilité
+* [x] Intégrité des données
+* [x] Reprise sur erreur sans redémarrage à zéro
+* [x] Suivi temps réel de l'évolution des fichiers et des éléments de carrière
+* [x] Pas de pénalisation des autres éléments de carrière si le traitement de l'un d'eux tombe en erreur
+* [x] Lotissement intelligent (années de naissance) pour appel SNGI
+
+<<<
+== Diagramme de séquence macro
+
+[plantuml, diagram-sequence, png]
+....
+box "Partenaires" #White
+	participant Régime
+	participant DGE
+end box
+box "RSCU" #LightGreen
+	participant RSCU_Alim #Orange
+	participant RSCU_BDD
+end box
+box "Systèmes participants" #White
+	participant SNGI
+	participant Divers
+	participant RefEmp
+end box
+
+== par fichier ==
+Régime -> DGE: Fic. alim. masse
+activate Régime
+deactivate Régime
+activate DGE
+DGE --> Régime: Acquittement
+activate Régime
+deactivate Régime
+DGE -> RSCU_Alim: Fic. alim. masse
+deactivate DGE
+activate RSCU_Alim
+RSCU_Alim -> RSCU_Alim: Division en carrières
+RSCU_Alim --> DGE: Acquittement
+activate DGE
+deactivate DGE
+
+== par carrière ==
+RSCU_Alim -> RSCU_Alim: Contrôle norme
+RSCU_Alim -> SNGI: Contrôle SNGI
+activate SNGI
+SNGI --> RSCU_Alim: OK
+deactivate SNGI
+RSCU_Alim -> Divers: Echanges informatifs
+Divers --> RSCU_Alim: OK
+RSCU_Alim -> RefEmp: Echange Référentiel Employeur
+RefEmp --> RSCU_Alim: OK
+RSCU_Alim -> RSCU_Alim: Conversion norme
+RSCU_Alim -> RSCU_BDD: Ordre WS BDD
+deactivate RSCU_Alim
+....
+
+=== Hypothèse Spring Batch
+
+Dans l'hypothèse de traitement du fichier en Spring Batch dans le cas de la masse, Spring Batch effectue via des appels de service java les opérations sur chaque carrière.
+Ces opérations unitaires sont communes à l'unitaire et à la masse. De plus, ces opérations sont prévues en synchrones en mode unitaire.
+
+La proposition commerciale était à l'origine prévue sur webMethods pour la masse et l'unitaire factorisés.
+Dans l'hypothèse de Spring Batch en masse, notre préconisation est d'abandonner webMethods en unitaire pour les raisons suivantes :
+
+* webMethods se justifie sur des traitements multiples en parallèle
+* webMethods se justifie sur des traitements asynchrones
+* La masse et l'unitaire sont a homogénéiser en terme de techno pour des raisons de :
+** Cohésion de conception
+** Factorisation de code
+** Coût de réalisation Capgemini
+** Coût de maintenance CNAV
+
+<<<
+== Diagramme d'activités macro "Fichier"
+
+Ce processus regroupe les opérations faites au niveau fichier, et délègue au processus "Carrière" au fil de l'eau pendant le
+découpage.
+
+[plantuml, activites-fichier, png]
+....
+start
+:Recevoir un fichier;
+if (Partenaire en phase transitoire ?) then (oui)
+  :Contrôles bloquants;
+  note left
+    Ces opérations transitoires
+    ne doivent pas complexifier
+    le process nominal
+  endnote
+  if (taux critique) then (oui)
+   stop;
+  endif
+endif
+:Créer une entrée dans 
+la table Oracle FICHIERS;
+note left
+  Seules qques données
+  persistée : RefFichier, 
+  Date, Statut, DateStatut
+endnote
+:Parcourir le fichier
+à la recherche de carrières;
+repeat
+  :Extraire la carrière
+  courante;
+  note
+    Maintenir les actions
+    carrière au minimum
+    pour ne pas pénaliser le
+    fichier sur un problème
+    lié à une carrière
+  endnote
+  :Publier la carrière
+  sur le bus;
+  note left
+    Ici démarrent 
+    les processus
+    "Carrière"
+  endnote
+repeat while (Fin du fichier ?) is (non)
+-> oui;
+:Acquitter du Fichier;
+stop
+....
+
+<<<
+== Diagramme d'activités macro "Carrière"
+
+Le processus "Carrière" peut être à la fois le traitement d'un élement de masse et unitaire. Il est intégralement asynchrone.
+Dans cette proposition, les carrières sont stockées en base. Ceci est plus avantageux si :
+
+* Les données d'une carrière ne sont pas toutes transmises aux systèmes participants
+* Plusieurs systèmes participants sont sollicités en asynchrone (JMS, fichier, WS aller + WS retour)
+
+Sinon privilégier le transport via le bus, hors proposition.
+
+[plantuml, activites-carriere, png]     
+....
+start
+:Stocker la carrière
+en base Oracle;
+note
+  Définir une politique de
+  rétention courte
+endnote
+-[dotted]->
+:Contrôler la norme;
+-[dotted]->
+:Contrôler SNGI par lot;
+note left
+  Système de file avec envoi JMS
+  régulier par lots triés par année 
+  de naissance
+endnote
+-[dotted]->
+:Informer les systèmes;
+floating note left
+  Privilégier l'échange synchrone
+endnote
+-[dotted]->
+:Solliciter le 
+Référentiel Employeur;
+floating note left
+  Chaque étape prépare les 
+  données si elle peut éviter 
+  à la suivante de récupérer 
+  le contexte en base
+endnote
+-[dotted]->
+:Conversion nouvelle norme;
+-[dotted]->
+:Ordre WS BDD;
+stop
+....
+
+<<<
+== Annexes
+
+include::subdocs/_closure-fr.adoc[]

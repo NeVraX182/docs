@@ -1,0 +1,33 @@
+= Technical Documentations using Asciidoc & PlantUml
+
+== Best practices for an efficient project [ENG]
+
+link:BP-asciidoc.html[Asciidoc] documentation-as-code
+
+link:BP-eclipse.html[Eclipse]
+
+link:BP-elastic-suite.html[Elastic Suite]
+
+link:BP-gerrit.html[Gerrit Code Review]
+
+link:BP-gitlab.html[Gitlab]
+
+link:BP-java.html[Java]
+
+link:BP-jenkins.html[Jenkins]
+
+link:BP-jira.html[JIRA]
+
+link:BP-maven.html[Maven]
+
+link:BP-nexus3.html[Nexus3]
+
+link:BP-sonarqube.html[SonarQube]
+
+== Quelques exemples de documentation projet [FR]
+
+link:SAF-architecture-sge.html[Etude IAF d'architecture SGE]
+
+link:SAF-architecture-rscu.html[Etude partielle d'architecture RSCU]
+
+link:oral-technique.html[Support pour oral technique]

@@ -1,0 +1,270 @@
+= Indus Production Line : Configuration Guide
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+<<<
+== Introduction
+
+This document describes, from scratch, how to configure CI Platform on BPM Factory.
+
+This should work for any project using the Production Line from CG Indus team.
+
+== Prerequisites
+
+=== CI PF Initialization
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+Browse and ask for a CI platform :
+
+ Service Catalog -> iProd -> Production Line - PLaaS -> Production Line Initialization
+
+Later, every help tickets will be raised from here :
+
+ Service Catalog -> iProd -> Production Line - PLaaS -> Production Line Coaching and Support
+
+When CI PF is up and running, test the access :
+https://bpmfactory.s2-eu.nvx.com
+
+=== Technical account
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+Using a fake account created in LAM won't work : you can't login to Gerrit with it, hence no HTTP nor SSH key handling is possible.
+
+==== CORP account
+
+Ask for the creation of a technical account (for communication between Jenkins, SonarQube, Gerrit and Nexus) : raise a ticket in
+
+ Service Catalog -> iPlan -> Engagement Repository - ERaaS -> CTF: Service account creation
+
+Add it to LAM (see below).
+
+The user will have to be re-conducted every 6 months, a mail will be sent to administrator. The password never expires.
+
+==== Administration
+
+You can administer it here https://corporatedirectory.nvx.com in section *My Service Accounts*
+
+=== Visio account with PC
+
+If you have a TV where you want to display your devOps KPI, you have to order a PC with a specific account.
+
+Information :
+
+* Price is 220€ + 78€/month.
+* 5-10 days estimated delivery.
+* The "Tiny PC" cannot display more than HD.
+* As of early 2018, it seems that only Dells can display 4K.
+
+Steps :
+
+* Prepare the list of hosts and ports the PC should access
+* Browse https://nvxiticsprod.service-now.com/itics_ess/
+* Go to *Order Services* -> *Physical Computing* -> *Communication* -> *Project Skype Conferencing*
+* Put the order, giving as much detail as possible (hosts/ports/HD/4K...). Then wait for the validation of the EM.
+* Go buy the TV while waiting for the account.
+
+==== Add hosts/ports
+
+* Browse http://help.nvx.com/
+* *IT Infrastructure Services* -> *Network Connectivity* -> *Request Now*
+* Category -> *Modify Network Security Rule*
+** Describe the new host/ports to access
+** Give detailed information
+*** Login : SVC-FR-VCRNSBPMFACT
+*** PC : LFR018678 / 10.69.240.109
+
+<<<
+== LDAP Account Manager (lam)
+
+Choose the service **lam** on your production line :
+
+https://bpmfactory.s2-eu.nvx.com/lam/templates/lists/list.php?type=user
+
+.Add every user of your project to grant him access to your CI PF :
+* *New user*
+** *First name*
+** *Last name* in uppercase
+** *Email adress*
+** *Unix*
+*** *User name* : 8 char max, confirm with the person that it is his CORP login, else change
+*** *Primary group* : users
+** *Save*
+
+=== Mailing list
+
+.Follow these steps if and when you need to create a mailing list :
+* Browser here : http://help.nvx.com/
+* Under section *Popular Requests* click on *(Form) Request for new distribution list*.
+* Expand the *Instructions* section and fill all fields
+** the name you provide will have .fr@nvx.com appended
+** for example, if you want a webMethods list for ADM, you can ask a list named "webmethods.adm" and the mailing list will be webmethods.adm.fr@nvx.com
+* Click *Submit*
+* When created, you can administer it here : https://corporatedirectory.nvx.com
+** Section *My Distribution Lists*
+
+<<<
+== FusionForge
+
+[NOTE]
+====
+Official documentation is here : https://km3.nvx.com/book/1071769
+====
+
+Choose the service "FusionForge" on your production line :
+https://bpmfactory.s2-eu.nvx.com/fusionforge/
+
+=== Add admin rights
+
+[NOTE]
+====
+By default, only the PL owner has admin rights (create project, create trackers).
+====
+
+Select *Site Admin*, section *Global roles and permissions* -> *Forge administrators* -> *Edit Role*
+
+Add CORP login next to *Add User* and click it.
+
+The user should have admin rights right away, thus being able to see the *Site Admin* section.
+
+=== Create project
+
+In the *Site Admin* tab, section *Project Maintenance*, click on the link *Register New Project*.
+
+Fill the required fields.
+
+Now that the project is created, you can access it by going on the *Projects* tab, then *Project List* and finally clicking on the project name.
+
+=== Create tracker
+
+On the project homepage, click on  *Tracker* -> *Administration*.
+
+Set name "TASKS" and a description, then hit *Submit*.
+
+=== Add users
+
+WARNING: The user must have connected at least once on FusionForge to be available.
+
+To add access to users, on the project homepage, click on *Admin*, then *Users and permissions*.
+
+.Two options :
+* You know the CORP login, then you can put it in the box
+* You don't, then click on *Add Users From List*, then the first letter of the family name, then the user
+
+=== Change your name
+
+.Your name can be "Forge Admin" at PL reception, here is how to change it :
+* Click on *My Page* -> Tab *My Account*
+* Change your *First Name* and *Last Name*
+* Hit save
+
+<<<
+== Nexus2
+
+WARNING: Deprecated, use Nexus3
+
+=== Define rights of technical account
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+WARNING: The technical account has to be created in CORP and defined in LAM as an administrator
+
+* Click on *Security* -> *Users*
+* Select *LDAP* (next to *Delete*) and search for your technical account name. It should appear in list below.
+* In *Config* section associated, there is only **admins** Role.
+* Add these roles :
+** **Nexus Deployment Role**
+** **Nexus Developer Role**
+** **Repo: All Repositories (Full Control)**
+
+=== Set SNAPSHOT retention
+
+[NOTE]
+====
+This has to be done only for a new Production Line
+====
+
+* Go to *Administration* -> *Scheduled Tasks* -> *Add*
+* Define the attributes :
+** Name = Delete old snapshots
+** Task Type = Remove Snapshots From Repository
+** Repository/Group = All Repositories
+** Minimum snapshot count = 5
+** Snapshot retention (days) = 7
+** Remove if released = [ ]
+*** Else, you can end up loosing all SNAPSHOTS without notice !
+** Delete immediately = [x]
+** Recurrence = Daily
+** Recurring Time = 8:00
+
+=== Add a proxy (=remote) repository
+
+* Connect to Nexus
+* Click on *Repositories* -> *Add...* -> *Proxy*
+* Fill, example sonatype snapshot
+** Repository ID = sonatype-snapshots
+** Repository Name = Sonatype Snapshots
+** Repository Type = proxy
+** Repository Policy = Snapshot
+** Remote Storage Location = https://oss.sonatype.org/content/repositories/snapshots/
+** Download Remote Indexes = False
+* Hit save
+* Click on bottom section *Routing* -> *Update now*
+* Go back to *Repositories* and select *Public Repositories*
+* In bottom section *Configuration* add your new repository to the right
+* Hit save
+
+Now artifacts should be accessible via maven if the settings.xml is well configured to reach the Nexus.
+
+.Repositories to add
+* For SchemaSpy : http://www.wakaleo.com/maven/repos
+
+<<<
+=== Install WM servers
+
+==== Prerequisites
+
+===== Enable X11, ssh graphical
+
+* On Windows machine
+** install Xming
+** configure putty session for X11 :
+** Connection > SSH > X11
+** check "ENable X11"
+** X display location = localhost:0.0
+
+* On linux VM
+
+ apt-get install libfontconfig1 libxrender1
+ apt-get install libxtst6
+ apt-get install libxi6
+
+===== Install Java 
+* https://tecadmin.net/install-oracle-java-8-ubuntu-via-ppa/
+
+===== Setup hosts
+
+ vi /etc/hosts
+
+ 127.0.0.1 dbhost umhost ishost
+
+===== Prepare database
+
+ ./dbConfigurator.sh -i -file wm-db-script.xml -dir . --password=WMUSER --admin_password=oracle
+
+==== Install IS & UM manually
+
+WARNING: TODO
+
+include::subdocs/_closure.adoc[]

@@ -1,0 +1,95 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+
+.DM : services déclenchés par l'ordonnancement
+[plantuml, dm-services-ordo, png]
+....
+
+partition "IS MET : Ordo" {
+    "<b>dgeOrdo.sched:checkFileTypesToGen</b>\n<i>OrderGenerator.triggerOrdo</i>" as ORDO -[dashed]-> [dgeCommonsDocs.docs.b2b:GenOrder] ===GEN_ORDER===
+
+     "<b>dgeOrdo.sched:checkTimeOutsToGen</b>" -[dashed]-> [dgeCommonsDocs.docs.b2b:TimeOut] ===ORDO_TO===
+}
+
+partition "IS FIC : Connecteur" {
+
+    ===GEN_ORDER=== --> [DM_CRF] "<b>dgeConnectorDmPe.pub:generateDmCrf</b>
+<i>cnav.isic.dge.b2b.dm.pe.CrfManager.generateDmCrf</i>
+    - Récupérer les CRF à traiter
+    - Générer le fichier DM_CRF
+    <color:blue>MESSAGE_ROUTAGES : AGREGATION</color>
+    <color:blue>AGREGATS : GENERATION</color>"
+
+    -[dashed]-> [dgeCommonsDocs.docs.b2b:SendOrder] "<b>dgeConnectorDmPe.pub:sendDmCrf</b>
+        <i>cnav.isic.dge.b2b.dm.ps.Sender.sendDmCrf</i>
+        - Envoyer le fichier DM_CRF via SFTP
+        - Compresser et archiver le fichier DM_CRF
+        <color:blue>AGREGATS : EMISSION</color>"
+
+    --> (*)
+
+    ===GEN_ORDER=== --> [DM_SORTIE] "<b>dgeConnectorDmPs.pub:aggregateDMSortie</b>
+        <i>cnav.isic.dge.b2b.dm.ps.Generator.aggregateDmSortie</i>
+        - Aggrégation des messages selon options
+        - Si options Tiers = NON, générer fichiers DM_SORTIE
+        <color:blue>MESSAGE_ROUTAGES : AGREGATION (OK/PERIME)</color>
+        <color:blue>[NonTiers] AGREGATS (DM_SORTIE) : GENERATION</color>
+        <color:blue>[Tiers] AGREGATS (DM_SORTIE) : INITIALISATION</color>
+        <color:blue>[Tiers] AGREGATS (DM_TIERS_SORTIE) : PREPARATION</color>" as AGG
+
+    AGG --> ===SEND_DM_SORTIE===
+
+    ===ORDO_TO=== --> "<b>dgeConnectorDmPe.pub:receiveDmEntreeTiersTO</b>
+        <i>cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeTiersTO</i>
+    - Publier l'ordre de génération de l'ARLE KO
+    <color:blue>AGREGATS : TIERS_RECEPTION TO</color>"
+
+    --> ===DM_ARLE===
+
+    ===GEN_ORDER=== --> [DM_SORTIE_POST_TIERS]  "<b>dgeConnectorDmPs.pub:generateDmSortiePostTiers</b>
+        <i>cnav.isic.dge.b2b.dm.ps.GeneratorTiers.generateDmSortiePostTiers</i>
+        - Générer le DM_SORTIE
+        <color:blue>AGREGATS : GENERATION</color>"
+
+    --> ===SEND_DM_SORTIE===
+
+    ===GEN_ORDER=== --> [DM_TIERS_SORTIE]  "<b>dgeConnectorDmPs.pub:generateDmTiersSortie</b>
+        <i>cnav.isic.dge.b2b.dm.ps.GeneratorTiers.generateDmTiersSortie</i>
+        - Générer le DM_TIERS_SORTIE
+        <color:blue>AGREGATS : GENERATION</color>"
+
+    --> ===SEND_DM_SORTIE===
+
+     ===SEND_DM_SORTIE=== -[dashed]->  [dgeCommonsDocs.docs.b2b:SendOrder] "<b>dgeConnectorDmPs.pub:sendDmSortie</b>
+        <i>cnav.isic.dge.b2b.dm.ps.Sender.sendDmSortie</i>
+        - Envoyer DM_SORTIE ou DM_TIERS_SORTIE
+        - Compresser et archiver DM_SORTIE ou DM_TIERS_SORTIE
+        <color:blue>AGREGATS : EMISSION</color>
+        <color:blue>[Tiers] TIMEOUT : ACTIF</color>"
+
+    --> [vers partenaires] (*)
+
+    ===DM_ARLE=== -[dashed]-> [dgeCommonsDocs.docs.dm.internal:DmArle] "<b>dgeConnectorDmPe.pub:generateDmArleTiers</b>
+        <i>cnav.isic.dge.b2b.dm.pe.ArleManager.generateDmArleTiers</i>
+        - Générer le fichier DM_TIERS_ARLE
+        <color:blue>AGREGATS : GENERATION</color>"
+
+    -[dashed]-> [dgeCommonsDocs.docs.b2b:SendOrder] "<b>dgeConnectorDmPe.pub:sendDmArle</b>
+        <i>cnav.isic.dge.b2b.dm.pe.ArleManager.sendDmArle</i>
+        - Envoyer l'ARLE via SFTP
+        - Compresser et archiver l'ARLE
+        <color:blue>AGREGATS : EMISSION</color>"
+
+    --> (*)
+
+    (*) --> [SFTP DM_TIERS_ENTREE] "<b>dgeConnectorDmPe.pub:receiveDmEntreeTiers</b>
+            <i>cnav.isic.dge.b2b.dm.pe.Receiver.receiveDmEntreeTiers</i>
+            - Controler le fichier
+            - Publier l'ordre de génération de l'ARLE
+            <color:blue>AGREGATS (DM_TIERS_ENTREE) : RECEPTION</color>
+            <color:blue>AGREGATS (DM_TIERS_SORTIE) : TIERS_RECEPTION</color>"
+
+    --> ===DM_ARLE===
+}
+
+....
+

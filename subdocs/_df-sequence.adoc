@@ -1,0 +1,45 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+[plantuml, archi-df-sequence, png]
+.DF : Diagramme de séquence
+....
+participant Producteur
+participant C1
+participant Cn
+participant SAA
+participant DGE #orange
+
+activate Producteur
+Producteur -> SAA : DF_ENTREE
+activate SAA
+deactivate Producteur
+SAA -> DGE : DF_ENTREE
+deactivate SAA
+activate DGE
+DGE -> SAA : DF_ARLE
+activate SAA
+SAA -> Producteur : DF_ARLE
+deactivate SAA
+activate Producteur
+DGE -> SAA : DF_SORTIE
+deactivate Producteur
+activate SAA
+SAA -> C1 : DF_SORTIE
+deactivate SAA
+activate C1
+DGE -> SAA : DF_SORTIE
+activate SAA
+SAA -> Cn : DF_SORTIE
+deactivate SAA
+activate Cn
+C1 -> SAA : DF_ARLS
+deactivate C1
+activate SAA
+SAA -> DGE : DF_ARLS
+deactivate SAA
+Cn -> SAA : DF_ARLS
+activate SAA
+deactivate Cn
+SAA -> DGE : DF_ARLS
+deactivate SAA
+deactivate DGE
+....

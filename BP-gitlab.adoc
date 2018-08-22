@@ -1,0 +1,16 @@
+= Gitlab Configuration Details
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Server configuration
+
+Connect to Gitlab homepage.
+
+[source,yaml]
+.Pipeline content
+----
+include::../../../.gitlab-ci.yml[]
+----
+
+include::subdocs/_closure.adoc[]
