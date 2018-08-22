@@ -13,7 +13,7 @@ Version {project-version} du {localdate}
 |Date|Auteur|Détail
 include::{history-dir}/{docname}.adoc.psv[]
 |===================================================
-
+<<<
 endif::backend-pdf[]
 ifdef::backend-html5[]
 link:{docname}.adoc[[SRC\]] link:{docname}.pdf[[PDF\]]

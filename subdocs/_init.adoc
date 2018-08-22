@@ -13,7 +13,7 @@ Version {project-version}
 |Date|Author|Detail
 include::{history-dir}/{docname}.adoc.psv[]
 |===================================================
-
+<<<
 endif::backend-pdf[]
 ifdef::backend-html5[]
 //No need for version and date : the auto-generated black footer says "Last updated 2018-08-17 11:48:04 CEST"
