@@ -3,12 +3,33 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
+== Introduction
+
+Gitlab in his link:https://about.gitlab.com/pricing/#gitlab-com[free online plan] offers a lot more than Github :
+
+* 2,000 CI pipeline minutes per group per month on our shared runners
+* Unlimited private projects and collaborators
+** Built-in CI/CD
+** Cycle Analytics
+** Issue Boards
+** Time tracking
+** Preview your changes with Review Apps
+** Publish static websites for free with GitLab Pages
+** Git LFS 2.0 support
+
 == Server configuration
 
-Connect to Gitlab homepage.
+WARNING: TODO
 
+== Project creation
+
+* Create a project in web interface.
+** check *Create README.md* or else *master* branch is not created
+* Import 
 
 === Merge Requests workflow
+
+We assume that we will be the only one to push on that branch, so we do not check-out the branch, and just push there. This helps do fewer interactions in Eclipse.
 
 .Initialize the change
 * Go to *Issues* -> *New issue*

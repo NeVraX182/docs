@@ -432,10 +432,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#server-configuration">1. Server configuration</a>
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#server-configuration">2. Server configuration</a></li>
+<li><a href="#project-creation">3. Project creation</a>
 <ul class="sectlevel2">
-<li><a href="#merge-requests-workflow">1.1. Merge Requests workflow</a></li>
-<li><a href="#pipeline-creation">1.2. Pipeline creation</a></li>
+<li><a href="#merge-requests-workflow">3.1. Merge Requests workflow</a></li>
+<li><a href="#pipeline-creation">3.2. Pipeline creation</a></li>
 </ul>
 </li>
 </ul>
@@ -450,13 +452,90 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="server-configuration"><a class="anchor" href="#server-configuration"></a>1. Server configuration</h2>
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Connect to Gitlab homepage.</p>
+<p>Gitlab in his <a href="https://about.gitlab.com/pricing/#gitlab-com">free online plan</a> offers a lot more than Github :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2,000 CI pipeline minutes per group per month on our shared runners</p>
+</li>
+<li>
+<p>Unlimited private projects and collaborators</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Built-in CI/CD</p>
+</li>
+<li>
+<p>Cycle Analytics</p>
+</li>
+<li>
+<p>Issue Boards</p>
+</li>
+<li>
+<p>Time tracking</p>
+</li>
+<li>
+<p>Preview your changes with Review Apps</p>
+</li>
+<li>
+<p>Publish static websites for free with GitLab Pages</p>
+</li>
+<li>
+<p>Git LFS 2.0 support</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="server-configuration"><a class="anchor" href="#server-configuration"></a>2. Server configuration</h2>
+<div class="sectionbody">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+TODO
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-creation"><a class="anchor" href="#project-creation"></a>3. Project creation</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Create a project in web interface.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>check <strong>Create README.md</strong> or else <strong>master</strong> branch is not created</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Import</p>
+</li>
+</ul>
 </div>
 <div class="sect2">
-<h3 id="merge-requests-workflow"><a class="anchor" href="#merge-requests-workflow"></a>1.1. Merge Requests workflow</h3>
+<h3 id="merge-requests-workflow"><a class="anchor" href="#merge-requests-workflow"></a>3.1. Merge Requests workflow</h3>
+<div class="paragraph">
+<p>We assume that we will be the only one to push on that branch, so we do not check-out the branch, and just push there. This helps do fewer interactions in Eclipse.</p>
+</div>
 <div class="ulist">
 <div class="title">Initialize the change</div>
 <ul>
@@ -563,7 +642,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="pipeline-creation"><a class="anchor" href="#pipeline-creation"></a>1.2. Pipeline creation</h3>
+<h3 id="pipeline-creation"><a class="anchor" href="#pipeline-creation"></a>3.2. Pipeline creation</h3>
 <div class="listingblock">
 <div class="title">Pipeline content</div>
 <div class="content">
@@ -640,7 +719,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-22 11:12:19 UTC
+Last updated 2018-08-23 09:55:58 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
