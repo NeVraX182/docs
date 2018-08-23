@@ -26,6 +26,14 @@ Download and install :
 
 To show a in progress diagram to colleagues, you can generate a link using this page : http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
 
+=== TODO
+
+* inline icons : 
+** https://asciidoctor.org/docs/user-manual/#icons
+** Font Awesome 4.6.3 Class Explorer
+*** https://lab.artlung.com/font-awesome-sample/
+** no need for :icons: font
+
 === Generation using Maven
 
 .AsciiDoctor plugin configuration

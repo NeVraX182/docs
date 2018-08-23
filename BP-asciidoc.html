@@ -5,6 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
+<link rel="shortcut icon" type="image/png" href="images/zenika-logo.png">
 <title>AsciiDoc &amp; doc-as-code Best Practices</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -434,13 +435,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#documentation-as-code-with-asciidoc">1. Documentation-as-code with AsciiDoc</a>
 <ul class="sectlevel2">
-<li><a href="#generation-using-maven">1.1. Generation using Maven</a></li>
-<li><a href="#doc-to-adoc">1.2. .doc to .adoc</a></li>
-<li><a href="#publish-html-pdf-to-github">1.3. Publish HTML &amp; PDF to github</a>
+<li><a href="#todo">1.1. TODO</a></li>
+<li><a href="#generation-using-maven">1.2. Generation using Maven</a></li>
+<li><a href="#doc-to-adoc">1.3. .doc to .adoc</a></li>
+<li><a href="#publish-html-pdf-to-github">1.4. Publish HTML &amp; PDF to github</a>
 <ul class="sectlevel3">
-<li><a href="#initialize-github-space">1.3.1. Initialize Github space</a></li>
-<li><a href="#configure-maven-plugin">1.3.2. Configure Maven plugin</a></li>
-<li><a href="#use-in-pipelines">1.3.3. Use in pipelines</a></li>
+<li><a href="#initialize-github-space">1.4.1. Initialize Github space</a></li>
+<li><a href="#configure-maven-plugin">1.4.2. Configure Maven plugin</a></li>
+<li><a href="#use-in-pipelines">1.4.3. Use in pipelines</a></li>
 </ul>
 </li>
 </ul>
@@ -452,7 +454,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="BP-asciidoc.adoc">[SRC]</a> <a href="BP-asciidoc.pdf">[PDF]</a></p>
+<p><span class="icon"><a class="image" href="BP-asciidoc.adoc"><i class="fa fa-file-text-o fa-2x"></i></a></span> ‏ ‏ ‎ <span class="icon"><a class="image" href="BP-asciidoc.pdf"><i class="fa fa-file-pdf-o fa-2x"></i></a></span></p>
 </div>
 </div>
 </div>
@@ -508,7 +510,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>To show a in progress diagram to colleagues, you can generate a link using this page : <a href="http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" class="bare">http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000</a></p>
 </div>
 <div class="sect2">
-<h3 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>1.1. Generation using Maven</h3>
+<h3 id="todo"><a class="anchor" href="#todo"></a>1.1. TODO</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>inline icons :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://asciidoctor.org/docs/user-manual/#icons" class="bare">https://asciidoctor.org/docs/user-manual/#icons</a></p>
+</li>
+<li>
+<p>Font Awesome 4.6.3 Class Explorer</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://lab.artlung.com/font-awesome-sample/" class="bare">https://lab.artlung.com/font-awesome-sample/</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>no need for :icons: font</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>1.2. Generation using Maven</h3>
 <div class="listingblock">
 <div class="title">AsciiDoctor plugin configuration</div>
 <div class="content">
@@ -569,6 +601,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 					&lt;toclevels&gt;5&lt;/toclevels&gt;
 					&lt;sectanchors&gt;true&lt;/sectanchors&gt;
 					&lt;docinfo1&gt;true&lt;/docinfo1&gt;
+					&lt;favicon&gt;images/zenika-logo.png&lt;/favicon&gt;
 					&lt;!-- from https://github.com/darshandsoni/asciidoctor-skins --&gt;
 					&lt;!-- do it here, in .adoc this does not work --&gt;
 					&lt;!-- &lt;stylesheet&gt;italian-pop.blue.css&lt;/stylesheet&gt; --&gt;
@@ -610,7 +643,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>1.2. .doc to .adoc</h3>
+<h3 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>1.3. .doc to .adoc</h3>
 <div class="paragraph">
 <p>If the initial documentation is of Microsoft Word, you have to first migrate it to AsciiDoc file.</p>
 </div>
@@ -627,9 +660,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>1.3. Publish HTML &amp; PDF to github</h3>
+<h3 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>1.4. Publish HTML &amp; PDF to github</h3>
 <div class="sect3">
-<h4 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>1.3.1. Initialize Github space</h4>
+<h4 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>1.4.1. Initialize Github space</h4>
 <div class="literalblock">
 <div class="content">
 <pre>mkdir docs
@@ -651,7 +684,7 @@ git push --set-upstream origin gh-pages</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>1.3.2. Configure Maven plugin</h4>
+<h4 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>1.4.2. Configure Maven plugin</h4>
 <div class="listingblock">
 <div class="title">Maven SCM plugin configuration</div>
 <div class="content">
@@ -671,7 +704,7 @@ git push --set-upstream origin gh-pages</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>1.3.3. Use in pipelines</h4>
+<h4 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>1.4.3. Use in pipelines</h4>
 <div class="paragraph">
 <p>To use in Jenkins Pipelines, see <a href="BP-jenkins.html">Jenkins Best Practices</a></p>
 </div>
@@ -685,7 +718,7 @@ git push --set-upstream origin gh-pages</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-23 13:40:24 UTC
+Last updated 2018-08-23 13:41:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">

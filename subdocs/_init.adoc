@@ -22,7 +22,8 @@ ifdef::backend-html5[]
 //:stylesdir: css
 //:stylesheet: italian-pop.css
 //:copycss: {root-project-dir}/src/docs/asciidoc/themes/{stylesheet}
-link:{docname}.adoc[[SRC\]] link:{docname}.pdf[[PDF\]]
+icon:file-text-o[2x, link={docname}.adoc] ‏ ‏ ‎ icon:file-pdf-o[2x, link={docname}.pdf]
+//link:{docname}.adoc[[SRC\]] link:{docname}.pdf[[PDF\]]
 endif::backend-html5[]
 //
 //Only on GITHUB

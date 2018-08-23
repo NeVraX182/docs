@@ -1,28 +1,28 @@
-= Technical Documentations using Asciidoc & PlantUml
+= Technical Documentations using AsciiDoc & PlantUml
 
 == Best practices for an efficient project [ENG]
 
-link:BP-asciidoc.html[Asciidoc] documentation-as-code
+link:BP-asciidoc.html[AsciiDoc] - Documentation-as-code language
 
-link:BP-eclipse.html[Eclipse]
+link:BP-eclipse.html[Eclipse] - Integrated Development Environment
 
-link:BP-elastic-suite.html[Elastic Suite]
+link:BP-elastic.html[Elastic Stack] - Distributed search and analytics engine
 
-link:BP-gerrit.html[Gerrit Code Review]
+link:BP-gerrit.html[Gerrit Code Review] - Collaborative code review and git hosting
 
-link:BP-gitlab.html[Gitlab]
+link:BP-gitlab.html[Gitlab] - All-in-one integrated product for software development
 
-link:BP-java.html[Java]
+link:BP-java.html[Java] - Programmation language
 
-link:BP-jenkins.html[Jenkins]
+link:BP-jenkins.html[Jenkins] - Automation server
 
-link:BP-jira.html[JIRA]
+link:BP-jira.html[JIRA] - Issue tracker
 
-link:BP-maven.html[Maven]
+link:BP-maven.html[Maven] - Java project builder
 
-link:BP-nexus3.html[Nexus3]
+link:BP-nexus3.html[Nexus3] - Artifact repository manager
 
-link:BP-sonarqube.html[SonarQube]
+link:BP-sonarqube.html[SonarQube] - Continuous code quality engine
 
 == Quelques exemples de documentation projet [FR]
 

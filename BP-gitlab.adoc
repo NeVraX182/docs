@@ -25,7 +25,19 @@ WARNING: TODO
 
 * Create a project in web interface.
 ** check *Create README.md* or else *master* branch is not created
-* Import 
+* Import git project in Eclipse
+* Change git config, adding :
+
+  [user]
+    name = yourname
+    email = youraccount@yourprovider.com
+
+=== rebase without merge commit
+
+* In the web interface, go to *Project* -> *Settings* -> *General* -> *Merge request*, and configure as follow :
+** [x] Fast-forward merge
+** [x] Only allow merge requests to be merged if the pipeline succeeds 
+** [ ] Only allow merge requests to be merged if all discussions are resolved
 
 === Merge Requests workflow
 

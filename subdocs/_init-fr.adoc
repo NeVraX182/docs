@@ -16,7 +16,7 @@ include::{history-dir}/{docname}.adoc.psv[]
 <<<
 endif::backend-pdf[]
 ifdef::backend-html5[]
-link:{docname}.adoc[[SRC\]] link:{docname}.pdf[[PDF\]]
+icon:file-text-o[2x, link={docname}.adoc] ‏ ‏ ‎ icon:file-pdf-o[2x, link={docname}.pdf]
 endif::backend-html5[]
 
 ifndef::source-dir[:source-dir: ../../main/java]

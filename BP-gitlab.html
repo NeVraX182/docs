@@ -5,6 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
+<link rel="shortcut icon" type="image/png" href="images/zenika-logo.png">
 <title>Gitlab Configuration Details</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -436,8 +437,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#server-configuration">2. Server configuration</a></li>
 <li><a href="#project-creation">3. Project creation</a>
 <ul class="sectlevel2">
-<li><a href="#merge-requests-workflow">3.1. Merge Requests workflow</a></li>
-<li><a href="#pipeline-creation">3.2. Pipeline creation</a></li>
+<li><a href="#rebase-without-merge-commit">3.1. rebase without merge commit</a></li>
+<li><a href="#merge-requests-workflow">3.2. Merge Requests workflow</a></li>
+<li><a href="#pipeline-creation">3.3. Pipeline creation</a></li>
 </ul>
 </li>
 </ul>
@@ -447,7 +449,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="BP-gitlab.adoc">[SRC]</a> <a href="BP-gitlab.pdf">[PDF]</a></p>
+<p><span class="icon"><a class="image" href="BP-gitlab.adoc"><i class="fa fa-file-text-o fa-2x"></i></a></span> ‏ ‏ ‎ <span class="icon"><a class="image" href="BP-gitlab.pdf"><i class="fa fa-file-pdf-o fa-2x"></i></a></span></p>
 </div>
 </div>
 </div>
@@ -527,12 +529,45 @@ TODO
 </div>
 </li>
 <li>
-<p>Import</p>
+<p>Import git project in Eclipse</p>
+</li>
+<li>
+<p>Change git config, adding :</p>
+<div class="literalblock">
+<div class="content">
+<pre>[user]
+  name = yourname
+  email = youraccount@yourprovider.com</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="merge-requests-workflow"><a class="anchor" href="#merge-requests-workflow"></a>3.1. Merge Requests workflow</h3>
+<h3 id="rebase-without-merge-commit"><a class="anchor" href="#rebase-without-merge-commit"></a>3.1. rebase without merge commit</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>In the web interface, go to <strong>Project</strong> &#8594; <strong>Settings</strong> &#8594; <strong>General</strong> &#8594; <strong>Merge request</strong>, and configure as follow :</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Fast-forward merge</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Only allow merge requests to be merged if the pipeline succeeds</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Only allow merge requests to be merged if all discussions are resolved</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merge-requests-workflow"><a class="anchor" href="#merge-requests-workflow"></a>3.2. Merge Requests workflow</h3>
 <div class="paragraph">
 <p>We assume that we will be the only one to push on that branch, so we do not check-out the branch, and just push there. This helps do fewer interactions in Eclipse.</p>
 </div>
@@ -642,7 +677,7 @@ TODO
 </div>
 </div>
 <div class="sect2">
-<h3 id="pipeline-creation"><a class="anchor" href="#pipeline-creation"></a>3.2. Pipeline creation</h3>
+<h3 id="pipeline-creation"><a class="anchor" href="#pipeline-creation"></a>3.3. Pipeline creation</h3>
 <div class="listingblock">
 <div class="title">Pipeline content</div>
 <div class="content">
@@ -719,7 +754,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-23 13:40:24 UTC
+Last updated 2018-08-23 13:41:39 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
