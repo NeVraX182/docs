@@ -4,8 +4,6 @@ ifdef::backend-pdf[]
 :title-logo-image: image:{root-project-dir}/src/docs/asciidoc/themes/logo-zenika.png[pdfwidth=3in,align=left]
 Version {project-version}
 {localdate}
-:toc:
-:toclevels: 3
 
 .History
 [cols="^,^,<6",options="header"]
@@ -17,13 +15,7 @@ include::{history-dir}/{docname}.adoc.psv[]
 endif::backend-pdf[]
 ifdef::backend-html5[]
 //No need for version and date : the auto-generated black footer says "Last updated 2018-08-17 11:48:04 CEST"
-//Does not work : use Maven plugin attributes instead
-//:linkcss:
-//:stylesdir: css
-//:stylesheet: italian-pop.css
-//:copycss: {root-project-dir}/src/docs/asciidoc/themes/{stylesheet}
-icon:file-text-o[2x, link={docname}.adoc] ‏ ‏ ‎ icon:file-pdf-o[2x, link={docname}.pdf]
-//link:{docname}.adoc[[SRC\]] link:{docname}.pdf[[PDF\]]
+icon:file-text-o[link={docname}.adoc] ‏ ‏ ‎ icon:file-pdf-o[link={docname}.pdf]
 endif::backend-html5[]
 //
 //Only on GITHUB
