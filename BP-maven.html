@@ -704,58 +704,8 @@ TODO give Maven details for shared-resources
 <div class="sect1">
 <h2 id="to-generate-asciidoc-pdf-files"><a class="anchor" href="#to-generate-asciidoc-pdf-files"></a>6. To generate AsciiDoc PDF files</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="title">pom.xml</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugins&gt;
-	&lt;!-- to generate asciidoc pdf documents --&gt;
-	&lt;!-- part of mvn install --&gt;
-	&lt;!-- single usage : mvn asciidoctor:process-asciidoc --&gt;
-	&lt;!-- We don't bind it to the official phase to choose the moment in Jenkins pipeline --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
-		&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt;
-		&lt;version&gt;1.5.5&lt;/version&gt;
-		&lt;dependencies&gt;
-			&lt;dependency&gt;
-				&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
-				&lt;artifactId&gt;asciidoctorj-pdf&lt;/artifactId&gt;
-				&lt;version&gt;1.5.0-alpha.14&lt;/version&gt;
-			&lt;/dependency&gt;
-			&lt;dependency&gt;
-				&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
-				&lt;artifactId&gt;asciidoctorj-diagram&lt;/artifactId&gt;
-				&lt;version&gt;1.5.4&lt;/version&gt;
-			&lt;/dependency&gt;
-		&lt;/dependencies&gt;
-		&lt;configuration&gt;
-			&lt;backend&gt;pdf&lt;/backend&gt;
-			&lt;sourceDirectory&gt;src/docs/asciidoc&lt;/sourceDirectory&gt;
-			&lt;sourceHighlighter&gt;rouge&lt;/sourceHighlighter&gt;
-			&lt;requires&gt;
-				&lt;require&gt;asciidoctor-diagram&lt;/require&gt;
-			&lt;/requires&gt;
-			&lt;!-- Attributes common to all output formats --&gt;
-			&lt;attributes&gt;
-				&lt;imagesdir&gt;${project.build.directory}/generated-docs/images&lt;/imagesdir&gt;
-				&lt;pdf-style&gt;${user.dir}/src/docs/asciidoc/themes/cg-theme.yml&lt;/pdf-style&gt;
-				&lt;icons&gt;font&lt;/icons&gt;
-				&lt;pagenums /&gt;
-				&lt;toc /&gt;
-				&lt;idprefix /&gt;
-				&lt;idseparator&gt;-&lt;/idseparator&gt;
-				&lt;!-- custom --&gt;
-				&lt;source-dir&gt;../../main/java&lt;/source-dir&gt;
-				&lt;test-dir&gt;../../test/java&lt;/test-dir&gt;
-				&lt;project-version&gt;${project.version}&lt;/project-version&gt;
-				&lt;root-project-dir&gt;${user.dir}&lt;/root-project-dir&gt;
-				&lt;history-dir&gt;${project.build.directory}/generated-docs/history&lt;/history-dir&gt;
-				&lt;project-images-dir&gt;${project.basedir}/src/main/resources/images&lt;/project-images-dir&gt;
-			&lt;/attributes&gt;
-		&lt;/configuration&gt;
-	&lt;/plugin&gt;
-&lt;/plugins&gt;</code></pre>
-</div>
+<div class="paragraph">
+<p>See <a href="BP-asciidoc.html">Asciidoc Best Practices</a></p>
 </div>
 </div>
 </div>
@@ -1020,7 +970,7 @@ TODO give Maven details for shared-resources
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-23 14:12:32 UTC
+Last updated 2018-08-23 16:35:34 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">

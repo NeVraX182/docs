@@ -5,7 +5,7 @@ ifndef::imagesdir[:imagesdir: images]
 
 == Introduction
 
-Gitlab in his link:https://about.gitlab.com/pricing/#gitlab-com[free online plan] offers a lot more than Github :
+Gitlab in his link:https://about.gitlab.com/pricing/#gitlab-com[free online plan] offers some nice features :
 
 * 2,000 CI pipeline minutes per group per month on our shared runners
 * Unlimited private projects and collaborators

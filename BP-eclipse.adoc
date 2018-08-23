@@ -3,11 +3,9 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
-== Eclipse
+== Installation
 
-=== Installation
-
-*  Install the latest Eclipse JEE. You can use your own, but no team support below Neon version.
+*  Install the latest Eclipse JEE. This documentation is not guaranteed to work below Neon version.
 
 * Install SonarLint plugin
 ** in order to connect to its local SonarQube server and be warned of violations in Eclipse, in real time
@@ -18,18 +16,18 @@ ifndef::imagesdir[:imagesdir: images]
 * Install Git if you don't already have it on your computer.
 
 <<<
-=== Configuration
+== Configuration
 
 Go to *Window* -> *preferences*
 
-==== Formatter
+=== Formatter
 
 * Click on *formatter*
 * Import this file
 
     src/docs/CG.Eclipse.Preferences.Java.CodeStyle.Formatter.xml
 
-==== Members Sort Order
+=== Members Sort Order
 
 * *Java* -> *Appearance* -> *Members Sort Order*
 * Organize as follow
@@ -42,7 +40,7 @@ Go to *Window* -> *preferences*
 ** Static Methods
 ** Methods
 
-==== Save actions
+=== Save actions
 
 * *Java* -> *Editor* -> *Save actions*
 * Check as follow :
@@ -59,14 +57,14 @@ Go to *Window* -> *preferences*
 **** Sort members excluding fields, enum constants, and initializers
 **** Remove redundant type arguments
 
-==== Encoding
+=== Encoding
 
 * Go to *Window* -> *Preferences* -> *General* -> *Workspace*
 * At the bottom, choose 
 ** Other : UTF-8
 ** Other : Unix
 
-==== Unnecessary Code Detector plugin
+=== Unnecessary Code Detector plugin
 
 * Install Unnecessary Code Detector plugin to see unused declarations or wrongs declarations (public when it could be private for example), with this configuration :
 ** Window > preferences > UCDetector
@@ -76,13 +74,13 @@ Go to *Window* -> *preferences*
 
   *.xml,MANIFEST.MF,*.tld,*.properties,*.jsp,*.jspf
 
-==== JAutoDoc plugin
+=== JAutoDoc plugin
 
 * Install JautoDoc plugin to be able to :
 ** add Javadoc with right click -> *Add Javadoc* on a class or a package
 ** add Javadoc on a function by selecting its name and pressing kbd:[Ctrl + Alt + j]
 
-==== AutoDeriv plugin
+=== AutoDeriv plugin
 
 The target folder should always be marked as derived, not to appear in searches. Install the AutoDeriv plugin for this purpose, and configure it by creating the file below.
 
@@ -109,19 +107,19 @@ target
 #src/include/version.h
 ------
 
-==== Commit timeout
+=== Commit timeout
 
 * Navigate to *Team* -> *Git*
 * set *Remote connection timeout (seconds)* = 120
 
-==== XML Line size
+=== XML Line size
 
 The Eclipse XML Formatter split lines, and this is an issue for wagon plugin in pom.xml. 
 
 * Navigate to *XML* -> *Editor*
 * Set *Line width* = 200
 
-==== Disable stealing of focus by Console in Eclipse
+=== Disable stealing of focus by Console in Eclipse
 
 There is one very annoying issue in Eclipse: stealing of focus by Console window.
 
@@ -138,7 +136,7 @@ Go to Run/Debug -> Console.
 * [ ] Show when program writes to standard error
 
 <<<
-=== EGit with Gerrit 
+== EGit with Gerrit 
 
 .Git without Eclipse and Gerrit
 image:this-is-git.png[scaledwidth="35%"]
@@ -207,7 +205,7 @@ On *Repository Settings* click on *Open* and enter the following configuration :
 After this Git configuration, restart eclipse.
 
 <<<
-==== Checkout Git Repository
+=== Checkout Git Repository
 
 .Life without the Production Line
 image:no-error-update.jpg[scaledwidth="50%"]
@@ -220,7 +218,7 @@ To update Git repository click right on parent and select :
 image:git-fetch_pull.png[scaledwidth="50%"]
 
 <<<
-==== Commit / push
+=== Commit / push
 
 .Life before Gerrit
 image:git-hell.jpg[scaledwidth="75%"]
@@ -244,16 +242,16 @@ image:git-amend_commit.png[]
 
 This ID is related to your last change not yet validated.
 
-==== Rebase
+=== Rebase
 
 In order to get the last version of the git repository, or if one of your commit is in *Merge Conflict* on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team -> fetch from upstream, then team -> rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team -> rebase -> continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disapear.
 
-==== Reset Mixed
+=== Reset Mixed
 
 In team -> reset, you can find a usefull functionnality called Reset Mixed. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
 Reset Hard can be used if you want to cancel all your modifications. All modifications will be erased.
 
-==== End
+=== End
 
 * Once your git is configured, import the project in your Java JEE view. (*File* -> *Import* -> type *maven* -> *Existing Maven Project*).
 
@@ -267,9 +265,9 @@ If an error about tools.jar appears during maven install, it’s probably becaus
 
 - To start the MultiTracker, run the class cg-wm\cg-msg-tracker\src\main\java\cg\msg\tracker\Tracker.java
 
-==== Troubleshooting
+=== Troubleshooting
 
-===== Two commits at the same time
+==== Two commits at the same time
 
 If you have a commit on gerrit, and if you want to change a file that is already in this commit, you should amend this commit instead of making a second commit.
 
@@ -280,7 +278,7 @@ To make a second commit C, reset mixed on commit A, then commit. If you want to 
 
 image:git-rebase.png[scaledwidth="100%"]
 
-===== Pull from another developer
+==== Pull from another developer
 
 To download a change of another developper from gerrit to your local :
 
@@ -310,7 +308,7 @@ To keep this branch up to date with the master :
 
 To switch back to your master, right click on your repo -> *Switch To* -> *master*.
 
-===== Missing Change-Id in commit message footer
+==== Missing Change-Id in commit message footer
 
 On your first push, you might get this error from Gerrit
 
@@ -336,7 +334,7 @@ Last solution, requiring Cygwin :
 
   gitdir=$(git rev-parse --git-dir); wget -P ${gitdir}/hooks/ http://bcouetil@cric.pl.s2-eu.nvx.com/gerrit/tools/hooks/commit-msg && chmod +x ${gitdir}/hooks/commit-msg
 
-===== .classpath and other not-to-push files
+==== .classpath and other not-to-push files
 
 If there are files in git repository not to be pushed, remove them in your next push :
 
@@ -346,7 +344,7 @@ If there are files in git repository not to be pushed, remove them in your next 
 * The file should be moved to *Staged changes* (it can take a few seconds)
 * This will be taken into account in next *Commit and Push...*
 
-===== See SonarQube for an older build
+==== See SonarQube for an older build
 
 SonarQube does not have history available for browsing, you can only see the last build. So you have to retrigger the gerrit patch to see specific data associated to your change.
 
@@ -365,7 +363,7 @@ You can do an empty **commit amend** from Eclipse. But you can also retrigger fr
 ** Select the change 
 ** Click *TRIGGER SELECTED*
 
-===== Double remote : get latest commits from gitlab into gerrit
+==== Double remote : get latest commits from gitlab into gerrit
 
 In the case of a gitlab to gerrit migration, you may have a common ancestor but commits on Gerrit and commits on Gitlab. It's easy if you can replace the whole gerrit master, but here is the way to go for a clean merge :
 
@@ -380,7 +378,7 @@ In the case of a gitlab to gerrit migration, you may have a common ancestor but 
 
  git push origin master
 
-===== Get rid of ORIG_HEAD / FETCH_HEAD in Git history
+==== Get rid of ORIG_HEAD / FETCH_HEAD in Git history
 
 ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in *Preferences* -> *Team* -> *Git* -> *History* by deselecting *Additional Refs*
 

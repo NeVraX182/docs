@@ -433,41 +433,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#eclipse">1. Eclipse</a>
+<li><a href="#installation">1. Installation</a></li>
+<li><a href="#configuration">2. Configuration</a>
 <ul class="sectlevel2">
-<li><a href="#installation">1.1. Installation</a></li>
-<li><a href="#configuration">1.2. Configuration</a>
-<ul class="sectlevel3">
-<li><a href="#formatter">1.2.1. Formatter</a></li>
-<li><a href="#members-sort-order">1.2.2. Members Sort Order</a></li>
-<li><a href="#save-actions">1.2.3. Save actions</a></li>
-<li><a href="#encoding">1.2.4. Encoding</a></li>
-<li><a href="#unnecessary-code-detector-plugin">1.2.5. Unnecessary Code Detector plugin</a></li>
-<li><a href="#jautodoc-plugin">1.2.6. JAutoDoc plugin</a></li>
-<li><a href="#autoderiv-plugin">1.2.7. AutoDeriv plugin</a></li>
-<li><a href="#commit-timeout">1.2.8. Commit timeout</a></li>
-<li><a href="#xml-line-size">1.2.9. XML Line size</a></li>
-<li><a href="#disable-stealing-of-focus-by-console-in-eclipse">1.2.10. Disable stealing of focus by Console in Eclipse</a></li>
+<li><a href="#formatter">2.1. Formatter</a></li>
+<li><a href="#members-sort-order">2.2. Members Sort Order</a></li>
+<li><a href="#save-actions">2.3. Save actions</a></li>
+<li><a href="#encoding">2.4. Encoding</a></li>
+<li><a href="#unnecessary-code-detector-plugin">2.5. Unnecessary Code Detector plugin</a></li>
+<li><a href="#jautodoc-plugin">2.6. JAutoDoc plugin</a></li>
+<li><a href="#autoderiv-plugin">2.7. AutoDeriv plugin</a></li>
+<li><a href="#commit-timeout">2.8. Commit timeout</a></li>
+<li><a href="#xml-line-size">2.9. XML Line size</a></li>
+<li><a href="#disable-stealing-of-focus-by-console-in-eclipse">2.10. Disable stealing of focus by Console in Eclipse</a></li>
 </ul>
 </li>
-<li><a href="#egit-with-gerrit">1.3. EGit with Gerrit</a>
+<li><a href="#egit-with-gerrit">3. EGit with Gerrit</a>
+<ul class="sectlevel2">
+<li><a href="#checkout-git-repository">3.1. Checkout Git Repository</a></li>
+<li><a href="#commit-push">3.2. Commit / push</a></li>
+<li><a href="#rebase">3.3. Rebase</a></li>
+<li><a href="#reset-mixed">3.4. Reset Mixed</a></li>
+<li><a href="#end">3.5. End</a></li>
+<li><a href="#troubleshooting">3.6. Troubleshooting</a>
 <ul class="sectlevel3">
-<li><a href="#checkout-git-repository">1.3.1. Checkout Git Repository</a></li>
-<li><a href="#commit-push">1.3.2. Commit / push</a></li>
-<li><a href="#rebase">1.3.3. Rebase</a></li>
-<li><a href="#reset-mixed">1.3.4. Reset Mixed</a></li>
-<li><a href="#end">1.3.5. End</a></li>
-<li><a href="#troubleshooting">1.3.6. Troubleshooting</a>
-<ul class="sectlevel4">
-<li><a href="#two-commits-at-the-same-time">Two commits at the same time</a></li>
-<li><a href="#pull-from-another-developer">Pull from another developer</a></li>
-<li><a href="#missing-change-id-in-commit-message-footer">Missing Change-Id in commit message footer</a></li>
-<li><a href="#classpath-and-other-not-to-push-files">.classpath and other not-to-push files</a></li>
-<li><a href="#see-sonarqube-for-an-older-build">See SonarQube for an older build</a></li>
-<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">Double remote : get latest commits from gitlab into gerrit</a></li>
-<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
-</ul>
-</li>
+<li><a href="#two-commits-at-the-same-time">3.6.1. Two commits at the same time</a></li>
+<li><a href="#pull-from-another-developer">3.6.2. Pull from another developer</a></li>
+<li><a href="#missing-change-id-in-commit-message-footer">3.6.3. Missing Change-Id in commit message footer</a></li>
+<li><a href="#classpath-and-other-not-to-push-files">3.6.4. .classpath and other not-to-push files</a></li>
+<li><a href="#see-sonarqube-for-an-older-build">3.6.5. See SonarQube for an older build</a></li>
+<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">3.6.6. Double remote : get latest commits from gitlab into gerrit</a></li>
+<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">3.6.7. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
 </ul>
 </li>
 </ul>
@@ -484,14 +480,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="eclipse"><a class="anchor" href="#eclipse"></a>1. Eclipse</h2>
+<h2 id="installation"><a class="anchor" href="#installation"></a>1. Installation</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="installation"><a class="anchor" href="#installation"></a>1.1. Installation</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Install the latest Eclipse JEE. You can use your own, but no team support below Neon version.</p>
+<p>Install the latest Eclipse JEE. This documentation is not guaranteed to work below Neon version.</p>
 </li>
 <li>
 <p>Install SonarLint plugin</p>
@@ -520,13 +514,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect2">
-<h3 id="configuration"><a class="anchor" href="#configuration"></a>1.2. Configuration</h3>
+</div>
+<div class="sect1">
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>2. Configuration</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Go to <strong>Window</strong> &#8594; <strong>preferences</strong></p>
 </div>
-<div class="sect3">
-<h4 id="formatter"><a class="anchor" href="#formatter"></a>1.2.1. Formatter</h4>
+<div class="sect2">
+<h3 id="formatter"><a class="anchor" href="#formatter"></a>2.1. Formatter</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -543,8 +539,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="members-sort-order"><a class="anchor" href="#members-sort-order"></a>1.2.2. Members Sort Order</h4>
+<div class="sect2">
+<h3 id="members-sort-order"><a class="anchor" href="#members-sort-order"></a>2.2. Members Sort Order</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -584,8 +580,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="save-actions"><a class="anchor" href="#save-actions"></a>1.2.3. Save actions</h4>
+<div class="sect2">
+<h3 id="save-actions"><a class="anchor" href="#save-actions"></a>2.3. Save actions</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -649,8 +645,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="encoding"><a class="anchor" href="#encoding"></a>1.2.4. Encoding</h4>
+<div class="sect2">
+<h3 id="encoding"><a class="anchor" href="#encoding"></a>2.4. Encoding</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -672,8 +668,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="unnecessary-code-detector-plugin"><a class="anchor" href="#unnecessary-code-detector-plugin"></a>1.2.5. Unnecessary Code Detector plugin</h4>
+<div class="sect2">
+<h3 id="unnecessary-code-detector-plugin"><a class="anchor" href="#unnecessary-code-detector-plugin"></a>2.5. Unnecessary Code Detector plugin</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -703,8 +699,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="jautodoc-plugin"><a class="anchor" href="#jautodoc-plugin"></a>1.2.6. JAutoDoc plugin</h4>
+<div class="sect2">
+<h3 id="jautodoc-plugin"><a class="anchor" href="#jautodoc-plugin"></a>2.6. JAutoDoc plugin</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -723,8 +719,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="autoderiv-plugin"><a class="anchor" href="#autoderiv-plugin"></a>1.2.7. AutoDeriv plugin</h4>
+<div class="sect2">
+<h3 id="autoderiv-plugin"><a class="anchor" href="#autoderiv-plugin"></a>2.7. AutoDeriv plugin</h3>
 <div class="paragraph">
 <p>The target folder should always be marked as derived, not to appear in searches. Install the AutoDeriv plugin for this purpose, and configure it by creating the file below.</p>
 </div>
@@ -760,8 +756,8 @@ target
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="commit-timeout"><a class="anchor" href="#commit-timeout"></a>1.2.8. Commit timeout</h4>
+<div class="sect2">
+<h3 id="commit-timeout"><a class="anchor" href="#commit-timeout"></a>2.8. Commit timeout</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -773,8 +769,8 @@ target
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="xml-line-size"><a class="anchor" href="#xml-line-size"></a>1.2.9. XML Line size</h4>
+<div class="sect2">
+<h3 id="xml-line-size"><a class="anchor" href="#xml-line-size"></a>2.9. XML Line size</h3>
 <div class="paragraph">
 <p>The Eclipse XML Formatter split lines, and this is an issue for wagon plugin in pom.xml.</p>
 </div>
@@ -789,8 +785,8 @@ target
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="disable-stealing-of-focus-by-console-in-eclipse"><a class="anchor" href="#disable-stealing-of-focus-by-console-in-eclipse"></a>1.2.10. Disable stealing of focus by Console in Eclipse</h4>
+<div class="sect2">
+<h3 id="disable-stealing-of-focus-by-console-in-eclipse"><a class="anchor" href="#disable-stealing-of-focus-by-console-in-eclipse"></a>2.10. Disable stealing of focus by Console in Eclipse</h3>
 <div class="paragraph">
 <p>There is one very annoying issue in Eclipse: stealing of focus by Console window.</p>
 </div>
@@ -820,8 +816,10 @@ target
 <div style="page-break-after: always;"></div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="egit-with-gerrit"><a class="anchor" href="#egit-with-gerrit"></a>1.3. EGit with Gerrit</h3>
+</div>
+<div class="sect1">
+<h2 id="egit-with-gerrit"><a class="anchor" href="#egit-with-gerrit"></a>3. EGit with Gerrit</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <div class="title">Git without Eclipse and Gerrit</div>
 <p><span class="image"><img src="./images/this-is-git.png" alt="this is git"></span></p>
@@ -935,8 +933,8 @@ have this structure:</p>
 <p>After this Git configuration, restart eclipse.</p>
 </div>
 <div style="page-break-after: always;"></div>
-<div class="sect3">
-<h4 id="checkout-git-repository"><a class="anchor" href="#checkout-git-repository"></a>1.3.1. Checkout Git Repository</h4>
+<div class="sect2">
+<h3 id="checkout-git-repository"><a class="anchor" href="#checkout-git-repository"></a>3.1. Checkout Git Repository</h3>
 <div class="paragraph">
 <div class="title">Life without the Production Line</div>
 <p><span class="image"><img src="./images/no-error-update.jpg" alt="no error update"></span></p>
@@ -959,8 +957,8 @@ have this structure:</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect3">
-<h4 id="commit-push"><a class="anchor" href="#commit-push"></a>1.3.2. Commit / push</h4>
+<div class="sect2">
+<h3 id="commit-push"><a class="anchor" href="#commit-push"></a>3.2. Commit / push</h3>
 <div class="paragraph">
 <div class="title">Life before Gerrit</div>
 <p><span class="image"><img src="./images/git-hell.jpg" alt="git hell"></span></p>
@@ -1007,21 +1005,21 @@ have this structure:</p>
 <p>This ID is related to your last change not yet validated.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="rebase"><a class="anchor" href="#rebase"></a>1.3.3. Rebase</h4>
+<div class="sect2">
+<h3 id="rebase"><a class="anchor" href="#rebase"></a>3.3. Rebase</h3>
 <div class="paragraph">
 <p>In order to get the last version of the git repository, or if one of your commit is in <strong>Merge Conflict</strong> on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team &#8594; fetch from upstream, then team &#8594; rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team &#8594; rebase &#8594; continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disapear.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="reset-mixed"><a class="anchor" href="#reset-mixed"></a>1.3.4. Reset Mixed</h4>
+<div class="sect2">
+<h3 id="reset-mixed"><a class="anchor" href="#reset-mixed"></a>3.4. Reset Mixed</h3>
 <div class="paragraph">
 <p>In team &#8594; reset, you can find a usefull functionnality called Reset Mixed. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
 Reset Hard can be used if you want to cancel all your modifications. All modifications will be erased.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="end"><a class="anchor" href="#end"></a>1.3.5. End</h4>
+<div class="sect2">
+<h3 id="end"><a class="anchor" href="#end"></a>3.5. End</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1060,10 +1058,10 @@ Reset Hard can be used if you want to cancel all your modifications. All modific
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>3.6. Troubleshooting</h3>
 <div class="sect3">
-<h4 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>1.3.6. Troubleshooting</h4>
-<div class="sect4">
-<h5 id="two-commits-at-the-same-time"><a class="anchor" href="#two-commits-at-the-same-time"></a>Two commits at the same time</h5>
+<h4 id="two-commits-at-the-same-time"><a class="anchor" href="#two-commits-at-the-same-time"></a>3.6.1. Two commits at the same time</h4>
 <div class="paragraph">
 <p>If you have a commit on gerrit, and if you want to change a file that is already in this commit, you should amend this commit instead of making a second commit.</p>
 </div>
@@ -1077,8 +1075,8 @@ To make a second commit C, reset mixed on commit A, then commit. If you want to 
 <p><span class="image"><img src="./images/git-rebase.png" alt="git rebase"></span></p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="pull-from-another-developer"><a class="anchor" href="#pull-from-another-developer"></a>Pull from another developer</h5>
+<div class="sect3">
+<h4 id="pull-from-another-developer"><a class="anchor" href="#pull-from-another-developer"></a>3.6.2. Pull from another developer</h4>
 <div class="paragraph">
 <p>To download a change of another developper from gerrit to your local :</p>
 </div>
@@ -1160,8 +1158,8 @@ If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to th
 <p>To switch back to your master, right click on your repo &#8594; <strong>Switch To</strong> &#8594; <strong>master</strong>.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="missing-change-id-in-commit-message-footer"><a class="anchor" href="#missing-change-id-in-commit-message-footer"></a>Missing Change-Id in commit message footer</h5>
+<div class="sect3">
+<h4 id="missing-change-id-in-commit-message-footer"><a class="anchor" href="#missing-change-id-in-commit-message-footer"></a>3.6.3. Missing Change-Id in commit message footer</h4>
 <div class="paragraph">
 <p>On your first push, you might get this error from Gerrit</p>
 </div>
@@ -1208,8 +1206,8 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="classpath-and-other-not-to-push-files"><a class="anchor" href="#classpath-and-other-not-to-push-files"></a>.classpath and other not-to-push files</h5>
+<div class="sect3">
+<h4 id="classpath-and-other-not-to-push-files"><a class="anchor" href="#classpath-and-other-not-to-push-files"></a>3.6.4. .classpath and other not-to-push files</h4>
 <div class="paragraph">
 <p>If there are files in git repository not to be pushed, remove them in your next push :</p>
 </div>
@@ -1233,8 +1231,8 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="see-sonarqube-for-an-older-build"><a class="anchor" href="#see-sonarqube-for-an-older-build"></a>See SonarQube for an older build</h5>
+<div class="sect3">
+<h4 id="see-sonarqube-for-an-older-build"><a class="anchor" href="#see-sonarqube-for-an-older-build"></a>3.6.5. See SonarQube for an older build</h4>
 <div class="paragraph">
 <p>SonarQube does not have history available for browsing, you can only see the last build. So you have to retrigger the gerrit patch to see specific data associated to your change.</p>
 </div>
@@ -1290,8 +1288,8 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="double-remote-get-latest-commits-from-gitlab-into-gerrit"><a class="anchor" href="#double-remote-get-latest-commits-from-gitlab-into-gerrit"></a>Double remote : get latest commits from gitlab into gerrit</h5>
+<div class="sect3">
+<h4 id="double-remote-get-latest-commits-from-gitlab-into-gerrit"><a class="anchor" href="#double-remote-get-latest-commits-from-gitlab-into-gerrit"></a>3.6.6. Double remote : get latest commits from gitlab into gerrit</h4>
 <div class="paragraph">
 <p>In the case of a gitlab to gerrit migration, you may have a common ancestor but commits on Gerrit and commits on Gitlab. It&#8217;s easy if you can replace the whole gerrit master, but here is the way to go for a clean merge :</p>
 </div>
@@ -1329,8 +1327,8 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </ul>
 </div>
 </div>
-<div class="sect4">
-<h5 id="get-rid-of-orig_head-fetch_head-in-git-history"><a class="anchor" href="#get-rid-of-orig_head-fetch_head-in-git-history"></a>Get rid of ORIG_HEAD / FETCH_HEAD in Git history</h5>
+<div class="sect3">
+<h4 id="get-rid-of-orig_head-fetch_head-in-git-history"><a class="anchor" href="#get-rid-of-orig_head-fetch_head-in-git-history"></a>3.6.7. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</h4>
 <div class="paragraph">
 <p>ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>History</strong> by deselecting <strong>Additional Refs</strong></p>
 </div>
@@ -1339,10 +1337,9 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 </div>
-</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-23 14:12:32 UTC
+Last updated 2018-08-23 16:35:34 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">

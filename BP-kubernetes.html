@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
 <link rel="shortcut icon" type="image/png" href="images/zenika-logo.png">
-<title>Sujets d&#8217;oral technique</title>
+<title>Kubernetes Configuration &amp; Best Practices</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -429,43 +429,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Sujets d&#8217;oral technique</h1>
+<h1>Kubernetes Configuration &amp; Best Practices</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#introduction">1. Introduction</a></li>
-<li><a href="#algorithme-1-le-palindrome">2. Algorithme 1 : le palindrome</a>
+<li><a href="#installation">1. Installation</a></li>
+<li><a href="#use-helm-to-setup-a-ci-cd-stack">2. Use helm to setup a CI/CD stack</a>
 <ul class="sectlevel2">
-<li><a href="#définition">2.1. Définition</a></li>
-<li><a href="#exercice">2.2. Exercice</a></li>
-<li><a href="#solutions">2.3. Solutions</a></li>
-<li><a href="#notation">2.4. Notation</a></li>
-</ul>
-</li>
-<li><a href="#algorithme-2-traversée-de-tableau-en-biais">3. Algorithme 2 : traversée de tableau en biais</a>
-<ul class="sectlevel2">
-<li><a href="#définition-et-exercice">3.1. Définition et exercice</a></li>
-<li><a href="#solutions-2">3.2. Solutions</a></li>
-<li><a href="#notation-2">3.3. Notation</a></li>
-</ul>
-</li>
-<li><a href="#algorithme-3-arbre-de-recherche-binaire">4. Algorithme 3 : arbre de recherche binaire</a>
-<ul class="sectlevel2">
-<li><a href="#définition-2">4.1. Définition</a></li>
-<li><a href="#exercice-2">4.2. Exercice</a></li>
-<li><a href="#solutions-3">4.3. Solutions</a></li>
-<li><a href="#notation-3">4.4. Notation</a></li>
-</ul>
-</li>
-<li><a href="#algorithme-4-deviner-un-chiffre">5. Algorithme 4 : deviner un chiffre</a>
-<ul class="sectlevel2">
-<li><a href="#exercice-3">5.1. Exercice</a>
+<li><a href="#initialization">2.1. Initialization</a></li>
+<li><a href="#sonarqube">2.2. SonarQube</a></li>
+<li><a href="#jenkins">2.3. Jenkins</a>
 <ul class="sectlevel3">
-<li><a href="#exemple">5.1.1. Exemple</a></li>
+<li><a href="#gerrit">2.3.1. Gerrit</a></li>
 </ul>
 </li>
-<li><a href="#solutions-4">5.2. Solutions</a></li>
-<li><a href="#notation-4">5.3. Notation</a></li>
+<li><a href="#gitlab">2.4. Gitlab</a>
+<ul class="sectlevel3">
+<li><a href="#prerequisite">2.4.1. Prerequisite</a></li>
+</ul>
+</li>
+<li><a href="#installation-2">2.5. Installation</a></li>
+<li><a href="#nexus3">2.6. Nexus3</a></li>
 </ul>
 </li>
 </ul>
@@ -475,678 +459,249 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="icon"><a class="image" href="oral-technique.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎ <span class="icon"><a class="image" href="oral-technique.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Lors d&#8217;un entretien d&#8217;embauche, de stage ou d&#8217;alternance, l&#8217;idéal est de déterminer, en un temps très limité, si le candidat :</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>S&#8217;intègrera</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Il a un bon contact / état d&#8217;esprit / projet professionnel / posture, il correspond à la culture nvx</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>A une tête bien pleine</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Il a des diplômes et compétences informatique directement utilisables sur les projets</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>A une tête bien faite</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Est capable de résoudre les problèmes techniques quotidiens, sera autonome à moyen terme pour produire un code de qualité suffisante</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Les points 1 et 2 sont assurés par l&#8217;entretien RH, et confirmé par un entretien opérationnel (non technique la plupart du temps).</p>
-</div>
-<div class="paragraph">
-<p>L&#8217;on peut s&#8217;arrêter là, en considérant que le dernier point sera jugé en fin de période d&#8217;essai ou de stage. Mais il est possible d&#8217;éviter cette période incertaine, en tout cas réduire les chances de non transformation de l&#8217;essai.</p>
-</div>
-<div class="paragraph">
-<p>C&#8217;est l&#8217;objet et l&#8217;ambition de cet oral technique : déterminer, en projection, l&#8217;autonomie technique du candidat à 1 an.</p>
-</div>
-<div class="paragraph">
-<p>Il va sans dire que nvx Rennes, dans notre ambition de forte croissante à long terme, n&#8217;a pas vocation à trier pour ne prendre que les meilleurs ingénieurs : une productivité moyenne est suffisante. Les algorithmes sélectionnés doivent donc rester simples !</p>
-</div>
-<div class="listingblock">
-<div class="title">Exemple d&#8217;algorithme trop complexe : zig zag conversion</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public String convert(String s, int numRows) {
-	if (numRows == 1)
-		return s;
-
-	StringBuilder sb = new StringBuilder();
-	// step
-	int step = 2 * numRows - 2;
-
-	for (int i = 0; i &lt; numRows; i++) {
-		//first &amp; last rows
-		if (i == 0 || i == numRows - 1) {
-			for (int j = i; j &lt; s.length(); j = j + step) {
-				sb.append(s.charAt(j));
-			}
-		//middle rows
-		} else {
-			int j = i;
-			boolean flag = true;
-			int step1 = 2 * (numRows - 1 - i);
-			int step2 = step - step1;
-
-			while (j &lt; s.length()) {
-				sb.append(s.charAt(j));
-				if (flag)
-					j = j + step1;
-				else
-					j = j + step2;
-				flag = !flag;
-			}
-		}
-	}
-	return sb.toString();
-}</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="algorithme-1-le-palindrome"><a class="anchor" href="#algorithme-1-le-palindrome"></a>2. Algorithme 1 : le palindrome</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="définition"><a class="anchor" href="#définition"></a>2.1. Définition</h3>
-<div class="paragraph">
-<p>Un palindrome est un mot que l&#8217;on peut lire dans les deux sens. "kayak", "Laval", "radar", sont des palindromes.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercice"><a class="anchor" href="#exercice"></a>2.2. Exercice</h3>
-<div class="paragraph">
-<p>Ecrivez une fonction (réutilisable ailleurs dans un programme), permettant de vérifier si un mot donné est un palindrome ou non.</p>
-</div>
-<div class="paragraph">
-<p>Vous pouvez utiliser la fonction <b class="button">String.charAt(int)</b> qui récupère un charactère à une position donnée dans une chaîne.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">"kayak".charAt(0) == "kayak".charAt(4);//true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Vous pouvez également utiliser la fonction <b class="button">String.substring(int,int)</b> qui retourne une sous-partie d&#8217;une chaine en prenant l&#8217;index initial et la longueur.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String ay = "kayak".substring(1, 2)</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="solutions"><a class="anchor" href="#solutions"></a>2.3. Solutions</h3>
-<div class="listingblock">
-<div class="title">Algorithme classique</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    for (int i = 0; i &lt;= sub.length() / 2; i++) {
-        if (word.charAt(i) != word.charAt(sub.length() - 1 - i)) {
-            return false;
-        }
-    }
-    return true;
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Algorithme récursif</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    if(word.length() == 0 || word.length() == 1) {
-        return true;
-    }
-    if(word.charAt(0) == word.charAt(word.length()-1)) {
-        return isPalindrome(word.substring(1, word.length()-1));
-    }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Algorithme le plus concis</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    return new StringBuilder(word).reverse().equals(word);
-}</code></pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="notation"><a class="anchor" href="#notation"></a>2.4. Notation</h3>
-<div class="paragraph">
-<p>Pour chaque point :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1/1 : en autonomie</p>
-</li>
-<li>
-<p>0.5/1 : avec un peu d&#8217;aide ou partiel</p>
-</li>
-<li>
-<p>0/1 : non réussi ou trop aidé</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 1. Tableau de notations</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Point</th>
-<th class="tableblock halign-left valign-top">Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ecriture lisible</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication orale claire</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signature : boolean isPalindrome(String mot)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle for() + if</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Parcours s&#8217;arrêtant à la moitié du mot (perf)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Conditions aux limites vérifiées</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 solution terminée parmi les 3</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;en moins de 15 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2 solutions terminées parmi les 3</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;en moins de 20 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
+<p><span class="icon"><a class="image" href="BP-kubernetes.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎ <span class="icon"><a class="image" href="BP-kubernetes.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="algorithme-2-traversée-de-tableau-en-biais"><a class="anchor" href="#algorithme-2-traversée-de-tableau-en-biais"></a>3. Algorithme 2 : traversée de tableau en biais</h2>
+<h2 id="installation"><a class="anchor" href="#installation"></a>1. Installation</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="définition-et-exercice"><a class="anchor" href="#définition-et-exercice"></a>3.1. Définition et exercice</h3>
 <div class="paragraph">
-<p>Traversez un tableau de n lignes et m colonnes en biais et afficher le contenu des cases.</p>
-</div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/oral-zig-zag.png" alt="oral zig zag"></span></p>
-</div>
-<div class="literalblock">
-<div class="title">Affichage pour cet exemple</div>
-<div class="content">
-<pre>a00, a10, a01, a20, a11, a02, a30, a21, a12, a03, a31, a22, a13, a32, a23, a33</pre>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="solutions-2"><a class="anchor" href="#solutions-2"></a>3.2. Solutions</h3>
-<div class="listingblock">
-<div class="title">Algorithme en 2 blocs</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String[][] table = { { "a00", "a01", "a02", "a03" }, { "a10", "a11", "a12", "a13" },
-		{ "a20", "a21", "a22", "a23" }, { "a30", "a31", "a32", "a33" } };
-int n = table.length;
-int m = table[0].length;
-
-int iAlternate;
-for (int i = 0; i &lt; n; i++) {
-	iAlternate = i;
-	for (int j = 0; j &lt;= i; j++) {
-		if (j &lt; n) {
-			System.out.print(table[iAlternate][j] + " ");
-			iAlternate--;
-		}
-	}
-}
-
-int jAlternate;
-for (int j = 1; j &lt; m; j++) {
-	jAlternate = j;
-	for (int i = n - 1; i &gt; 0; i--) {
-		if (jAlternate &lt; m)
-			System.out.print(table[i][jAlternate] + " ");
-		jAlternate++;
-	}
-}
-// a00 a10 a01 a20 a11 a02 a30 a21 a12 a03 a31 a22 a13 a32 a23 a33</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="notation-2"><a class="anchor" href="#notation-2"></a>3.3. Notation</h3>
-<div class="paragraph">
-<p>Pour chaque point :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1/1 : en autonomie</p>
-</li>
-<li>
-<p>0.5/1 : avec un peu d&#8217;aide ou partiel</p>
-</li>
-<li>
-<p>0/1 : non réussi ou trop aidé</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 2. Tableau de notations</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Point</th>
-<th class="tableblock halign-left valign-top">Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ecriture lisible</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication orale claire</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Concept maitrisé (présentation a main levée)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2 parties/boucles</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle 1 : 2 for() 1 if</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle 1 : conditions aux limites</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Moins de 15 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle 1 : 2 for() 1 if</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boucle 1 : conditions aux limites</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Moins de 20 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
+<p>Create an account on Google Cloud.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="algorithme-3-arbre-de-recherche-binaire"><a class="anchor" href="#algorithme-3-arbre-de-recherche-binaire"></a>4. Algorithme 3 : arbre de recherche binaire</h2>
+<h2 id="use-helm-to-setup-a-ci-cd-stack"><a class="anchor" href="#use-helm-to-setup-a-ci-cd-stack"></a>2. Use helm to setup a CI/CD stack</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="définition-2"><a class="anchor" href="#définition-2"></a>4.1. Définition</h3>
+<h3 id="initialization"><a class="anchor" href="#initialization"></a>2.1. Initialization</h3>
 <div class="paragraph">
-<p>Un arbre de recherche binaire est un arbre ou la valeur de chaque noeud ("Node") est :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>plus grande ou égale à la valeur de tous les sous-nœuds de gauche</p>
-</li>
-<li>
-<p>plus petite ou égale à la valeur de tous les sous-nœuds de droite</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/oral-binary-tree.png" alt="oral binary tree" width="251" height="301">
-</div>
-<div class="title">Figure 1. Arbre binaire</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exercice-2"><a class="anchor" href="#exercice-2"></a>4.2. Exercice</h3>
-<div class="paragraph">
-<p>Ecrire une fonction <b class="button">contains(node, value)</b> qui vérifie si un certain arbre contient une certaine valeur. Avant de commencer, pour s&#8217;assurer de la compréhension de l&#8217;exercice, indiquer le résultat de <b class="button">contains(n2, 3)</b> avec l&#8217;exemple suivant :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>n1 (Value: 2, Left: null, Right: null)</p>
-</li>
-<li>
-<p>n2 (Value: 4, Left: n1, Right: n3)</p>
-</li>
-<li>
-<p>n3 (Value: 6, Left: null, Right: null)</p>
-</li>
-</ul>
+<p>Enter these in console.</p>
 </div>
 <div class="listingblock">
-<div class="title">Node.java</div>
+<div class="title">Cluster creation</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class Node {
-    public int value;
-    public Node left;
-    public Node right;
-
-    public Node(int value, Node left, Node right) {
-        this.value = value;
-        this.left = left;
-        this.right = right;
-    }
-}</code></pre>
+<pre>gcloud container clusters get-credentials cluster-1 --zone us-central1-a
+kubectl create ns cicd
+kubectl config set-context cicd --cluster gke_zenika-test_us-central1-a_cluster-1 --user gke_zenika-test_us-central1-a_cluster-1 --namespace cicd</pre>
 </div>
 </div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="solutions-3"><a class="anchor" href="#solutions-3"></a>4.3. Solutions</h3>
 <div class="listingblock">
-<div class="title">Algorithme basique</div>
+<div class="title">Helm installation</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean contains(Node root, int value) {
-	if (root == null) return false;
-	if (root.value == value)
-		return true;
-	if (root.value &gt; value)
-		return contains(root.left, value);
-	if (root.value &lt; value)
-		return contains(root.right, value);
-	return false;
-}</code></pre>
+<pre>wget "https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz"
+tar -zxvf helm-v2.9.1-linux-amd64.tar.gz
+mv linux-amd64/ helm-install-files
+cd helm-install-files/
+sudo mv helm /usr/local/bin/helm</pre>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="notation-3"><a class="anchor" href="#notation-3"></a>4.4. Notation</h3>
-<div class="paragraph">
-<p>Pour chaque point :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>1/1 : en autonomie</p>
-</li>
-<li>
-<p>0.5/1 : avec un peu d&#8217;aide ou partiel</p>
-</li>
-<li>
-<p>0/1 : non réussi</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 3. Tableau de notations</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Point</th>
-<th class="tableblock halign-left valign-top">Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ecriture lisible</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication orale claire</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exemple</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signature de fonction</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition null</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition true</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition false</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition récursive droite</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Condition récursive gauche</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Moins de 10 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="algorithme-4-deviner-un-chiffre"><a class="anchor" href="#algorithme-4-deviner-un-chiffre"></a>5. Algorithme 4 : deviner un chiffre</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="exercice-3"><a class="anchor" href="#exercice-3"></a>5.1. Exercice</h3>
-<div class="paragraph">
-<p>Il s&#8217;agit d&#8217;un jeu de devinette.</p>
-</div>
-<div class="paragraph">
-<p>Je m&#8217;appelle Ben. Vous me demandez de choisir un nombre entre 1 et n. J&#8217;indique pour chaque essai si c&#8217;est "plus" ou "moins". Il s&#8217;agit de créer une fonction de recherche qui simule votre comportement de joueur. Cette fonction s&#8217;arrête donc quand elle a trouvé le nombre que j&#8217;avais en tête depuis le début.</p>
-</div>
-<div class="paragraph">
-<p>Dans cette fonction à créer, il faut appeler une fonction existante qui simule mon comportement :</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>int askBen(int num)</pre>
+<pre>vi rbac-tiller-config.yaml</pre>
 </div>
 </div>
+<div class="listingblock">
+<div class="title">rbac-tiller-config.yaml</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl create -f  rbac-tiller-config.yaml
+helm init --service-account tiller
+helm repo update</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Elle me demande si un certain nombre est celui que j&#8217;avais en tête et retourne 3 valeurs possibles :</p>
+<p>if already initialized by mistake</p>
 </div>
+<div class="literalblock">
+<div class="content">
+<pre>helm reset --force</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sonarqube"><a class="anchor" href="#sonarqube"></a>2.2. SonarQube</h3>
+<div class="literalblock">
+<div class="content">
+<pre>helm install stable/sonarqube</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">deployment data example</div>
+<div class="content">
+<pre>resources:
+  cpu: 100m
+  memory: 1536Mi
+persistence:
+  enabled: true
+  storageClass: "-"
+  accessMode: ReadWriteOnce
+  size: 5Gi
+plugins:
+  install:
+    - "https://github.com/AmadeusITGroup/sonar-stash/releases/download/1.3.0/sonar-stash-plugin-1.3.0.jar"
+    - "https://github.com/SonarSource/sonar-ldap/releases/download/2.2-RC3/sonar-ldap-plugin-2.2.0.601.jar"</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>-1 : Mon nombre est plus petit</p>
+<p>See how to add plugins</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Findbugs</p>
 </li>
 <li>
-<p>1 : Mon nombre est plus grand</p>
+<p>LDAP</p>
 </li>
 <li>
-<p>0 : Bravo ! vous avez deviné mon nombre</p>
+<p>SoftVis3D Sonar plugin</p>
+</li>
+<li>
+<p>SonarJava (update)</p>
+</li>
+<li>
+<p>SonarQube :: Plugins :: SCM :: Git (update)</p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="jenkins"><a class="anchor" href="#jenkins"></a>2.3. Jenkins</h3>
+<div class="literalblock">
+<div class="content">
+<pre>helm install stable/jenkins</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To get the admin password :</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>printf $(kubectl get secret --namespace cicd silly-clam-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo</pre>
+</div>
 </div>
 <div class="sect3">
-<h4 id="exemple"><a class="anchor" href="#exemple"></a>5.1.1. Exemple</h4>
+<h4 id="gerrit"><a class="anchor" href="#gerrit"></a>2.3.1. Gerrit</h4>
 <div class="paragraph">
-<p>Si n = 10, et que je choisis 6 (sans le dire), votre fonction retourne 6.</p>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="solutions-4"><a class="anchor" href="#solutions-4"></a>5.2. Solutions</h3>
-<div class="listingblock">
-<div class="title">Algorithme basique</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public int guessNumber(int n) {
-    int low=1;
-    int high=n;
-
-    while(low &lt;= high){
-        int mid = low+((high-low)/2);
-        int result = askBen(mid);
-        if(result==0){
-            return mid;
-        }else if(result==1){
-            low = mid+1;
-        }else{
-            high=mid-1;
-        }
-    }
-    return -1;
-}</code></pre>
+<p>In progress, not in Helm/Charts yet. See ongoing project : <a href="https://github.com/Novitoll/charts/tree/master/incubator/gerrit" class="bare">https://github.com/Novitoll/charts/tree/master/incubator/gerrit</a></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="notation-4"><a class="anchor" href="#notation-4"></a>5.3. Notation</h3>
-<div class="paragraph">
-<p>Pour chaque point :</p>
-</div>
+<h3 id="gitlab"><a class="anchor" href="#gitlab"></a>2.4. Gitlab</h3>
+<div class="sect3">
+<h4 id="prerequisite"><a class="anchor" href="#prerequisite"></a>2.4.1. Prerequisite</h4>
 <div class="ulist">
+<div class="title">Get a fixed IP</div>
 <ul>
 <li>
-<p>1/1 : en autonomie</p>
+<p>Open the web console</p>
 </li>
 <li>
-<p>0.5/1 : avec un peu d&#8217;aide ou partiel</p>
+<p>In the sidebar, browse to VPC Network &gt; External IP addresses</p>
 </li>
 <li>
-<p>0/1 : non réussi</p>
+<p>Click Reserve static address</p>
+</li>
+<li>
+<p>Choose Regional and select the region of your cluster</p>
+</li>
+<li>
+<p>Leave Attached to blank, as it will be automatically assigned during deployment</p>
 </li>
 </ul>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">Table 4. Tableau de notations</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
+<div class="ulist">
+<div class="title">Have a domain</div>
+<ul>
+<li>
+<p>TODO</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="installation-2"><a class="anchor" href="#installation-2"></a>2.5. Installation</h3>
+<div class="paragraph">
+<p>Start the Gitlab installation, example :</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>helm upgrade --install gitlab gitlab/gitlab \
+  --timeout 600 \
+  --set global.hosts.domain=gitlab.nevrax-cicd.com \
+  --set global.hosts.externalIP=35.184.74.117 \
+  --set certmanager-issuer.email=nevraxgoespro@gmail.com
+  --set gitlab.migrations.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-rails-ce
+  --set gitlab.sidekiq.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-sidekiq-ce
+  --set gitlab.unicorn.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-unicorn-ce</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="nexus3"><a class="anchor" href="#nexus3"></a>2.6. Nexus3</h3>
+<div class="admonitionblock warning">
+<table>
 <tr>
-<th class="tableblock halign-left valign-top">Point</th>
-<th class="tableblock halign-left valign-top">Note</th>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+TODO
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ecriture lisible</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communication orale claire</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Exemple</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Signature de fonction</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Algo valide</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cas aux limites</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">En moins de 20 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">En Moins de 10 minutes</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solution récursive</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
 </table>
+</div>
 </div>
 </div>
 </div>

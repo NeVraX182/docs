@@ -1,0 +1,138 @@
+= Kubernetes Configuration & Best Practices
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Installation
+
+Create an account on Google Cloud.
+
+== Use helm to setup a CI/CD stack
+
+=== Initialization
+
+Enter these in console.
+
+.Cluster creation
+----
+gcloud container clusters get-credentials cluster-1 --zone us-central1-a
+kubectl create ns cicd
+kubectl config set-context cicd --cluster gke_zenika-test_us-central1-a_cluster-1 --user gke_zenika-test_us-central1-a_cluster-1 --namespace cicd 
+----
+
+.Helm installation
+----
+wget "https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz"
+tar -zxvf helm-v2.9.1-linux-amd64.tar.gz
+mv linux-amd64/ helm-install-files
+cd helm-install-files/
+sudo mv helm /usr/local/bin/helm
+----
+
+  vi rbac-tiller-config.yaml
+
+[source,bash]
+.rbac-tiller-config.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system
+
+
+  kubectl create -f  rbac-tiller-config.yaml
+  helm init --service-account tiller
+  helm repo update
+
+[NOTE]
+====
+if already initialized by mistake
+
+  helm reset --force
+====
+
+=== SonarQube
+
+  helm install stable/sonarqube
+
+.deployment data example
+----
+resources: 
+  cpu: 100m
+  memory: 1536Mi
+persistence:
+  enabled: true
+  storageClass: "-"
+  accessMode: ReadWriteOnce
+  size: 5Gi
+plugins:
+  install:
+    - "https://github.com/AmadeusITGroup/sonar-stash/releases/download/1.3.0/sonar-stash-plugin-1.3.0.jar"
+    - "https://github.com/SonarSource/sonar-ldap/releases/download/2.2-RC3/sonar-ldap-plugin-2.2.0.601.jar"
+----
+
+[NOTE]
+====
+* See how to add plugins
+** Findbugs
+** LDAP
+** SoftVis3D Sonar plugin
+**  SonarJava (update)
+** SonarQube :: Plugins :: SCM :: Git (update)
+====
+
+=== Jenkins
+
+  helm install stable/jenkins
+
+To get the admin password :
+
+  printf $(kubectl get secret --namespace cicd silly-clam-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
+
+==== Gerrit
+
+In progress, not in Helm/Charts yet. See ongoing project : https://github.com/Novitoll/charts/tree/master/incubator/gerrit
+
+=== Gitlab
+
+==== Prerequisite
+
+.Get a fixed IP
+* Open the web console
+* In the sidebar, browse to VPC Network > External IP addresses
+* Click Reserve static address
+* Choose Regional and select the region of your cluster
+* Leave Attached to blank, as it will be automatically assigned during deployment
+
+.Have a domain
+* TODO
+
+=== Installation
+
+Start the Gitlab installation, example :
+
+  helm upgrade --install gitlab gitlab/gitlab \
+    --timeout 600 \
+    --set global.hosts.domain=gitlab.nevrax-cicd.com \
+    --set global.hosts.externalIP=35.184.74.117 \
+    --set certmanager-issuer.email=nevraxgoespro@gmail.com
+    --set gitlab.migrations.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-rails-ce
+    --set gitlab.sidekiq.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-sidekiq-ce
+    --set gitlab.unicorn.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-unicorn-ce
+
+=== Nexus3
+
+WARNING: TODO

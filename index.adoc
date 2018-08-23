@@ -18,6 +18,8 @@ link:BP-jenkins.html[Jenkins] - Automation server
 
 link:BP-jira.html[JIRA] - Issue tracker
 
+link:BP-kubernetes.html[Kubernetes] - Containerized services orchestrator
+
 link:BP-maven.html[Maven] - Java project builder
 
 link:BP-nexus3.html[Nexus3] - Artifact repository manager
