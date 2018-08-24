@@ -44,7 +44,7 @@ WARNING: TODO
 Gitlab workflow is not as straightforward as Gerrit's (see below). In Eclipse, it's too easy to push to master instead of our current Merge Request's branch.
 
 Here is how to protect it :
-
+ 
 * In Gitlab interface, navigate to your project -> *Settings* -> *Repository* -> expend *Protected Branches* and configure :
 ** Branch = *master*
 ** Allowed to merge = *Maintainers*
