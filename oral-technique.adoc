@@ -21,8 +21,6 @@ L'on peut s'arrêter là, en considérant que le dernier point sera jugé en fin
 
 C'est l'objet et l'ambition de cet oral technique : déterminer, en projection, l'autonomie technique du candidat à 1 an.
 
-Il va sans dire que nvx Rennes, dans notre ambition de forte croissante à long terme, n'a pas vocation à trier pour ne prendre que les meilleurs ingénieurs : une productivité moyenne est suffisante. Les algorithmes sélectionnés doivent donc rester simples !
-
 .Exemple d'algorithme trop complexe : zig zag conversion
 [source,java]
 ----

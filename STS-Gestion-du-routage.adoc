@@ -70,9 +70,7 @@ include::subdocs/_simulateur.adoc[]
 
 === SgeBpmDf : routage Diffusion Fichier
 
-Le routage de la nature Diffusion Fichier est réalisé par le package webMethods *SgeBpmDf* :
-
-image:SgeBpmDf_package.png[image,width=162,height=71]image:SgeBpmDfTech_package.png[image,width=160,height=72]
+Le routage de la nature Diffusion Fichier est réalisé par le package webMethods *SgeBpmDf*.
 
 ==== Services publics
 

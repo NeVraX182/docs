@@ -1,8 +1,8 @@
 = Technical Documentations
 
-== Cheat sheets and best practices for an efficient project [ENG]
+== Cheat sheets and best practices
 
-* link:BP-asciidoc.html[AsciiDoc] - Documentation-as-code language footnote:[This site is written using link:https://asciidoctor.org/docs/asciidoc-syntax-quick-reference[AsciiDoc], a Simple Markup Language. The writer focuses only on the substance, easily writable and readable by non technical people, and AsciiDoctor handles the output to HTML and PDF. Graphs are generated with link:http://plantuml.com[PlantUml], see link:example-diagrams.html[these compiled examples] for an overview of every diagram types. This documentation-as-code implementation follows the everything-as-code DevOps principle. On each page you will find links to both PDF and source ‏ ‏ ‎ ‏ ‏ ‎ ‏ ‏ ‎ icon:file-text-o[link={docname}.adoc]]
+* link:BP-asciidoc.html[AsciiDoc] - Documentation-as-code language footnote:[The current website is also written using link:https://asciidoctor.org/docs/asciidoc-syntax-quick-reference[AsciiDoc], a Simple Markup Language. The writer focuses only on the substance, easily writable and readable by non technical people, and AsciiDoctor handles the output to HTML and PDF. Graphs are generated with link:http://plantuml.com[PlantUml], see link:example-diagrams.html[these compiled examples] for an overview of every diagram types. This documentation-as-code implementation follows the everything-as-code DevOps principle. Also, on each page, you will find links to both PDF and source ‏ ‏ ‎ ‏ ‏ ‎ ‏ ‏ ‎ icon:file-text-o[link={docname}.adoc]]
 
 * link:BP-eclipse.html[Eclipse] - Integrated Development Environment
 
@@ -28,10 +28,10 @@
 
 == Quelques exemples de documentation projet [FR]
 
-* link:SAF-architecture-sge.html[Etude d'architecture suivant la méthode IAF]
+* link:SAF-architecture-sge.html[Etude d'architecture IAF]
 
-* link:SAF-architecture-rscu.html[Etude de solution]
+* link:SAF-architecture-rscu.html[Etude de solution technique]
 
 * link:STS-Gestion-du-routage.html[Documentation technique]
 
-* link:oral-technique.html[Support pour oral technique]
+* link:oral-technique.html[Oral technique]
