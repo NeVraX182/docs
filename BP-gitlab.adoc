@@ -38,7 +38,7 @@ WARNING: TODO
 ** [x] Fast-forward merge
 ** [x] Only allow merge requests to be merged if the pipeline succeeds 
 ** [ ] Only allow merge requests to be merged if all discussions are resolved
-
+ 
 === Protect master branch
 
 Gitlab workflow is not as straightforward as Gerrit's (see below). In Eclipse, it's too easy to push to master instead of our current Merge Request's branch.
@@ -49,7 +49,7 @@ Here is how to protect it :
 ** Branch = *master*
 ** Allowed to merge = *Maintainers*
 ** Allowed to push = *No one*
-
+ 
 === Merge Requests workflow
 
 We assume that we will be the only one to push on that branch, so we do not check-out the branch, and just push there. This helps do fewer interactions in Eclipse.
