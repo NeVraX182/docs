@@ -437,10 +437,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#server-configuration">2. Server configuration</a></li>
 <li><a href="#project-creation">3. Project creation</a>
 <ul class="sectlevel2">
-<li><a href="#rebase-without-merge-commit">3.1. rebase without merge commit</a></li>
+<li><a href="#configure-rebase-without-merge-commit">3.1. Configure rebase without merge commit</a></li>
 <li><a href="#protect-master-branch">3.2. Protect master branch</a></li>
-<li><a href="#merge-requests-workflow">3.3. Merge Requests workflow</a></li>
-<li><a href="#pipeline-creation">3.4. Pipeline creation</a></li>
+<li><a href="#configure-eclipse">3.3. Configure Eclipse</a></li>
+<li><a href="#merge-requests-workflow">3.4. Merge Requests workflow</a></li>
+<li><a href="#pipeline-creation">3.5. Pipeline creation</a></li>
 </ul>
 </li>
 </ul>
@@ -545,7 +546,7 @@ TODO
 </ul>
 </div>
 <div class="sect2">
-<h3 id="rebase-without-merge-commit"><a class="anchor" href="#rebase-without-merge-commit"></a>3.1. rebase without merge commit</h3>
+<h3 id="configure-rebase-without-merge-commit"><a class="anchor" href="#configure-rebase-without-merge-commit"></a>3.1. Configure rebase without merge commit</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -597,12 +598,22 @@ TODO
 </div>
 </div>
 <div class="sect2">
-<h3 id="merge-requests-workflow"><a class="anchor" href="#merge-requests-workflow"></a>3.3. Merge Requests workflow</h3>
+<h3 id="configure-eclipse"><a class="anchor" href="#configure-eclipse"></a>3.3. Configure Eclipse</h3>
+<div class="paragraph">
+<p>Clone the repository as you would do for any Git repository, see <a href="BP-Eclipse.html">Eclipse Best Practices</a> for details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merge-requests-workflow"><a class="anchor" href="#merge-requests-workflow"></a>3.4. Merge Requests workflow</h3>
 <div class="paragraph">
 <p>We assume that we will be the only one to push on that branch, so we do not check-out the branch, and just push there. This helps do fewer interactions in Eclipse.</p>
 </div>
 <div class="ulist">
 <div class="title">Initialize the change</div>
+<ul>
+<li>
+<p>In Gitlab</p>
+<div class="ulist">
 <ul>
 <li>
 <p>Go to <strong>Issues</strong> &#8594; <strong>New issue</strong></p>
@@ -613,8 +624,15 @@ TODO
 <li>
 <p>Click <strong>Create merge request</strong></p>
 </li>
+</ul>
+</div>
+</li>
 <li>
-<p>In Eclipse, right click on your repo &#8594; <strong>Pull</strong></p>
+<p>In Eclipse</p>
+<div class="ulist">
+<ul>
+<li>
+<p>right click on your repo &#8594; <strong>Pull</strong></p>
 <div class="ulist">
 <ul>
 <li>
@@ -624,62 +642,111 @@ TODO
 </div>
 </li>
 <li>
-<p>Update the files&#8230;&#8203;</p>
+<p>In <strong>Remotes</strong> &#8594; <strong>origin</strong>, right click on the second address and choose <strong>Configure Push&#8230;&#8203;</strong></p>
 </li>
 <li>
-<p>Commit</p>
-</li>
-<li>
-<p>Right click on local/master &#8594; Push Branch&#8230;&#8203;</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Toggle</p>
+<p>Click <strong>Add&#8230;&#8203;</strong></p>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-square-o"></i> Configure Pull</p>
+<p>Remote branch = &lt;type the number to get the full branch&gt;</p>
 </li>
 <li>
-<p><i class="fa fa-square-o"></i> Force</p>
+<p><i class="fa fa-check-square-o"></i> Force update</p>
+</li>
+<li>
+<p>The specification should be something like</p>
+<div class="literalblock">
+<div class="content">
+<pre>+HEAD:refs/heads/4-minor-asciidoc-changes</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Press <strong>OK</strong> then <strong>Save</strong></p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>Next &#8594; Finish</p>
-</li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Eclipse should now be ready to handle smoothly Gitlab workflow. You can check your repository git config which should be like :</p>
+</div>
+<div class="literalblock">
+<div class="title">academy/.git/config</div>
+<div class="content">
+<pre>[core]
+  repositoryformatversion = 0
+  filemode = false
+  logallrefupdates = true
+[remote "origin"]
+  url = https://gitlab.com/bcouetil/academy.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+  push = +HEAD:refs/heads/4-minor-asciidoc-changes
+[branch "master"]
+  remote = origin
+  merge = refs/heads/master
+  rebase = true
+[user]
+  name = myname
+  email = myaccount@myprovider.com</pre>
+</div>
 </div>
 <div class="ulist">
-<div class="title">On each new dev iteration</div>
+<div class="title">dev iterations</div>
 <ul>
 <li>
-<p>Commit with amend, ignore the warning</p>
+<p>The first time</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Update your files&#8230;&#8203;</p>
 </li>
 <li>
-<p>Right click on local/master &#8594; Push Branch&#8230;&#8203;</p>
+<p>Go to <strong>Git Staging</strong> view</p>
 </li>
 <li>
-<p>Toggle</p>
+<p>Stage your files</p>
+</li>
+<li>
+<p>Hit <strong>Commit and Push&#8230;&#8203;</strong> and <strong>Close</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>On each new iteration do the same and</p>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><i class="fa fa-square-o"></i> Configure Pull</p>
+<p><i class="fa fa-check-square-o"></i> toggle ON <strong>Amend</strong></p>
 </li>
 <li>
-<p><i class="fa fa-check-square-o"></i> Force</p>
+<p>change the text if needed</p>
 </li>
 </ul>
 </div>
 </li>
-<li>
-<p>Next &#8594; Finish</p>
-</li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+More details and screenshots in <a href="BP-eclipse.html">Eclipse Best Practices</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now a pipeline should be launched in Gitlab interface.</p>
 </div>
 <div class="ulist checklist">
 <div class="title">Merge in Gitlab</div>
@@ -691,23 +758,13 @@ TODO
 <p><i class="fa fa-check-square-o"></i> Remove source branch</p>
 </li>
 <li>
-<p>Remove the Remote branch in your git repo &#8594; Branches &#8594; Remote Tracking</p>
-</li>
-<li>
-<p>Right click on your repo &#8594; <strong>Pull</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>If you get an error, you have obviously configure Pull for the dead branch, so use <strong>Pull&#8230;&#8203;</strong> instead and select <strong>master</strong> branch</p>
-</li>
-</ul>
-</div>
+<p>Pull in Eclipse to be up to date</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pipeline-creation"><a class="anchor" href="#pipeline-creation"></a>3.4. Pipeline creation</h3>
+<h3 id="pipeline-creation"><a class="anchor" href="#pipeline-creation"></a>3.5. Pipeline creation</h3>
 <div class="listingblock">
 <div class="title">Pipeline content</div>
 <div class="content">
@@ -784,7 +841,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-24 13:45:52 UTC
+Last updated 2018-08-24 15:00:48 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">

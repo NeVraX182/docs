@@ -448,24 +448,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#disable-stealing-of-focus-by-console-in-eclipse">2.10. Disable stealing of focus by Console in Eclipse</a></li>
 </ul>
 </li>
-<li><a href="#egit-with-gerrit">3. EGit with Gerrit</a>
+<li><a href="#clone-a-git-repository">3. Clone a Git repository</a></li>
+<li><a href="#import-a-project-in-project-explorer">4. Import a project in Project Explorer</a></li>
+<li><a href="#git-common-usages">5. Git common usages</a>
 <ul class="sectlevel2">
-<li><a href="#checkout-git-repository">3.1. Checkout Git Repository</a></li>
-<li><a href="#commit-push">3.2. Commit / push</a></li>
-<li><a href="#rebase">3.3. Rebase</a></li>
-<li><a href="#reset-mixed">3.4. Reset Mixed</a></li>
-<li><a href="#end">3.5. End</a></li>
-<li><a href="#troubleshooting">3.6. Troubleshooting</a>
-<ul class="sectlevel3">
-<li><a href="#two-commits-at-the-same-time">3.6.1. Two commits at the same time</a></li>
-<li><a href="#pull-from-another-developer">3.6.2. Pull from another developer</a></li>
-<li><a href="#missing-change-id-in-commit-message-footer">3.6.3. Missing Change-Id in commit message footer</a></li>
-<li><a href="#classpath-and-other-not-to-push-files">3.6.4. .classpath and other not-to-push files</a></li>
-<li><a href="#see-sonarqube-for-an-older-build">3.6.5. See SonarQube for an older build</a></li>
-<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">3.6.6. Double remote : get latest commits from gitlab into gerrit</a></li>
-<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">3.6.7. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
+<li><a href="#keep-your-local-repository-up-to-date">5.1. Keep your local repository up to date</a></li>
+<li><a href="#commit-push">5.2. Commit / push</a></li>
+<li><a href="#rebase">5.3. Rebase</a></li>
+<li><a href="#reset-mixed">5.4. Reset Mixed</a></li>
 </ul>
 </li>
+<li><a href="#troubleshooting">6. Troubleshooting</a>
+<ul class="sectlevel2">
+<li><a href="#two-commits-at-the-same-time">6.1. Two commits at the same time</a></li>
+<li><a href="#pull-from-another-developer">6.2. Pull from another developer</a></li>
+<li><a href="#missing-change-id-in-commit-message-footer">6.3. Missing Change-Id in commit message footer</a></li>
+<li><a href="#classpath-and-other-not-to-push-files">6.4. .classpath and other not-to-push files</a></li>
+<li><a href="#see-sonarqube-for-an-older-build">6.5. See SonarQube for an older build</a></li>
+<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">6.6. Double remote : get latest commits from gitlab into gerrit</a></li>
+<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">6.7. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
 </ul>
 </li>
 </ul>
@@ -813,12 +814,11 @@ target
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="egit-with-gerrit"><a class="anchor" href="#egit-with-gerrit"></a>3. EGit with Gerrit</h2>
+<h2 id="clone-a-git-repository"><a class="anchor" href="#clone-a-git-repository"></a>3. Clone a Git repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <div class="title">Git without Eclipse and Gerrit</div>
@@ -831,9 +831,7 @@ target
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>To generate your password in Gerrit, right click on your username &#8594; <strong>Settings</strong> &#8594; <strong>HTTP password</strong> &#8594; <strong>Generate Password</strong></p>
-</div>
+To generate your password in Gerrit, right click on your username &#8594; <strong>Settings</strong> &#8594; <strong>HTTP password</strong> &#8594; <strong>Generate Password</strong>
 </td>
 </tr>
 </table>
@@ -864,7 +862,7 @@ target
 <p>Protocol = https</p>
 </li>
 <li>
-<p>User = your CORP user</p>
+<p>User = your user</p>
 </li>
 <li>
 <p>Password generated from Gerrit</p>
@@ -892,9 +890,7 @@ have this structure:</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>[gui]
- recentrepo = F:\\git-repository\\cg-wm
-[gerrit]
+<pre>[gerrit]
 	createchangeid = true
 [user]
 	name = login
@@ -903,12 +899,11 @@ have this structure:</p>
  autosetuprebase = always
 [credential]
     helper = manager
-[credential "https://cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git"]
-[credential "https://cric.pl.s2-eu.nvx.com/gerrit"]</pre>
+[credential "*****"]</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The "autosetuprebase = always" will allow you to do a fetch and a rebase by simply click on "pull".</p>
+<p>The <strong>autosetuprebase = always</strong> will allow you to do a fetch and a rebase by simply click on "pull".</p>
 </div>
 <div class="paragraph">
 <p>On <strong>Repository Settings</strong> click on <strong>Open</strong> and enter the following configuration :</p>
@@ -932,16 +927,30 @@ have this structure:</p>
 <div class="paragraph">
 <p>After this Git configuration, restart eclipse.</p>
 </div>
-<div style="page-break-after: always;"></div>
-<div class="sect2">
-<h3 id="checkout-git-repository"><a class="anchor" href="#checkout-git-repository"></a>3.1. Checkout Git Repository</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="import-a-project-in-project-explorer"><a class="anchor" href="#import-a-project-in-project-explorer"></a>4. Import a project in Project Explorer</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<div class="title">Life without the Production Line</div>
+<p>Once the repository is cloned, import the project in your Java JEE view. (<strong>File</strong> &#8594; <strong>Import</strong> &#8594; type <strong>maven</strong> &#8594; <strong>Existing Maven Project</strong>).</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="git-common-usages"><a class="anchor" href="#git-common-usages"></a>5. Git common usages</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="keep-your-local-repository-up-to-date"><a class="anchor" href="#keep-your-local-repository-up-to-date"></a>5.1. Keep your local repository up to date</h3>
+<div class="paragraph">
+<div class="title">Life without an unbreakable build</div>
 <p><span class="image"><img src="./images/no-error-update.jpg" alt="no error update"></span></p>
 </div>
-<div class="paragraph">
-<p>To update Git repository click right on parent and select :</p>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To update your git repository, right-click on parent project and select</p>
 <div class="ulist">
 <ul>
 <li>
@@ -952,19 +961,24 @@ have this structure:</p>
 </li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><span class="image"><img src="./images/git-fetch_pull.png" alt="git fetch pull"></span></p>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="commit-push"><a class="anchor" href="#commit-push"></a>3.2. Commit / push</h3>
+<h3 id="commit-push"><a class="anchor" href="#commit-push"></a>5.2. Commit / push</h3>
 <div class="paragraph">
 <div class="title">Life before Gerrit</div>
 <p><span class="image"><img src="./images/git-hell.jpg" alt="git hell"></span></p>
 </div>
 <div class="paragraph">
-<p>In order to commit a new change follow these steps:</p>
+<p>First of all, you have to understand the commit/push/review process described in <a href="BP-gerrit.html">Gerrit Best Practices</a>.</p>
+</div>
+<div class="paragraph">
+<p>In order to commit a change follow these steps:</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="./images/gitAddChangeId.png" alt="gitAddChangeId"></span></p>
@@ -972,16 +986,24 @@ have this structure:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Show view <strong>Git Staging</strong> (or go to perspective Git and select "Git Staging" tab)</p>
+<p>Show view <strong>Git Staging</strong> (or go to perspective Git and select <strong>Git Staging</strong> tab)</p>
 </li>
 <li>
 <p>Drag your file not committed from Unstaged Changes to Staged Changes</p>
 </li>
 <li>
-<p>On Commit message add your message and click on <strong>Add Change-Id</strong> to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)</p>
+<p>On Commit message</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on amend if you want to amend a commit already started
+add your message and click on <strong>Add Change-Id</strong> to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Click on</p>
+<p>Click on :</p>
 <div class="ulist">
 <ul>
 <li>
@@ -993,75 +1015,32 @@ have this structure:</p>
 </ul>
 </div>
 </li>
-<li>
-<p>See the full review process in golden rules paragraph</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="./images/git-amend_commit.png" alt="git amend commit"></span></p>
 </div>
-<div class="paragraph">
-<p>This ID is related to your last change not yet validated.</p>
-</div>
 </div>
 <div class="sect2">
-<h3 id="rebase"><a class="anchor" href="#rebase"></a>3.3. Rebase</h3>
+<h3 id="rebase"><a class="anchor" href="#rebase"></a>5.3. Rebase</h3>
 <div class="paragraph">
 <p>In order to get the last version of the git repository, or if one of your commit is in <strong>Merge Conflict</strong> on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team &#8594; fetch from upstream, then team &#8594; rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team &#8594; rebase &#8594; continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disapear.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="reset-mixed"><a class="anchor" href="#reset-mixed"></a>3.4. Reset Mixed</h3>
+<h3 id="reset-mixed"><a class="anchor" href="#reset-mixed"></a>5.4. Reset Mixed</h3>
 <div class="paragraph">
 <p>In team &#8594; reset, you can find a usefull functionnality called Reset Mixed. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
 Reset Hard can be used if you want to cancel all your modifications. All modifications will be erased.</p>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>6. Troubleshooting</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="end"><a class="anchor" href="#end"></a>3.5. End</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Once your git is configured, import the project in your Java JEE view. (<strong>File</strong> &#8594; <strong>Import</strong> &#8594; type <strong>maven</strong> &#8594; <strong>Existing Maven Project</strong>).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You should now have the cw-wm project in your Java JEE view and some sub modules.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>On the parent pom.xml in cg-wm, do:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>mvn install (to have all dependencies)</p>
-</li>
-<li>
-<p>mvn eclipse:eclipse (to create .project and .classpath).</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>If an error about tools.jar appears during maven install, it’s probably because the JRE is not well defined by eclipse. Install the last JDK and change the path to the JDK instead of the JRE (<strong>Window</strong> &#8594; <strong>preferences</strong> &#8594; <strong>Java</strong> &#8594; <strong>Installed JREs</strong>).</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>To start the MultiTracker, run the class cg-wm\cg-msg-tracker\src\main\java\cg\msg\tracker\Tracker.java</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>3.6. Troubleshooting</h3>
-<div class="sect3">
-<h4 id="two-commits-at-the-same-time"><a class="anchor" href="#two-commits-at-the-same-time"></a>3.6.1. Two commits at the same time</h4>
+<h3 id="two-commits-at-the-same-time"><a class="anchor" href="#two-commits-at-the-same-time"></a>6.1. Two commits at the same time</h3>
 <div class="paragraph">
 <p>If you have a commit on gerrit, and if you want to change a file that is already in this commit, you should amend this commit instead of making a second commit.</p>
 </div>
@@ -1075,8 +1054,8 @@ To make a second commit C, reset mixed on commit A, then commit. If you want to 
 <p><span class="image"><img src="./images/git-rebase.png" alt="git rebase"></span></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="pull-from-another-developer"><a class="anchor" href="#pull-from-another-developer"></a>3.6.2. Pull from another developer</h4>
+<div class="sect2">
+<h3 id="pull-from-another-developer"><a class="anchor" href="#pull-from-another-developer"></a>6.2. Pull from another developer</h3>
 <div class="paragraph">
 <p>To download a change of another developper from gerrit to your local :</p>
 </div>
@@ -1158,8 +1137,8 @@ If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to th
 <p>To switch back to your master, right click on your repo &#8594; <strong>Switch To</strong> &#8594; <strong>master</strong>.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="missing-change-id-in-commit-message-footer"><a class="anchor" href="#missing-change-id-in-commit-message-footer"></a>3.6.3. Missing Change-Id in commit message footer</h4>
+<div class="sect2">
+<h3 id="missing-change-id-in-commit-message-footer"><a class="anchor" href="#missing-change-id-in-commit-message-footer"></a>6.3. Missing Change-Id in commit message footer</h3>
 <div class="paragraph">
 <p>On your first push, you might get this error from Gerrit</p>
 </div>
@@ -1206,8 +1185,8 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="classpath-and-other-not-to-push-files"><a class="anchor" href="#classpath-and-other-not-to-push-files"></a>3.6.4. .classpath and other not-to-push files</h4>
+<div class="sect2">
+<h3 id="classpath-and-other-not-to-push-files"><a class="anchor" href="#classpath-and-other-not-to-push-files"></a>6.4. .classpath and other not-to-push files</h3>
 <div class="paragraph">
 <p>If there are files in git repository not to be pushed, remove them in your next push :</p>
 </div>
@@ -1231,8 +1210,8 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="see-sonarqube-for-an-older-build"><a class="anchor" href="#see-sonarqube-for-an-older-build"></a>3.6.5. See SonarQube for an older build</h4>
+<div class="sect2">
+<h3 id="see-sonarqube-for-an-older-build"><a class="anchor" href="#see-sonarqube-for-an-older-build"></a>6.5. See SonarQube for an older build</h3>
 <div class="paragraph">
 <p>SonarQube does not have history available for browsing, you can only see the last build. So you have to retrigger the gerrit patch to see specific data associated to your change.</p>
 </div>
@@ -1288,8 +1267,8 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="double-remote-get-latest-commits-from-gitlab-into-gerrit"><a class="anchor" href="#double-remote-get-latest-commits-from-gitlab-into-gerrit"></a>3.6.6. Double remote : get latest commits from gitlab into gerrit</h4>
+<div class="sect2">
+<h3 id="double-remote-get-latest-commits-from-gitlab-into-gerrit"><a class="anchor" href="#double-remote-get-latest-commits-from-gitlab-into-gerrit"></a>6.6. Double remote : get latest commits from gitlab into gerrit</h3>
 <div class="paragraph">
 <p>In the case of a gitlab to gerrit migration, you may have a common ancestor but commits on Gerrit and commits on Gitlab. It&#8217;s easy if you can replace the whole gerrit master, but here is the way to go for a clean merge :</p>
 </div>
@@ -1327,8 +1306,8 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="get-rid-of-orig_head-fetch_head-in-git-history"><a class="anchor" href="#get-rid-of-orig_head-fetch_head-in-git-history"></a>3.6.7. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</h4>
+<div class="sect2">
+<h3 id="get-rid-of-orig_head-fetch_head-in-git-history"><a class="anchor" href="#get-rid-of-orig_head-fetch_head-in-git-history"></a>6.7. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</h3>
 <div class="paragraph">
 <p>ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>History</strong> by deselecting <strong>Additional Refs</strong></p>
 </div>
@@ -1336,10 +1315,9 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 </div>
-</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-24 13:45:52 UTC
+Last updated 2018-08-24 15:00:48 UTC
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">

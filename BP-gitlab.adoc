@@ -32,57 +32,87 @@ WARNING: TODO
     name = yourname
     email = youraccount@yourprovider.com
 
-=== rebase without merge commit
+=== Configure rebase without merge commit
 
 * In the web interface, go to *Project* -> *Settings* -> *General* -> *Merge request*, and configure as follow :
 ** [x] Fast-forward merge
 ** [x] Only allow merge requests to be merged if the pipeline succeeds 
 ** [ ] Only allow merge requests to be merged if all discussions are resolved
- 
+
 === Protect master branch
 
 Gitlab workflow is not as straightforward as Gerrit's (see below). In Eclipse, it's too easy to push to master instead of our current Merge Request's branch.
 
 Here is how to protect it :
- 
+
 * In Gitlab interface, navigate to your project -> *Settings* -> *Repository* -> expend *Protected Branches* and configure :
 ** Branch = *master*
 ** Allowed to merge = *Maintainers*
 ** Allowed to push = *No one*
- 
+
+=== Configure Eclipse
+
+Clone the repository as you would do for any Git repository, see link:BP-Eclipse.html[Eclipse Best Practices] for details.
+
 === Merge Requests workflow
 
 We assume that we will be the only one to push on that branch, so we do not check-out the branch, and just push there. This helps do fewer interactions in Eclipse.
 
 .Initialize the change
-* Go to *Issues* -> *New issue*
-* Set information and create
-* Click *Create merge request*
-* In Eclipse, right click on your repo -> *Pull*
-** The branch should appear under *Branches* -> *Remote Tracking*
-* Update the files...
-* Commit
-* Right click on local/master -> Push Branch...
-** Toggle
-*** [ ] Configure Pull
-*** [ ] Force
-**  Next -> Finish
+* In Gitlab
+** Go to *Issues* -> *New issue*
+** Set information and create
+** Click *Create merge request*
+* In Eclipse
+** right click on your repo -> *Pull*
+*** The branch should appear under *Branches* -> *Remote Tracking*
+** In *Remotes* -> *origin*, right click on the second address and choose *Configure Push...*
+** Click *Add...*
+*** Remote branch = <type the number to get the full branch>
+*** [x] Force update
+*** The specification should be something like
 
-.On each new dev iteration
-** Commit with amend, ignore the warning
-** Right click on local/master -> Push Branch...
-** Toggle
-*** [ ] Configure Pull
-*** [x] Force
-** Next -> Finish
+  +HEAD:refs/heads/4-minor-asciidoc-changes
+
+*** Press *OK* then *Save*
+
+Eclipse should now be ready to handle smoothly Gitlab workflow. You can check your repository git config which should be like :
+
+.academy/.git/config
+  [core]
+    repositoryformatversion = 0
+    filemode = false
+    logallrefupdates = true
+  [remote "origin"]
+    url = https://gitlab.com/bcouetil/academy.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+    push = +HEAD:refs/heads/4-minor-asciidoc-changes
+  [branch "master"]
+    remote = origin
+    merge = refs/heads/master
+    rebase = true
+  [user]
+    name = myname
+    email = myaccount@myprovider.com
+
+.dev iterations
+* The first time
+** Update your files...
+** Go to *Git Staging* view
+** Stage your files
+** Hit *Commit and Push...* and *Close*
+* On each new iteration do the same and
+** [x] toggle ON *Amend*
+** change the text if needed
+
+TIP: More details and screenshots in link:BP-eclipse.html[Eclipse Best Practices]
+
+Now a pipeline should be launched in Gitlab interface.
 
 .Merge in Gitlab
 * Browse the Merge Request in Gitlab
 * [x] Remove source branch
-* Remove the Remote branch in your git repo -> Branches -> Remote Tracking
-* Right click on your repo -> *Pull*
-** If you get an error, you have obviously configure Pull for the dead branch, so use *Pull...* instead and select *master* branch
-
+* Pull in Eclipse to be up to date
 
 === Pipeline creation
 

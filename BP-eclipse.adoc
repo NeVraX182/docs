@@ -135,17 +135,12 @@ Go to Run/Debug -> Console.
 * [ ] Show when program writes to standard out
 * [ ] Show when program writes to standard error
 
-<<<
-== EGit with Gerrit 
+== Clone a Git repository
 
 .Git without Eclipse and Gerrit
 image:this-is-git.png[scaledwidth="35%"]
 
-
-[NOTE]
-====
-To generate your password in Gerrit, right click on your username -> *Settings* -> *HTTP password* -> *Generate Password*
-====
+NOTE: To generate your password in Gerrit, right click on your username -> *Settings* -> *HTTP password* -> *Generate Password*
 
 .On Eclipse
 - Open *Git perspective*
@@ -156,7 +151,7 @@ image:git-clone1.png[scaledwidth="50%"]
 
 * URL : https://cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git
 * Protocol = https
-* User = your CORP user
+* User = your user
 * Password generated from Gerrit
 * [x] Store in Secure Store
 
@@ -171,21 +166,18 @@ image:git-project.png[scaledwidth="50%"]
 
 To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configuration*, on *User setting* click on *Open* and enter the following configuration after updating it with your personal  informations :
 
-    [gui]
-	    recentrepo = F:\\git-repository\\cg-wm
     [gerrit]
     	createchangeid = true
     [user]
     	name = login
     	email = nvx mail
-    [branch]  
+    [branch]
 	    autosetuprebase = always
     [credential]
         helper = manager
-    [credential "https://cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git"]
-    [credential "https://cric.pl.s2-eu.nvx.com/gerrit"]
+    [credential "*****"]
 
-The "autosetuprebase = always" will allow you to do a fetch and a rebase by simply click on "pull".
+The *autosetuprebase = always* will allow you to do a fetch and a rebase by simply click on "pull".
 
 On *Repository Settings* click on *Open* and enter the following configuration :
 
@@ -204,43 +196,46 @@ On *Repository Settings* click on *Open* and enter the following configuration :
 
 After this Git configuration, restart eclipse.
 
-<<<
-=== Checkout Git Repository
+== Import a project in Project Explorer
 
-.Life without the Production Line
+Once the repository is cloned, import the project in your Java JEE view. (*File* -> *Import* -> type *maven* -> *Existing Maven Project*).
+
+<<<
+== Git common usages
+
+=== Keep your local repository up to date
+
+.Life without an unbreakable build
 image:no-error-update.jpg[scaledwidth="50%"]
 
-To update Git repository click right on parent and select :
-
-* "Pull" (If your  git  is  configured  to  do  a  fetch  and  rebase  on  "Pull")
-* or "Fetch from upstream", and then "Rebase"
+* To update your git repository, right-click on parent project and select
+** "Pull" (If your  git  is  configured  to  do  a  fetch  and  rebase  on  "Pull")
+** or "Fetch from upstream", and then "Rebase"
 
 image:git-fetch_pull.png[scaledwidth="50%"]
 
-<<<
 === Commit / push
 
 .Life before Gerrit
 image:git-hell.jpg[scaledwidth="75%"]
 
-In order to commit a new change follow these steps:
+First of all, you have to understand the commit/push/review process described in link:BP-gerrit.html[Gerrit Best Practices].
 
+In order to commit a change follow these steps:
+
+//TODO : make a smaller capture
 image:gitAddChangeId.png[]
 
-* Show view *Git Staging* (or go to perspective Git and select "Git Staging" tab)
-
+* Show view *Git Staging* (or go to perspective Git and select *Git Staging* tab)
 * Drag your file not committed from Unstaged Changes to Staged Changes
-* On Commit message add your message and click on *Add Change-Id* to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)
-* Click on 
-
+* On Commit message 
+** Click on amend if you want to amend a commit already started
+add your message and click on *Add Change-Id* to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)
+* Click on :
 ** *Commit* If you want to do a local commit (changes will be visible only by you)
-
 ** or *Commit and push* If you want to do a commit on the shared repository
-* See the full review process in golden rules paragraph
 
 image:git-amend_commit.png[]
-
-This ID is related to your last change not yet validated.
 
 === Rebase
 
@@ -251,23 +246,9 @@ In order to get the last version of the git repository, or if one of your commit
 In team -> reset, you can find a usefull functionnality called Reset Mixed. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
 Reset Hard can be used if you want to cancel all your modifications. All modifications will be erased.
 
-=== End
+== Troubleshooting
 
-* Once your git is configured, import the project in your Java JEE view. (*File* -> *Import* -> type *maven* -> *Existing Maven Project*).
-
-You should now have the cw-wm project in your Java JEE view and some sub modules.
-
-* On the parent pom.xml in cg-wm, do:
-** mvn install (to have all dependencies)
-** mvn eclipse:eclipse (to create .project and .classpath).
-
-If an error about tools.jar appears during maven install, it’s probably because the JRE is not well defined by eclipse. Install the last JDK and change the path to the JDK instead of the JRE (*Window* -> *preferences* -> *Java* -> *Installed JREs*).
-
-- To start the MultiTracker, run the class cg-wm\cg-msg-tracker\src\main\java\cg\msg\tracker\Tracker.java
-
-=== Troubleshooting
-
-==== Two commits at the same time
+=== Two commits at the same time
 
 If you have a commit on gerrit, and if you want to change a file that is already in this commit, you should amend this commit instead of making a second commit.
 
@@ -278,7 +259,7 @@ To make a second commit C, reset mixed on commit A, then commit. If you want to 
 
 image:git-rebase.png[scaledwidth="100%"]
 
-==== Pull from another developer
+=== Pull from another developer
 
 To download a change of another developper from gerrit to your local :
 
@@ -308,7 +289,7 @@ To keep this branch up to date with the master :
 
 To switch back to your master, right click on your repo -> *Switch To* -> *master*.
 
-==== Missing Change-Id in commit message footer
+=== Missing Change-Id in commit message footer
 
 On your first push, you might get this error from Gerrit
 
@@ -334,7 +315,7 @@ Last solution, requiring Cygwin :
 
   gitdir=$(git rev-parse --git-dir); wget -P ${gitdir}/hooks/ http://bcouetil@cric.pl.s2-eu.nvx.com/gerrit/tools/hooks/commit-msg && chmod +x ${gitdir}/hooks/commit-msg
 
-==== .classpath and other not-to-push files
+=== .classpath and other not-to-push files
 
 If there are files in git repository not to be pushed, remove them in your next push :
 
@@ -344,7 +325,7 @@ If there are files in git repository not to be pushed, remove them in your next 
 * The file should be moved to *Staged changes* (it can take a few seconds)
 * This will be taken into account in next *Commit and Push...*
 
-==== See SonarQube for an older build
+=== See SonarQube for an older build
 
 SonarQube does not have history available for browsing, you can only see the last build. So you have to retrigger the gerrit patch to see specific data associated to your change.
 
@@ -363,7 +344,7 @@ You can do an empty **commit amend** from Eclipse. But you can also retrigger fr
 ** Select the change 
 ** Click *TRIGGER SELECTED*
 
-==== Double remote : get latest commits from gitlab into gerrit
+=== Double remote : get latest commits from gitlab into gerrit
 
 In the case of a gitlab to gerrit migration, you may have a common ancestor but commits on Gerrit and commits on Gitlab. It's easy if you can replace the whole gerrit master, but here is the way to go for a clean merge :
 
@@ -378,7 +359,7 @@ In the case of a gitlab to gerrit migration, you may have a common ancestor but 
 
  git push origin master
 
-==== Get rid of ORIG_HEAD / FETCH_HEAD in Git history
+=== Get rid of ORIG_HEAD / FETCH_HEAD in Git history
 
 ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in *Preferences* -> *Team* -> *Git* -> *History* by deselecting *Additional Refs*
 
