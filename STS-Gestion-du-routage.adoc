@@ -1,19 +1,20 @@
 = Gestion du routage : Dispositif de Gestion des Echanges
 include::subdocs/_init-fr.adoc[]
+
 ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
 
 .Références
 [cols="^,^,^2,6,6",options="header"]
 |====================================================================================================================================================
 |Réf. |Ver. |Date |Document |Description
-|[01] |01.6 |27/04/2017 |DGE_V2_SFG_Spécifications_Fonctionnelles_Générales.docx |Spécifications fonctionnelles générales du DGE V2
-|[02] | |{localdate} |SAF-architecture.pdf |Cadre d’architecture DGE V2, contenant notamment les noms des IS
-|[03] |01.4 |27/04/2017 |DGE_V2_DSF_Dossier_de_Spécifications_Fonctionnelles.docx |Spécifications fonctionnelles détaillées du DGE V2
-|[04] |01.0 |29/09/2016 |DGE_V2_FS_Diffuser_un_fichier_(DF).docx |Fiche Solution décrivant le routage pour la nature Diffusion Fichier pour le DGE V2
-|[05] | |{localdate}|STS-Cache-Catalogue.pdf |Description du cache du catalogue DGE V2
+|[01] |01.6 |27/04/2017 |SGE_V2_SFG_Spécifications_Fonctionnelles_Générales.docx |Spécifications fonctionnelles générales du SGE V2
+|[02] | |{localdate} |SAF-architecture.pdf |Cadre d’architecture SGE V2, contenant notamment les noms des IS
+|[03] |01.4 |27/04/2017 |SGE_V2_DSF_Dossier_de_Spécifications_Fonctionnelles.docx |Spécifications fonctionnelles détaillées du SGE V2
+|[04] |01.0 |29/09/2016 |SGE_V2_FS_Diffuser_un_fichier_(DF).docx |Fiche Solution décrivant le routage pour la nature Diffusion Fichier pour le SGE V2
+|[05] | |{localdate}|STS-Cache-Catalogue.pdf |Description du cache du catalogue SGE V2
 |[06] |xxx |xxx |Ajouter FS DM Batch |
 |[07] |xxx |xxx |Ajouter FS DM TR |
-|[08] |xxx |xxx |DGE_V2_DSF_Liste_des_codes_d_erreurs.xlsx |Liste des codes d’erreurs DGE V2
+|[08] |xxx |xxx |SGE_V2_DSF_Liste_des_codes_d_erreurs.xlsx |Liste des codes d’erreurs SGE V2
 |====================================================================================================================================================
 
 // TODO : vérifier noms document, dates et versions.
@@ -22,7 +23,7 @@ ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
 
 == Introduction
 
-Ce document décrit les opérations de routage réalisées par l’IS « MET » de l’application DGE V2 pour les natures d’échanges suivantes :
+Ce document décrit les opérations de routage réalisées par l’IS « MET » de l’application SGE V2 pour les natures d’échanges suivantes :
 
 * Diffusion Fichier
 * Diffusion Messages
@@ -39,34 +40,58 @@ include::subdocs/_archi-fonc.adoc[]
 
 include::subdocs/_dm-routage-services-wm.adoc[]
 
-<<<
+=== Présentation de l’écran de simulation
 
+L’IHM de simulation se présente sous la forme suivante :
+
+include::subdocs/_simulateur.adoc[]
+
+* Liste déroulante « *Nature* » permettant de choisir entre « DF », « DM », « ABT CRUD » et « ABT CHGT »
+* Liste déroulante « *Mode* », filtrante, avec choix possibles : 
+** DF : « Fichier »
+** DM, ABT CRUD, ABT CHGT : « Batch » / « Temps Réel »
+* Liste déroulante « *Template* » :
+//Un bouton parcourir n'a pas d'utilité vu qu'il serait forcément local, dans la mesure ou l'on peut copier-coller le contenu d'un fichier local dans la zone d'aperçu. Mieux vaut avoir la liste des templates serveur, partagés par tous. Et puis la sauvegarde à la fin serait forcément locale (vu que l'on ne chargerait jamais en distant), pas utile, sauf si l'on veut perdre du temps à refaire des fonctions que nos éditeurs de texte font déjà....
+** Choix du fichier parmi les templates du simulateur côté serveur, filtré par Nature et Canal.
+* Bouton btn:[Charger] pour charger le fichier choisi.
+* Bouton btn:[Supprimer] pour supprimer définitivement le fichier choisi des templates, avec confirmation. Ceci permet d'être autonome dans la gestion du patrimoine de test.
+* Zone d'aperçu éditable permettant de visualiser le futur fichier injecté, sans écrasement du template.
+//TODO nous pourrions facilement proposer une validation XSD, les fonctions existent déjà.
+* Case à cocher « *Remplacer les identifiants et dates* » qui permet de remplacer les identifiants par des valeurs uniques, quelque soit le contenu préalable dans l'aperçu.
+* Champ « *Code testeur* » utilisé dans les identifiants si remplacement activé.
+* Bouton btn:[Soumettre] qui utilise le contenu de l’aperçu comme source et applique les modifications nécessaires, conformément à la configuration du simulateur suivant qu’on ait forcé le remplacement des identifiants avant de l’injecter.
+** Une fois le fichier généré, le nom du fichier apparaît sur l’écran.
+* Champ « *Nouveau template* »  qui permet d'indiquer sous quel nom le template de contenu de l'aperçu devra être enregistré.
+* Bouton btn:[Sauvegarder] qui permet de sauvegarder le template.
+** Un message indique si la sauvegarde a fonctionné, en proposant l'écrasement si un fichier du même nom existe.
+
+<<<
 == Packages webMethods
 
-=== DgeBpmDf : routage Diffusion Fichier
+=== SgeBpmDf : routage Diffusion Fichier
 
-Le routage de la nature Diffusion Fichier est réalisé par le package webMethods *DgeBpmDf* :
+Le routage de la nature Diffusion Fichier est réalisé par le package webMethods *SgeBpmDf* :
 
-image:DgeBpmDf_package.png[image,width=162,height=71]image:DgeBpmDfTech_package.png[image,width=160,height=72]
+image:SgeBpmDf_package.png[image,width=162,height=71]image:SgeBpmDfTech_package.png[image,width=160,height=72]
 
 ==== Services publics
 
-===== dgeBpmDf.pub:routeFile
+===== sgeBpmDf.pub:routeFile
 
 ====== Déclenchement
 
-Le module de routage de la Diffusion Fichier se déclenche sur réception du document *dgeCommonsDocs.docs.df.bpm:StartBpmDf* publié par l’IS « B2B-FIC-PE-n », lorsque le résultat des contrôles d’entrée effectués sur le fichier est OK.
+Le module de routage de la Diffusion Fichier se déclenche sur réception du document *sgeCommonsDocs.docs.df.bpm:StartBpmDf* publié par l’IS « B2B-FIC-PE-n », lorsque le résultat des contrôles d’entrée effectués sur le fichier est OK.
 
 Ce document contient les données d’entête du fichier à router :
 
 image::entete.png[image,width=150,height=133]
 
-Sur réception de ce document, le trigger *dgeBpmDf.triggers:routeFile* est déclenché et le service associé démarre.
+Sur réception de ce document, le trigger *sgeBpmDf.triggers:routeFile* est déclenché et le service associé démarre.
 
 
 ====== Traitement
 
-Le service *dgeBpmDf.pub:routeFile* réalise le routage du fichier(cf. algorithmes fonctionnels : doc [04]) :
+Le service *sgeBpmDf.pub:routeFile* réalise le routage du fichier(cf. algorithmes fonctionnels : doc [04]) :
 
 * Prise en compte de la liste restrictive (*) :
 ** appel à <<GenericRoutingManager.routeWithRestriction, routeWithRestriction>>
@@ -83,7 +108,7 @@ Le service *dgeBpmDf.pub:routeFile* réalise le routage du fichier(cf. algorithm
 
 _(*) accès au cache du catalogue, cf. document_ _[05]_
 
-En fin de traitement, le service publie le document *dgeCommonsDocs.docs.df.bpm:EndBpmDf*, contenant les données nécessaires à la construction de l’ARLE et des entêtes de SORTIE :
+En fin de traitement, le service publie le document *sgeCommonsDocs.docs.df.bpm:EndBpmDf*, contenant les données nécessaires à la construction de l’ARLE et des entêtes de SORTIE :
 
 image::echange_origine.png[image,width=134,height=277]
 
@@ -108,40 +133,38 @@ image::traitement.jpg[image,width=224,height=69]
 |==========================================================================================================================================================================================================================
 
 
-=== DgeBpmDm : routage Diffusion Messages
+=== SgeBpmDm : routage Diffusion Messages
 
-Le routage de la nature Diffusion Messages est réalisé par le package webMethods *DgeBpmDm* :
-
-image:DgeBpmDf_package.png[image,width=162,height=71]image:DgeBpmDfTech_package.png[image,width=160,height=72]
+Le routage de la nature Diffusion Messages est réalisé par le package webMethods *SgeBpmDm*.
 
 // TODO :Copies d’écran à maj
 
 ==== Services publics
 
-===== dgeCommonsDocs.docs.dm.bpm:StartBpmDm
+===== sgeCommonsDocs.docs.dm.bpm:StartBpmDm
 
 ====== Déclenchement
 
-Le module de routage de la Diffusion Messages se déclenche sur réception du document *dgeCommonsDocs.docs.dm.bpm:StartBpmDm* publié par l’IS B2B-FIC lorsque le résultat des contrôles d’entrée effectués sur la demande est OK. Ce document contient les informations du message à router.
+Le module de routage de la Diffusion Messages se déclenche sur réception du document *sgeCommonsDocs.docs.dm.bpm:StartBpmDm* publié par l’IS B2B-FIC lorsque le résultat des contrôles d’entrée effectués sur la demande est OK. Ce document contient les informations du message à router.
 
 _Cf. paragraphe "Documents WM" pour la description des documents webMethods._
 
-Sur réception de ce document, le trigger *dgeBpmDm.triggers:startMsg* est déclenché et le service associé démarre.
+Sur réception de ce document, le trigger *sgeBpmDm.triggers:startMsg* est déclenché et le service associé démarre.
 
 ====== Traitement
 
 Le traitement est réalisé en quatre étapes correspondant aux services suivants :
 
-* *dgeBpmDm.pub:startMsg*: appel à <<DmRoutingManager.startMsg,DmRoutingManager.startMsg>>
-* *dgeBpmDm.pub:startRouteMsg*: appel à <<DmRoutingManager.startRouteMsg,DmRoutingManager.startRouteMsg>>
-* *dgeBpmDm.pub:endRouteMsg*: appel à <<DmRoutingManager.endRouteMsg,DmRoutingManager.endRouteMsg>>
-* *dgeBpmDm.pub:endMsg*: appel à <<DmRoutingManager.endMsg,DmRoutingManager.endMsg>>
+* *sgeBpmDm.pub:startMsg*: appel à <<DmRoutingManager.startMsg,DmRoutingManager.startMsg>>
+* *sgeBpmDm.pub:startRouteMsg*: appel à <<DmRoutingManager.startRouteMsg,DmRoutingManager.startRouteMsg>>
+* *sgeBpmDm.pub:endRouteMsg*: appel à <<DmRoutingManager.endRouteMsg,DmRoutingManager.endRouteMsg>>
+* *sgeBpmDm.pub:endMsg*: appel à <<DmRoutingManager.endMsg,DmRoutingManager.endMsg>>
 
 Le schéma suivant représente les enchainements possibles de ces étapes :
 
 image::schema2.png[image,width=631,height=326]
 
-En fin de traitement, le service publie le document *dgeCommonsDocs.docs.dm.bpm:EndBpmDm*, signalant la fin de traitement d’un message. Ce document contient les informations nécessaires au connecteur DM pour créer le message de CRF ainsi que les messages de sortie à destination de chaque consommateur.
+En fin de traitement, le service publie le document *sgeCommonsDocs.docs.dm.bpm:EndBpmDm*, signalant la fin de traitement d’un message. Ce document contient les informations nécessaires au connecteur DM pour créer le message de CRF ainsi que les messages de sortie à destination de chaque consommateur.
 
 ====== Cycle de vie du traitement
 
@@ -186,7 +209,7 @@ En cas d’erreur technique lors du traitement du routage :
 
 === Documents WM
 
-==== dgeCommonsDocs.docs.dm.bpm:Data (non publiable)
+==== sgeCommonsDocs.docs.dm.bpm:Data (non publiable)
 
 Ce document contient la structure commune des données partagées par tous les documents webMethods du BPM DM :
 
@@ -226,13 +249,13 @@ Selon les étapes, tous les champs ne sont pas forcément renseignés. Les donn�
 
 Cette structure est utilisée par les documents suivants :
 
-* dgeCommonsDocs.docs.dm.bpm:StartBpmDm
-* dgeCommonsDocs.docs.dm.bpm:StartRouteMsg
-* dgeCommonsDocs.docs.dm.bpm:EndRouteMsg
-* dgeCommonsDocs.docs.dm.bpm:EndMsg
-* dgeCommonsDocs.docs.dm.bpm:EndBpmDm
-* dgeCommonsDocs.docs.dm.bpm:CallSNGI
-* dgeCommonsDocs.docs.dm.bpm:CallDCR
+* sgeCommonsDocs.docs.dm.bpm:StartBpmDm
+* sgeCommonsDocs.docs.dm.bpm:StartRouteMsg
+* sgeCommonsDocs.docs.dm.bpm:EndRouteMsg
+* sgeCommonsDocs.docs.dm.bpm:EndMsg
+* sgeCommonsDocs.docs.dm.bpm:EndBpmDm
+* sgeCommonsDocs.docs.dm.bpm:CallSNGI
+* sgeCommonsDocs.docs.dm.bpm:CallDCR
 
 Ces documents ont tous la même structure :
 
@@ -240,29 +263,29 @@ Ces documents ont tous la même structure :
 * IdMessage : identifiant du message d’entrée (champ Identifiant de la table MESSAGES)
 * IdMessageTech : identifiant technique du message (champ Id de la tables MESSAGES)
 * Entete :
-** structure dgeCommonsDocs.docs.dm.bpm:Data
+** structure sgeCommonsDocs.docs.dm.bpm:Data
 
 *Note : c'est « IdMessageTech » qui est utilisé pour retrouver le message en BDD (table MESSAGES).*
 
-=== DgeBpmCommons
+=== SgeBpmCommons
 
-Les services webMethods de routage sont regroupés dans le package *DgeBpmCommons*.
+Les services webMethods de routage sont regroupés dans le package *SgeBpmCommons*.
 
 ==== Services publics
 
-===== dgeBpmCommons.sched:reinitCacheRFO
+===== sgeBpmCommons.sched:reinitCacheRFO
 
 Ce service est schédulé à intervalles réguliers (tous les jours). Il réalise la réinitialisation du cache RFO après récupération des risques et domaines, via appel de la méthode JAVA <<CacheRFO.initRisqueListFromRFO, initRisqueListFromRFO>>
 
 == Jars
 
-Les méthodes JAVA de routage sont regroupées dans le jar du package *DgeBpmCommons*.
+Les méthodes JAVA de routage sont regroupées dans le jar du package *SgeBpmCommons*.
 
 === CacheRFO.initRisqueListFromRFO
 
 Ce service réalise l’appel, en remoteInvoke sur l’IS A2A (sur le premier nœud disponible, via utilisation de la méthode remoteInvokeMultiNodes), du service suivant du connecteur RFO :
 
-* dgeConnectorRFO.pub:getAllRisquesRDomainesValides
+* sgeConnectorRFO.pub:getAllRisquesRDomainesValides
 
 Il est utilisé :
 
@@ -692,8 +715,5 @@ Construction du document EndBpmDm avec les valeurs suivantes :
 **** Key=Send => Value=« false » si fonction = 53, « true » sinon
 **** Key=Consommateurs => Value=« true » si option service et option consommateur « communiquer la liste des destinataires » = OUI, « false » sinon
 **** Key=SNGI => Value=« true » si option consommateur « communiquer le résultat d’identification SNGI » = OUI, « false » sinon
-
-<<<
-== Annexes
 
 include::subdocs/_closure-fr.adoc[]

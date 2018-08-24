@@ -1,5 +1,6 @@
 = Etude d'Architecture: Systeme de Gestion des Echanges
 include::subdocs/_init-fr.adoc[]
+
 ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
 
 <<<
@@ -889,8 +890,5 @@ Ci-dessous l’architecture réseau retenue.
 * VM WLS & JBOSS dans VLAN distinct des IS _[Mathieu Crogiez]_
 
 image:archi-reseau.png[]
-
-<<<
-== Annexes
 
 include::subdocs/_closure-fr.adoc[]

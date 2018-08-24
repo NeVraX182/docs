@@ -1,14 +1,13 @@
-= Example Manual
-Doc Writer <doc.writer@example.org>
-v1.0, 2014-09-09
+= Example diagrams
 
-ifndef::imagesdir[:imagesdir: images]
-ifndef::sourcedir[:sourcedir: ../../main/java]
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
 
-This is a user manual for an example project.
+== File tree view
 
-ifndef::history-dir[]
-[tree,file="ex-tree-view-new.png"]
+NOTE: Sadly, this is only available in AsciidocFX for now. So use the editor to produce the image, then import it as-is in your document.
+
+ifdef::notdef[]
+[tree, file="ex-tree-view-new.png"]
 ----
 root
 |-- photos
@@ -32,7 +31,7 @@ root
 |   `-- configuration.conf
 `-- etc.
 ----
-endif::history-dir[]
+endif::notdef[]
 
 image:ex-tree-view-new.png[image, pdfwidth=30%]
 

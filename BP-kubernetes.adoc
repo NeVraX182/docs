@@ -57,9 +57,9 @@ subjects:
   helm init --service-account tiller
   helm repo update
 
-[NOTE]
+[TIP]
 ====
-if already initialized by mistake
+if already initialized by mistake, use this command :
 
   helm reset --force
 ====
@@ -84,7 +84,7 @@ plugins:
     - "https://github.com/SonarSource/sonar-ldap/releases/download/2.2-RC3/sonar-ldap-plugin-2.2.0.601.jar"
 ----
 
-[NOTE]
+[WARNING]
 ====
 * See how to add plugins
 ** Findbugs

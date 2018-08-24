@@ -1,5 +1,6 @@
 = Sujets d'oral technique
 include::subdocs/_init.adoc[]
+
 ifndef::imagesdir[:imagesdir: images]
 
 <<<

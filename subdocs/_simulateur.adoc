@@ -1,0 +1,34 @@
+ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+
+[plantuml, simulateur, png]
+.Vue conceptuelle du simulateur
+----
+@startsalt
+{+
+	{  | **Nature : ** | ^DM^ | **   Mode : ** | ^Batch^  }
+	{  **Template : ** | ^Q8001.xml       ^ | [Charger] | [Supprimer] }
+	{+
+	    <?xml version="1.0" encoding="UTF-8"?>
+<DM_Entree:DGE xmlns:DM_Entree="http://www.cnav.fr/rncps/DGE/interfaces/DM/v2/DM_Entree">
+    <Entete>
+        <Nature>
+            <Type>DiffusionMessages</Type>
+            <Version>02.01</Version>
+            <Phase>DM_ENTREE</Phase>
+        </Nature>
+        <Service>
+            <Reference>M0012E001</Reference>
+            <Version>02.01</Version>
+        </Service>
+        <Echange>
+            <Identifiant>21841021AQ178000</Identifiant>
+            <Horodatage>2015-04-14T11:39:15.234</Horodatage>
+            <RefSISO>SISO000000001</RefSISO>
+            <NbMessages>3</NbMessages>
+	}
+	{[X] Remplacer les identifiants | **   Code testeur : ** | "ASO" | [Soumettre]}
+    { **Nouveau template : ** | "Q8001_copy.xml     " | [Sauvegarder]}
+}
+@endsalt
+----
+

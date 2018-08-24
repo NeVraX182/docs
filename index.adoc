@@ -1,35 +1,37 @@
-= Technical Documentations using AsciiDoc & PlantUml
+= Technical Documentations
 
-== Best practices for an efficient project [ENG]
+== Cheat sheets and best practices for an efficient project [ENG]
 
-link:BP-asciidoc.html[AsciiDoc] - Documentation-as-code language
+* link:BP-asciidoc.html[AsciiDoc] - Documentation-as-code language footnote:[This site is written using link:https://asciidoctor.org/docs/asciidoc-syntax-quick-reference[AsciiDoc], a Simple Markup Language. The writer focuses only on the substance, easily writable and readable by non technical people, and AsciiDoctor handles the output to HTML and PDF. Graphs are generated with link:http://plantuml.com[PlantUml], see link:example-diagrams.html[these compiled examples] for an overview of every diagram types. This documentation-as-code implementation follows the everything-as-code DevOps principle. On each page you will find links to both PDF and source ‏ ‏ ‎ ‏ ‏ ‎ ‏ ‏ ‎ icon:file-text-o[link={docname}.adoc]]
 
-link:BP-eclipse.html[Eclipse] - Integrated Development Environment
+* link:BP-eclipse.html[Eclipse] - Integrated Development Environment
 
-link:BP-elastic.html[Elastic Stack] - Distributed search and analytics engine
+* link:BP-elastic.html[Elastic Stack] - Distributed search and analytics engine
 
-link:BP-gerrit.html[Gerrit Code Review] - Collaborative code review and git hosting
+* link:BP-gerrit.html[Gerrit Code Review] - Collaborative code review and git hosting
 
-link:BP-gitlab.html[Gitlab] - All-in-one integrated product for software development
+* link:BP-gitlab.html[Gitlab] - All-in-one integrated product for software development
 
-link:BP-java.html[Java] - Programmation language
+* link:BP-java.html[Java] - Programmation language
 
-link:BP-jenkins.html[Jenkins] - Automation server
+* link:BP-jenkins.html[Jenkins] - Automation server
 
-link:BP-jira.html[JIRA] - Issue tracker
+* link:BP-jira.html[JIRA] - Issue tracker
 
-link:BP-kubernetes.html[Kubernetes] - Containerized services orchestrator
+* link:BP-kubernetes.html[Kubernetes] - Containerized services orchestrator
 
-link:BP-maven.html[Maven] - Java project builder
+* link:BP-maven.html[Maven] - Java project builder
 
-link:BP-nexus3.html[Nexus3] - Artifact repository manager
+* link:BP-nexus3.html[Nexus3] - Artifact repository manager
 
-link:BP-sonarqube.html[SonarQube] - Continuous code quality engine
+* link:BP-sonarqube.html[SonarQube] - Continuous code quality engine
 
 == Quelques exemples de documentation projet [FR]
 
-link:SAF-architecture-sge.html[Etude IAF d'architecture SGE]
+* link:SAF-architecture-sge.html[Etude d'architecture suivant la méthode IAF]
 
-link:SAF-architecture-rscu.html[Etude partielle d'architecture RSCU]
+* link:SAF-architecture-rscu.html[Etude de solution]
 
-link:oral-technique.html[Support pour oral technique]
+* link:STS-Gestion-du-routage.html[Documentation technique]
+
+* link:oral-technique.html[Support pour oral technique]

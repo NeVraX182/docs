@@ -6,7 +6,24 @@ Version {project-version} du {localdate}
 :toc:
 :toc-title: Sommaire
 :toclevels: 3
+endif::backend-pdf[]
+//Only HTML
+ifdef::backend-html5[]
+//toc here and not in pom.xml because we don't want it in index.html
+:toc: left
+//No need for version and date : the auto-generated black footer says "Last updated 2018-08-17 11:48:04 CEST"
+endif::backend-html5[]
 
+ifndef::source-dir[:source-dir: ../../main/java]
+ifndef::test-dir[:test-dir: ../../test/java]
+
+//For the sections to be numbered
+:numbered:
+
+//For the keyboard/buttons nice print
+:experimental:
+
+ifdef::backend-pdf[]
 .Historique
 [cols="^,^,<6",options="header"]
 |===================================================
@@ -15,13 +32,7 @@ include::{history-dir}/{docname}.adoc.psv[]
 |===================================================
 <<<
 endif::backend-pdf[]
-ifdef::backend-html5[]
-icon:file-text-o[2x, link={docname}.adoc] ‏ ‏ ‎ icon:file-pdf-o[2x, link={docname}.pdf]
-endif::backend-html5[]
 
-ifndef::source-dir[:source-dir: ../../main/java]
-ifndef::test-dir[:test-dir: ../../test/java]
-//For the sections to be numbered
-:numbered:
-//For the keyboard/buttons nice print
-:experimental:
+ifdef::backend-html5[]
+icon:file-text-o[link={docname}.adoc] ‏ ‏ ‎ icon:file-pdf-o[link={docname}.pdf]
+endif::backend-html5[]

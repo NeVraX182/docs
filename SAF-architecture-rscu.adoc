@@ -1,15 +1,8 @@
 = Etude d'Architecture webMethods Alimentation Masse: RSCU
 include::subdocs/_init-fr.adoc[]
+
 ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
 
-.Historique
-[cols="^2,^2,<10",options="header"]
-|===================================================
-|Date|Author|Detail
-include::{history-dir}/{docname}.adoc.psv[]
-|===================================================
-
-<<<
 == Introduction
 Il s'agit du dossier d'étude d'architecture du RSCU de point de vue du pôle expertise webMethods de Capgemini.
 
@@ -190,8 +183,5 @@ endnote
 :Ordre WS BDD;
 stop
 ....
-
-<<<
-== Annexes
 
 include::subdocs/_closure-fr.adoc[]

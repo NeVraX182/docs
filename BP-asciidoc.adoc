@@ -7,7 +7,7 @@ ifndef::imagesdir[:imagesdir: images]
 
 All documentations on the project, including this one, are written as part of DevOps principle Documentation-As-Code using AsciiDocFX and compiled with Asciidoctor under maven to produce PDF.
 
-To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF.
+To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF. You can consider Visual Studio Code too, it has a nice plugin but with less features.
 
 image:AsciidocFX.png[]
 
