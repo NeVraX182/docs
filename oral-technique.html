@@ -426,6 +426,97 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .show-for-print{display:inherit!important}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -532,38 +623,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Exemple d&#8217;algorithme trop complexe : zig zag conversion</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public String convert(String s, int numRows) {
-	if (numRows == 1)
-		return s;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="predefined-type">String</span> convert(<span class="predefined-type">String</span> s, <span class="type">int</span> numRows) {
+        <span class="keyword">if</span> (numRows == <span class="integer">1</span>)
+                <span class="keyword">return</span> s;
 
-	StringBuilder sb = new StringBuilder();
-	// step
-	int step = 2 * numRows - 2;
+        <span class="predefined-type">StringBuilder</span> sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
+        <span class="comment">// step</span>
+        <span class="type">int</span> step = <span class="integer">2</span> * numRows - <span class="integer">2</span>;
 
-	for (int i = 0; i &lt; numRows; i++) {
-		//first &amp; last rows
-		if (i == 0 || i == numRows - 1) {
-			for (int j = i; j &lt; s.length(); j = j + step) {
-				sb.append(s.charAt(j));
-			}
-		//middle rows
-		} else {
-			int j = i;
-			boolean flag = true;
-			int step1 = 2 * (numRows - 1 - i);
-			int step2 = step - step1;
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; numRows; i++) {
+                <span class="comment">//first &amp; last rows</span>
+                <span class="keyword">if</span> (i == <span class="integer">0</span> || i == numRows - <span class="integer">1</span>) {
+                        <span class="keyword">for</span> (<span class="type">int</span> j = i; j &lt; s.length(); j = j + step) {
+                                sb.append(s.charAt(j));
+                        }
+                <span class="comment">//middle rows</span>
+                } <span class="keyword">else</span> {
+                        <span class="type">int</span> j = i;
+                        <span class="type">boolean</span> flag = <span class="predefined-constant">true</span>;
+                        <span class="type">int</span> step1 = <span class="integer">2</span> * (numRows - <span class="integer">1</span> - i);
+                        <span class="type">int</span> step2 = step - step1;
 
-			while (j &lt; s.length()) {
-				sb.append(s.charAt(j));
-				if (flag)
-					j = j + step1;
-				else
-					j = j + step2;
-				flag = !flag;
-			}
-		}
-	}
-	return sb.toString();
+                        <span class="keyword">while</span> (j &lt; s.length()) {
+                                sb.append(s.charAt(j));
+                                <span class="keyword">if</span> (flag)
+                                        j = j + step1;
+                                <span class="keyword">else</span>
+                                        j = j + step2;
+                                flag = !flag;
+                        }
+                }
+        }
+        <span class="keyword">return</span> sb.toString();
 }</code></pre>
 </div>
 </div>
@@ -589,7 +680,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">"kayak".charAt(0) == "kayak".charAt(4);//true</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="string"><span class="delimiter">&quot;</span><span class="content">kayak</span><span class="delimiter">&quot;</span></span>.charAt(<span class="integer">0</span>) == <span class="string"><span class="delimiter">&quot;</span><span class="content">kayak</span><span class="delimiter">&quot;</span></span>.charAt(<span class="integer">4</span>);<span class="comment">//true</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -597,7 +688,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String ay = "kayak".substring(1, 2)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">String</span> ay = <span class="string"><span class="delimiter">&quot;</span><span class="content">kayak</span><span class="delimiter">&quot;</span></span>.substring(<span class="integer">1</span>, <span class="integer">2</span>)</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -607,25 +698,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Algorithme classique</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    for (int i = 0; i &lt;= sub.length() / 2; i++) {
-        if (word.charAt(i) != word.charAt(sub.length() - 1 - i)) {
-            return false;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isPalindrome(<span class="predefined-type">String</span> word) {
+    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt;= sub.length() / <span class="integer">2</span>; i++) {
+        <span class="keyword">if</span> (word.charAt(i) != word.charAt(sub.length() - <span class="integer">1</span> - i)) {
+            <span class="keyword">return</span> <span class="predefined-constant">false</span>;
         }
     }
-    return true;
+    <span class="keyword">return</span> <span class="predefined-constant">true</span>;
 }</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Algorithme récursif</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    if(word.length() == 0 || word.length() == 1) {
-        return true;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isPalindrome(<span class="predefined-type">String</span> word) {
+    <span class="keyword">if</span>(word.length() == <span class="integer">0</span> || word.length() == <span class="integer">1</span>) {
+        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
     }
-    if(word.charAt(0) == word.charAt(word.length()-1)) {
-        return isPalindrome(word.substring(1, word.length()-1));
+    <span class="keyword">if</span>(word.charAt(<span class="integer">0</span>) == word.charAt(word.length()-<span class="integer">1</span>)) {
+        <span class="keyword">return</span> isPalindrome(word.substring(<span class="integer">1</span>, word.length()-<span class="integer">1</span>));
     }
 }</code></pre>
 </div>
@@ -633,8 +724,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Algorithme le plus concis</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean isPalindrome(String word) {
-    return new StringBuilder(word).reverse().equals(word);
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> isPalindrome(<span class="predefined-type">String</span> word) {
+    <span class="keyword">return</span> <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>(word).reverse().equals(word);
 }</code></pre>
 </div>
 </div>
@@ -741,32 +832,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Algorithme en 2 blocs</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">String[][] table = { { "a00", "a01", "a02", "a03" }, { "a10", "a11", "a12", "a13" },
-		{ "a20", "a21", "a22", "a23" }, { "a30", "a31", "a32", "a33" } };
-int n = table.length;
-int m = table[0].length;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">String</span><span class="type">[]</span><span class="type">[]</span> table = { { <span class="string"><span class="delimiter">&quot;</span><span class="content">a00</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a01</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a02</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a03</span><span class="delimiter">&quot;</span></span> }, { <span class="string"><span class="delimiter">&quot;</span><span class="content">a10</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a11</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a12</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a13</span><span class="delimiter">&quot;</span></span> },
+                { <span class="string"><span class="delimiter">&quot;</span><span class="content">a20</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a21</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a22</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a23</span><span class="delimiter">&quot;</span></span> }, { <span class="string"><span class="delimiter">&quot;</span><span class="content">a30</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a31</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a32</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">a33</span><span class="delimiter">&quot;</span></span> } };
+<span class="type">int</span> n = table.length;
+<span class="type">int</span> m = table[<span class="integer">0</span>].length;
 
-int iAlternate;
-for (int i = 0; i &lt; n; i++) {
-	iAlternate = i;
-	for (int j = 0; j &lt;= i; j++) {
-		if (j &lt; n) {
-			System.out.print(table[iAlternate][j] + " ");
-			iAlternate--;
-		}
-	}
+<span class="type">int</span> iAlternate;
+<span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; n; i++) {
+        iAlternate = i;
+        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt;= i; j++) {
+                <span class="keyword">if</span> (j &lt; n) {
+                        <span class="predefined-type">System</span>.out.print(table[iAlternate][j] + <span class="string"><span class="delimiter">&quot;</span><span class="content"> </span><span class="delimiter">&quot;</span></span>);
+                        iAlternate--;
+                }
+        }
 }
 
-int jAlternate;
-for (int j = 1; j &lt; m; j++) {
-	jAlternate = j;
-	for (int i = n - 1; i &gt; 0; i--) {
-		if (jAlternate &lt; m)
-			System.out.print(table[i][jAlternate] + " ");
-		jAlternate++;
-	}
+<span class="type">int</span> jAlternate;
+<span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">1</span>; j &lt; m; j++) {
+        jAlternate = j;
+        <span class="keyword">for</span> (<span class="type">int</span> i = n - <span class="integer">1</span>; i &gt; <span class="integer">0</span>; i--) {
+                <span class="keyword">if</span> (jAlternate &lt; m)
+                        <span class="predefined-type">System</span>.out.print(table[i][jAlternate] + <span class="string"><span class="delimiter">&quot;</span><span class="content"> </span><span class="delimiter">&quot;</span></span>);
+                jAlternate++;
+        }
 }
-// a00 a10 a01 a20 a11 a02 a30 a21 a12 a03 a31 a22 a13 a32 a23 a33</code></pre>
+<span class="comment">// a00 a10 a01 a20 a11 a02 a30 a21 a12 a03 a31 a22 a13 a32 a23 a33</span></code></pre>
 </div>
 </div>
 </div>
@@ -893,15 +984,15 @@ for (int j = 1; j &lt; m; j++) {
 <div class="listingblock">
 <div class="title">Node.java</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">class Node {
-    public int value;
-    public Node left;
-    public Node right;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="type">class</span> <span class="class">Node</span> {
+    <span class="directive">public</span> <span class="type">int</span> value;
+    <span class="directive">public</span> Node left;
+    <span class="directive">public</span> Node right;
 
-    public Node(int value, Node left, Node right) {
-        this.value = value;
-        this.left = left;
-        this.right = right;
+    <span class="directive">public</span> Node(<span class="type">int</span> value, Node left, Node right) {
+        <span class="local-variable">this</span>.value = value;
+        <span class="local-variable">this</span>.left = left;
+        <span class="local-variable">this</span>.right = right;
     }
 }</code></pre>
 </div>
@@ -913,15 +1004,15 @@ for (int j = 1; j &lt; m; j++) {
 <div class="listingblock">
 <div class="title">Algorithme basique</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public static boolean contains(Node root, int value) {
-	if (root == null) return false;
-	if (root.value == value)
-		return true;
-	if (root.value &gt; value)
-		return contains(root.left, value);
-	if (root.value &lt; value)
-		return contains(root.right, value);
-	return false;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="directive">static</span> <span class="type">boolean</span> contains(Node root, <span class="type">int</span> value) {
+        <span class="keyword">if</span> (root == <span class="predefined-constant">null</span>) <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+        <span class="keyword">if</span> (root.value == value)
+                <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+        <span class="keyword">if</span> (root.value &gt; value)
+                <span class="keyword">return</span> contains(root.left, value);
+        <span class="keyword">if</span> (root.value &lt; value)
+                <span class="keyword">return</span> contains(root.right, value);
+        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
 }</code></pre>
 </div>
 </div>
@@ -1051,22 +1142,22 @@ for (int j = 1; j &lt; m; j++) {
 <div class="listingblock">
 <div class="title">Algorithme basique</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public int guessNumber(int n) {
-    int low=1;
-    int high=n;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">int</span> guessNumber(<span class="type">int</span> n) {
+    <span class="type">int</span> low=<span class="integer">1</span>;
+    <span class="type">int</span> high=n;
 
-    while(low &lt;= high){
-        int mid = low+((high-low)/2);
-        int result = askBen(mid);
-        if(result==0){
-            return mid;
-        }else if(result==1){
-            low = mid+1;
-        }else{
-            high=mid-1;
+    <span class="keyword">while</span>(low &lt;= high){
+        <span class="type">int</span> mid = low+((high-low)/<span class="integer">2</span>);
+        <span class="type">int</span> result = askBen(mid);
+        <span class="keyword">if</span>(result==<span class="integer">0</span>){
+            <span class="keyword">return</span> mid;
+        }<span class="keyword">else</span> <span class="keyword">if</span>(result==<span class="integer">1</span>){
+            low = mid+<span class="integer">1</span>;
+        }<span class="keyword">else</span>{
+            high=mid-<span class="integer">1</span>;
         }
     }
-    return -1;
+    <span class="keyword">return</span> -<span class="integer">1</span>;
 }</code></pre>
 </div>
 </div>
@@ -1150,11 +1241,8 @@ for (int j = 1; j &lt; m; j++) {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-24 15:00:48 UTC
+Last updated 2018-08-25 19:12:55 UTC
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
 </body>
 </html>

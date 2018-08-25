@@ -426,6 +426,97 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .show-for-print{display:inherit!important}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -530,46 +621,46 @@ TODO give Maven details for shared-resources
 <div class="listingblock">
 <div class="title">pom.xml plugin</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">	&lt;!-- checkstyle to fail the build on javadoc warnings --&gt;
-	&lt;!-- to skip : mvn install -Dcheckstyle.skip=true --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-		&lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
-		&lt;version&gt;2.17&lt;/version&gt;
-		&lt;executions&gt;
-			&lt;execution&gt;
-				&lt;id&gt;validate&lt;/id&gt;
-				&lt;phase&gt;validate&lt;/phase&gt;
-				&lt;configuration&gt;
-					&lt;configLocation&gt;checkstyle-javadoc.xml&lt;/configLocation&gt;
-					&lt;encoding&gt;UTF-8&lt;/encoding&gt;
-					&lt;consoleOutput&gt;true&lt;/consoleOutput&gt;
-					&lt;failsOnError&gt;true&lt;/failsOnError&gt;
-					&lt;linkXRef&gt;false&lt;/linkXRef&gt;
-				&lt;/configuration&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;check&lt;/goal&gt;
-				&lt;/goals&gt;
-			&lt;/execution&gt;
-		&lt;/executions&gt;
-	&lt;/plugin&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="comment">&lt;!-- checkstyle to fail the build on javadoc warnings --&gt;</span>
+<span class="comment">&lt;!-- to skip : mvn install -Dcheckstyle.skip=true --&gt;</span>
+<span class="tag">&lt;plugin&gt;</span>
+  <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
+  <span class="tag">&lt;artifactId&gt;</span>maven-checkstyle-plugin<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;version&gt;</span>2.17<span class="tag">&lt;/version&gt;</span>
+  <span class="tag">&lt;executions&gt;</span>
+    <span class="tag">&lt;execution&gt;</span>
+      <span class="tag">&lt;id&gt;</span>validate<span class="tag">&lt;/id&gt;</span>
+      <span class="tag">&lt;phase&gt;</span>validate<span class="tag">&lt;/phase&gt;</span>
+      <span class="tag">&lt;configuration&gt;</span>
+        <span class="tag">&lt;configLocation&gt;</span>checkstyle-javadoc.xml<span class="tag">&lt;/configLocation&gt;</span>
+        <span class="tag">&lt;encoding&gt;</span>UTF-8<span class="tag">&lt;/encoding&gt;</span>
+        <span class="tag">&lt;consoleOutput&gt;</span>true<span class="tag">&lt;/consoleOutput&gt;</span>
+        <span class="tag">&lt;failsOnError&gt;</span>true<span class="tag">&lt;/failsOnError&gt;</span>
+        <span class="tag">&lt;linkXRef&gt;</span>false<span class="tag">&lt;/linkXRef&gt;</span>
+      <span class="tag">&lt;/configuration&gt;</span>
+      <span class="tag">&lt;goals&gt;</span>
+        <span class="tag">&lt;goal&gt;</span>check<span class="tag">&lt;/goal&gt;</span>
+      <span class="tag">&lt;/goals&gt;</span>
+    <span class="tag">&lt;/execution&gt;</span>
+  <span class="tag">&lt;/executions&gt;</span>
+<span class="tag">&lt;/plugin&gt;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">checkstyle-javadoc.xml to be created in the root project</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">    &lt;?xml version="1.0"?&gt;
-    &lt;!DOCTYPE module PUBLIC
-        "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
-        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd"&gt;
-    &lt;module name="Checker"&gt;
-        &lt;module name="TreeWalker"&gt;
-            &lt;module name="JavadocMethod"/&gt;
-            &lt;module name="JavadocType"/&gt;
-            &lt;module name="JavadocVariable"/&gt;
-            &lt;module name="JavadocStyle"/&gt;
-        &lt;/module&gt;
-    &lt;/module&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="doctype">&lt;!DOCTYPE module PUBLIC
+  &quot;-//Puppy Crawl//DTD Check Configuration 1.2//EN&quot;
+  &quot;http://www.puppycrawl.com/dtds/configuration_1_2.dtd&quot;&gt;</span>
+<span class="tag">&lt;module</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Checker</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;module</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">TreeWalker</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;module</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">JavadocMethod</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+      <span class="tag">&lt;module</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">JavadocType</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+      <span class="tag">&lt;module</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">JavadocVariable</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+      <span class="tag">&lt;module</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">JavadocStyle</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;/module&gt;</span>
+<span class="tag">&lt;/module&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -580,54 +671,54 @@ TODO give Maven details for shared-resources
 <div class="listingblock">
 <div class="title">pom.xml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugins&gt;
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;plugins&gt;</span>
 
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-		&lt;artifactId&gt;buildnumber-maven-plugin&lt;/artifactId&gt;
-		&lt;version&gt;1.2&lt;/version&gt;
-		&lt;executions&gt;
-			&lt;execution&gt;
-				&lt;phase&gt;validate&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;create-timestamp&lt;/goal&gt;
-				&lt;/goals&gt;
-			&lt;/execution&gt;
-		&lt;/executions&gt;
-		&lt;configuration&gt;
-			&lt;timestampFormat&gt;yyyy-MM-dd&lt;/timestampFormat&gt;
-			&lt;timestampPropertyName&gt;build.date&lt;/timestampPropertyName&gt;
-		&lt;/configuration&gt;
-	&lt;/plugin&gt;
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.mojo<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>buildnumber-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.2<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;executions&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>validate<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>create-timestamp<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+    <span class="tag">&lt;/executions&gt;</span>
+    <span class="tag">&lt;configuration&gt;</span>
+      <span class="tag">&lt;timestampFormat&gt;</span>yyyy-MM-dd<span class="tag">&lt;/timestampFormat&gt;</span>
+      <span class="tag">&lt;timestampPropertyName&gt;</span>build.date<span class="tag">&lt;/timestampPropertyName&gt;</span>
+    <span class="tag">&lt;/configuration&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-	&lt;!-- Ant tasks plugin --&gt;
-	&lt;!-- single usage : mvn antrun:run --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-		&lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
-		&lt;version&gt;1.7&lt;/version&gt;
-		&lt;inherited&gt;true&lt;/inherited&gt;
-		&lt;executions&gt;
-			&lt;execution&gt;
-				&lt;!-- add version to generated pdf filenames --&gt;
-				&lt;id&gt;pdfsAddVersion&lt;/id&gt;
-				&lt;configuration&gt;
-					&lt;failOnError&gt;false&lt;/failOnError&gt;
-					&lt;target name="add version and date to all generated pdf filenames"&gt;
-						&lt;move todir="${project.build.directory}/generated-docs" includeemptydirs="false"&gt;
-							&lt;fileset dir="${project.build.directory}/generated-docs" /&gt;
-							&lt;mapper type="glob" from="*.pdf" to="*_V${project.version}_${build.date}.pdf" /&gt;
-						&lt;/move&gt;
-					&lt;/target&gt;
-				&lt;/configuration&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;run&lt;/goal&gt;
-				&lt;/goals&gt;
-			&lt;/execution&gt;
-		&lt;/executions&gt;
-	&lt;/plugin&gt;
+  <span class="comment">&lt;!-- Ant tasks plugin --&gt;</span>
+  <span class="comment">&lt;!-- single usage : mvn antrun:run --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>maven-antrun-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>1.7<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;inherited&gt;</span>true<span class="tag">&lt;/inherited&gt;</span>
+    <span class="tag">&lt;executions&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="comment">&lt;!-- add version to generated pdf filenames --&gt;</span>
+        <span class="tag">&lt;id&gt;</span>pdfsAddVersion<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;configuration&gt;</span>
+          <span class="tag">&lt;failOnError&gt;</span>false<span class="tag">&lt;/failOnError&gt;</span>
+          <span class="tag">&lt;target</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">add version and date to all generated pdf filenames</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;move</span> <span class="attribute-name">todir</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${project.build.directory}/generated-docs</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">includeemptydirs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">false</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+              <span class="tag">&lt;fileset</span> <span class="attribute-name">dir</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">${project.build.directory}/generated-docs</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+              <span class="tag">&lt;mapper</span> <span class="attribute-name">type</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">glob</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">from</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">*.pdf</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">to</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">*_V${project.version}_${build.date}.pdf</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/move&gt;</span>
+          <span class="tag">&lt;/target&gt;</span>
+        <span class="tag">&lt;/configuration&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>run<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+    <span class="tag">&lt;/executions&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-&lt;/plugins&gt;</code></pre>
+<span class="tag">&lt;/plugins&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -638,29 +729,29 @@ TODO give Maven details for shared-resources
 <div class="listingblock">
 <div class="title">pom.xml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">	&lt;!-- javadoc html, fix or generate --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-		&lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;
-		&lt;version&gt;2.10.4&lt;/version&gt;
-		&lt;configuration&gt;
-			&lt;!-- usage : javadoc:javadoc or javadoc:jar --&gt;
-			&lt;show&gt;public&lt;/show&gt;
-			&lt;reportOutputDirectory&gt;${project.reporting.outputDirectory}&lt;/reportOutputDirectory&gt;
-			&lt;destDir&gt;javadoc&lt;/destDir&gt;
-			&lt;!-- for UML diagram in javadoc:javadoc --&gt;
-			&lt;!-- Locally : need http://www.graphviz.org/Download_windows.php to work --&gt;
-			&lt;!-- and add "C:\Program Files (x86)\Graphviz\bin" to windows path --&gt;
-			&lt;doclet&gt;org.umlgraph.doclet.UmlGraphDoc&lt;/doclet&gt;
-			&lt;docletArtifact&gt;
-				&lt;groupId&gt;org.umlgraph&lt;/groupId&gt;
-				&lt;artifactId&gt;umlgraph&lt;/artifactId&gt;
-				&lt;version&gt;5.6.6&lt;/version&gt;
-			&lt;/docletArtifact&gt;
-			&lt;additionalparam&gt;-views -attributes -visibility -types -enumerations -enumconstants&lt;/additionalparam&gt;
-			&lt;useStandardDocletOptions&gt;true&lt;/useStandardDocletOptions&gt;
-		&lt;/configuration&gt;
-	&lt;/plugin&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="comment">&lt;!-- javadoc html, fix or generate --&gt;</span>
+<span class="tag">&lt;plugin&gt;</span>
+  <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
+  <span class="tag">&lt;artifactId&gt;</span>maven-javadoc-plugin<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;version&gt;</span>2.10.4<span class="tag">&lt;/version&gt;</span>
+  <span class="tag">&lt;configuration&gt;</span>
+    <span class="comment">&lt;!-- usage : javadoc:javadoc or javadoc:jar --&gt;</span>
+    <span class="tag">&lt;show&gt;</span>public<span class="tag">&lt;/show&gt;</span>
+    <span class="tag">&lt;reportOutputDirectory&gt;</span>${project.reporting.outputDirectory}<span class="tag">&lt;/reportOutputDirectory&gt;</span>
+    <span class="tag">&lt;destDir&gt;</span>javadoc<span class="tag">&lt;/destDir&gt;</span>
+    <span class="comment">&lt;!-- for UML diagram in javadoc:javadoc --&gt;</span>
+    <span class="comment">&lt;!-- Locally : need http://www.graphviz.org/Download_windows.php to work --&gt;</span>
+    <span class="comment">&lt;!-- and add &quot;C:\Program Files (x86)\Graphviz\bin&quot; to windows path --&gt;</span>
+    <span class="tag">&lt;doclet&gt;</span>org.umlgraph.doclet.UmlGraphDoc<span class="tag">&lt;/doclet&gt;</span>
+    <span class="tag">&lt;docletArtifact&gt;</span>
+      <span class="tag">&lt;groupId&gt;</span>org.umlgraph<span class="tag">&lt;/groupId&gt;</span>
+      <span class="tag">&lt;artifactId&gt;</span>umlgraph<span class="tag">&lt;/artifactId&gt;</span>
+      <span class="tag">&lt;version&gt;</span>5.6.6<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;/docletArtifact&gt;</span>
+    <span class="tag">&lt;additionalparam&gt;</span>-views -attributes -visibility -types -enumerations -enumconstants<span class="tag">&lt;/additionalparam&gt;</span>
+    <span class="tag">&lt;useStandardDocletOptions&gt;</span>true<span class="tag">&lt;/useStandardDocletOptions&gt;</span>
+  <span class="tag">&lt;/configuration&gt;</span>
+<span class="tag">&lt;/plugin&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -671,32 +762,32 @@ TODO give Maven details for shared-resources
 <div class="listingblock">
 <div class="title">pom.xml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugins&gt;
-	&lt;!-- install WM jars in local repository --&gt;
-	&lt;!-- part of mvn clean because maven check them early in the process --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-		&lt;artifactId&gt;maven-install-plugin&lt;/artifactId&gt;
-		&lt;version&gt;2.5.2&lt;/version&gt;
-		&lt;!-- We do not want children attempting to install these jars to the repository --&gt;
-		&lt;inherited&gt;false&lt;/inherited&gt;
-		&lt;executions&gt;
-			&lt;execution&gt;
-				&lt;id&gt;wm-isclient95&lt;/id&gt;
-				&lt;phase&gt;clean&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;install-file&lt;/goal&gt;
-				&lt;/goals&gt;
-				&lt;configuration&gt;
-					&lt;file&gt;lib/wm9.5/wm-isclient-9.5.jar&lt;/file&gt;
-					&lt;groupId&gt;webmethods&lt;/groupId&gt;
-					&lt;artifactId&gt;wm-isclient&lt;/artifactId&gt;
-					&lt;version&gt;9.5&lt;/version&gt;
-					&lt;packaging&gt;jar&lt;/packaging&gt;
-				&lt;/configuration&gt;
-			&lt;/execution&gt;
-	&lt;/plugin&gt;
-&lt;/plugins&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;plugins&gt;</span>
+  <span class="comment">&lt;!-- install WM jars in local repository --&gt;</span>
+  <span class="comment">&lt;!-- part of mvn clean because maven check them early in the process --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>maven-install-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.5.2<span class="tag">&lt;/version&gt;</span>
+    <span class="comment">&lt;!-- We do not want children attempting to install these jars to the repository --&gt;</span>
+    <span class="tag">&lt;inherited&gt;</span>false<span class="tag">&lt;/inherited&gt;</span>
+    <span class="tag">&lt;executions&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>wm-isclient95<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>clean<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>install-file<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+        <span class="tag">&lt;configuration&gt;</span>
+          <span class="tag">&lt;file&gt;</span>lib/wm9.5/wm-isclient-9.5.jar<span class="tag">&lt;/file&gt;</span>
+          <span class="tag">&lt;groupId&gt;</span>webmethods<span class="tag">&lt;/groupId&gt;</span>
+          <span class="tag">&lt;artifactId&gt;</span>wm-isclient<span class="tag">&lt;/artifactId&gt;</span>
+          <span class="tag">&lt;version&gt;</span>9.5<span class="tag">&lt;/version&gt;</span>
+          <span class="tag">&lt;packaging&gt;</span>jar<span class="tag">&lt;/packaging&gt;</span>
+        <span class="tag">&lt;/configuration&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
+<span class="tag">&lt;/plugins&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -730,239 +821,240 @@ TODO give Maven details for shared-resources
 <div class="listingblock">
 <div class="title">pom.xml properties</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;properties&gt;
-    &lt;custom.ut.skip&gt;${skipTests}&lt;/custom.ut.skip&gt;
-	&lt;sonar.java.coveragePlugin&gt;jacoco&lt;/sonar.java.coveragePlugin&gt;
-	&lt;jacoco.reportPath&gt;../target/jacoco.exec&lt;/jacoco.reportPath&gt;
-	&lt;jacoco.itReportPath&gt;../target/jacoco-it.exec&lt;/jacoco.itReportPath&gt;
-	&lt;sonar.jacoco.reportPaths&gt;${jacoco.reportPath}, ${jacoco.itReportPath}&lt;/sonar.jacoco.reportPaths&gt;
-	&lt;sonar.coverage.exclusions&gt;**/WmCall.*,**/Broker*.*,**/UniversalMessaging*.*,**/MsgServerBroker.*,**/UmListener.*,**/PerfLogger.*,**/elastic/*DataSender.*&lt;/sonar.coverage.exclusions&gt;
-	&lt;sonar.host.url&gt;http://localhost:9000&lt;/sonar.host.url&gt;
-	&lt;sonar.scm.disabled&gt;true&lt;/sonar.scm.disabled&gt;
-	&lt;sonar.scm.provider&gt;git&lt;/sonar.scm.provider&gt;
-&lt;/properties&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;properties&gt;</span>
+  <span class="tag">&lt;custom.ut.skip&gt;</span>${skipTests}<span class="tag">&lt;/custom.ut.skip&gt;</span>
+  <span class="tag">&lt;sonar.java.coveragePlugin&gt;</span>jacoco<span class="tag">&lt;/sonar.java.coveragePlugin&gt;</span>
+  <span class="tag">&lt;jacoco.reportPath&gt;</span>../target/jacoco.exec<span class="tag">&lt;/jacoco.reportPath&gt;</span>
+  <span class="tag">&lt;jacoco.itReportPath&gt;</span>../target/jacoco-it.exec<span class="tag">&lt;/jacoco.itReportPath&gt;</span>
+  <span class="tag">&lt;sonar.jacoco.reportPaths&gt;</span>${jacoco.reportPath}, ${jacoco.itReportPath}<span class="tag">&lt;/sonar.jacoco.reportPaths&gt;</span>
+  <span class="tag">&lt;sonar.coverage.exclusions&gt;</span>**/WmCall.*,**/Broker*.*,**/UniversalMessaging*.*,**/MsgServerBroker.*,**/UmListener.*,**/PerfLogger.*,**/elastic/*DataSender.*<span class="tag">&lt;/sonar.coverage.exclusions&gt;</span>
+  <span class="tag">&lt;sonar.host.url&gt;</span>http://localhost:9000<span class="tag">&lt;/sonar.host.url&gt;</span>
+  <span class="tag">&lt;sonar.scm.disabled&gt;</span>true<span class="tag">&lt;/sonar.scm.disabled&gt;</span>
+  <span class="tag">&lt;sonar.scm.provider&gt;</span>git<span class="tag">&lt;/sonar.scm.provider&gt;</span>
+<span class="tag">&lt;/properties&gt;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">pom.xml without powermock static</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependencies&gt;
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependencies&gt;</span>
 
-	&lt;!-- For unit tests coverage in Sonar --&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;org.sonarsource.java&lt;/groupId&gt;
-		&lt;artifactId&gt;sonar-jacoco-listeners&lt;/artifactId&gt;
-		&lt;version&gt;4.9.0.9858&lt;/version&gt;
-		&lt;scope&gt;test&lt;/scope&gt;
-	&lt;/dependency&gt;
+  <span class="comment">&lt;!-- For unit tests coverage in Sonar --&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.sonarsource.java<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>sonar-jacoco-listeners<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>4.9.0.9858<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>test<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
 
-&lt;/dependencies&gt;
+<span class="tag">&lt;/dependencies&gt;</span>
 
-&lt;plugins&gt;
+<span class="tag">&lt;plugins&gt;</span>
 
-	&lt;!-- SonarQube --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-		&lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
-		&lt;version&gt;3.2&lt;/version&gt;
-	&lt;/plugin&gt;
+  <span class="comment">&lt;!-- SonarQube --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.mojo<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>sonar-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>3.2<span class="tag">&lt;/version&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-	&lt;!-- handling unit tests coverage with Jacco --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.jacoco&lt;/groupId&gt;
-		&lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
-		&lt;version&gt;0.8.0&lt;/version&gt;
-		&lt;executions&gt;
-			&lt;execution&gt;
-				&lt;id&gt;pre-unit-test&lt;/id&gt;
-				&lt;phase&gt;test-compile&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;prepare-agent&lt;/goal&gt;
-				&lt;/goals&gt;
-				&lt;configuration&gt;
-					&lt;destFile&gt;${sonar.jacoco.reportPath}&lt;/destFile&gt;
-					&lt;dataFile&gt;${sonar.jacoco.reportPath}&lt;/dataFile&gt;
-					&lt;append&gt;true&lt;/append&gt;
-				&lt;/configuration&gt;
-			&lt;/execution&gt;
-			&lt;execution&gt;
-				&lt;id&gt;prepare-jacoco-agent-it&lt;/id&gt;
-				&lt;phase&gt;pre-integration-test&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;prepare-agent-integration&lt;/goal&gt;
-				&lt;/goals&gt;
-				&lt;configuration&gt;
-					&lt;destFile&gt;${sonar.jacoco.itReportPath}&lt;/destFile&gt;
-					&lt;dataFile&gt;${sonar.jacoco.itReportPath}&lt;/dataFile&gt;
-					&lt;append&gt;true&lt;/append&gt;
-				&lt;/configuration&gt;
-			&lt;/execution&gt;
-		&lt;/executions&gt;
-	&lt;/plugin&gt;
+  <span class="comment">&lt;!-- handling unit tests coverage with Jacco --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.jacoco<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>jacoco-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>0.8.0<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;executions&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>pre-unit-test<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>test-compile<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>prepare-agent<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+        <span class="tag">&lt;configuration&gt;</span>
+          <span class="tag">&lt;destFile&gt;</span>${sonar.jacoco.reportPath}<span class="tag">&lt;/destFile&gt;</span>
+          <span class="tag">&lt;dataFile&gt;</span>${sonar.jacoco.reportPath}<span class="tag">&lt;/dataFile&gt;</span>
+          <span class="tag">&lt;append&gt;</span>true<span class="tag">&lt;/append&gt;</span>
+        <span class="tag">&lt;/configuration&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>prepare-jacoco-agent-it<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>pre-integration-test<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>prepare-agent-integration<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+        <span class="tag">&lt;configuration&gt;</span>
+          <span class="tag">&lt;destFile&gt;</span>${sonar.jacoco.itReportPath}<span class="tag">&lt;/destFile&gt;</span>
+          <span class="tag">&lt;dataFile&gt;</span>${sonar.jacoco.itReportPath}<span class="tag">&lt;/dataFile&gt;</span>
+          <span class="tag">&lt;append&gt;</span>true<span class="tag">&lt;/append&gt;</span>
+        <span class="tag">&lt;/configuration&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+    <span class="tag">&lt;/executions&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-	&lt;!-- Unit Tests --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-		&lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
-		&lt;!-- version 2.19.1 is broken on jenkins --&gt;
-		&lt;version&gt;2.18.1&lt;/version&gt;
-		&lt;configuration&gt;
-			&lt;testFailureIgnore&gt;false&lt;/testFailureIgnore&gt;
-			&lt;runOrder&gt;alphabetical&lt;/runOrder&gt;
-			&lt;skipTests&gt;${custom.ut.skip}&lt;/skipTests&gt;
-			&lt;properties&gt;
-				&lt;property&gt;
-					&lt;name&gt;listener&lt;/name&gt;
-					&lt;value&gt;org.sonar.java.jacoco.JUnitListener&lt;/value&gt;
-				&lt;/property&gt;
-			&lt;/properties&gt;
-		&lt;/configuration&gt;
-	&lt;/plugin&gt;
+  <span class="comment">&lt;!-- Unit Tests --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="comment">&lt;!-- version 2.19.1 is broken on jenkins --&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.18.1<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;configuration&gt;</span>
+      <span class="tag">&lt;testFailureIgnore&gt;</span>false<span class="tag">&lt;/testFailureIgnore&gt;</span>
+      <span class="tag">&lt;runOrder&gt;</span>alphabetical<span class="tag">&lt;/runOrder&gt;</span>
+      <span class="tag">&lt;skipTests&gt;</span>${custom.ut.skip}<span class="tag">&lt;/skipTests&gt;</span>
+      <span class="tag">&lt;properties&gt;</span>
+        <span class="tag">&lt;property&gt;</span>
+          <span class="tag">&lt;name&gt;</span>listener<span class="tag">&lt;/name&gt;</span>
+          <span class="tag">&lt;value&gt;</span>org.sonar.java.jacoco.JUnitListener<span class="tag">&lt;/value&gt;</span>
+        <span class="tag">&lt;/property&gt;</span>
+      <span class="tag">&lt;/properties&gt;</span>
+    <span class="tag">&lt;/configuration&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-	&lt;!-- Integration Tests --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-		&lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
-		&lt;!-- version 2.19.1 is broken on jenkins --&gt;
-		&lt;version&gt;2.18.1&lt;/version&gt;
-		&lt;configuration&gt;
-			&lt;runOrder&gt;alphabetical&lt;/runOrder&gt;
-			&lt;properties&gt;
-				&lt;property&gt;
-					&lt;name&gt;listener&lt;/name&gt;
-					&lt;value&gt;org.sonar.java.jacoco.JUnitListener&lt;/value&gt;
-				&lt;/property&gt;
-			&lt;/properties&gt;
-		&lt;/configuration&gt;
-		&lt;executions&gt;
-			&lt;execution&gt;
-				&lt;id&gt;integration-tests&lt;/id&gt;
-				&lt;phase&gt;integration-test&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;integration-test&lt;/goal&gt;
-				&lt;/goals&gt;
-			&lt;/execution&gt;
-			&lt;!-- to exit in error on test fail --&gt;
-			&lt;execution&gt;
-				&lt;id&gt;verify&lt;/id&gt;
-				&lt;phase&gt;verify&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;verify&lt;/goal&gt;
-				&lt;/goals&gt;
-			&lt;/execution&gt;
-		&lt;/executions&gt;
-	&lt;/plugin&gt;
+  <span class="comment">&lt;!-- Integration Tests --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>maven-failsafe-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="comment">&lt;!-- version 2.19.1 is broken on jenkins --&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.18.1<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;configuration&gt;</span>
+      <span class="tag">&lt;runOrder&gt;</span>alphabetical<span class="tag">&lt;/runOrder&gt;</span>
+      <span class="tag">&lt;properties&gt;</span>
+        <span class="tag">&lt;property&gt;</span>
+          <span class="tag">&lt;name&gt;</span>listener<span class="tag">&lt;/name&gt;</span>
+          <span class="tag">&lt;value&gt;</span>org.sonar.java.jacoco.JUnitListener<span class="tag">&lt;/value&gt;</span>
+        <span class="tag">&lt;/property&gt;</span>
+      <span class="tag">&lt;/properties&gt;</span>
+    <span class="tag">&lt;/configuration&gt;</span>
+    <span class="tag">&lt;executions&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>integration-tests<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>integration-test<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>integration-test<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+      <span class="comment">&lt;!-- to exit in error on test fail --&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>verify<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>verify<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>verify<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+    <span class="tag">&lt;/executions&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-&lt;/plugins&gt;</code></pre>
+<span class="tag">&lt;/plugins&gt;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">pom.xml with powermock : instrumentation in conflict, offline jacoco instrumentation is needed</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependencies&gt;
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependencies&gt;</span>
 
-	&lt;!-- For unit tests coverage in Sonar --&gt;
-	&lt;dependency&gt;
-		&lt;groupId&gt;org.jacoco&lt;/groupId&gt;
-		&lt;artifactId&gt;org.jacoco.agent&lt;/artifactId&gt;
-		&lt;classifier&gt;runtime&lt;/classifier&gt;
-		&lt;version&gt;0.8.0&lt;/version&gt;
-		&lt;scope&gt;test&lt;/scope&gt;
-	&lt;/dependency&gt;
+  <span class="comment">&lt;!-- For unit tests coverage in Sonar --&gt;</span>
+  <span class="tag">&lt;dependency&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.jacoco<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>org.jacoco.agent<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;classifier&gt;</span>runtime<span class="tag">&lt;/classifier&gt;</span>
+    <span class="tag">&lt;version&gt;</span>0.8.0<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;scope&gt;</span>test<span class="tag">&lt;/scope&gt;</span>
+  <span class="tag">&lt;/dependency&gt;</span>
 
-&lt;/dependencies&gt;
+<span class="tag">&lt;/dependencies&gt;</span>
 
+<span class="tag">&lt;plugins&gt;</span>
 
-&lt;plugins&gt;
+  <span class="comment">&lt;!-- SonarQube --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.codehaus.mojo<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>sonar-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>3.2<span class="tag">&lt;/version&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-	&lt;!-- SonarQube --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
-		&lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
-		&lt;version&gt;3.2&lt;/version&gt;
-	&lt;/plugin&gt;
+  <span class="comment">&lt;!-- handling unit tests coverage with Jacco --&gt;</span>
+  <span class="comment">&lt;!-- offline instrumentation is mandatory when using other instrumentation framework such as PowerMock --&gt;</span>
+  <span class="comment">&lt;!-- https://github.com/powermock/powermock/wiki/Code-coverage-with-JaCoCo --&gt;</span>
+  <span class="comment">&lt;!-- to separate UT and IT : --&gt;</span>
+  <span class="comment">&lt;!-- (1) mvn test jacoco:restore-instrumented-classes --&gt;</span>
+  <span class="comment">&lt;!-- (2) mvn install -Dcustom.ut.skip=true -Dcheckstyle.skip=true --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.jacoco<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>jacoco-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="tag">&lt;version&gt;</span>0.8.0<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;executions&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>jacoco-instrument<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>test-compile<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>instrument<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+        <span class="tag">&lt;configuration&gt;</span>
+          <span class="tag">&lt;skip&gt;</span>${skipTests}<span class="tag">&lt;/skip&gt;</span>
+        <span class="tag">&lt;/configuration&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>jacoco-restore-instrumented-classes<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>post-integration-test<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>restore-instrumented-classes<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+        <span class="tag">&lt;configuration&gt;</span>
+          <span class="tag">&lt;skip&gt;</span>${skipTests}<span class="tag">&lt;/skip&gt;</span>
+        <span class="tag">&lt;/configuration&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+    <span class="tag">&lt;/executions&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-	&lt;!-- handling unit tests coverage with Jacco --&gt;
-	&lt;!-- offline instrumentation is mandatory when using other instrumentation framework such as PowerMock --&gt;
-	&lt;!-- https://github.com/powermock/powermock/wiki/Code-coverage-with-JaCoCo --&gt;
-	&lt;!-- to separate UT and IT : --&gt;
-	&lt;!-- (1) mvn test jacoco:restore-instrumented-classes --&gt;
-	&lt;!-- (2) mvn install -Dcustom.ut.skip=true -Dcheckstyle.skip=true --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.jacoco&lt;/groupId&gt;
-		&lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
-		&lt;version&gt;0.8.0&lt;/version&gt;
-		&lt;executions&gt;
-			&lt;execution&gt;
-				&lt;id&gt;jacoco-instrument&lt;/id&gt;
-				&lt;phase&gt;test-compile&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;instrument&lt;/goal&gt;
-				&lt;/goals&gt;
-				&lt;configuration&gt;
-					&lt;skip&gt;${skipTests}&lt;/skip&gt;
-				&lt;/configuration&gt;
-			&lt;/execution&gt;
-			&lt;execution&gt;
-				&lt;id&gt;jacoco-restore-instrumented-classes&lt;/id&gt;
-				&lt;phase&gt;post-integration-test&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;restore-instrumented-classes&lt;/goal&gt;
-				&lt;/goals&gt;
-				&lt;configuration&gt;
-					&lt;skip&gt;${skipTests}&lt;/skip&gt;
-				&lt;/configuration&gt;
-			&lt;/execution&gt;
-		&lt;/executions&gt;
-	&lt;/plugin&gt;
+    <span class="comment">&lt;!-- Unit Tests --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>maven-surefire-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="comment">&lt;!-- version 2.19.1 is broken on jenkins --&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.18.1<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;configuration&gt;</span>
+      <span class="tag">&lt;testFailureIgnore&gt;</span>false<span class="tag">&lt;/testFailureIgnore&gt;</span>
+      <span class="tag">&lt;runOrder&gt;</span>alphabetical<span class="tag">&lt;/runOrder&gt;</span>
+      <span class="tag">&lt;skipTests&gt;</span>${custom.ut.skip}<span class="tag">&lt;/skipTests&gt;</span>
+      <span class="tag">&lt;systemPropertyVariables&gt;</span>
+        <span class="tag">&lt;jacoco-agent.destfile&gt;</span>${jacoco.reportPath}<span class="tag">&lt;/jacoco-agent.destfile&gt;</span>
+      <span class="tag">&lt;/systemPropertyVariables&gt;</span>
+    <span class="tag">&lt;/configuration&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-    &lt;!-- Unit Tests --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-		&lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
-		&lt;!-- version 2.19.1 is broken on jenkins --&gt;
-		&lt;version&gt;2.18.1&lt;/version&gt;
-		&lt;configuration&gt;
-			&lt;testFailureIgnore&gt;false&lt;/testFailureIgnore&gt;
-			&lt;runOrder&gt;alphabetical&lt;/runOrder&gt;
-			&lt;skipTests&gt;${custom.ut.skip}&lt;/skipTests&gt;
-			&lt;systemPropertyVariables&gt;
-				&lt;jacoco-agent.destfile&gt;${jacoco.reportPath}&lt;/jacoco-agent.destfile&gt;
-			&lt;/systemPropertyVariables&gt;
-		&lt;/configuration&gt;
-	&lt;/plugin&gt;
+  <span class="comment">&lt;!-- Integration Tests --&gt;</span>
+  <span class="comment">&lt;!-- usage full test : mvn integration-test --&gt;</span>
+  <span class="comment">&lt;!-- usage only IT (but does not fill jacoco-it) : mvn test-compile failsafe:integration-test --&gt;</span>
+  <span class="tag">&lt;plugin&gt;</span>
+    <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
+    <span class="tag">&lt;artifactId&gt;</span>maven-failsafe-plugin<span class="tag">&lt;/artifactId&gt;</span>
+    <span class="comment">&lt;!-- version 2.19.1 is broken on jenkins --&gt;</span>
+    <span class="tag">&lt;version&gt;</span>2.18.1<span class="tag">&lt;/version&gt;</span>
+    <span class="tag">&lt;configuration&gt;</span>
+      <span class="tag">&lt;runOrder&gt;</span>alphabetical<span class="tag">&lt;/runOrder&gt;</span>
+      <span class="tag">&lt;systemPropertyVariables&gt;</span>
+        <span class="tag">&lt;jacoco-agent.destfile&gt;</span>${jacoco.itReportPath}<span class="tag">&lt;/jacoco-agent.destfile&gt;</span>
+      <span class="tag">&lt;/systemPropertyVariables&gt;</span>
+    <span class="tag">&lt;/configuration&gt;</span>
+    <span class="tag">&lt;executions&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>integration-tests<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>integration-test<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>integration-test<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+      <span class="tag">&lt;execution&gt;</span>
+        <span class="tag">&lt;id&gt;</span>verify<span class="tag">&lt;/id&gt;</span>
+        <span class="tag">&lt;phase&gt;</span>verify<span class="tag">&lt;/phase&gt;</span>
+        <span class="tag">&lt;goals&gt;</span>
+          <span class="tag">&lt;goal&gt;</span>verify<span class="tag">&lt;/goal&gt;</span>
+        <span class="tag">&lt;/goals&gt;</span>
+      <span class="tag">&lt;/execution&gt;</span>
+    <span class="tag">&lt;/executions&gt;</span>
+  <span class="tag">&lt;/plugin&gt;</span>
 
-	&lt;!-- Integration Tests --&gt;
-	&lt;!-- usage full test : mvn integration-test --&gt;
-	&lt;!-- usage only IT (but does not fill jacoco-it) : mvn test-compile failsafe:integration-test --&gt;
-	&lt;plugin&gt;
-		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-		&lt;artifactId&gt;maven-failsafe-plugin&lt;/artifactId&gt;
-		&lt;!-- version 2.19.1 is broken on jenkins --&gt;
-		&lt;version&gt;2.18.1&lt;/version&gt;
-		&lt;configuration&gt;
-			&lt;runOrder&gt;alphabetical&lt;/runOrder&gt;
-			&lt;systemPropertyVariables&gt;
-				&lt;jacoco-agent.destfile&gt;${jacoco.itReportPath}&lt;/jacoco-agent.destfile&gt;
-			&lt;/systemPropertyVariables&gt;
-		&lt;/configuration&gt;
-		&lt;executions&gt;
-			&lt;execution&gt;
-				&lt;id&gt;integration-tests&lt;/id&gt;
-				&lt;phase&gt;integration-test&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;integration-test&lt;/goal&gt;
-				&lt;/goals&gt;
-			&lt;/execution&gt;
-			&lt;execution&gt;
-				&lt;id&gt;verify&lt;/id&gt;
-				&lt;phase&gt;verify&lt;/phase&gt;
-				&lt;goals&gt;
-					&lt;goal&gt;verify&lt;/goal&gt;
-				&lt;/goals&gt;
-			&lt;/execution&gt;
-		&lt;/executions&gt;
-	&lt;/plugin&gt;</code></pre>
+<span class="tag">&lt;/plugins&gt;</span></code></pre>
 </div>
 </div>
 </div>
@@ -970,11 +1062,8 @@ TODO give Maven details for shared-resources
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-24 15:00:48 UTC
+Last updated 2018-08-25 19:12:55 UTC
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
 </body>
 </html>

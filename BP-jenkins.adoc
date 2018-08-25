@@ -1,4 +1,5 @@
 = Jenkins Configuration Details
+:source-highlighter: prettify
 include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
