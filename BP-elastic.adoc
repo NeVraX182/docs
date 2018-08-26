@@ -131,7 +131,7 @@ $ sudo docker run -d --name portainer --restart=always -p 19000:9000 -v /var/run
 ----
 
 ** To use, go to http://frpardge.corp.nvx.com:19000
-*** login/password = **admin / administrator**
+*** login/password = admin / ****
 
 * Install docker-compose
 

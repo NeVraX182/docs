@@ -1311,7 +1311,7 @@ node {
       stage('Checkout') {
         cleanWs()   // requires workspace cleanup plugin to be installed
         echo "**** Starting checkout of patchset ${GERRIT_PATCHSET_NUMBER} on change number ${GERRIT_CHANGE_NUMBER}"
-        git username: 'svc-fr-cric', password: 'Bocibo15', url: 'https://cric.pl.s2-eu.nvx.com/gerrit/cg-wm.git'
+        git username: 'svc-fr-cric', password: '****', url: 'https://cric.pl.s2-eu.nvx.com/gerrit/cg-wm.git'
         def changeBranch = "change-${GERRIT_CHANGE_NUMBER}-${GERRIT_PATCHSET_NUMBER}"
         sh "git fetch origin ${GERRIT_REFSPEC}:${changeBranch}"
         sh "git checkout ${changeBranch}"
@@ -1820,7 +1820,7 @@ node {
 
         //...remotely
         //Special characters have to be URL encoded : https://stackoverflow.com/questions/6172719/escape-character-in-git-proxy-password
-        sh "git push --force --delete https://svc-fr-cric:ptTpilL5FS47RHDFV8541owV4zkbZOtVrxyqRsmGhw@cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git cg-wm-$RELEASE_VERSION || true"
+        sh "git push --force --delete https://svc-fr-cric:****@cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git cg-wm-$RELEASE_VERSION || true"
 
         withMaven(maven: 'Maven 3.5', mavenOpts: '-Xmx1024M', options: [artifactsPublisher(disabled: true)]) {
           sh "mvn deploy scm:tag -s cg-settings.xml -DskipTests -Dcheckstyle.skip=true"
@@ -1907,7 +1907,7 @@ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-26 15:56:36 UTC
+Last updated 2018-08-26 16:04:44 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

@@ -80,7 +80,7 @@ We assume that we will be the only one to push on that branch, so we do not chec
 Eclipse should now be ready to handle smoothly Gitlab workflow. You can check your repository git config which should be like :
 
 [source, ini]
-.academy/.git/config
+.git/config
   [core]
     repositoryformatversion = 0
     filemode = false
@@ -119,7 +119,7 @@ Now a pipeline should be launched in Gitlab interface.
 === Pipeline creation
 
 [source, yaml]
-.Pipeline content
+.Pipeline
 ----
 include::../../../.gitlab-ci.yml[]
 ----

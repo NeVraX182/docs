@@ -261,7 +261,7 @@ Now artifacts should be accessible via maven if the settings.xml is well configu
 
 ===== Prepare database
 
- ./dbConfigurator.sh -i -file wm-db-script.xml -dir . --password=WMUSER --admin_password=oracle
+ ./dbConfigurator.sh -i -file wm-db-script.xml -dir . --password=**** --admin_password=****
 
 ==== Install IS & UM manually
 

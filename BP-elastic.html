@@ -753,7 +753,7 @@ $ sudo docker run -d --name portainer --restart=always -p 19000:9000 -v /var/run
 <div class="ulist">
 <ul>
 <li>
-<p>login/password = <strong>admin / administrator</strong></p>
+<p>login/password = admin / <strong>*</strong>*</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1426,7 +1426,7 @@ heartbeat.monitors:
   schedule: '@every 30s'
   urls: ["https://bpmfactory.s2-eu.nvx.com/jenkins/job/CNAV-DGE_P1_Review/"]
   username: svc-fr-bpmfact
-  password: Bpm-fact0ry
+  password: ****
   check.request.method: GET
   check.response.status: 200
 - name: 'Jenkins Douane'
@@ -1434,7 +1434,7 @@ heartbeat.monitors:
   schedule: '@every 30s'
   urls: ["https://cdsdouane.pl.s2-eu.nvx.com/jenkins/job/DTXE_P1_CodeReview/"]
   username: svc-fr-pldouane
-  password: Na9Is4Aw0!
+  password: ****
   check.request.method: GET
   check.response.status: 200
 - name: 'Gerrit home'
@@ -1442,21 +1442,21 @@ heartbeat.monitors:
   schedule: '@every 30s'
   urls: ["https://bpmfactory.s2-eu.nvx.com/gerrit/changes/?n=25&amp;O=81"]
   username: svc-fr-bpmfact
-  password: Bpm-fact0ry
+  password: ****
   check.response.status: 200
 - name: 'Gerrit viewFile'
   type: http
   schedule: '@every 30s'
   urls: ["https://bpmfactory.s2-eu.nvx.com/gerrit/changes/421/revisions/5ab9d4c5cab6a087b936748f2df6550666a502dd/files/Jenkinsfile-2-deploy-to-dev/diff?context=ALL"]
   username: svc-fr-bpmfact
-  password: Bpm-fact0ry
+  password: ****
   check.response.status: 200
 - name: 'IS Dev'
   type: http
   schedule: '@every 30s'
   urls: ["http://frpardge:5555"]
   username: Administrator
-  password: manage
+  password: ****
   check.response.status: 200
 - name: Kibana
   type: http
@@ -1780,7 +1780,7 @@ $ sudo dpkg -i grafana_4.4.3_amd64.deb</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-26 15:56:36 UTC
+Last updated 2018-08-26 16:04:44 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
