@@ -2,6 +2,7 @@
 include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
+ifndef::root-project-dir[:root-project-dir: ../../../]
 
 == Useful Java libraries
 
@@ -321,75 +322,12 @@ public class Something {
 }
 ----
 
-==== Enum and String
-
-A String from an Enum must be used with a custom *toString()*, never with *getName()* or default *toString()*.
+==== Enums and Strings
 
 [source,java]
-.Enum.toString() pattern
+.Enum Class Example
 ----
-// Natures d echange
-public enum EsbNatureType {
-     DIFFUSION_FICHIER("DiffusionFichier"), DIFFUSION_MESSAGES("DiffusionMessages");
-
-     private String name = null;
-
-     EsbNatureType(String nameString) {
-            this.name = nameString;
-     }
-
-     @Override
-     public String toString() {
-            return this.name;
-     }
-
-};
+include::{root-project-dir}/cg-utils/src/main/java/cg/wm/utils/CgPackage.java[]
 ----
-
-If you don’t do this way, we loose the flexibility to rename either the Enum or the String.
-
-[[myenum.toenumstring]]
-==== MyEnum.toEnum(String)
-
-Comment déclarer l’Enum :
-
-[source,java]
-.toEnum pattern
-----
-public enum ServiceOption {
-	COMPLEMENTS,
-	RESTRICTIONS,
-	RISQUES,
-	SNGI_EM_DECEDE,
-	SNGI_EM_NON_IDENT,
-	SNGI_ID_OBLIGATOIRE,
-	DCR,
-	DCR_STATUT,
-	DCR_DELAI,
-	LISTE_PSORTANTS,
-	ID_TIERS,
-	NOM_FLUX_SORTIE,
-	ABO_ACTIF,
-	DENOM_METIER,
-	REF_ABO,
-	UNKNOWN;
-
-	public static ServiceOption toEnum(String optionName) {
-		switch (optionName) {
-		case "priseEnCptLstRisque":
-			return RISQUES;
-		case "priseEnCptLstCompl":
-			return COMPLEMENTS;
-		default:
-			return UNKNOWN;
-		}
-	}
-}
-----
-
-Puis ton Builder tu fais un *ServiceOption.toEnum(tonOption)* et le tour est joué.
-
-
-WARNING: Never write files outside of target/
 
 include::subdocs/_closure.adoc[]

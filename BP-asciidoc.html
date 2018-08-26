@@ -426,97 +426,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .show-for-print{display:inherit!important}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<style>
-/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
-/*pre.CodeRay {background-color:#f7f7f8;}*/
-.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
-.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
-.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
-table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
-table.CodeRay td{vertical-align: top;line-height:1.45}
-table.CodeRay td.line-numbers{text-align:right}
-table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
-table.CodeRay td.code{padding:0 0 0 .5em}
-table.CodeRay td.code>pre{padding:0}
-.CodeRay .debug{color:#fff !important;background:#000080 !important}
-.CodeRay .annotation{color:#007}
-.CodeRay .attribute-name{color:#000080}
-.CodeRay .attribute-value{color:#700}
-.CodeRay .binary{color:#509}
-.CodeRay .comment{color:#998;font-style:italic}
-.CodeRay .char{color:#04d}
-.CodeRay .char .content{color:#04d}
-.CodeRay .char .delimiter{color:#039}
-.CodeRay .class{color:#458;font-weight:bold}
-.CodeRay .complex{color:#a08}
-.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
-.CodeRay .color{color:#099}
-.CodeRay .class-variable{color:#369}
-.CodeRay .decorator{color:#b0b}
-.CodeRay .definition{color:#099}
-.CodeRay .delimiter{color:#000}
-.CodeRay .doc{color:#970}
-.CodeRay .doctype{color:#34b}
-.CodeRay .doc-string{color:#d42}
-.CodeRay .escape{color:#666}
-.CodeRay .entity{color:#800}
-.CodeRay .error{color:#808}
-.CodeRay .exception{color:inherit}
-.CodeRay .filename{color:#099}
-.CodeRay .function{color:#900;font-weight:bold}
-.CodeRay .global-variable{color:#008080}
-.CodeRay .hex{color:#058}
-.CodeRay .integer,.CodeRay .float{color:#099}
-.CodeRay .include{color:#555}
-.CodeRay .inline{color:#000}
-.CodeRay .inline .inline{background:#ccc}
-.CodeRay .inline .inline .inline{background:#bbb}
-.CodeRay .inline .inline-delimiter{color:#d14}
-.CodeRay .inline-delimiter{color:#d14}
-.CodeRay .important{color:#555;font-weight:bold}
-.CodeRay .interpreted{color:#b2b}
-.CodeRay .instance-variable{color:#008080}
-.CodeRay .label{color:#970}
-.CodeRay .local-variable{color:#963}
-.CodeRay .octal{color:#40e}
-.CodeRay .predefined{color:#369}
-.CodeRay .preprocessor{color:#579}
-.CodeRay .pseudo-class{color:#555}
-.CodeRay .directive{font-weight:bold}
-.CodeRay .type{font-weight:bold}
-.CodeRay .predefined-type{color:inherit}
-.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
-.CodeRay .key{color:#808}
-.CodeRay .key .delimiter{color:#606}
-.CodeRay .key .char{color:#80f}
-.CodeRay .value{color:#088}
-.CodeRay .regexp .delimiter{color:#808}
-.CodeRay .regexp .content{color:#808}
-.CodeRay .regexp .modifier{color:#808}
-.CodeRay .regexp .char{color:#d14}
-.CodeRay .regexp .function{color:#404;font-weight:bold}
-.CodeRay .string{color:#d20}
-.CodeRay .string .string .string{background:#ffd0d0}
-.CodeRay .string .content{color:#d14}
-.CodeRay .string .char{color:#d14}
-.CodeRay .string .delimiter{color:#d14}
-.CodeRay .shell{color:#d14}
-.CodeRay .shell .delimiter{color:#d14}
-.CodeRay .symbol{color:#990073}
-.CodeRay .symbol .content{color:#a60}
-.CodeRay .symbol .delimiter{color:#630}
-.CodeRay .tag{color:#008080}
-.CodeRay .tag-special{color:#d70}
-.CodeRay .variable{color:#036}
-.CodeRay .insert{background:#afa}
-.CodeRay .delete{background:#faa}
-.CodeRay .change{color:#aaf;background:#007}
-.CodeRay .head{color:#f8f;background:#505}
-.CodeRay .insert .insert{color:#080}
-.CodeRay .delete .delete{color:#800}
-.CodeRay .change .change{color:#66f}
-.CodeRay .head .head{color:#f4f}
-</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -526,14 +435,15 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel1">
 <li><a href="#documentation-as-code-with-asciidoc">1. Documentation-as-code with AsciiDoc</a>
 <ul class="sectlevel2">
-<li><a href="#todo">1.1. TODO</a></li>
-<li><a href="#generation-using-maven">1.2. Generation using Maven</a></li>
-<li><a href="#doc-to-adoc">1.3. .doc to .adoc</a></li>
-<li><a href="#publish-html-pdf-to-github">1.4. Publish HTML &amp; PDF to github</a>
+<li><a href="#inline-icons">1.1. Inline icons</a></li>
+<li><a href="#custom-highlighter">1.2. Custom highlighter</a></li>
+<li><a href="#generation-using-maven">1.3. Generation using Maven</a></li>
+<li><a href="#doc-to-adoc">1.4. .doc to .adoc</a></li>
+<li><a href="#publish-html-pdf-to-github">1.5. Publish HTML &amp; PDF to github</a>
 <ul class="sectlevel3">
-<li><a href="#initialize-github-space">1.4.1. Initialize Github space</a></li>
-<li><a href="#configure-maven-plugin">1.4.2. Configure Maven plugin</a></li>
-<li><a href="#use-in-pipelines">1.4.3. Use in pipelines</a></li>
+<li><a href="#initialize-github-space">1.5.1. Initialize Github space</a></li>
+<li><a href="#configure-maven-plugin">1.5.2. Configure Maven plugin</a></li>
+<li><a href="#use-in-pipelines">1.5.3. Use in pipelines</a></li>
 </ul>
 </li>
 </ul>
@@ -584,7 +494,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>use <strong>kbd:[myShortcut]</strong> for keyboard shortcuts</p>
 </li>
 <li>
-<p>use <strong>\*myButton</strong>* for buttons</p>
+<p>use <strong>\btn[myButton]</strong> for buttons</p>
 </li>
 <li>
 <p>High level title should be on new pages (use <strong>&lt;&lt;&lt;</strong>)</p>
@@ -601,28 +511,18 @@ table.CodeRay td.code>pre{padding:0}
 <p>To show a in progress diagram to colleagues, you can generate a link using this page : <a href="http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" class="bare">http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000</a></p>
 </div>
 <div class="sect2">
-<h3 id="todo"><a class="anchor" href="#todo"></a>1.1. TODO</h3>
+<h3 id="inline-icons"><a class="anchor" href="#inline-icons"></a>1.1. Inline icons</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>inline icons :</p>
+<p>See <a href="https://asciidoctor.org/docs/user-manual/#icons" class="bare">https://asciidoctor.org/docs/user-manual/#icons</a></p>
+</li>
+<li>
+<p>Font Awesome 4.6.3 Class Explorer :  <a href="https://lab.artlung.com/font-awesome-sample/" class="bare">https://lab.artlung.com/font-awesome-sample/</a></p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://asciidoctor.org/docs/user-manual/#icons" class="bare">https://asciidoctor.org/docs/user-manual/#icons</a></p>
-</li>
-<li>
-<p>Font Awesome 4.6.3 Class Explorer</p>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://lab.artlung.com/font-awesome-sample/" class="bare">https://lab.artlung.com/font-awesome-sample/</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>no need for :icons: font</p>
+<p>no need for :icons: font to use font awesome-font for icons</p>
 </li>
 </ul>
 </div>
@@ -631,96 +531,113 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>1.2. Generation using Maven</h3>
+<h3 id="custom-highlighter"><a class="anchor" href="#custom-highlighter"></a>1.2. Custom highlighter</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>See the maven configuration below, it speaks for itself</p>
+</li>
+<li>
+<p>Highlight.js demo with all languages and all styles (current theme is : darcula)</p>
+</li>
+<li>
+<p>Default highlight.js processor is too basic, instructions here to change : <a href="https://asciidoctor.org/docs/user-manual/#highlight-js" class="bare">https://asciidoctor.org/docs/user-manual/#highlight-js</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>1.3. Generation using Maven</h3>
 <div class="listingblock">
 <div class="title">AsciiDoctor plugin configuration</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="comment">&lt;!-- to generate asciidoc pdf documents --&gt;</span>
-<span class="comment">&lt;!-- single usage : mvn generate-resources -Dadoc.skip=false [- -non-recursive] --&gt;</span>
-<span class="tag">&lt;plugin&gt;</span>
-        <span class="tag">&lt;groupId&gt;</span>org.asciidoctor<span class="tag">&lt;/groupId&gt;</span>
-        <span class="tag">&lt;artifactId&gt;</span>asciidoctor-maven-plugin<span class="tag">&lt;/artifactId&gt;</span>
-        <span class="tag">&lt;version&gt;</span>1.5.6<span class="tag">&lt;/version&gt;</span>
-        <span class="tag">&lt;dependencies&gt;</span>
-                <span class="tag">&lt;dependency&gt;</span>
-                        <span class="tag">&lt;groupId&gt;</span>org.asciidoctor<span class="tag">&lt;/groupId&gt;</span>
-                        <span class="tag">&lt;artifactId&gt;</span>asciidoctorj-pdf<span class="tag">&lt;/artifactId&gt;</span>
-                        <span class="comment">&lt;!-- alpha 15+16 have an annoying message on multiple lines : --&gt;</span>
-                        <span class="comment">&lt;!-- warning: already initialized constant XXXX --&gt;</span>
-                        <span class="tag">&lt;version&gt;</span>1.5.0-alpha.14<span class="tag">&lt;/version&gt;</span>
-                <span class="tag">&lt;/dependency&gt;</span>
-                <span class="tag">&lt;dependency&gt;</span>
-                        <span class="tag">&lt;groupId&gt;</span>org.asciidoctor<span class="tag">&lt;/groupId&gt;</span>
-                        <span class="tag">&lt;artifactId&gt;</span>asciidoctorj-diagram<span class="tag">&lt;/artifactId&gt;</span>
-                        <span class="tag">&lt;version&gt;</span>1.5.9<span class="tag">&lt;/version&gt;</span>
-                <span class="tag">&lt;/dependency&gt;</span>
-        <span class="tag">&lt;/dependencies&gt;</span>
-        <span class="tag">&lt;configuration&gt;</span>
-                <span class="tag">&lt;skip&gt;</span>${adoc.skip}<span class="tag">&lt;/skip&gt;</span>
-                <span class="tag">&lt;sourceDirectory&gt;</span>src/docs/asciidoc<span class="tag">&lt;/sourceDirectory&gt;</span>
-                <span class="tag">&lt;requires&gt;</span>
-                        <span class="tag">&lt;require&gt;</span>asciidoctor-diagram<span class="tag">&lt;/require&gt;</span>
-                <span class="tag">&lt;/requires&gt;</span>
-                <span class="tag">&lt;attributes&gt;</span>
-                        <span class="tag">&lt;icons&gt;</span>font<span class="tag">&lt;/icons&gt;</span>
-                        <span class="tag">&lt;idseparator&gt;</span>-<span class="tag">&lt;/idseparator&gt;</span>
-                        <span class="tag">&lt;idprefix</span> <span class="tag">/&gt;</span>
-                        <span class="comment">&lt;!-- custom --&gt;</span>
-                        <span class="tag">&lt;source-dir&gt;</span>../../main/java<span class="tag">&lt;/source-dir&gt;</span>
-                        <span class="tag">&lt;test-dir&gt;</span>../../test/java<span class="tag">&lt;/test-dir&gt;</span>
-                        <span class="tag">&lt;project-version&gt;</span>${project.version}<span class="tag">&lt;/project-version&gt;</span>
-                        <span class="tag">&lt;root-project-dir&gt;</span>${user.dir}<span class="tag">&lt;/root-project-dir&gt;</span>
-                        <span class="tag">&lt;history-dir&gt;</span>${project.build.directory}/generated-docs/history<span class="tag">&lt;/history-dir&gt;</span>
-                        <span class="tag">&lt;project-images-dir&gt;</span>${project.basedir}/src/main/resources/images<span class="tag">&lt;/project-images-dir&gt;</span>
-                <span class="tag">&lt;/attributes&gt;</span>
-        <span class="tag">&lt;/configuration&gt;</span>
-        <span class="tag">&lt;executions&gt;</span>
-                <span class="tag">&lt;execution&gt;</span>
-                        <span class="tag">&lt;id&gt;</span>asciidoc-to-html<span class="tag">&lt;/id&gt;</span>
-                        <span class="tag">&lt;phase&gt;</span>generate-resources<span class="tag">&lt;/phase&gt;</span>
-                        <span class="tag">&lt;goals&gt;</span>
-                                <span class="tag">&lt;goal&gt;</span>process-asciidoc<span class="tag">&lt;/goal&gt;</span>
-                        <span class="tag">&lt;/goals&gt;</span>
-                        <span class="tag">&lt;configuration&gt;</span>
-                                <span class="tag">&lt;backend&gt;</span>html5<span class="tag">&lt;/backend&gt;</span>
-                                <span class="comment">&lt;!-- coderay, highlight.js, prettify, or pygments --&gt;</span>
-                                <span class="comment">&lt;!-- highlight.js seems to not handle groovy --&gt;</span>
-                                <span class="comment">&lt;!-- prettify is nice but comments are red --&gt;</span>
-                                <span class="comment">&lt;!-- pygments/rouge is not integrated yet : https://github.com/asciidoctor/asciidoctor/issues/1040 --&gt;</span>
-                                <span class="tag">&lt;sourceHighlighter&gt;</span>coderay<span class="tag">&lt;/sourceHighlighter&gt;</span>
-                                <span class="tag">&lt;attributes&gt;</span>
-                                        <span class="tag">&lt;imagesdir&gt;</span>./images<span class="tag">&lt;/imagesdir&gt;</span>
-                                        <span class="tag">&lt;toclevels&gt;</span>5<span class="tag">&lt;/toclevels&gt;</span>
-                                        <span class="tag">&lt;sectanchors&gt;</span>true<span class="tag">&lt;/sectanchors&gt;</span>
-                                        <span class="tag">&lt;docinfo1&gt;</span>true<span class="tag">&lt;/docinfo1&gt;</span>
-                                        <span class="tag">&lt;favicon&gt;</span>images/zenika-logo.png<span class="tag">&lt;/favicon&gt;</span>
-                                        <span class="comment">&lt;!-- from https://github.com/darshandsoni/asciidoctor-skins --&gt;</span>
-                                        <span class="comment">&lt;!-- do it here, in .adoc this does not work --&gt;</span>
-                                        <span class="comment">&lt;!-- &lt;stylesheet&gt;italian-pop.blue.css&lt;/stylesheet&gt; --&gt;</span>
-                                        <span class="comment">&lt;!-- &lt;stylesdir&gt;themes&lt;/stylesdir&gt; --&gt;</span>
-                                <span class="tag">&lt;/attributes&gt;</span>
-                        <span class="tag">&lt;/configuration&gt;</span>
-                <span class="tag">&lt;/execution&gt;</span>
-                <span class="tag">&lt;execution&gt;</span>
-                        <span class="tag">&lt;id&gt;</span>asciidoc-to-pdf<span class="tag">&lt;/id&gt;</span>
-                        <span class="tag">&lt;phase&gt;</span>generate-resources<span class="tag">&lt;/phase&gt;</span>
-                        <span class="tag">&lt;goals&gt;</span>
-                                <span class="tag">&lt;goal&gt;</span>process-asciidoc<span class="tag">&lt;/goal&gt;</span>
-                        <span class="tag">&lt;/goals&gt;</span>
-                        <span class="tag">&lt;configuration&gt;</span>
-                                <span class="tag">&lt;backend&gt;</span>pdf<span class="tag">&lt;/backend&gt;</span>
-                                <span class="tag">&lt;sourceHighlighter&gt;</span>rouge<span class="tag">&lt;/sourceHighlighter&gt;</span>
-                                <span class="tag">&lt;attributes&gt;</span>
-                                        <span class="tag">&lt;imagesdir&gt;</span>${project.build.directory}/generated-docs/images<span class="tag">&lt;/imagesdir&gt;</span>
-                                        <span class="tag">&lt;toc</span> <span class="tag">/&gt;</span>
-                                        <span class="tag">&lt;toclevels&gt;</span>3<span class="tag">&lt;/toclevels&gt;</span>
-                                        <span class="tag">&lt;pdf-style&gt;</span>${user.dir}/src/docs/asciidoc/themes/cg-theme.yml<span class="tag">&lt;/pdf-style&gt;</span>
-                                        <span class="tag">&lt;pagenums</span> <span class="tag">/&gt;</span>
-                                <span class="tag">&lt;/attributes&gt;</span>
-                        <span class="tag">&lt;/configuration&gt;</span>
-                <span class="tag">&lt;/execution&gt;</span>
-        <span class="tag">&lt;/executions&gt;</span>
-<span class="tag">&lt;/plugin&gt;</span></code></pre>
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;!-- to generate asciidoc pdf documents --&gt;
+&lt;!-- single usage : mvn generate-resources -Dadoc.skip=false [- -non-recursive] --&gt;
+&lt;plugin&gt;
+	&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+	&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt;
+	&lt;version&gt;1.5.6&lt;/version&gt;
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+			&lt;artifactId&gt;asciidoctorj-pdf&lt;/artifactId&gt;
+			&lt;!-- alpha 15+16 have an annoying message on multiple lines : --&gt;
+			&lt;!-- warning: already initialized constant XXXX --&gt;
+			&lt;version&gt;1.5.0-alpha.14&lt;/version&gt;
+		&lt;/dependency&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
+			&lt;artifactId&gt;asciidoctorj-diagram&lt;/artifactId&gt;
+			&lt;version&gt;1.5.9&lt;/version&gt;
+		&lt;/dependency&gt;
+	&lt;/dependencies&gt;
+	&lt;configuration&gt;
+		&lt;skip&gt;${adoc.skip}&lt;/skip&gt;
+		&lt;sourceDirectory&gt;src/docs/asciidoc&lt;/sourceDirectory&gt;
+		&lt;requires&gt;
+			&lt;require&gt;asciidoctor-diagram&lt;/require&gt;
+		&lt;/requires&gt;
+		&lt;attributes&gt;
+			&lt;icons&gt;font&lt;/icons&gt;
+			&lt;idseparator&gt;-&lt;/idseparator&gt;
+			&lt;idprefix /&gt;
+			&lt;!-- custom --&gt;
+			&lt;source-dir&gt;../../main/java&lt;/source-dir&gt;
+			&lt;test-dir&gt;../../test/java&lt;/test-dir&gt;
+			&lt;project-version&gt;${project.version}&lt;/project-version&gt;
+			&lt;root-project-dir&gt;${user.dir}&lt;/root-project-dir&gt;
+			&lt;history-dir&gt;${project.build.directory}/generated-docs/history&lt;/history-dir&gt;
+			&lt;project-images-dir&gt;${project.basedir}/src/main/resources/images&lt;/project-images-dir&gt;
+		&lt;/attributes&gt;
+	&lt;/configuration&gt;
+	&lt;executions&gt;
+		&lt;execution&gt;
+			&lt;id&gt;asciidoc-to-html&lt;/id&gt;
+			&lt;phase&gt;generate-resources&lt;/phase&gt;
+			&lt;goals&gt;
+				&lt;goal&gt;process-asciidoc&lt;/goal&gt;
+			&lt;/goals&gt;
+			&lt;configuration&gt;
+				&lt;backend&gt;html5&lt;/backend&gt;
+				&lt;!-- coderay, highlight.js, prettify, or pygments --&gt;
+				&lt;!-- coderay/prettify have only a bright theme --&gt;
+				&lt;!-- prettify is nice but comments are red --&gt;
+				&lt;!-- pygments/rouge is not integrated yet : https://github.com/asciidoctor/asciidoctor/issues/1040 --&gt;
+				&lt;sourceHighlighter&gt;highlight.js&lt;/sourceHighlighter&gt;
+				&lt;attributes&gt;
+					&lt;highlightjsdir&gt;highlight&lt;/highlightjsdir&gt;
+					&lt;!-- explore here https://highlightjs.org/static/demo/ --&gt;
+					&lt;highlightjs-theme&gt;gruvbox-dark&lt;/highlightjs-theme&gt;
+					&lt;imagesdir&gt;./images&lt;/imagesdir&gt;
+					&lt;toclevels&gt;5&lt;/toclevels&gt;
+					&lt;sectanchors&gt;true&lt;/sectanchors&gt;
+					&lt;docinfo1&gt;true&lt;/docinfo1&gt;
+					&lt;favicon&gt;images/zenika-logo.png&lt;/favicon&gt;
+					&lt;!-- &lt;stylesheet&gt;rubygems.css&lt;/stylesheet&gt; --&gt;
+					&lt;!-- &lt;stylesdir&gt;themes&lt;/stylesdir&gt; --&gt;
+				&lt;/attributes&gt;
+			&lt;/configuration&gt;
+		&lt;/execution&gt;
+		&lt;execution&gt;
+			&lt;id&gt;asciidoc-to-pdf&lt;/id&gt;
+			&lt;phase&gt;generate-resources&lt;/phase&gt;
+			&lt;goals&gt;
+				&lt;goal&gt;process-asciidoc&lt;/goal&gt;
+			&lt;/goals&gt;
+			&lt;configuration&gt;
+				&lt;backend&gt;pdf&lt;/backend&gt;
+				&lt;sourceHighlighter&gt;rouge&lt;/sourceHighlighter&gt;
+				&lt;attributes&gt;
+					&lt;imagesdir&gt;${project.build.directory}/generated-docs/images&lt;/imagesdir&gt;
+					&lt;toc /&gt;
+					&lt;toclevels&gt;3&lt;/toclevels&gt;
+					&lt;pdf-style&gt;${user.dir}/src/docs/asciidoc/themes/cg-theme.yml&lt;/pdf-style&gt;
+					&lt;pagenums /&gt;
+				&lt;/attributes&gt;
+			&lt;/configuration&gt;
+		&lt;/execution&gt;
+	&lt;/executions&gt;
+&lt;/plugin&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -736,7 +653,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>1.3. .doc to .adoc</h3>
+<h3 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>1.4. .doc to .adoc</h3>
 <div class="paragraph">
 <p>If the initial documentation is of Microsoft Word, you have to first migrate it to AsciiDoc file.</p>
 </div>
@@ -753,9 +670,9 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect2">
-<h3 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>1.4. Publish HTML &amp; PDF to github</h3>
+<h3 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>1.5. Publish HTML &amp; PDF to github</h3>
 <div class="sect3">
-<h4 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>1.4.1. Initialize Github space</h4>
+<h4 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>1.5.1. Initialize Github space</h4>
 <div class="literalblock">
 <div class="content">
 <pre>mkdir docs
@@ -777,27 +694,27 @@ git push --set-upstream origin gh-pages</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>1.4.2. Configure Maven plugin</h4>
+<h4 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>1.5.2. Configure Maven plugin</h4>
 <div class="listingblock">
 <div class="title">Maven SCM plugin configuration</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;plugin&gt;</span>
-        <span class="tag">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/groupId&gt;</span>
-        <span class="tag">&lt;artifactId&gt;</span>maven-scm-publish-plugin<span class="tag">&lt;/artifactId&gt;</span>
-        <span class="tag">&lt;version&gt;</span>3.0.0<span class="tag">&lt;/version&gt;</span>
-        <span class="tag">&lt;inherited&gt;</span>false<span class="tag">&lt;/inherited&gt;</span>
-        <span class="tag">&lt;configuration&gt;</span>
-                <span class="tag">&lt;scmBranch&gt;</span>gh-pages<span class="tag">&lt;/scmBranch&gt;</span>
-                <span class="comment">&lt;!-- token generated from github &gt; settings &gt; Developer settings &gt; Personal access tokens &gt; public_repo --&gt;</span>
-                <span class="tag">&lt;pubScmUrl&gt;</span>scm:git:https://USER:TOKEN@github.com/USER/docs.git<span class="tag">&lt;/pubScmUrl&gt;</span>
-                <span class="tag">&lt;content&gt;</span>target/generated-docs<span class="tag">&lt;/content&gt;</span>
-        <span class="tag">&lt;/configuration&gt;</span>
-<span class="tag">&lt;/plugin&gt;</span></code></pre>
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;plugin&gt;
+	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+	&lt;artifactId&gt;maven-scm-publish-plugin&lt;/artifactId&gt;
+	&lt;version&gt;3.0.0&lt;/version&gt;
+	&lt;inherited&gt;false&lt;/inherited&gt;
+	&lt;configuration&gt;
+		&lt;scmBranch&gt;gh-pages&lt;/scmBranch&gt;
+		&lt;!-- token generated from github &gt; settings &gt; Developer settings &gt; Personal access tokens &gt; public_repo --&gt;
+		&lt;pubScmUrl&gt;scm:git:https://USER:TOKEN@github.com/USER/docs.git&lt;/pubScmUrl&gt;
+		&lt;content&gt;target/generated-docs&lt;/content&gt;
+	&lt;/configuration&gt;
+&lt;/plugin&gt;</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>1.4.3. Use in pipelines</h4>
+<h4 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>1.5.3. Use in pipelines</h4>
 <div class="paragraph">
 <p>To use in Jenkins Pipelines, see <a href="BP-jenkins.html">Jenkins Best Practices</a></p>
 </div>
@@ -811,8 +728,11 @@ git push --set-upstream origin gh-pages</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-25 19:12:55 UTC
+Last updated 2018-08-26 15:09:48 UTC
 </div>
 </div>
+<link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
+<script src="highlight/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>

@@ -16,9 +16,35 @@ Config files have to be put in the right folder in Eclipse.
 ** File used in JUnit tests only for this sub-module
 * *../src/test/shared-resources*
 ** Files used in JUnit tests accross multiple modules
-** requires some maven configuration
+** It requires some maven configuration :
 
-WARNING: TODO give Maven details for shared-resources
+[source, xml]
+.pom.xml plugin for shared-resources
+----
+<plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>build-helper-maven-plugin</artifactId>
+  <version>3.0.0</version>
+  <executions>
+    <execution>
+      <id>add-test-resources</id>
+      <phase>generate-test-resources</phase>
+      <goals>
+        <goal>add-test-resource</goal>
+      </goals>
+      <configuration>
+        <resources>
+          <resource>
+            <directory>${project.parent.basedir}/src/test/shared-resources</directory>
+          </resource>
+        </resources>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
+----
+
+WARNING: Never write programmatically files outside of *target/* directory, for the sake of source code management
 
 == Checkstyle : check javadoc
 

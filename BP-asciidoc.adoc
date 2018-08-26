@@ -19,20 +19,24 @@ Download and install :
 .Rules to produce AsciiDoc files :
 * file names are in kebab-case, except the type at the beginning
 * use *\kbd:[myShortcut]* for keyboard shortcuts
-* use *\*myButton** for buttons
+* use *\btn[myButton]* for buttons
 * High level title should be on new pages (use *<<<*)
 * don't forget init/closure includes at beginning/end of the adoc
 * For STS, use TMP-STS-webmethods-template.adoc as a template
 
 To show a in progress diagram to colleagues, you can generate a link using this page : http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
 
-=== TODO
+=== Inline icons
 
-* inline icons : 
-** https://asciidoctor.org/docs/user-manual/#icons
-** Font Awesome 4.6.3 Class Explorer
-*** https://lab.artlung.com/font-awesome-sample/
-** no need for :icons: font
+* See https://asciidoctor.org/docs/user-manual/#icons
+* Font Awesome 4.6.3 Class Explorer :  https://lab.artlung.com/font-awesome-sample/
+** no need for :icons: font to use font awesome-font for icons
+
+=== Custom highlighter
+
+* See the maven configuration below, it speaks for itself
+* Highlight.js demo with all languages and all styles (current theme is : darcula)
+* Default highlight.js processor is too basic, instructions here to change : https://asciidoctor.org/docs/user-manual/#highlight-js
 
 === Generation using Maven
 
