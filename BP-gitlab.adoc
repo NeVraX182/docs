@@ -28,6 +28,7 @@ WARNING: TODO
 * Import git project in Eclipse
 * Change git config, adding :
 
+[source, ini]
   [user]
     name = yourname
     email = youraccount@yourprovider.com
@@ -78,6 +79,7 @@ We assume that we will be the only one to push on that branch, so we do not chec
 
 Eclipse should now be ready to handle smoothly Gitlab workflow. You can check your repository git config which should be like :
 
+[source, ini]
 .academy/.git/config
   [core]
     repositoryformatversion = 0
@@ -116,8 +118,7 @@ Now a pipeline should be launched in Gitlab interface.
 
 === Pipeline creation
 
-//[source, yaml] does not seem to work with highlight.js :(
-[source,bash]
+[source, yaml]
 .Pipeline content
 ----
 include::../../../.gitlab-ci.yml[]

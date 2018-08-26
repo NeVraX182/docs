@@ -33,6 +33,7 @@ This has to be done only for a new Production Line
 
 Now you can delete tags from your projects, for ex :
 
+[source, bash]
   git push --force --delete origin cg-wm-1.17.6
   
 ==== Verified status
@@ -40,6 +41,7 @@ Now you can delete tags from your projects, for ex :
 * Click on *Projects* -> *List* -> btn:[All-Projects] -> section *General* -> *Edit Config*
 * Add this
 
+[source, ini]
  [label "Verified"]
     function = MaxWithBlock
     value = -1 Fails

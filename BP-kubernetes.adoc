@@ -14,6 +14,7 @@ Create an account on Google Cloud.
 Enter these in console.
 
 .Cluster creation
+[source, bash]
 ----
 gcloud container clusters get-credentials cluster-1 --zone us-central1-a
 kubectl create ns cicd
@@ -21,6 +22,7 @@ kubectl config set-context cicd --cluster gke_zenika-test_us-central1-a_cluster-
 ----
 
 .Helm installation
+[source, bash]
 ----
 wget "https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz"
 tar -zxvf helm-v2.9.1-linux-amd64.tar.gz
@@ -29,9 +31,10 @@ cd helm-install-files/
 sudo mv helm /usr/local/bin/helm
 ----
 
+[source, bash]
   vi rbac-tiller-config.yaml
 
-[source,bash]
+[source, yaml]
 .rbac-tiller-config.yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -52,7 +55,7 @@ subjects:
     name: tiller
     namespace: kube-system
 
-
+[source, bash]
   kubectl create -f  rbac-tiller-config.yaml
   helm init --service-account tiller
   helm repo update
@@ -61,14 +64,17 @@ subjects:
 ====
 if already initialized by mistake, use this command :
 
+[source, bash]
   helm reset --force
 ====
 
 === SonarQube
 
+[source, bash]
   helm install stable/sonarqube
 
 .deployment data example
+[source, yaml]
 ----
 resources: 
   cpu: 100m
@@ -96,10 +102,12 @@ plugins:
 
 === Jenkins
 
+[source, bash]
   helm install stable/jenkins
 
 To get the admin password :
 
+[source, bash]
   printf $(kubectl get secret --namespace cicd silly-clam-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
 
 ==== Gerrit
@@ -124,6 +132,7 @@ In progress, not in Helm/Charts yet. See ongoing project : https://github.com/No
 
 Start the Gitlab installation, example :
 
+[source, bash]
   helm upgrade --install gitlab gitlab/gitlab \
     --timeout 600 \
     --set global.hosts.domain=gitlab.nevrax-cicd.com \

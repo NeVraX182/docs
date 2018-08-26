@@ -459,7 +459,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="icon"><a class="image" href="BP-kubernetes.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎ <span class="icon"><a class="image" href="BP-kubernetes.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
+<p><span class="icon"><a class="image" href="index.html"><i class="fa fa-home"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-kubernetes.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-kubernetes.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
 </div>
 </div>
 </div>
@@ -482,30 +484,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="title">Cluster creation</div>
 <div class="content">
-<pre>gcloud container clusters get-credentials cluster-1 --zone us-central1-a
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">gcloud container clusters get-credentials cluster-1 --zone us-central1-a
 kubectl create ns cicd
-kubectl config set-context cicd --cluster gke_zenika-test_us-central1-a_cluster-1 --user gke_zenika-test_us-central1-a_cluster-1 --namespace cicd</pre>
+kubectl config set-context cicd --cluster gke_zenika-test_us-central1-a_cluster-1 --user gke_zenika-test_us-central1-a_cluster-1 --namespace cicd</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Helm installation</div>
 <div class="content">
-<pre>wget "https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz"
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">wget "https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz"
 tar -zxvf helm-v2.9.1-linux-amd64.tar.gz
 mv linux-amd64/ helm-install-files
 cd helm-install-files/
-sudo mv helm /usr/local/bin/helm</pre>
+sudo mv helm /usr/local/bin/helm</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>vi rbac-tiller-config.yaml</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  vi rbac-tiller-config.yaml</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">rbac-tiller-config.yaml</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: v1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: tiller
@@ -525,11 +527,11 @@ subjects:
     namespace: kube-system</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>kubectl create -f  rbac-tiller-config.yaml
-helm init --service-account tiller
-helm repo update</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  kubectl create -f  rbac-tiller-config.yaml
+  helm init --service-account tiller
+  helm repo update</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -542,9 +544,9 @@ helm repo update</pre>
 <div class="paragraph">
 <p>if already initialized by mistake, use this command :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>helm reset --force</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  helm reset --force</code></pre>
 </div>
 </div>
 </td>
@@ -554,15 +556,15 @@ helm repo update</pre>
 </div>
 <div class="sect2">
 <h3 id="sonarqube"><a class="anchor" href="#sonarqube"></a>2.2. SonarQube</h3>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>helm install stable/sonarqube</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  helm install stable/sonarqube</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">deployment data example</div>
 <div class="content">
-<pre>resources:
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">resources:
   cpu: 100m
   memory: 1536Mi
 persistence:
@@ -573,7 +575,7 @@ persistence:
 plugins:
   install:
     - "https://github.com/AmadeusITGroup/sonar-stash/releases/download/1.3.0/sonar-stash-plugin-1.3.0.jar"
-    - "https://github.com/SonarSource/sonar-ldap/releases/download/2.2-RC3/sonar-ldap-plugin-2.2.0.601.jar"</pre>
+    - "https://github.com/SonarSource/sonar-ldap/releases/download/2.2-RC3/sonar-ldap-plugin-2.2.0.601.jar"</code></pre>
 </div>
 </div>
 <div class="admonitionblock warning">
@@ -616,17 +618,17 @@ plugins:
 </div>
 <div class="sect2">
 <h3 id="jenkins"><a class="anchor" href="#jenkins"></a>2.3. Jenkins</h3>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>helm install stable/jenkins</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  helm install stable/jenkins</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>To get the admin password :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>printf $(kubectl get secret --namespace cicd silly-clam-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  printf $(kubectl get secret --namespace cicd silly-clam-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -675,16 +677,16 @@ plugins:
 <div class="paragraph">
 <p>Start the Gitlab installation, example :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>helm upgrade --install gitlab gitlab/gitlab \
-  --timeout 600 \
-  --set global.hosts.domain=gitlab.nevrax-cicd.com \
-  --set global.hosts.externalIP=35.184.74.117 \
-  --set certmanager-issuer.email=nevraxgoespro@gmail.com
-  --set gitlab.migrations.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-rails-ce
-  --set gitlab.sidekiq.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-sidekiq-ce
-  --set gitlab.unicorn.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-unicorn-ce</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  helm upgrade --install gitlab gitlab/gitlab \
+    --timeout 600 \
+    --set global.hosts.domain=gitlab.nevrax-cicd.com \
+    --set global.hosts.externalIP=35.184.74.117 \
+    --set certmanager-issuer.email=nevraxgoespro@gmail.com
+    --set gitlab.migrations.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-rails-ce
+    --set gitlab.sidekiq.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-sidekiq-ce
+    --set gitlab.unicorn.image.repository=registry.gitlab.com/gitlab-org/build/cng/gitlab-unicorn-ce</code></pre>
 </div>
 </div>
 </div>
@@ -708,7 +710,7 @@ TODO
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-26 15:09:48 UTC
+Last updated 2018-08-26 15:56:36 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

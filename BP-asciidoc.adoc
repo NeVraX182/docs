@@ -48,6 +48,7 @@ include::../../../pom.xml[tags=asciidoc-plugin,indent=0]
 
 To generate the PDF locally, use the maven command :
 
+[source, bash]
  mvn generate-resources -Dadoc.skip=false --non-recursive
  
 You might have some some errors about the history : It will be automatically generated on Jenkins. If you want too see how it looks like, use the script asciidocHistory.sh in src -> scripts, with cg-wm directory path in argument.
@@ -60,12 +61,14 @@ Download and install pandoc.
 
 To migrate a document, use it in command line
 
+[source, bash]
  pandoc --from=docx --to=asciidoc --wrap=none --atx-headers --normalize --extract-media=images monDoc.docx > monDoc.adoc
 
 === Publish HTML & PDF to github
 
 ==== Initialize Github space
 
+[source, bash]
   mkdir docs
   cd docs
   git init
@@ -73,6 +76,7 @@ To migrate a document, use it in command line
   
 Copy a first version of the site in the directory, then :
 
+[source, bash]
   git add *
   git commit -m "initial site content"
   git remote add origin "https://github.com/NeVraX182/docs.git"

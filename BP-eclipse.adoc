@@ -91,7 +91,7 @@ It can be placed in the project's root directory, then it would be shared to oth
 
 .<WORKSPACE>/.derived
 
-[source,shell]
+[source,bash]
 ------
 # set the 'target' and 'ext' folders as derived
 target
@@ -166,6 +166,7 @@ image:git-project.png[scaledwidth="50%"]
 
 To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configuration*, on *User setting* click on *Open* and enter the following configuration after updating it with your personal  informations :
 
+[source, ini]
     [gerrit]
     	createchangeid = true
     [user]
@@ -181,6 +182,7 @@ The *autosetuprebase = always* will allow you to do a fetch and a rebase by simp
 
 On *Repository Settings* click on *Open* and enter the following configuration :
 
+[source, ini]
     [core]
     	repositoryformatversion = 0
     	filemode = false
@@ -313,6 +315,7 @@ If not, here is another solution :
 
 Last solution, requiring Cygwin :
 
+[source, bash]
   gitdir=$(git rev-parse --git-dir); wget -P ${gitdir}/hooks/ http://bcouetil@cric.pl.s2-eu.nvx.com/gerrit/tools/hooks/commit-msg && chmod +x ${gitdir}/hooks/commit-msg
 
 === .classpath and other not-to-push files
@@ -357,6 +360,7 @@ In the case of a gitlab to gerrit migration, you may have a common ancestor but 
 * right click on your repository and select *pull*
 * Finish by this in command line :
 
+[source, bash]
  git push origin master
 
 === Get rid of ORIG_HEAD / FETCH_HEAD in Git history

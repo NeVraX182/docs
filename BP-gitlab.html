@@ -451,7 +451,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="icon"><a class="image" href="BP-gitlab.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎ <span class="icon"><a class="image" href="BP-gitlab.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
+<p><span class="icon"><a class="image" href="index.html"><i class="fa fa-home"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-gitlab.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-gitlab.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
 </div>
 </div>
 </div>
@@ -535,15 +537,15 @@ TODO
 </li>
 <li>
 <p>Change git config, adding :</p>
-<div class="literalblock">
-<div class="content">
-<pre>[user]
-  name = yourname
-  email = youraccount@yourprovider.com</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">  [user]
+    name = yourname
+    email = youraccount@yourprovider.com</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="configure-rebase-without-merge-commit"><a class="anchor" href="#configure-rebase-without-merge-commit"></a>3.1. Configure rebase without merge commit</h3>
@@ -676,24 +678,24 @@ TODO
 <div class="paragraph">
 <p>Eclipse should now be ready to handle smoothly Gitlab workflow. You can check your repository git config which should be like :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="title">academy/.git/config</div>
 <div class="content">
-<pre>[core]
-  repositoryformatversion = 0
-  filemode = false
-  logallrefupdates = true
-[remote "origin"]
-  url = https://gitlab.com/bcouetil/academy.git
-  fetch = +refs/heads/*:refs/remotes/origin/*
-  push = +HEAD:refs/heads/4-minor-asciidoc-changes
-[branch "master"]
-  remote = origin
-  merge = refs/heads/master
-  rebase = true
-[user]
-  name = myname
-  email = myaccount@myprovider.com</pre>
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">  [core]
+    repositoryformatversion = 0
+    filemode = false
+    logallrefupdates = true
+  [remote "origin"]
+    url = https://gitlab.com/bcouetil/academy.git
+    fetch = +refs/heads/*:refs/remotes/origin/*
+    push = +HEAD:refs/heads/4-minor-asciidoc-changes
+  [branch "master"]
+    remote = origin
+    merge = refs/heads/master
+    rebase = true
+  [user]
+    name = myname
+    email = myaccount@myprovider.com</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -768,7 +770,7 @@ More details and screenshots in <a href="BP-eclipse.html">Eclipse Best Practices
 <div class="listingblock">
 <div class="title">Pipeline content</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">image: maven:latest
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">image: maven:latest
 
 stages:
   - build
@@ -841,7 +843,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-26 15:09:48 UTC
+Last updated 2018-08-26 15:56:36 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

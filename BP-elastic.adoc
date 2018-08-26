@@ -9,21 +9,25 @@ ifndef::imagesdir[:imagesdir: images]
 
 * Adding a user
 
- adduser devops
+[source, shell]
+$ adduser devops
 
 * Granting him root privileges
 
- visudo
+[source, shell]
+$ visudo
 
  devops ALL=(ALL:ALL) ALL
 
 * Checking FS size
 
- parted
- print free
+[source, shell]
+$ parted
+$ print free
 
 ** Example
 
+[source, shell]
  Number  Start   End     Size    Type     File system  Flags
         32.3kB  1049kB  1016kB           Free Space
  1      1049kB  500MB   499MB   primary  ext2         boot
@@ -34,7 +38,8 @@ WARNING: Below instructions are for Ubuntu only. You can check your Linux distri
 
 * Add some server for apt-get
 
- sudo vi /etc/apt/sources.list
+[source, shell]
+$ sudo vi /etc/apt/sources.list
 
  deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
  deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse
@@ -47,46 +52,53 @@ WARNING: Below instructions are for Ubuntu only. You can check your Linux distri
 
 WARNING: Below instructions are for Ubuntu 14 only. You can check your Linux distribution with this command : cat /etc/*-release
 
- apt-get install apt-transport-https ca-certificates curl software-properties-common
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
- add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
- apt-get update
- apt-cache search docker-ce
- apt-get install docker-ce
+[source, shell]
+$ apt-get install apt-transport-https ca-certificates curl software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+$ apt-get update
+$ apt-cache search docker-ce
+$ apt-get install docker-ce
 
 ** May work on Jenkins slave 
 
 WARNING: don't use on managed PL, we don't have enough rights
 
- sudo add-apt-repository \
+[source, shell]
+$ sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
    $(lsb_release -cs) \
    stable"
- sudo apt-get update
- sudo apt-cache search docker-ce
- sudo apt-get install --assume-yes docker-ce
- sudo dockerd
+$ sudo apt-get update
+$ sudo apt-cache search docker-ce
+$ sudo apt-get install --assume-yes docker-ce
+$ sudo dockerd
 
 * Allow Docker remote API
 
 Solution found here https://forums.docker.com/t/enable-remote-api-on-docker-hosts-in-ubuntu-14/11583/2
 
-  vi /etc/default/docker
+[source, shell]
+$ vi /etc/default/docker
 
-  DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
+[source, shell]
+$ DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
 
 * Start Docker Daemon
 
- sudo dockerd
+[source, shell]
+$ sudo dockerd
 
 ** To restart (as root)
 
 WARNING: Don't forget the docker.sock chmod if you use metricbeat
 
- service docker restart
+[source, shell]
+$ service docker restart
 
 ** To check FS size
 
+[source, shell]
  root@frpardge:/var/lib/docker
  $ du -sh -- * .*
  92K     aufs
@@ -103,27 +115,34 @@ WARNING: Don't forget the docker.sock chmod if you use metricbeat
 
 * Get rid of sudo for devops user
 
- sudo groupadd docker
- sudo gpasswd -a devops docker
- newgrp docker
- docker run hello-world
+[source, shell]
+$ sudo groupadd docker
+$ sudo gpasswd -a devops docker
+$ newgrp docker
+$ docker run hello-world
 
 * Install **Portainer** to ease administration
 
- sudo docker pull portainer/portainer
+[source, shell]
+----
+$ sudo docker pull portainer/portainer
 
- sudo docker run -d --name portainer --restart=always -p 19000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
+$ sudo docker run -d --name portainer --restart=always -p 19000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
+----
 
 ** To use, go to http://frpardge.corp.nvx.com:19000
 *** login/password = **admin / administrator**
 
 * Install docker-compose
 
- curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
- 
- chmod +x /usr/local/bin/docker-compose
- 
- docker-compose --version
+[source, shell]
+----
+curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+chmod +x /usr/local/bin/docker-compose
+
+docker-compose --version
+----
 
 ==== Define Nexus3 as the Docker registry
 
@@ -131,13 +150,15 @@ WARNING: Don't forget the docker.sock chmod if you use metricbeat
 
 ** They will provide this kind of response, which indicates how to login before 'docker push' :
 
- docker login docker-registry-bpmfactory.s2-eu.nvx.com
+[source, shell]
+$ docker login docker-registry-bpmfactory.s2-eu.nvx.com
  User name: docker
  User Password: dockerPWdbpmfactory
 
 * Use the information to add the registry in docker configuration
 
- vi /etc/docker/daemon.json
+[source, shell]
+$ vi /etc/docker/daemon.json
 
 [source, json]
 ----
@@ -152,24 +173,29 @@ WARNING: Don't forget the docker.sock chmod if you use metricbeat
 
 ** be carefull not to have INSECURE_REGISTRY here, it would not start :
 
- vim /etc/sysconfig/docker
+[source, shell]
+$ vim /etc/sysconfig/docker
  
+[source, shell]
  #INSECURE_REGISTRY='--insecure-registry userbxxy05.socle:8444'
 
 * Redémarrer docker
 
- service docker restart
+[source, shell]
+$ service docker restart
 
 <<<
 === Setup a dockerized Oracle12c database
 
 Database found here : https://hub.docker.com/r/sath89/oracle-12c/
 
- docker pull sath89/oracle-12c
+[source, shell]
+----
+$ docker pull sath89/oracle-12c
  
- docker run --restart=always --name dbdev -d -p 18080:8080 -p 1521:1521 sath89/oracle-12c
+$ docker run --restart=always --name dbdev -d -p 18080:8080 -p 1521:1521 sath89/oracle-12c
  
- docker logs -f feef20144fdc124d7b19d22aaf7bd63cbb837df667cc9764e7bdb5bcafa1af46
+$ docker logs -f feef20144fdc124d7b19d22aaf7bd63cbb837df667cc9764e7bdb5bcafa1af46
  
  Database not initialized. Initializing database.
  Starting tnslsnr
@@ -178,6 +204,7 @@ Database found here : https://hub.docker.com/r/sath89/oracle-12c/
  3% complete
  Import finished
  Database ready to use. Enjoy! ;)
+----
  
 .Connect to Oracle Application Express web management console with following settings :
 * host = http://frpardge:18080/apex
@@ -190,8 +217,9 @@ Database found here : https://hub.docker.com/r/sath89/oracle-12c/
 
 Configuration files are given in next associated sections below. For some of them, some chmod change is needed :
 
- cd ~/elastic
- chmod go-w ./*.yml
+[source, shell]
+$ cd ~/elastic
+$ chmod go-w ./*.yml
 
 ==== Migration prerequisites
 
@@ -218,10 +246,12 @@ https://www.elastic.co/guide/en/kibana/current/getting-started.html
 
 * Install with docker without x-pack
 
- docker pull docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0
+[source, shell]
+$ docker pull docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0
  
+[source, shell]
 .To start it
- docker run --restart=always -d --name elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0
+$ docker run --restart=always -d --name elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0
 
 ** if elastic stops directly after start with this error
 
@@ -229,14 +259,16 @@ https://www.elastic.co/guide/en/kibana/current/getting-started.html
  
 ** Then type before retry
 
- sudo sysctl -w vm.max_map_count=262144
+[source, shell]
+$ sudo sysctl -w vm.max_map_count=262144
 
 <<<
 === Kibana
 
 * Install with docker without x-pack
 
- docker pull docker.elastic.co/kibana/kibana-oss:6.0.0
+[source, shell]
+$ docker pull docker.elastic.co/kibana/kibana-oss:6.0.0
 
 * Create the file described at the end of this section
 
@@ -244,7 +276,8 @@ https://www.elastic.co/guide/en/kibana/current/getting-started.html
  
 * Start the container
 
- docker run --restart=always -d --name kibana -p 5601:5601 -v ~/elastic/kibana.yml:/usr/share/kibana/config/kibana.yml docker.elastic.co/kibana/kibana-oss:6.0.0
+[source, shell]
+$ docker run --restart=always -d --name kibana -p 5601:5601 -v ~/elastic/kibana.yml:/usr/share/kibana/config/kibana.yml docker.elastic.co/kibana/kibana-oss:6.0.0
 
 Check that it is up and running : http://frpardge:5601/
 
@@ -277,6 +310,7 @@ PUT _template/all
 
 Here is something to try, inside the "PUT _template/all", someday, to not have keyword (fixed word) + text (searchable) but only keyword :
 
+[source, json]
   "dynamic_templates": [
     {
       "match_mapping_type": "string",
@@ -287,6 +321,7 @@ Here is something to try, inside the "PUT _template/all", someday, to not have k
   ]
 
 .For Elasticsearch monitoring :
+[source, shell]
   GET /_cat/indices?v
   GET _cluster/health
 
@@ -308,13 +343,13 @@ If Kibana cannot connect to Elasticsearch with this message :
 
 Then apply these settings :
 
+[source, json]
  PUT _settings
     {
         "index": {
         "blocks": {
         "read_only_allow_delete": "false"
     }
-    
  PUT cgwmbeat-2018.02.16/_settings
     {
         "index": {
@@ -326,31 +361,36 @@ Then apply these settings :
 <<<
 === Curator
 
- wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+[source, shell]
+----
+$ wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
- sudo vi /etc/apt/sources.list
+$ sudo vi /etc/apt/sources.list
 
  deb [arch=amd64] http://packages.elastic.co/curator/5/debian stable main
 
- sudo apt-get update && sudo apt-get install elasticsearch-curator
+$ sudo apt-get update && sudo apt-get install elasticsearch-curator
+----
 
 .To start it
- curator --config ~/elastic/curator.config.yml --dry-run ~/elastic/curator.delete_indices.yml
- curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.yml
+[source, shell]
+$ curator --config ~/elastic/curator.config.yml --dry-run ~/elastic/curator.delete_indices.yml
+$ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.yml
 
 ==== Automation
 
 * Create below script
 
 .~/elastic/curator.sh
-[source, sh]
+[source, shell]
 ----
 include::../../../cg-elastic/src/scripts/curator.sh[]
 ----
 
 * Open crontab
 
-  crontab -e
+[source, shell]
+$  crontab -e
 
 * Add this line to launch it at 8:00 everyday
 
@@ -377,7 +417,8 @@ include::../../../cg-elastic/src/config/curator.delete_indices.yml[]
 
 * Pull the image
 
- docker pull docker.elastic.co/beats/heartbeat:6.0.0
+[source, shell]
+$ docker pull docker.elastic.co/beats/heartbeat:6.0.0
  
 * Create the file described at the end of this section
 
@@ -385,8 +426,9 @@ include::../../../cg-elastic/src/config/curator.delete_indices.yml[]
  
 * Start the container
 
- docker run --name heartbeat -d -v ~/elastic/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml docker.elastic.co/beats/heartbeat:6.0.0
- 
+[source, shell]
+$ docker run --name heartbeat -d -v ~/elastic/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml docker.elastic.co/beats/heartbeat:6.0.0
+
 .~/elastic/heartbeat.yml
 [source, yaml]
 ----
@@ -403,7 +445,8 @@ Install this only if you have files to be parsed and sent to Elasticsearch
 
 * Pull the image
 
- docker pull docker.elastic.co/logstash/logstash-oss:6.0.0
+[source, shell]
+$ docker pull docker.elastic.co/logstash/logstash-oss:6.0.0
 
 * Create the file described at the end of this section
 
@@ -411,7 +454,8 @@ Install this only if you have files to be parsed and sent to Elasticsearch
 
 * Start the container
 
- docker run --restart=always --name logstash -d -p 5043:5043 -v ~/elastic/logstash-pipelines/:/usr/share/logstash/pipeline/ docker.elastic.co/logstash/logstash-oss:6.0.0
+[source, shell]
+$ docker run --restart=always --name logstash -d -p 5043:5043 -v ~/elastic/logstash-pipelines/:/usr/share/logstash/pipeline/ docker.elastic.co/logstash/logstash-oss:6.0.0
 
 .~/elastic/logstash-pipelines/logstash.conf
 [source, json]
@@ -429,7 +473,8 @@ Install this only if you have files to be parsed and sent to Elasticsearch
 
 * Pull the image
 
- docker pull docker.elastic.co/beats/filebeat:6.0.0
+[source, shell]
+$ docker pull docker.elastic.co/beats/filebeat:6.0.0
 
 * Create the file described at the end of this section
 
@@ -437,7 +482,8 @@ Install this only if you have files to be parsed and sent to Elasticsearch
  
 * Start the container
 
- docker run --name filebeat -d -v /opt/sagis/IntegrationServer/instances/default/logs/:/islogs/ -v ~/elastic/filebeat.yml:/usr/share/filebeat/filebeat.yml docker.elastic.co/beats/filebeat:6.0.0
+[source, shell]
+$ docker run --name filebeat -d -v /opt/sagis/IntegrationServer/instances/default/logs/:/islogs/ -v ~/elastic/filebeat.yml:/usr/share/filebeat/filebeat.yml docker.elastic.co/beats/filebeat:6.0.0
 
 .~/elastic/filebeat.yml
 [source, yaml]
@@ -450,11 +496,13 @@ include::../../../cg-elastic/src/config/filebeat.yml[]
 
 This chmod has to be done again after each VM reboot before starting Metricbeat :
 
- sudo chmod 777 /var/run/docker.sock
+[source, shell]
+$ sudo chmod 777 /var/run/docker.sock
 
 * Pull the image
 
- docker pull docker.elastic.co/beats/metricbeat:6.0.0
+[source, shell]
+$ docker pull docker.elastic.co/beats/metricbeat:6.0.0
 
 * Create the file described at the end of this section
 
@@ -462,12 +510,14 @@ This chmod has to be done again after each VM reboot before starting Metricbeat 
  
 * Start the container
 
- docker run --name metricbeat -d -v /var/run/docker.sock:/var/run/docker.sock -v ~/elastic/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml --volume=/proc:/hostfs/proc:ro --volume=/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro --volume=/:/hostfs:ro --net=host docker.elastic.co/beats/metricbeat:6.0.0 metricbeat -e -system.hostfs=/hostfs
+[source, shell]
+$ docker run --name metricbeat -d -v /var/run/docker.sock:/var/run/docker.sock -v ~/elastic/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml --volume=/proc:/hostfs/proc:ro --volume=/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro --volume=/:/hostfs:ro --net=host docker.elastic.co/beats/metricbeat:6.0.0 metricbeat -e -system.hostfs=/hostfs
 
 To test you CPU graphs, with the proper handling of the cores, you can use stress application to load one or multiple cores :
 
- sudo apt-get install stress
- stress --cpu 2
+[source, shell]
+$ sudo apt-get install stress
+$ stress --cpu 2
 
 .~/elastic/metricbeat.yml
 [source, yaml]
@@ -478,22 +528,28 @@ include::../../../cg-elastic/src/config/metricbeat.yml[]
 <<<
 === Grafana
 
- wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.4.3_amd64.deb
+[source, shell]
+----
+$ wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.4.3_amd64.deb
 
- sudo apt-get install -y adduser libfontconfig
+$ sudo apt-get install -y adduser libfontconfig
 
- sudo dpkg -i grafana_4.4.3_amd64.deb
+$ sudo dpkg -i grafana_4.4.3_amd64.deb
+----
 
+[source, shell]
 .To start it
- sudo service grafana-server start
+$ sudo service grafana-server start
 
+[source, shell]
 .To auto start it at boot time
- sudo update-rc.d grafana-server defaults
+$ sudo update-rc.d grafana-server defaults
 
 <<<
 === Jaeger Tracing (OpenZipkin-like)
  
+[source, shell]
 .To start it
- docker run --restart=always --name jaeger -d -p5775:5775/udp -p6831:6831/udp -p5778:5778 -p16686:16686 jaegertracing/all-in-one:latest
+$ docker run --restart=always --name jaeger -d -p5775:5775/udp -p6831:6831/udp -p5778:5778 -p16686:16686 jaegertracing/all-in-one:latest
 
 include::subdocs/_closure.adoc[]

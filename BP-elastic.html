@@ -478,7 +478,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="icon"><a class="image" href="BP-elastic.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎ <span class="icon"><a class="image" href="BP-elastic.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
+<p><span class="icon"><a class="image" href="index.html"><i class="fa fa-home"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-elastic.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-elastic.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
 </div>
 </div>
 </div>
@@ -491,17 +493,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul>
 <li>
 <p>Adding a user</p>
-<div class="literalblock">
-<div class="content">
-<pre>adduser devops</pre>
-</div>
-</div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ adduser devops</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Granting him root privileges</p>
-<div class="literalblock">
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>visudo</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ visudo</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -509,33 +518,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre>devops ALL=(ALL:ALL) ALL</pre>
 </div>
 </div>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>Checking FS size</p>
-<div class="literalblock">
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>parted
-print free</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ parted
+$ print free</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Example</p>
-<div class="literalblock">
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>Number  Start   End     Size    Type     File system  Flags
-       32.3kB  1049kB  1016kB           Free Space
-1      1049kB  500MB   499MB   primary  ext2         boot
-2      500MB   53.7GB  53.2GB  primary               lvm
-       53.7GB  53.7GB  1049kB           Free Space</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> Number  Start   End     Size    Type     File system  Flags
+        32.3kB  1049kB  1016kB           Free Space
+ 1      1049kB  500MB   499MB   primary  ext2         boot
+ 2      500MB   53.7GB  53.2GB  primary               lvm
+        53.7GB  53.7GB  1049kB           Free Space</code></pre>
 </div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -553,9 +563,12 @@ Below instructions are for Ubuntu only. You can check your Linux distribution wi
 <ul>
 <li>
 <p>Add some server for apt-get</p>
-<div class="literalblock">
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>sudo vi /etc/apt/sources.list</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo vi /etc/apt/sources.list</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -566,9 +579,6 @@ deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-updates main restricte
 deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
 deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse</pre>
 </div>
-</div>
-</li>
-</ul>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -586,14 +596,14 @@ Below instructions are for Ubuntu 14 only. You can check your Linux distribution
 </tr>
 </table>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>apt-get install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
-apt-get update
-apt-cache search docker-ce
-apt-get install docker-ce</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ apt-get install apt-transport-https ca-certificates curl software-properties-common
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+$ apt-get update
+$ apt-cache search docker-ce
+$ apt-get install docker-ce</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -615,16 +625,16 @@ don&#8217;t use on managed PL, we don&#8217;t have enough rights
 </tr>
 </table>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-  $(lsb_release -cs) \
-  stable"
-sudo apt-get update
-sudo apt-cache search docker-ce
-sudo apt-get install --assume-yes docker-ce
-sudo dockerd</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+   $(lsb_release -cs) \
+   stable"
+$ sudo apt-get update
+$ sudo apt-cache search docker-ce
+$ sudo apt-get install --assume-yes docker-ce
+$ sudo dockerd</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -637,32 +647,32 @@ sudo dockerd</pre>
 <div class="paragraph">
 <p>Solution found here <a href="https://forums.docker.com/t/enable-remote-api-on-docker-hosts-in-ubuntu-14/11583/2" class="bare">https://forums.docker.com/t/enable-remote-api-on-docker-hosts-in-ubuntu-14/11583/2</a></p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>vi /etc/default/docker</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ vi /etc/default/docker</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Start Docker Daemon</p>
-<div class="literalblock">
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>sudo dockerd</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo dockerd</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>To restart (as root)</p>
-</li>
-</ul>
-</div>
 </li>
 </ul>
 </div>
@@ -678,61 +688,66 @@ Don&#8217;t forget the docker.sock chmod if you use metricbeat
 </tr>
 </table>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>service docker restart</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ service docker restart</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>To check FS size</p>
-<div class="literalblock">
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>root@frpardge:/var/lib/docker
-$ du -sh -- * .*
-92K     aufs
-44K     containers
-116K    image
-52K     network
-20K     plugins
-4.0K    swarm
-4.0K    tmp
-4.0K    trust
-28K     volumes
-4.0K    .
-61M     ..</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> root@frpardge:/var/lib/docker
+ $ du -sh -- * .*
+ 92K     aufs
+ 44K     containers
+ 116K    image
+ 52K     network
+ 20K     plugins
+ 4.0K    swarm
+ 4.0K    tmp
+ 4.0K    trust
+ 28K     volumes
+ 4.0K    .
+ 61M     ..</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Get rid of sudo for devops user</p>
-<div class="literalblock">
-<div class="content">
-<pre>sudo groupadd docker
-sudo gpasswd -a devops docker
-newgrp docker
-docker run hello-world</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Install <strong>Portainer</strong> to ease administration</p>
-<div class="literalblock">
-<div class="content">
-<pre>sudo docker pull portainer/portainer</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>sudo docker run -d --name portainer --restart=always -p 19000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer</pre>
-</div>
-</div>
 </li>
 </ul>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo groupadd docker
+$ sudo gpasswd -a devops docker
+$ newgrp docker
+$ docker run hello-world</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install <strong>Portainer</strong> to ease administration</p>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo docker pull portainer/portainer
+
+$ sudo docker run -d --name portainer --restart=always -p 19000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>To use, go to <a href="http://frpardge.corp.nvx.com:19000" class="bare">http://frpardge.corp.nvx.com:19000</a></p>
 <div class="ulist">
@@ -743,21 +758,6 @@ docker run hello-world</pre>
 <ul>
 <li>
 <p>Install docker-compose</p>
-<div class="literalblock">
-<div class="content">
-<pre>curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>chmod +x /usr/local/bin/docker-compose</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>docker-compose --version</pre>
-</div>
-</div>
 </li>
 </ul>
 </div>
@@ -766,6 +766,15 @@ docker run hello-world</pre>
 </div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+chmod +x /usr/local/bin/docker-compose
+
+docker-compose --version</code></pre>
+</div>
 </div>
 <div class="sect3">
 <h4 id="define-nexus3-as-the-docker-registry"><a class="anchor" href="#define-nexus3-as-the-docker-registry"></a>1.2.1. Define Nexus3 as the Docker registry</h4>
@@ -777,26 +786,30 @@ docker run hello-world</pre>
 <ul>
 <li>
 <p>They will provide this kind of response, which indicates how to login before 'docker push' :</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker login docker-registry-bpmfactory.s2-eu.nvx.com
-User name: docker
-User Password: dockerPWdbpmfactory</pre>
-</div>
-</div>
 </li>
 </ul>
 </div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker login docker-registry-bpmfactory.s2-eu.nvx.com
+ User name: docker
+ User Password: dockerPWdbpmfactory</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Use the information to add the registry in docker configuration</p>
-<div class="literalblock">
-<div class="content">
-<pre>vi /etc/docker/daemon.json</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ vi /etc/docker/daemon.json</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -813,30 +826,30 @@ User Password: dockerPWdbpmfactory</pre>
 <ul>
 <li>
 <p>be carefull not to have INSECURE_REGISTRY here, it would not start :</p>
-<div class="literalblock">
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>vim /etc/sysconfig/docker</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ vim /etc/sysconfig/docker</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>#INSECURE_REGISTRY='--insecure-registry userbxxy05.socle:8444'</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> #INSECURE_REGISTRY='--insecure-registry userbxxy05.socle:8444'</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Redémarrer docker</p>
-<div class="literalblock">
+</li>
+</ul>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>service docker restart</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ service docker restart</code></pre>
 </div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -846,30 +859,21 @@ User Password: dockerPWdbpmfactory</pre>
 <div class="paragraph">
 <p>Database found here : <a href="https://hub.docker.com/r/sath89/oracle-12c/" class="bare">https://hub.docker.com/r/sath89/oracle-12c/</a></p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>docker pull sath89/oracle-12c</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>docker run --restart=always --name dbdev -d -p 18080:8080 -p 1521:1521 sath89/oracle-12c</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>docker logs -f feef20144fdc124d7b19d22aaf7bd63cbb837df667cc9764e7bdb5bcafa1af46</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Database not initialized. Initializing database.
-Starting tnslsnr
-Copying database files
-1% complete
-3% complete
-Import finished
-Database ready to use. Enjoy! ;)</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker pull sath89/oracle-12c
+
+$ docker run --restart=always --name dbdev -d -p 18080:8080 -p 1521:1521 sath89/oracle-12c
+
+$ docker logs -f feef20144fdc124d7b19d22aaf7bd63cbb837df667cc9764e7bdb5bcafa1af46
+
+ Database not initialized. Initializing database.
+ Starting tnslsnr
+ Copying database files
+ 1% complete
+ 3% complete
+ Import finished
+ Database ready to use. Enjoy! ;)</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -896,10 +900,10 @@ Database ready to use. Enjoy! ;)</pre>
 <div class="paragraph">
 <p>Configuration files are given in next associated sections below. For some of them, some chmod change is needed :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>cd ~/elastic
-chmod go-w ./*.yml</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ cd ~/elastic
+$ chmod go-w ./*.yml</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -960,18 +964,18 @@ chmod go-w ./*.yml</pre>
 <ul>
 <li>
 <p>Install with docker without x-pack</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker pull docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0</pre>
-</div>
-</div>
 </li>
 </ul>
 </div>
-<div class="literalblock">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker pull docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0</code></pre>
+</div>
+</div>
+<div class="listingblock">
 <div class="title">To start it</div>
 <div class="content">
-<pre>docker run --restart=always -d --name elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker run --restart=always -d --name elastic -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch-oss:6.0.0</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -986,13 +990,13 @@ chmod go-w ./*.yml</pre>
 </li>
 <li>
 <p>Then type before retry</p>
-<div class="literalblock">
-<div class="content">
-<pre>sudo sysctl -w vm.max_map_count=262144</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo sysctl -w vm.max_map_count=262144</code></pre>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1003,12 +1007,16 @@ chmod go-w ./*.yml</pre>
 <ul>
 <li>
 <p>Install with docker without x-pack</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker pull docker.elastic.co/kibana/kibana-oss:6.0.0</pre>
-</div>
-</div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker pull docker.elastic.co/kibana/kibana-oss:6.0.0</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Create the file described at the end of this section</p>
 <div class="literalblock">
@@ -1019,13 +1027,13 @@ chmod go-w ./*.yml</pre>
 </li>
 <li>
 <p>Start the container</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker run --restart=always -d --name kibana -p 5601:5601 -v ~/elastic/kibana.yml:/usr/share/kibana/config/kibana.yml docker.elastic.co/kibana/kibana-oss:6.0.0</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker run --restart=always -d --name kibana -p 5601:5601 -v ~/elastic/kibana.yml:/usr/share/kibana/config/kibana.yml docker.elastic.co/kibana/kibana-oss:6.0.0</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Check that it is up and running : <a href="http://frpardge:5601/" class="bare">http://frpardge:5601/</a></p>
@@ -1084,23 +1092,23 @@ chmod go-w ./*.yml</pre>
 <div class="paragraph">
 <p>Here is something to try, inside the "PUT _template/all", someday, to not have keyword (fixed word) + text (searchable) but only keyword :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>"dynamic_templates": [
-  {
-    "match_mapping_type": "string",
-    "mapping": {
-      "type": "keyword"
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">  "dynamic_templates": [
+    {
+      "match_mapping_type": "string",
+      "mapping": {
+        "type": "keyword"
+      }
     }
-  }
-]</pre>
+  ]</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="title">For Elasticsearch monitoring :</div>
 <div class="content">
-<pre>GET /_cat/indices?v
-GET _cluster/health</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">  GET /_cat/indices?v
+  GET _cluster/health</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1226,24 +1234,20 @@ elasticsearch.url: "http://frpardge.corp.nvx.com:9200"
 <div class="paragraph">
 <p>Then apply these settings :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>PUT _settings
-   {
-       "index": {
-       "blocks": {
-       "read_only_allow_delete": "false"
-   }</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>PUT cgwmbeat-2018.02.16/_settings
-   {
-       "index": {
-       "blocks": {
-       "read_only_allow_delete": "false"
-   }</pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json"> PUT _settings
+    {
+        "index": {
+        "blocks": {
+        "read_only_allow_delete": "false"
+    }
+ PUT cgwmbeat-2018.02.16/_settings
+    {
+        "index": {
+        "blocks": {
+        "read_only_allow_delete": "false"
+    }</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1252,31 +1256,22 @@ elasticsearch.url: "http://frpardge.corp.nvx.com:9200"
 </div>
 <div class="sect2">
 <h3 id="curator"><a class="anchor" href="#curator"></a>1.6. Curator</h3>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+$ sudo vi /etc/apt/sources.list
+
+ deb [arch=amd64] http://packages.elastic.co/curator/5/debian stable main
+
+$ sudo apt-get update &amp;&amp; sudo apt-get install elasticsearch-curator</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>sudo vi /etc/apt/sources.list</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>deb [arch=amd64] http://packages.elastic.co/curator/5/debian stable main</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>sudo apt-get update &amp;&amp; sudo apt-get install elasticsearch-curator</pre>
-</div>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="title">To start it</div>
 <div class="content">
-<pre>curator --config ~/elastic/curator.config.yml --dry-run ~/elastic/curator.delete_indices.yml
-curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.yml</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ curator --config ~/elastic/curator.config.yml --dry-run ~/elastic/curator.delete_indices.yml
+$ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.yml</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1291,7 +1286,7 @@ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.y
 <div class="listingblock">
 <div class="title">~/elastic/curator.sh</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">#!/bin/sh
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">#!/bin/sh
 
 curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.yml</code></pre>
 </div>
@@ -1300,12 +1295,16 @@ curator --config ~/elastic/curator.config.yml ~/elastic/curator.delete_indices.y
 <ul>
 <li>
 <p>Open crontab</p>
-<div class="literalblock">
-<div class="content">
-<pre>crontab -e</pre>
-</div>
-</div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$  crontab -e</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Add this line to launch it at 8:00 everyday</p>
 <div class="literalblock">
@@ -1387,12 +1386,16 @@ actions:
 <ul>
 <li>
 <p>Pull the image</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker pull docker.elastic.co/beats/heartbeat:6.0.0</pre>
-</div>
-</div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker pull docker.elastic.co/beats/heartbeat:6.0.0</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Create the file described at the end of this section</p>
 <div class="literalblock">
@@ -1403,13 +1406,13 @@ actions:
 </li>
 <li>
 <p>Start the container</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker run --name heartbeat -d -v ~/elastic/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml docker.elastic.co/beats/heartbeat:6.0.0</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker run --name heartbeat -d -v ~/elastic/heartbeat.yml:/usr/share/heartbeat/heartbeat.yml docker.elastic.co/beats/heartbeat:6.0.0</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">~/elastic/heartbeat.yml</div>
@@ -1496,12 +1499,16 @@ dashboards.enabled: true</code></pre>
 <ul>
 <li>
 <p>Pull the image</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker pull docker.elastic.co/logstash/logstash-oss:6.0.0</pre>
-</div>
-</div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker pull docker.elastic.co/logstash/logstash-oss:6.0.0</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Create the file described at the end of this section</p>
 <div class="literalblock">
@@ -1512,13 +1519,13 @@ dashboards.enabled: true</code></pre>
 </li>
 <li>
 <p>Start the container</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker run --restart=always --name logstash -d -p 5043:5043 -v ~/elastic/logstash-pipelines/:/usr/share/logstash/pipeline/ docker.elastic.co/logstash/logstash-oss:6.0.0</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker run --restart=always --name logstash -d -p 5043:5043 -v ~/elastic/logstash-pipelines/:/usr/share/logstash/pipeline/ docker.elastic.co/logstash/logstash-oss:6.0.0</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">~/elastic/logstash-pipelines/logstash.conf</div>
@@ -1577,12 +1584,16 @@ output {
 <ul>
 <li>
 <p>Pull the image</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker pull docker.elastic.co/beats/filebeat:6.0.0</pre>
-</div>
-</div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker pull docker.elastic.co/beats/filebeat:6.0.0</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Create the file described at the end of this section</p>
 <div class="literalblock">
@@ -1593,13 +1604,13 @@ output {
 </li>
 <li>
 <p>Start the container</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker run --name filebeat -d -v /opt/sagis/IntegrationServer/instances/default/logs/:/islogs/ -v ~/elastic/filebeat.yml:/usr/share/filebeat/filebeat.yml docker.elastic.co/beats/filebeat:6.0.0</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker run --name filebeat -d -v /opt/sagis/IntegrationServer/instances/default/logs/:/islogs/ -v ~/elastic/filebeat.yml:/usr/share/filebeat/filebeat.yml docker.elastic.co/beats/filebeat:6.0.0</code></pre>
+</div>
 </div>
 <div class="listingblock">
 <div class="title">~/elastic/filebeat.yml</div>
@@ -1630,21 +1641,25 @@ output.logstash:
 <div class="paragraph">
 <p>This chmod has to be done again after each VM reboot before starting Metricbeat :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo chmod 777 /var/run/docker.sock</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo chmod 777 /var/run/docker.sock</code></pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>Pull the image</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker pull docker.elastic.co/beats/metricbeat:6.0.0</pre>
-</div>
-</div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker pull docker.elastic.co/beats/metricbeat:6.0.0</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Create the file described at the end of this section</p>
 <div class="literalblock">
@@ -1655,21 +1670,21 @@ output.logstash:
 </li>
 <li>
 <p>Start the container</p>
-<div class="literalblock">
-<div class="content">
-<pre>docker run --name metricbeat -d -v /var/run/docker.sock:/var/run/docker.sock -v ~/elastic/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml --volume=/proc:/hostfs/proc:ro --volume=/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro --volume=/:/hostfs:ro --net=host docker.elastic.co/beats/metricbeat:6.0.0 metricbeat -e -system.hostfs=/hostfs</pre>
-</div>
-</div>
 </li>
 </ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker run --name metricbeat -d -v /var/run/docker.sock:/var/run/docker.sock -v ~/elastic/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml --volume=/proc:/hostfs/proc:ro --volume=/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro --volume=/:/hostfs:ro --net=host docker.elastic.co/beats/metricbeat:6.0.0 metricbeat -e -system.hostfs=/hostfs</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>To test you CPU graphs, with the proper handling of the cores, you can use stress application to load one or multiple cores :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>sudo apt-get install stress
-stress --cpu 2</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo apt-get install stress
+$ stress --cpu 2</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1728,41 +1743,35 @@ metricbeat.config.modules:
 </div>
 <div class="sect2">
 <h3 id="grafana"><a class="anchor" href="#grafana"></a>1.11. Grafana</h3>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.4.3_amd64.deb</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana_4.4.3_amd64.deb
+
+$ sudo apt-get install -y adduser libfontconfig
+
+$ sudo dpkg -i grafana_4.4.3_amd64.deb</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>sudo apt-get install -y adduser libfontconfig</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>sudo dpkg -i grafana_4.4.3_amd64.deb</pre>
-</div>
-</div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="title">To start it</div>
 <div class="content">
-<pre>sudo service grafana-server start</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo service grafana-server start</code></pre>
 </div>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="title">To auto start it at boot time</div>
 <div class="content">
-<pre>sudo update-rc.d grafana-server defaults</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo update-rc.d grafana-server defaults</code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="jaeger-tracing-openzipkin-like"><a class="anchor" href="#jaeger-tracing-openzipkin-like"></a>1.12. Jaeger Tracing (OpenZipkin-like)</h3>
-<div class="literalblock">
+<div class="listingblock">
 <div class="title">To start it</div>
 <div class="content">
-<pre>docker run --restart=always --name jaeger -d -p5775:5775/udp -p6831:6831/udp -p5778:5778 -p16686:16686 jaegertracing/all-in-one:latest</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ docker run --restart=always --name jaeger -d -p5775:5775/udp -p6831:6831/udp -p5778:5778 -p16686:16686 jaegertracing/all-in-one:latest</code></pre>
 </div>
 </div>
 </div>
@@ -1771,7 +1780,7 @@ metricbeat.config.modules:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-26 15:09:48 UTC
+Last updated 2018-08-26 15:56:36 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

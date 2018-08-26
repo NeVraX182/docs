@@ -464,7 +464,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p><span class="icon"><a class="image" href="BP-gerrit.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎ <span class="icon"><a class="image" href="BP-gerrit.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
+<p><span class="icon"><a class="image" href="index.html"><i class="fa fa-home"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-gerrit.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-gerrit.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
 </div>
 </div>
 </div>
@@ -536,9 +538,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>Now you can delete tags from your projects, for ex :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>git push --force --delete origin cg-wm-1.17.6</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  git push --force --delete origin cg-wm-1.17.6</code></pre>
 </div>
 </div>
 </div>
@@ -552,16 +554,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p>Add this</p>
-<div class="literalblock">
-<div class="content">
-<pre>[label "Verified"]
-   function = MaxWithBlock
-   value = -1 Fails
-   value =  0 No score
-   value = +1 Verified</pre>
-</div>
-</div>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini"> [label "Verified"]
+    function = MaxWithBlock
+    value = -1 Fails
+    value =  0 No score
+    value = +1 Verified</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Click on <strong>Save</strong>, then <strong>Close</strong></p>
 </li>
@@ -814,7 +820,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-26 15:09:48 UTC
+Last updated 2018-08-26 15:56:36 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

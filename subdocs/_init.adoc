@@ -49,5 +49,8 @@ include::{history-dir}/{docname}.adoc.psv[]
 endif::backend-pdf[]
 
 ifdef::backend-html5[]
-icon:file-text-o[link={docname}.adoc] ‏ ‏ ‎ icon:file-pdf-o[link={docname}.pdf]
+icon:home[link=index.html] ‏ ‏ ‎
+icon:file-text-o[link={docname}.adoc] ‏ ‏ ‎ 
+icon:file-pdf-o[link={docname}.pdf]
+
 endif::backend-html5[]
