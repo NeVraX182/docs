@@ -52,5 +52,4 @@ ifdef::backend-html5[]
 icon:home[link=index.html] ‏ ‏ ‎
 icon:file-text-o[link={docname}.adoc] ‏ ‏ ‎ 
 icon:file-pdf-o[link={docname}.pdf]
-
 endif::backend-html5[]

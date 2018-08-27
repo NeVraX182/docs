@@ -236,6 +236,60 @@ public static void topLevelJarFunction(IData pipeline) throws ServiceException {
 }
 ----
 
+=== JUnit tricks
+
+==== JUnit 4.9+ : Real time status and duration
+
+Sometimes on JUnit test classes, executions are very long, so it can be nice to see in real time which test is running. Here is what you could expect :
+
+ Running cg.msg.tracker.ui.MainFrameIT
+ 11:23:37.814 [main] DEBUG TEST - Running aboutTest...
+ 11:23:38.503 [main] DEBUG TEST - ...OK in 0.689S
+ 11:25:17.561 [main] DEBUG TEST - Running updateLAFTryNextTest...
+ 11:25:20.865 [main] DEBUG TEST - ...OK in 3.304S
+ Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 103.443 sec - in cg.msg.tracker.ui.MainFrameIT
+
+And here is how you do it.
+
+[source,java]
+.Inner Class in your test class
+----
+include::{root-project-dir}/cg-msg-tracker/src/test/java/cg/msg/tracker/ui/utils/ParentAssertJTestCase.java[tags=LogTestRule,indent=0]
+----
+
+[source,java]
+.Declare it's usage in the class with with @Rule
+----
+@Rule
+public LogTestRule logTestRule = new LogTestRule());
+----
+
+==== JUnit 4.9+ : Retry on error
+
+You could want to retry test on error a fixed number of time. And the retry mecanism could require some custom clean up. Here we will combine this rule and the previous one. Si you could expect this :
+
+ 16:48:35.176 [main] DEBUG TEST - Running buttonsTest...
+ [WARNING] buttonsTest(cg.msg.tracker.ui.ConnectionIT): Run 1 failed [Condition with alias 'broker radio button should be selected' didn't complete within 30 seconds because condition with lambda expression in cg.msg.tracker.ui.utils.ParentAssertJTestCase that uses org.assertj.swing.fixture.JRadioButtonFixture was not fulfilled.]
+ 16:49:21.574 [main] DEBUG TEST - ...OK in 46.394S
+ 16:49:21.665 [main] DEBUG TEST - Running connectionInfoZoneTextTest...
+ 16:49:55.874 [main] DEBUG TEST - ...OK in 0.714S
+ Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 85.826 sec - in cg.msg.tracker.ui.ConnectionIT
+
+And here is how you do it.
+
+[source,java]
+.Inner Class in your test class
+----
+include::{root-project-dir}/cg-msg-tracker/src/test/java/cg/msg/tracker/ui/utils/ParentAssertJTestCase.java[tags=RetryRule,indent=0]
+----
+
+[source,java]
+.Double rules usage
+----
+@Rule
+public RuleChain chain = RuleChain.outerRule(new LogTestName()).around(new RetryRule());
+----
+
 == Best practices
 
 === Java

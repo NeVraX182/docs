@@ -601,12 +601,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 			&lt;/goals&gt;
 			&lt;configuration&gt;
 				&lt;backend&gt;html5&lt;/backend&gt;
-				&lt;!-- coderay, highlight.js, prettify, or pygments --&gt;
+				&lt;!-- coderay, highlight.js, prettify --&gt;
 				&lt;!-- coderay/prettify have only a bright theme --&gt;
 				&lt;!-- prettify is nice but comments are red --&gt;
 				&lt;!-- pygments/rouge is not integrated yet : https://github.com/asciidoctor/asciidoctor/issues/1040 --&gt;
 				&lt;sourceHighlighter&gt;highlight.js&lt;/sourceHighlighter&gt;
 				&lt;attributes&gt;
+					&lt;!-- local version to go beyond basic languages (for ex groovy) --&gt;
 					&lt;highlightjsdir&gt;highlight&lt;/highlightjsdir&gt;
 					&lt;!-- explore here https://highlightjs.org/static/demo/ --&gt;
 					&lt;highlightjs-theme&gt;gruvbox-dark&lt;/highlightjs-theme&gt;
@@ -615,6 +616,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 					&lt;sectanchors&gt;true&lt;/sectanchors&gt;
 					&lt;docinfo1&gt;true&lt;/docinfo1&gt;
 					&lt;favicon&gt;images/zenika-logo.png&lt;/favicon&gt;
+					&lt;!-- custom style if default is not suitable --&gt;
 					&lt;!-- &lt;stylesheet&gt;rubygems.css&lt;/stylesheet&gt; --&gt;
 					&lt;!-- &lt;stylesdir&gt;themes&lt;/stylesdir&gt; --&gt;
 				&lt;/attributes&gt;
@@ -730,7 +732,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-27 07:57:40 UTC
+Last updated 2018-08-27 16:17:55 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
