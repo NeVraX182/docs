@@ -448,6 +448,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="#junit-4-9-real-time-status-and-duration">1.6.1. JUnit 4.9+ : Real time status and duration</a></li>
 <li><a href="#junit-4-9-retry-on-error">1.6.2. JUnit 4.9+ : Retry on error</a></li>
+<li><a href="#various-patterns">1.6.3. Various patterns</a></li>
 </ul>
 </li>
 </ul>
@@ -821,7 +822,7 @@ public static class LogTestRule extends TestWatcher {
 
 	@Override
 	protected void failed(Throwable e, Description description) {
-		LOGGER.debug("...KO [" + e.getMessage() + "]");
+		LOGGER.debug("...KO [{}]", e.getMessage());
 	}
 
 	@Override
@@ -832,7 +833,7 @@ public static class LogTestRule extends TestWatcher {
 
 	@Override
 	protected void succeeded(Description description) {
-		LOGGER.debug("...OK in " + Duration.between(startingDate, Instant.now()).toString().substring(2));
+		LOGGER.debug("...OK in {}", Duration.between(startingDate, Instant.now()).toString().substring(2));
 	}
 }</code></pre>
 </div>
@@ -915,6 +916,24 @@ public static class RetryRule implements TestRule {
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Rule
 public RuleChain chain = RuleChain.outerRule(new LogTestName()).around(new RetryRule());</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="various-patterns"><a class="anchor" href="#various-patterns"></a>1.6.3. Various patterns</h4>
+<div class="listingblock">
+<div class="title">Expected exception</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Test(expected = IllegalArgumentException.class)
+	public void testFromStringUnknown() {
+		CgPackage.fromString("Unknown");
+	}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Wait until a background task is done</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">Awaitility.await("Broker radio button should be visible").until(() -&gt; mCEditor.getBrokerRadioButton().isShowing());</code></pre>
 </div>
 </div>
 </div>
@@ -1102,7 +1121,7 @@ public enum CgPackage {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-27 16:17:55 UTC
+Last updated 2018-08-28 15:52:03 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
