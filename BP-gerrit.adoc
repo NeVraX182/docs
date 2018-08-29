@@ -36,6 +36,17 @@ Now you can delete tags from your projects, for ex :
 [source, bash]
   git push --force --delete origin cg-wm-1.17.6
   
+[[gitweb-access]]
+===== Allow (gitweb) access for everyone
+
+* Click on *Projects* -> *List* -> btn:[All-projects] -> section *Access* -> *Edit*
+* Under *Reference: refs/meta/config*
+** Under *Read*
+*** Click on btn:[Add Group]
+*** Enter *Registered Users*
+*** Click btn:[Add]
+*** Save Changes
+
 ==== Verified status
 
 * Click on *Projects* -> *List* -> btn:[All-Projects] -> section *General* -> *Edit Config*
@@ -77,13 +88,18 @@ Create your GIT project by clicking on *Projects* -> *Create New Project*
 * Rights Inherit From = *All-Projects*
 * Check that it has inherited correctly "Rebase if necessary", else change and save
 
-==== Project git address
+[[project-url]]
+==== Project git address/URL
 
-The git is visible in *Projects* -> btn:[(gitweb)].
+To get the repo address of your project under Gerrit : 
 
-Something like : 
+* Navigate to btn:[Projects] -> btn:[List]
+* in front of btn:[your-project], click on (gitweb)
+* Take the .git text next to *URL*
 
-* https://cric.pl.s2-eu.nvx.com/gerrit/cg-wm.git
+Example : https://my-url.com/gerrit/my-project.git
+
+NOTE: If you don't have access to Gitweb interface ("Not Found"), ask your admin to do <<gitweb-access>>.
 
 ==== Users groups creation
 
@@ -134,5 +150,16 @@ image:gerrit-process.png[]
 . When one or two +1 from the team have been given (depending on the size of the team), add the *validators* list of reviewers for a final +2 review followed by a submit to the master branch.
 
 image:git-messages.png[scaledwidth="50%"]
+
+== Troobleshootings
+
+=== Submit replaced with Submit including parents
+
+If the btn:[Submit] button is replaced with btn:[Submit including parents], there is obviously a problem in the git tree. You have to rebase. You can ask the developer to do so in his IDE and push again. But you can also do it in the UI :
+
+* Click btn:[Rebase], select
+* [x] Change parent revision
+* leave the field blank
+* Click btn:[Rebase]
 
 include::subdocs/_closure.adoc[]

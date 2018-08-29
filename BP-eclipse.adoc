@@ -149,7 +149,9 @@ NOTE: To generate your password in Gerrit, right click on your username -> *Sett
 
 image:git-clone1.png[scaledwidth="50%"]
 
-* URL : https://cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git
+TIP: For Gerrit, the process to get the URL is described in link:BP-gerrit.html#project-url[Gerrit BP].
+
+* URL : https://your-server.com/gerrit/p/your-project.git
 * Protocol = https
 * User = your user
 * Password generated from Gerrit
@@ -164,19 +166,16 @@ have this structure:
 
 image:git-project.png[scaledwidth="50%"]
 
-To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configuration*, on *User setting* click on *Open* and enter the following configuration after updating it with your personal  informations :
+To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configuration*, on *User setting* click on *Open* and add the following configuration :
 
 [source, ini]
     [gerrit]
     	createchangeid = true
     [user]
-    	name = login
-    	email = nvx mail
+    	name = <login>
+    	email = <password>
     [branch]
 	    autosetuprebase = always
-    [credential]
-        helper = manager
-    [credential "*****"]
 
 The *autosetuprebase = always* will allow you to do a fetch and a rebase by simply click on "pull".
 
@@ -244,6 +243,8 @@ image:git-amend_commit.png[]
 In order to get the last version of the git repository, or if one of your commit is in *Merge Conflict* on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team -> fetch from upstream, then team -> rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team -> rebase -> continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disapear.
 
 === Reset Mixed
+
+NOTE: git reset soft/mixed/hard explained : https://git-scm.com/docs/git-reset
 
 In team -> reset, you can find a usefull functionnality called Reset Mixed. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
 Reset Hard can be used if you want to cancel all your modifications. All modifications will be erased.

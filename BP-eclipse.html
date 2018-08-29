@@ -855,10 +855,22 @@ To generate your password in Gerrit, right click on your username &#8594; <stron
 <div class="paragraph">
 <p><span class="image"><img src="./images/git-clone1.png" alt="git clone1"></span></p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For Gerrit, the process to get the URL is described in <a href="BP-gerrit.html#project-url">Gerrit BP</a>.
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p>URL : <a href="https://cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git" class="bare">https://cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git</a></p>
+<p>URL : <a href="https://your-server.com/gerrit/p/your-project.git" class="bare">https://your-server.com/gerrit/p/your-project.git</a></p>
 </li>
 <li>
 <p>Protocol = https</p>
@@ -888,20 +900,17 @@ have this structure:</p>
 <p><span class="image"><img src="./images/git-project.png" alt="git project"></span></p>
 </div>
 <div class="paragraph">
-<p>To configure Git, go to <strong>Window</strong> &#8594; <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>Configuration</strong>, on <strong>User setting</strong> click on <strong>Open</strong> and enter the following configuration after updating it with your personal  informations :</p>
+<p>To configure Git, go to <strong>Window</strong> &#8594; <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>Configuration</strong>, on <strong>User setting</strong> click on <strong>Open</strong> and add the following configuration :</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">    [gerrit]
     	createchangeid = true
     [user]
-    	name = login
-    	email = nvx mail
+    	name = &lt;login&gt;
+    	email = &lt;password&gt;
     [branch]
-	    autosetuprebase = always
-    [credential]
-        helper = manager
-    [credential "*****"]</code></pre>
+	    autosetuprebase = always</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1031,6 +1040,18 @@ add your message and click on <strong>Add Change-Id</strong> to add an ID for yo
 </div>
 <div class="sect2">
 <h3 id="reset-mixed"><a class="anchor" href="#reset-mixed"></a>5.4. Reset Mixed</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+git reset soft/mixed/hard explained : <a href="https://git-scm.com/docs/git-reset" class="bare">https://git-scm.com/docs/git-reset</a>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>In team &#8594; reset, you can find a usefull functionnality called Reset Mixed. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
 Reset Hard can be used if you want to cancel all your modifications. All modifications will be erased.</p>
@@ -1319,7 +1340,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-28 15:52:03 UTC
+Last updated 2018-08-29 16:45:49 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

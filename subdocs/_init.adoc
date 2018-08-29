@@ -33,7 +33,7 @@ ifndef::source-dir[:source-dir: ../../main/java]
 ifndef::test-dir[:test-dir: ../../test/java]
 
 //For the sections to be numbered
-:numbered:
+:sectnums:
 
 //For the keyboard/buttons nice print
 :experimental:
