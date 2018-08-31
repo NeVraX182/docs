@@ -107,6 +107,8 @@ Eclipse should now be ready to handle smoothly Gitlab workflow. You can check yo
 ** [x] toggle ON *Amend*
 ** change the text if needed
 
+WARNING: Don't toggle on *Add Change-Id*, this changes the behavior of *Commit and Push...* towards Gerrit style.
+
 TIP: More details and screenshots in link:BP-eclipse.html[Eclipse Best Practices]
 
 Now a pipeline should be launched in Gitlab interface.

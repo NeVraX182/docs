@@ -438,17 +438,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#mockito-powermockito">1.1. Mockito / PowerMockito</a></li>
 <li><a href="#openpojo-auto-test-pojo-classes-for-coverage">1.2. OpenPojo : Auto test Pojo classes for coverage</a></li>
 <li><a href="#slf4j-abstract-logging">1.3. SLF4J : Abstract logging</a></li>
-<li><a href="#aspect4log-logging-functions-starts-stops-with-inputs-outputs">1.4. Aspect4log : Logging functions starts/stops with inputs/outputs</a></li>
-<li><a href="#log-methods-duration">1.5. Log methods duration</a>
+<li><a href="#log4j2">1.4. Log4j2</a></li>
+<li><a href="#aspect4log-logging-functions-starts-stops-with-inputs-outputs">1.5. Aspect4log : Logging functions starts/stops with inputs/outputs</a></li>
+<li><a href="#log-methods-duration">1.6. Log methods duration</a>
 <ul class="sectlevel3">
-<li><a href="#using-jcabi-loggable">1.5.1. using JCabi @Loggable</a></li>
+<li><a href="#using-jcabi-loggable">1.6.1. using JCabi @Loggable</a></li>
 </ul>
 </li>
-<li><a href="#junit-tricks">1.6. JUnit tricks</a>
+<li><a href="#junit">1.7. JUnit</a>
 <ul class="sectlevel3">
-<li><a href="#junit-4-9-real-time-status-and-duration">1.6.1. JUnit 4.9+ : Real time status and duration</a></li>
-<li><a href="#junit-4-9-retry-on-error">1.6.2. JUnit 4.9+ : Retry on error</a></li>
-<li><a href="#various-patterns">1.6.3. Various patterns</a></li>
+<li><a href="#junit-4-9-real-time-status-and-duration">1.7.1. JUnit 4.9+ : Real time status and duration</a></li>
+<li><a href="#junit-4-9-retry-on-error">1.7.2. JUnit 4.9+ : Retry on error</a></li>
+<li><a href="#various-patterns">1.7.3. Various patterns</a></li>
 </ul>
 </li>
 </ul>
@@ -579,39 +580,223 @@ public class OpenPojoTest {
 </div>
 <div class="sect2">
 <h3 id="slf4j-abstract-logging"><a class="anchor" href="#slf4j-abstract-logging"></a>1.3. SLF4J : Abstract logging</h3>
+<div class="paragraph">
+<p>SLF4J helps abstract logging from implementation. Even for libraries using log4j explicitely with the concept of bridge.</p>
+</div>
 <div class="listingblock">
 <div class="title">Maven dependencies</div>
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">	&lt;dependency&gt;
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">	&lt;!-- for SLF4J implementing log4j2 --&gt;
+	&lt;dependency&gt;
 		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
 		&lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-		&lt;version&gt;1.7.21&lt;/version&gt;
+		&lt;version&gt;1.7.25&lt;/version&gt;
 	&lt;/dependency&gt;
 	&lt;dependency&gt;
 		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
 		&lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;
-		&lt;version&gt;1.7.21&lt;/version&gt;
+		&lt;version&gt;1.7.25&lt;/version&gt;
 	&lt;/dependency&gt;
 	&lt;dependency&gt;
 		&lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
 		&lt;artifactId&gt;log4j-api&lt;/artifactId&gt;
-		&lt;version&gt;2.7&lt;/version&gt;
+		&lt;version&gt;2.11.1&lt;/version&gt;
 	&lt;/dependency&gt;
 	&lt;dependency&gt;
 		&lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
 		&lt;artifactId&gt;log4j-core&lt;/artifactId&gt;
-		&lt;version&gt;2.7&lt;/version&gt;
+		&lt;version&gt;2.11.1&lt;/version&gt;
 	&lt;/dependency&gt;
 	&lt;dependency&gt;
 		&lt;groupId&gt;org.apache.logging.log4j&lt;/groupId&gt;
 		&lt;artifactId&gt;log4j-slf4j-impl&lt;/artifactId&gt;
-		&lt;version&gt;2.7&lt;/version&gt;
+		&lt;version&gt;2.11.1&lt;/version&gt;
+	&lt;/dependency&gt;
+	&lt;!-- to bridge any LOG4J1 usage to SLF4J --&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+		&lt;artifactId&gt;log4j-over-slf4j&lt;/artifactId&gt;
+		&lt;version&gt;1.7.25&lt;/version&gt;
+	&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since slf4j does not accept multiple boot jars, you may have to exclude log4j from dependencies :</p>
+</div>
+<div class="listingblock">
+<div class="title">Exclude log4j JAR</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">	&lt;dependency&gt;
+		&lt;groupId&gt;my.bad.group&lt;/groupId&gt;
+		&lt;artifactId&gt;my-bad-artifact&lt;/artifactId&gt;
+		&lt;version&gt;1.0.0&lt;/version&gt;
+		&lt;exclusions&gt;
+			&lt;exclusion&gt;
+				&lt;groupId&gt;log4j&lt;/groupId&gt;
+				&lt;artifactId&gt;log4j&lt;/artifactId&gt;
+			&lt;/exclusion&gt;
+		&lt;/exclusions&gt;
 	&lt;/dependency&gt;</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="aspect4log-logging-functions-starts-stops-with-inputs-outputs"><a class="anchor" href="#aspect4log-logging-functions-starts-stops-with-inputs-outputs"></a>1.4. Aspect4log : Logging functions starts/stops with inputs/outputs</h3>
+<h3 id="log4j2"><a class="anchor" href="#log4j2"></a>1.4. Log4j2</h3>
+<div class="ulist">
+<div class="title">Rules for a good LOG4J2 logging</div>
+<ul>
+<li>
+<p>Aligned messages</p>
+</li>
+<li>
+<p>Complete but short context data</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No need for years, even for dates if files are named with date</p>
+</li>
+<li>
+<p>truncated package name</p>
+</li>
+<li>
+<p>no or minimal separators</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Separate files for modules</p>
+</li>
+<li>
+<p>Separate level files</p>
+</li>
+<li>
+<p>Rolling files not to handle deletion</p>
+</li>
+</ul>
+</div>
+<div class="literalblock">
+<div class="title">Logs Example</div>
+<div class="content">
+<pre>17:53:33.372 DEBUG main  .wm.utils.wmcall.WmHelper:176  + setTestMode()
+17:53:33.372 DEBUG main  cg.wm.utils.wmcall.WmCall:176  +   WmCall()
+17:53:33.372 DEBUG main  cg.wm.utils.wmcall.WmCall:176  .   WmCall() -&gt; (null)
+17:53:33.373 DEBUG main  tils.wmcall.WmCallEclipse:176  +   WmCallEclipse()
+17:53:33.373 DEBUG main  tils.wmcall.WmCallEclipse:176  .   WmCallEclipse() -&gt; (null)
+17:53:33.373 DEBUG main  .wm.utils.wmcall.WmHelper:176  . setTestMode()
+17:53:33.374 DEBUG main  cg.wm.utils.ConfigUtils  :176  + healthCheck()</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">log4j2.xml example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;Configuration status="INFO"&gt;
+
+	&lt;Appenders&gt;
+		&lt;Console name="Console" target="SYSTEM_OUT"&gt;
+			&lt;PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %-30logger{2.} %msg%n" /&gt;
+		&lt;/Console&gt;
+		&lt;RollingFile name="cg-wm" fileName="target/log4j2/cg-wm.log"
+			filePattern="target/log4j2/old/cg-wm.%i.log" immediateFlush="true"
+			append="true"&gt;
+			&lt;PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %-5.5thread %-25.25logger:%-4line %msg%n" charset="UTF-8"/&gt;
+			&lt;Policies&gt;
+				&lt;SizeBasedTriggeringPolicy size="10 MB" /&gt;
+			&lt;/Policies&gt;
+			&lt;DefaultRolloverStrategy max="5" /&gt;
+		&lt;/RollingFile&gt;
+		&lt;RollingFile name="cg-utils" fileName="target/log4j2/cg-utils.log"
+			filePattern="target/log4j2/old/cg-utils.%i.log" immediateFlush="true"
+			append="true"&gt;
+			&lt;PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %-5.5thread %-25.25logger:%-4line %msg%n" charset="UTF-8"/&gt;
+			&lt;Policies&gt;
+				&lt;SizeBasedTriggeringPolicy size="10 MB" /&gt;
+			&lt;/Policies&gt;
+			&lt;DefaultRolloverStrategy max="5" /&gt;
+		&lt;/RollingFile&gt;
+		&lt;RollingFile name="ALL.error" fileName="target/log4j2/ALL.error.log"
+			filePattern="target/log4j2/old/ALL.error.%i.log" immediateFlush="true"
+			append="true"&gt;
+			&lt;PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %-5.5thread %-25.25logger:%-4line %msg%n" charset="UTF-8"/&gt;
+			&lt;Policies&gt;
+		&lt;SizeBasedTriggeringPolicy size="10 MB" /&gt;
+			&lt;/Policies&gt;
+			&lt;DefaultRolloverStrategy max="5" /&gt;
+		&lt;/RollingFile&gt;
+		&lt;RollingFile name="ALL.warn" fileName="target/log4j2/ALL.warn.log"
+			filePattern="target/log4j2/old/ALL.warn.%i.log" immediateFlush="true"
+			append="true"&gt;
+			&lt;PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %-5.5thread %-25.25logger:%-4line %msg%n" charset="UTF-8"/&gt;
+			&lt;Policies&gt;
+		&lt;SizeBasedTriggeringPolicy size="10 MB" /&gt;
+			&lt;/Policies&gt;
+			&lt;DefaultRolloverStrategy max="5" /&gt;
+		&lt;/RollingFile&gt;
+				&lt;RollingFile name="ALL.info" fileName="target/log4j2/ALL.info.log"
+			filePattern="target/log4j2/old/ALL.info.%i.log" immediateFlush="true"
+			append="true"&gt;
+			&lt;PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %-5.5thread %-25.25logger:%-4line %msg%n" charset="UTF-8"/&gt;
+			&lt;Policies&gt;
+		&lt;SizeBasedTriggeringPolicy size="10 MB" /&gt;
+			&lt;/Policies&gt;
+			&lt;DefaultRolloverStrategy max="5" /&gt;
+		&lt;/RollingFile&gt;
+		&lt;RollingFile name="ALL.debug" fileName="target/log4j2/ALL.debug.log"
+			filePattern="target/log4j2/old/ALL.debug.%i.log" immediateFlush="true"
+			append="true"&gt;
+			&lt;PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %-5.5thread %-25.25logger:%-4line %msg%n" charset="UTF-8"/&gt;
+			&lt;Policies&gt;
+				&lt;SizeBasedTriggeringPolicy size="10 MB" /&gt;
+			&lt;/Policies&gt;
+			&lt;DefaultRolloverStrategy max="5" /&gt;
+		&lt;/RollingFile&gt;
+		&lt;RollingFile name="ALL.trace" fileName="target/log4j2/ALL.trace.log"
+			filePattern="target/log4j2/old/ALL.trace.%i.log" immediateFlush="true"
+			append="true"&gt;
+			&lt;PatternLayout
+				pattern="%d{HH:mm:ss.SSS} %-5level %-5.5thread %-25.25logger:%-4line %msg%n" charset="UTF-8"/&gt;
+			&lt;Policies&gt;
+				&lt;SizeBasedTriggeringPolicy size="10 MB" /&gt;
+			&lt;/Policies&gt;
+			&lt;DefaultRolloverStrategy max="5" /&gt;
+		&lt;/RollingFile&gt;
+	&lt;/Appenders&gt;
+
+	&lt;Loggers&gt;
+		&lt;!-- additivity is true by default : so we enter in all matching loggers --&gt;
+		&lt;Root level="warn"&gt;
+			&lt;AppenderRef ref="Console" level="warn" /&gt;
+			&lt;AppenderRef level="error" ref="ALL.error" /&gt;
+			&lt;AppenderRef level="warn" ref="ALL.warn" /&gt;
+			&lt;!-- every jars will enter here, so nothing below WARN --&gt;
+		&lt;/Root&gt;
+		&lt;Logger name="cg.wm"&gt;
+			&lt;!-- here we are in our project, we can go down to TRACE --&gt;
+			&lt;AppenderRef level="info" ref="ALL.info" /&gt;
+			&lt;AppenderRef level="debug" ref="ALL.debug" /&gt;
+			&lt;AppenderRef level="trace" ref="ALL.trace" /&gt;
+		&lt;/Logger&gt;
+		&lt;!-- specifically for each module --&gt;
+		&lt;Logger name="cg.wm.utils" level="debug"&gt;
+			&lt;AppenderRef ref="Console" level="info" /&gt;
+			&lt;AppenderRef ref="cg-utils" /&gt;
+		&lt;/Logger&gt;
+	&lt;/Loggers&gt;
+
+&lt;/Configuration&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="aspect4log-logging-functions-starts-stops-with-inputs-outputs"><a class="anchor" href="#aspect4log-logging-functions-starts-stops-with-inputs-outputs"></a>1.5. Aspect4log : Logging functions starts/stops with inputs/outputs</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -630,12 +815,12 @@ See <a href="http://aspect4log.sourceforge.net" class="bare">http://aspect4log.s
 <div class="literalblock">
 <div class="title">Result log example</div>
 <div class="content">
-<pre>07-31_14:13:48.491 DEBUG org.a.utils.ConfigUtils        - &gt; getParameter(test)
-07-31_14:13:48.491 DEBUG org.a.utils.wmcall.WmHelper    - &gt; 	getPackageName(true)
-07-31_14:13:48.492 DEBUG g.a.utils.wmcall.WmCallEclipse - &gt; 		getPackageName(true)
+<pre>07-31_14:13:48.491 DEBUG org.a.utils.ConfigUtils        - + getParameter(test)
+07-31_14:13:48.491 DEBUG org.a.utils.wmcall.WmHelper    - + 	getPackageName(true)
+07-31_14:13:48.492 DEBUG g.a.utils.wmcall.WmCallEclipse - + 		getPackageName(true)
 07-31_14:13:48.492 DEBUG g.a.utils.wmcall.WmCallEclipse - . 		getPackageName(true) -&gt; DEFAULT
 07-31_14:13:48.492 DEBUG org.a.utils.wmcall.WmHelper    - . 	getPackageName(true) -&gt; DEFAULT
-07-31_14:13:48.492 DEBUG org.a.utils.ConfigUtils        - &gt; 	getParameter(DEFAULT, test)
+07-31_14:13:48.492 DEBUG org.a.utils.ConfigUtils        - + 	getParameter(DEFAULT, test)
 07-31_14:13:48.505 DEBUG org.a.utils.ConfigUtils        - . 	getParameter(DEFAULT, test) -&gt; (null)
 07-31_14:13:48.506 DEBUG org.a.utils.ConfigUtils        - . getParameter(test) -&gt; (null)</pre>
 </div>
@@ -674,15 +859,15 @@ public class FooDao {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>@Log on a class will affect every methods not annotated</td>
+<td>@Log on a class will affect every methods by default</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>So this method will be logged, in DEBUG by default</td>
+<td>&#8230;&#8203;so this method will be logged in/out, in DEBUG by default</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Lower the level to TRACE if some methods pollute the logs</td>
+<td>Lower the level to TRACE if some methods pollute the logs in DEBUG</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -755,9 +940,9 @@ public class FooDao {
 </div>
 </div>
 <div class="sect2">
-<h3 id="log-methods-duration"><a class="anchor" href="#log-methods-duration"></a>1.5. Log methods duration</h3>
+<h3 id="log-methods-duration"><a class="anchor" href="#log-methods-duration"></a>1.6. Log methods duration</h3>
 <div class="sect3">
-<h4 id="using-jcabi-loggable"><a class="anchor" href="#using-jcabi-loggable"></a>1.5.1. using JCabi @Loggable</h4>
+<h4 id="using-jcabi-loggable"><a class="anchor" href="#using-jcabi-loggable"></a>1.6.1. using JCabi @Loggable</h4>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -791,9 +976,9 @@ public static void topLevelJarFunction(IData pipeline) throws ServiceException {
 </div>
 </div>
 <div class="sect2">
-<h3 id="junit-tricks"><a class="anchor" href="#junit-tricks"></a>1.6. JUnit tricks</h3>
+<h3 id="junit"><a class="anchor" href="#junit"></a>1.7. JUnit</h3>
 <div class="sect3">
-<h4 id="junit-4-9-real-time-status-and-duration"><a class="anchor" href="#junit-4-9-real-time-status-and-duration"></a>1.6.1. JUnit 4.9+ : Real time status and duration</h4>
+<h4 id="junit-4-9-real-time-status-and-duration"><a class="anchor" href="#junit-4-9-real-time-status-and-duration"></a>1.7.1. JUnit 4.9+ : Real time status and duration</h4>
 <div class="paragraph">
 <p>Sometimes on JUnit test classes, executions are very long, so it can be nice to see in real time which test is running. Here is what you could expect :</p>
 </div>
@@ -847,7 +1032,7 @@ public LogTestRule logTestRule = new LogTestRule());</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="junit-4-9-retry-on-error"><a class="anchor" href="#junit-4-9-retry-on-error"></a>1.6.2. JUnit 4.9+ : Retry on error</h4>
+<h4 id="junit-4-9-retry-on-error"><a class="anchor" href="#junit-4-9-retry-on-error"></a>1.7.2. JUnit 4.9+ : Retry on error</h4>
 <div class="paragraph">
 <p>You could want to retry test on error a fixed number of time. And the retry mecanism could require some custom clean up. Here we will combine this rule and the previous one. Si you could expect this :</p>
 </div>
@@ -920,7 +1105,7 @@ public RuleChain chain = RuleChain.outerRule(new LogTestName()).around(new Retry
 </div>
 </div>
 <div class="sect3">
-<h4 id="various-patterns"><a class="anchor" href="#various-patterns"></a>1.6.3. Various patterns</h4>
+<h4 id="various-patterns"><a class="anchor" href="#various-patterns"></a>1.7.3. Various patterns</h4>
 <div class="listingblock">
 <div class="title">Expected exception</div>
 <div class="content">
@@ -1121,7 +1306,7 @@ public enum CgPackage {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-31 16:11:31 UTC
+Last updated 2018-08-31 16:43:13 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

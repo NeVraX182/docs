@@ -78,33 +78,85 @@ public class OpenPojoTest {
 
 === SLF4J : Abstract logging
 
+SLF4J helps abstract logging from implementation. Even for libraries using log4j explicitely with the concept of bridge.
+
 [source,xml]
 .Maven dependencies
+	<!-- for SLF4J implementing log4j2 -->
 	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>slf4j-api</artifactId>
-		<version>1.7.21</version>
+		<version>1.7.25</version>
 	</dependency>
 	<dependency>
 		<groupId>org.slf4j</groupId>
 		<artifactId>jcl-over-slf4j</artifactId>
-		<version>1.7.21</version>
+		<version>1.7.25</version>
 	</dependency>
 	<dependency>
 		<groupId>org.apache.logging.log4j</groupId>
 		<artifactId>log4j-api</artifactId>
-		<version>2.7</version>
+		<version>2.11.1</version>
 	</dependency>
 	<dependency>
 		<groupId>org.apache.logging.log4j</groupId>
 		<artifactId>log4j-core</artifactId>
-		<version>2.7</version>
+		<version>2.11.1</version>
 	</dependency>
 	<dependency>
 		<groupId>org.apache.logging.log4j</groupId>
 		<artifactId>log4j-slf4j-impl</artifactId>
-		<version>2.7</version>
+		<version>2.11.1</version>
 	</dependency>
+	<!-- to bridge any LOG4J1 usage to SLF4J -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>log4j-over-slf4j</artifactId>
+		<version>1.7.25</version>
+	</dependency>
+
+Since slf4j does not accept multiple boot jars, you may have to exclude log4j from dependencies :
+
+[source,xml]
+.Exclude log4j JAR
+	<dependency>
+		<groupId>my.bad.group</groupId>
+		<artifactId>my-bad-artifact</artifactId>
+		<version>1.0.0</version>
+		<exclusions>
+			<exclusion>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+
+=== Log4j2
+
+.Rules for a good LOG4J2 logging
+* Aligned messages
+* Complete but short context data
+** No need for years, even for dates if files are named with date
+** truncated package name
+** no or minimal separators
+* Separate files for modules
+* Separate level files
+* Rolling files not to handle deletion
+
+.Logs Example
+    17:53:33.372 DEBUG main  .wm.utils.wmcall.WmHelper:176  + setTestMode()
+    17:53:33.372 DEBUG main  cg.wm.utils.wmcall.WmCall:176  +   WmCall()
+    17:53:33.372 DEBUG main  cg.wm.utils.wmcall.WmCall:176  .   WmCall() -> (null)
+    17:53:33.373 DEBUG main  tils.wmcall.WmCallEclipse:176  +   WmCallEclipse()
+    17:53:33.373 DEBUG main  tils.wmcall.WmCallEclipse:176  .   WmCallEclipse() -> (null)
+    17:53:33.373 DEBUG main  .wm.utils.wmcall.WmHelper:176  . setTestMode()
+    17:53:33.374 DEBUG main  cg.wm.utils.ConfigUtils  :176  + healthCheck()
+
+[source,xml]
+.log4j2.xml example
+----
+include::{root-project-dir}/cg-utils\src\test\resources\log4j2.xml[]
+----
 
 === Aspect4log : Logging functions starts/stops with inputs/outputs
 
@@ -113,12 +165,12 @@ NOTE: See http://aspect4log.sourceforge.net
 Use Aspect4Log, which logs functions start/stop with inputs/outputs using AOP.
 
 .Result log example
-  07-31_14:13:48.491 DEBUG org.a.utils.ConfigUtils        - > getParameter(test)
-  07-31_14:13:48.491 DEBUG org.a.utils.wmcall.WmHelper    - > 	getPackageName(true)
-  07-31_14:13:48.492 DEBUG g.a.utils.wmcall.WmCallEclipse - > 		getPackageName(true)
+  07-31_14:13:48.491 DEBUG org.a.utils.ConfigUtils        - + getParameter(test)
+  07-31_14:13:48.491 DEBUG org.a.utils.wmcall.WmHelper    - + 	getPackageName(true)
+  07-31_14:13:48.492 DEBUG g.a.utils.wmcall.WmCallEclipse - + 		getPackageName(true)
   07-31_14:13:48.492 DEBUG g.a.utils.wmcall.WmCallEclipse - . 		getPackageName(true) -> DEFAULT
   07-31_14:13:48.492 DEBUG org.a.utils.wmcall.WmHelper    - . 	getPackageName(true) -> DEFAULT
-  07-31_14:13:48.492 DEBUG org.a.utils.ConfigUtils        - > 	getParameter(DEFAULT, test)
+  07-31_14:13:48.492 DEBUG org.a.utils.ConfigUtils        - + 	getParameter(DEFAULT, test)
   07-31_14:13:48.505 DEBUG org.a.utils.ConfigUtils        - . 	getParameter(DEFAULT, test) -> (null)
   07-31_14:13:48.506 DEBUG org.a.utils.ConfigUtils        - . getParameter(test) -> (null)
 
@@ -151,9 +203,9 @@ public class FooDao {
 	}
 }
 ----
-<1> @Log on a class will affect every methods not annotated
-<2> So this method will be logged, in DEBUG by default
-<3> Lower the level to TRACE if some methods pollute the logs
+<1> @Log on a class will affect every methods by default
+<2> ...so this method will be logged in/out, in DEBUG by default
+<3> Lower the level to TRACE if some methods pollute the logs in DEBUG
 <4> You can skip only the arguments/results if they are too verbose
 <5> Some advanced functionnality are available, see the website
 
@@ -236,7 +288,7 @@ public static void topLevelJarFunction(IData pipeline) throws ServiceException {
 }
 ----
 
-=== JUnit tricks
+=== JUnit
 
 ==== JUnit 4.9+ : Real time status and duration
 

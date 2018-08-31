@@ -168,34 +168,42 @@ image:git-project.png[scaledwidth="50%"]
 
 To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configuration*, on *User setting* click on *Open* and add the following configuration :
 
+TIP: These configurations are inherited to your repositories. You might have the [user] here too, if you have the same login/password for all your repositories
+
+.user .gitconfig settings
 [source, ini]
     [gerrit]
     	createchangeid = true
-    [user]
-    	name = <login>
-    	email = <password>
     [branch]
-	    autosetuprebase = always
+        autosetuprebase = always
+    [pull]
+    	rebase = true
+    [rebase]
+    	autoStash = true
 
 The *autosetuprebase = always* will allow you to do a fetch and a rebase by simply click on "pull".
 
 On *Repository Settings* click on *Open* and enter the following configuration :
 
+.repository config settings
 [source, ini]
     [core]
     	repositoryformatversion = 0
     	filemode = false
     	logallrefupdates = true
     [remote "origin"]
-    	url = https://cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git
+    	url = https://host.com/gerrit/p/cg-wm.git
     	fetch = +refs/heads/*:refs/remotes/origin/*
     	push = HEAD:refs/for/master
     [branch "master"]
     	merge = refs/heads/master
     	rebase = true
     	remote = origin
+    [user]
+    	name = <user>
+    	email = <email>
 
-After this Git configuration, restart eclipse.
+TIP: After these Git configuration, you may need to restart Eclipse.
 
 == Import a project in Project Explorer
 

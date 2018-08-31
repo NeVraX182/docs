@@ -902,15 +902,29 @@ have this structure:</p>
 <div class="paragraph">
 <p>To configure Git, go to <strong>Window</strong> &#8594; <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>Configuration</strong>, on <strong>User setting</strong> click on <strong>Open</strong> and add the following configuration :</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+These configurations are inherited to your repositories. You might have the [user] here too, if you have the same login/password for all your repositories
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
+<div class="title">user .gitconfig settings</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">    [gerrit]
     	createchangeid = true
-    [user]
-    	name = &lt;login&gt;
-    	email = &lt;password&gt;
     [branch]
-	    autosetuprebase = always</code></pre>
+        autosetuprebase = always
+    [pull]
+    	rebase = true
+    [rebase]
+    	autoStash = true</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -920,23 +934,36 @@ have this structure:</p>
 <p>On <strong>Repository Settings</strong> click on <strong>Open</strong> and enter the following configuration :</p>
 </div>
 <div class="listingblock">
+<div class="title">repository config settings</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">    [core]
     	repositoryformatversion = 0
     	filemode = false
     	logallrefupdates = true
     [remote "origin"]
-    	url = https://cric.pl.s2-eu.nvx.com/gerrit/p/cg-wm.git
+    	url = https://host.com/gerrit/p/cg-wm.git
     	fetch = +refs/heads/*:refs/remotes/origin/*
     	push = HEAD:refs/for/master
     [branch "master"]
     	merge = refs/heads/master
     	rebase = true
-    	remote = origin</code></pre>
+    	remote = origin
+    [user]
+    	name = &lt;user&gt;
+    	email = &lt;email&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>After this Git configuration, restart eclipse.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+After these Git configuration, you may need to restart Eclipse.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1340,7 +1367,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-31 16:11:31 UTC
+Last updated 2018-08-31 16:43:13 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
