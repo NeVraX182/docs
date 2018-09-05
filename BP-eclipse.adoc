@@ -168,8 +168,6 @@ image:git-project.png[scaledwidth="50%"]
 
 To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configuration*, on *User setting* click on *Open* and add the following configuration :
 
-TIP: These configurations are inherited to your repositories. You might have the [user] here too, if you have the same login/password for all your repositories
-
 .user .gitconfig settings
 [source, ini]
     [gerrit]
@@ -181,7 +179,12 @@ TIP: These configurations are inherited to your repositories. You might have the
     [rebase]
     	autoStash = true
 
-The *autosetuprebase = always* will allow you to do a fetch and a rebase by simply click on "pull".
+[NOTE]
+====
+* These configurations are inherited to your repositories. You might have the [user] here too, if you have the same login/password for all your repositories
+* The *autosetuprebase = always* will allow you to do a fetch and a rebase by simply click on *pull*.
+* The *auStash = true* will allow you to *pull* while having some currently unstaged files (by automatically doing a *git stash* before and a *git stash apply* after).
+====
 
 On *Repository Settings* click on *Open* and enter the following configuration :
 

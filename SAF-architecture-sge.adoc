@@ -25,7 +25,7 @@ Business Vision : the desired or intended future state of a specific organizatio
 
 La mission de la SNSV évolue vers une centralisation des données de carrières françaises.
 
-image:image4.jpeg[SGE_V2_SFG_Diagramme_Acteurs_V01,width=696,height=412]
+image:sge-mission.png[width=696,height=412]
 
 === Business Strategy
 
@@ -45,7 +45,7 @@ It takes the form of an organization chart and is useful for determining hierarc
 
 Hypothèses:
 
-* Pas de restriction de licences dans l’utilisation des modules WM possédés par la SNSV _[Noël BRETON]_
+* Pas de restriction de licences dans l’utilisation des modules WM possédés par la SNSV _[Noël B.]_
 * L’appel direct est plus performant que l’appel SOAP
 * Ce qui n’est pas dans l’expression du besoin, n’est pas demandé
 * Ce qui n’est pas spécifié techniquement, n’a pas été développé
@@ -110,7 +110,7 @@ _A short statement of principles that outlines and guides future decisions._
 The Context Diagram is usually a high-level picture, illustrating the mail parts of the entreprise and its interaction with external entities in the environment.
 ====
 
-image:image6.jpeg[SGE_V2_SFG_Diagramme_Contexte_V01,width=697,height=655]
+image:sge-context-diagram.png[width=697,height=655]
 
 == Conceptual Business
 
@@ -632,11 +632,11 @@ Le dimensionnement reste à affiner avec des tests de charge et une décompositi
 
 Basé sur les chiffres du document *[1]*, la volumétrie simplifiée est la suivante:
 
-image:archi-volumetrie.png[]
+image:sge-archi-volumetrie.png[]
 
 .Informations RGCU :
-* DF / Alimentation: Si nous prenons le cas métier le plus volumineux en terme d'assuré (la DSN), nous aurions en moyenne par assuré 2 éléments de carrière. En prenant l'encapsulation de la Norme R, on peut dire qu'en moyenne par assuré il faut compter 1,5 à 2 ko max. _[Bastien PERRIN]_
-* DF / Restitution: Un élément de carrière, dans sa structure la plus complexe, ne devrait pas dépasser 500 octets ou que dans des cas exceptionnels, mais de toute façon pas au dessus de 1ko. On considère qu'une carrière représentative (dans 5 à 10 ans donc intégrant le passage à la DSN) ne devrait pas excéder les 300 à 400 éléments. _[Manuel HUBERT]_
+* DF / Alimentation: Si nous prenons le cas métier le plus volumineux en terme d'assuré (la DSN), nous aurions en moyenne par assuré 2 éléments de carrière. En prenant l'encapsulation de la Norme R, on peut dire qu'en moyenne par assuré il faut compter 1,5 à 2 ko max. _[Bastien P.]_
+* DF / Restitution: Un élément de carrière, dans sa structure la plus complexe, ne devrait pas dépasser 500 octets ou que dans des cas exceptionnels, mais de toute façon pas au dessus de 1ko. On considère qu'une carrière représentative (dans 5 à 10 ans donc intégrant le passage à la DSN) ne devrait pas excéder les 300 à 400 éléments. _[Manuel H.]_
 
 .Hypothèses résultantes :
 * En mode Diffusion Fichier
@@ -662,14 +662,14 @@ This view shows the relevant relationships between the physical IS and TI compon
 ====
 
 .Règles :
-* Les BDD métier et technique doivent être sur des VM séparées. _[Thomas PERELLE]_
-* [line-through]*Pas de mutualisation des BDD des environnements sur un même serveur BDD, même en séparant les SID. _[Yoann GERARD]_* Mutualisation serveur BDD possible, séparation des SID. _[Thomas PERELLE]_
-* L’IS admin doit être sur une VM séparée et regroupée pour les environnements usine. _[Thomas PERELLE]_
-* Les serveurs logiques Jboss et Weblogic doivent être sur des VM séparées. _[Thomas PERELLE]_
-* Universal Messaging: Un seul serveur pour les environnements usine. _[Thomas PERELLE]_
-* Les SID des bases ont un nommage réglementé. _[Thomas PERELLE]_
-* Les VMs ont un gabarit et ont, sauf exception, une taille initiale de 4Go de RAM. _[Thomas PERELLE]_
-* Les users admin BDD doivent être des comptes nominatifs SNSV (Windows). _[Thomas PERELLE]_
+* Les BDD métier et technique doivent être sur des VM séparées. _[Thomas P.]_
+* [line-through]*Pas de mutualisation des BDD des environnements sur un même serveur BDD, même en séparant les SID. _[Yoann GERARD]_* Mutualisation serveur BDD possible, séparation des SID. _[Thomas P.]_
+* L’IS admin doit être sur une VM séparée et regroupée pour les environnements usine. _[Thomas P.]_
+* Les serveurs logiques Jboss et Weblogic doivent être sur des VM séparées. _[Thomas P.]_
+* Universal Messaging: Un seul serveur pour les environnements usine. _[Thomas P.]_
+* Les SID des bases ont un nommage réglementé. _[Thomas P.]_
+* Les VMs ont un gabarit et ont, sauf exception, une taille initiale de 4Go de RAM. _[Thomas P.]_
+* Les users admin BDD doivent être des comptes nominatifs SNSV (Windows). _[Thomas P.]_
 
 ==== Environnements de pré-production et production
 
@@ -864,11 +864,11 @@ This model is constructed in the same way as in the logical architecture. The re
 
 Ci-dessous l’architecture physique noeud1 / noeud2 obtenue.
 
-image:archi-physique.jpeg[]
+image:sge-archi-physique.png[]
 
 ==== Focus médiation
 
-image:archi-physique-mediation.png[]
+image:sge-archi-physique-mediation.png[]
 
 La fonctionnalité de médiation ESTER est assurée par une succession de 3 modules:
 
@@ -886,9 +886,9 @@ Check if the security attributes of the TI services in the physical TI component
 Ci-dessous l’architecture réseau retenue.
 
 .Règles :
-* VM ESB / BPM / UM dans le même VLAN _[Mathieu Crogiez]_
-* VM WLS & JBOSS dans VLAN distinct des IS _[Mathieu Crogiez]_
+* VM ESB / BPM / UM dans le même VLAN _[Mathieu C.]_
+* VM WLS & JBOSS dans VLAN distinct des IS _[Mathieu C.]_
 
-image:archi-reseau.png[]
+image:sge-archi-reseau.png[]
 
 include::subdocs/_closure-fr.adoc[]

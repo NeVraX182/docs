@@ -454,3 +454,9 @@ include::{root-project-dir}/cg-utils/src/main/java/cg/wm/utils/CgPackage.java[]
 ----
 
 include::subdocs/_closure.adoc[]
+
+==== Single Implementation Interfaces Are Evil
+
+See https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/
+
+

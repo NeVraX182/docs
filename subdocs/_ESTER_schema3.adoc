@@ -16,7 +16,7 @@ rectangle "DGE" as dge #lightgrey {
 	database "Stats DGE" as dbStats
 	rectangle "IHM Stats <size:30><&browser>" as ihm
 }
-actor "Exploitant <img:administrateur-utilisateur.png{scale=0.3}>" as exploit #red
+actor "Exploitant" as exploit #red
 
 mediator -[#406BA4,bold]^ umSuivi : "<color:#406BA4><b><size:16>Agrégation </size>\n<color:#406BA4><b><size:16>par service <size:25><&bar-chart>"
 

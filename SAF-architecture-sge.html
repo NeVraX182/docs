@@ -617,7 +617,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>La mission de la SNSV évolue vers une centralisation des données de carrières françaises.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/image4.jpeg" alt="SGE_V2_SFG_Diagramme_Acteurs_V01" width="696" height="412"></span></p>
+<p><span class="image"><img src="./images/sge-mission.png" alt="sge mission" width="696" height="412"></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -661,7 +661,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Pas de restriction de licences dans l’utilisation des modules WM possédés par la SNSV <em>[Noël BRETON]</em></p>
+<p>Pas de restriction de licences dans l’utilisation des modules WM possédés par la SNSV <em>[Noël B.]</em></p>
 </li>
 <li>
 <p>L’appel direct est plus performant que l’appel SOAP</p>
@@ -837,7 +837,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/image6.jpeg" alt="SGE_V2_SFG_Diagramme_Contexte_V01" width="697" height="655"></span></p>
+<p><span class="image"><img src="./images/sge-context-diagram.png" alt="sge context diagram" width="697" height="655"></span></p>
 </div>
 </div>
 </div>
@@ -1612,7 +1612,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagram-archi-mediator-stats.png" alt="diagram archi mediator stats" width="519" height="721">
+<img src="./images/diagram-archi-mediator-stats.png" alt="diagram archi mediator stats" width="479" height="721">
 </div>
 </div>
 <div class="paragraph">
@@ -2045,16 +2045,16 @@ WARNING: faire un renvoi</p>
 <p>Basé sur les chiffres du document <strong>[1]</strong>, la volumétrie simplifiée est la suivante:</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/archi-volumetrie.png" alt="archi volumetrie"></span></p>
+<p><span class="image"><img src="./images/sge-archi-volumetrie.png" alt="sge archi volumetrie"></span></p>
 </div>
 <div class="ulist">
 <div class="title">Informations RGCU :</div>
 <ul>
 <li>
-<p>DF / Alimentation: Si nous prenons le cas métier le plus volumineux en terme d&#8217;assuré (la DSN), nous aurions en moyenne par assuré 2 éléments de carrière. En prenant l&#8217;encapsulation de la Norme R, on peut dire qu&#8217;en moyenne par assuré il faut compter 1,5 à 2 ko max. <em>[Bastien PERRIN]</em></p>
+<p>DF / Alimentation: Si nous prenons le cas métier le plus volumineux en terme d&#8217;assuré (la DSN), nous aurions en moyenne par assuré 2 éléments de carrière. En prenant l&#8217;encapsulation de la Norme R, on peut dire qu&#8217;en moyenne par assuré il faut compter 1,5 à 2 ko max. <em>[Bastien P.]</em></p>
 </li>
 <li>
-<p>DF / Restitution: Un élément de carrière, dans sa structure la plus complexe, ne devrait pas dépasser 500 octets ou que dans des cas exceptionnels, mais de toute façon pas au dessus de 1ko. On considère qu&#8217;une carrière représentative (dans 5 à 10 ans donc intégrant le passage à la DSN) ne devrait pas excéder les 300 à 400 éléments. <em>[Manuel HUBERT]</em></p>
+<p>DF / Restitution: Un élément de carrière, dans sa structure la plus complexe, ne devrait pas dépasser 500 octets ou que dans des cas exceptionnels, mais de toute façon pas au dessus de 1ko. On considère qu&#8217;une carrière représentative (dans 5 à 10 ans donc intégrant le passage à la DSN) ne devrait pas excéder les 300 à 400 éléments. <em>[Manuel H.]</em></p>
 </li>
 </ul>
 </div>
@@ -2151,28 +2151,28 @@ WARNING: faire un renvoi</p>
 <div class="title">Règles :</div>
 <ul>
 <li>
-<p>Les BDD métier et technique doivent être sur des VM séparées. <em>[Thomas PERELLE]</em></p>
+<p>Les BDD métier et technique doivent être sur des VM séparées. <em>[Thomas P.]</em></p>
 </li>
 <li>
-<p><strong class="line-through">Pas de mutualisation des BDD des environnements sur un même serveur BDD, même en séparant les SID. <em>[Yoann GERARD]</em></strong> Mutualisation serveur BDD possible, séparation des SID. <em>[Thomas PERELLE]</em></p>
+<p><strong class="line-through">Pas de mutualisation des BDD des environnements sur un même serveur BDD, même en séparant les SID. <em>[Yoann GERARD]</em></strong> Mutualisation serveur BDD possible, séparation des SID. <em>[Thomas P.]</em></p>
 </li>
 <li>
-<p>L’IS admin doit être sur une VM séparée et regroupée pour les environnements usine. <em>[Thomas PERELLE]</em></p>
+<p>L’IS admin doit être sur une VM séparée et regroupée pour les environnements usine. <em>[Thomas P.]</em></p>
 </li>
 <li>
-<p>Les serveurs logiques Jboss et Weblogic doivent être sur des VM séparées. <em>[Thomas PERELLE]</em></p>
+<p>Les serveurs logiques Jboss et Weblogic doivent être sur des VM séparées. <em>[Thomas P.]</em></p>
 </li>
 <li>
-<p>Universal Messaging: Un seul serveur pour les environnements usine. <em>[Thomas PERELLE]</em></p>
+<p>Universal Messaging: Un seul serveur pour les environnements usine. <em>[Thomas P.]</em></p>
 </li>
 <li>
-<p>Les SID des bases ont un nommage réglementé. <em>[Thomas PERELLE]</em></p>
+<p>Les SID des bases ont un nommage réglementé. <em>[Thomas P.]</em></p>
 </li>
 <li>
-<p>Les VMs ont un gabarit et ont, sauf exception, une taille initiale de 4Go de RAM. <em>[Thomas PERELLE]</em></p>
+<p>Les VMs ont un gabarit et ont, sauf exception, une taille initiale de 4Go de RAM. <em>[Thomas P.]</em></p>
 </li>
 <li>
-<p>Les users admin BDD doivent être des comptes nominatifs SNSV (Windows). <em>[Thomas PERELLE]</em></p>
+<p>Les users admin BDD doivent être des comptes nominatifs SNSV (Windows). <em>[Thomas P.]</em></p>
 </li>
 </ul>
 </div>
@@ -2451,12 +2451,12 @@ WARNING: faire un renvoi</p>
 <p>Ci-dessous l’architecture physique noeud1 / noeud2 obtenue.</p>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/archi-physique.jpeg" alt="archi physique"></span></p>
+<p><span class="image"><img src="./images/sge-archi-physique.png" alt="sge archi physique"></span></p>
 </div>
 <div class="sect3">
 <h4 id="focus-médiation"><a class="anchor" href="#focus-médiation"></a>10.4.1. Focus médiation</h4>
 <div class="paragraph">
-<p><span class="image"><img src="./images/archi-physique-mediation.png" alt="archi physique mediation"></span></p>
+<p><span class="image"><img src="./images/sge-archi-physique-mediation.png" alt="sge archi physique mediation"></span></p>
 </div>
 <div class="paragraph">
 <p>La fonctionnalité de médiation ESTER est assurée par une succession de 3 modules:</p>
@@ -2502,15 +2502,15 @@ WARNING: faire un renvoi</p>
 <div class="title">Règles :</div>
 <ul>
 <li>
-<p>VM ESB / BPM / UM dans le même VLAN <em>[Mathieu Crogiez]</em></p>
+<p>VM ESB / BPM / UM dans le même VLAN <em>[Mathieu C.]</em></p>
 </li>
 <li>
-<p>VM WLS &amp; JBOSS dans VLAN distinct des IS <em>[Mathieu Crogiez]</em></p>
+<p>VM WLS &amp; JBOSS dans VLAN distinct des IS <em>[Mathieu C.]</em></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="image"><img src="./images/archi-reseau.png" alt="archi reseau"></span></p>
+<p><span class="image"><img src="./images/sge-archi-reseau.png" alt="sge archi reseau"></span></p>
 </div>
 </div>
 </div>
@@ -2518,7 +2518,7 @@ WARNING: faire un renvoi</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-31 16:43:13 UTC
+Last updated 2018-09-05 14:32:01 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
