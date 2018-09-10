@@ -1,8 +1,18 @@
 = Technical Documentations
 
+//Need this blank line after ifdef, don't know why...
+ifdef::backend-html5[]
+
+icon:file-text-o[link={docname}.adoc] ‏ ‏ ‎ 
+icon:github-square[link=https://github.com/bcouetil] ‏ ‏ ‎ 
+icon:linkedin-square[link=https://www.linkedin.com/in/benoit-couetil-81741b140/]
+endif::backend-html5[]
+
 == Cheat sheets and best practices
 
-* link:BP-asciidoc.html[AsciiDoc] - Documentation-as-code language footnote:[The current website is also written using link:https://asciidoctor.org/docs/asciidoc-syntax-quick-reference[AsciiDoc], a Simple Markup Language. The writer focuses only on the substance, easily writable and readable by non technical people, and AsciiDoctor handles the output to HTML and PDF. Graphs are generated with link:http://plantuml.com[PlantUml], see link:example-diagrams.html[these compiled examples] for an overview of every diagram types. This documentation-as-code implementation follows the everything-as-code DevOps principle. Also, on each page, you will find links to both PDF and source ‏ ‏ ‎ ‏ ‏ ‎ ‏ ‏ ‎ icon:file-text-o[link={docname}.adoc]]
+//Footnotes are inline in PDF, this is a known issue : https://github.com/asciidoctor/asciidoctor-pdf/issues/85
+
+* link:BP-asciidoc.html[AsciiDoc] - Documentation-as-code language footnote:[The current website is also written using link:https://asciidoctor.org/docs/asciidoc-syntax-quick-reference[AsciiDoc], a Simple Markup Language. The writer focuses only on the substance, easily writable and readable by non technical people, and AsciiDoctor handles the output to HTML and PDF. Graphs are generated with link:http://plantuml.com[PlantUml], see link:example-diagrams.html[these compiled examples] for an overview of every diagram types. This documentation-as-code implementation follows the everything-as-code DevOps principle. Also, on each page, you will find links to both PDF and source]
 
 * link:BP-eclipse.html[Eclipse] - Integrated Development Environment
 

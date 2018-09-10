@@ -49,7 +49,7 @@ include::../../../pom.xml[tags=asciidoc-plugin,indent=0]
 To generate the PDF locally, use the maven command :
 
 [source, bash]
- mvn generate-resources -Dadoc.skip=false --non-recursive
+ mvn generate-resources --non-recursive
  
 You might have some some errors about the history : It will be automatically generated on Jenkins. If you want too see how it looks like, use the script asciidocHistory.sh in src -> scripts, with cg-wm directory path in argument.
 

@@ -25,16 +25,12 @@ ifdef::env-github[]
 {empty}
 //another way would be :
 //:toc-placement!:
-//Here is my preamble paragraph, but I could really place the TOC anywhere! Lorem ipsum foo bar baz.
 //toc::[]
 endif::env-github[]
-
 ifndef::source-dir[:source-dir: ../../main/java]
 ifndef::test-dir[:test-dir: ../../test/java]
-
 //For the sections to be numbered
 :sectnums:
-
 //For the keyboard/buttons nice print
 :experimental:
 
