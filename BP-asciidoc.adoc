@@ -24,7 +24,7 @@ Download and install :
 * don't forget init/closure includes at beginning/end of the adoc
 * For STS, use TMP-STS-webmethods-template.adoc as a template
 
-To show a in progress diagram to colleagues, you can generate a link using this page : http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
+To show a in progress diagram to colleagues, you can generate a web link using link:http://www.plantuml.com/plantuml/uml/[PlantUml generator].
 
 === Inline icons
 
@@ -35,12 +35,45 @@ To show a in progress diagram to colleagues, you can generate a link using this 
 === Custom highlighter
 
 * See the maven configuration below, it speaks for itself
-* Highlight.js demo with all languages and all styles (current theme is : darcula)
+* Highlight.js demo with all languages and all styles
 * Default highlight.js processor is too basic, instructions here to change : https://asciidoctor.org/docs/user-manual/#highlight-js
 
 === Generation using Maven
 
-.AsciiDoctor plugin configuration
+You will find a sample Maven project generating both PDF and HTML, with current doc's layout, on link:https://github.com/bcouetil/asciidoctor-maven-sample[my Github].
+
+ifdef::notdef[]
+//Sadly, this is only available in AsciidocFX for now. So use the editor to produce the image, then import it as-is in your document.
+[tree,file="tree-asciidoctor-maven-sample.png"]
+----
+cg-asciidoctor-sample
+|--pom.xml
+|--src
+   |--docs
+   |  `--asciidoc
+   |     |--asciidoc-syntax-reference.adoc
+   |     |--images
+   |     |  |--pause.png
+   |     |  |--play.png
+   |     |  `--sunset.jpg
+   |     |--themes
+   |     |  |--cg-theme.yml
+   |     |  |--favicon.png
+   |     |  `--logo-pdf.png
+   |     `--_includes
+   |        |--attrs-charref.adoc
+   |        |--attrs-env.adoc
+   |        |--ex-table-data.adoc
+   |        `--ex-table.adoc
+   `--scripts
+      `--asciidocHistory.sh
+----
+endif::notdef[]
+
+.File system tree
+image:tree-asciidoctor-maven-sample.png[image, pdfwidth=30%]
+
+.AsciiDoctor maven plugin configuration
 [source,xml]
 ------
 include::../../../pom.xml[tags=asciidoc-plugin,indent=0]
@@ -50,8 +83,6 @@ To generate the PDF locally, use the maven command :
 
 [source, bash]
  mvn generate-resources --non-recursive
- 
-You might have some some errors about the history : It will be automatically generated on Jenkins. If you want too see how it looks like, use the script asciidocHistory.sh in src -> scripts, with cg-wm directory path in argument.
 
 === .doc to .adoc
 

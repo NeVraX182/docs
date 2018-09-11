@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<link rel="shortcut icon" type="image/png" href="images/zenika-logo.png">
+<link rel="shortcut icon" type="image/png" href="themes/favicon.png">
 <title>AsciiDoc &amp; doc-as-code Best Practices</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -510,7 +510,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<p>To show a in progress diagram to colleagues, you can generate a link using this page : <a href="http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000" class="bare">http://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000</a></p>
+<p>To show a in progress diagram to colleagues, you can generate a web link using <a href="http://www.plantuml.com/plantuml/uml/">PlantUml generator</a>.</p>
 </div>
 <div class="sect2">
 <h3 id="inline-icons"><a class="anchor" href="#inline-icons"></a>1.1. Inline icons</h3>
@@ -540,7 +540,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>See the maven configuration below, it speaks for itself</p>
 </li>
 <li>
-<p>Highlight.js demo with all languages and all styles (current theme is : darcula)</p>
+<p>Highlight.js demo with all languages and all styles</p>
 </li>
 <li>
 <p>Default highlight.js processor is too basic, instructions here to change : <a href="https://asciidoctor.org/docs/user-manual/#highlight-js" class="bare">https://asciidoctor.org/docs/user-manual/#highlight-js</a></p>
@@ -550,8 +550,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect2">
 <h3 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>1.3. Generation using Maven</h3>
+<div class="paragraph">
+<p>You will find a sample Maven project generating both PDF and HTML, with current doc&#8217;s layout, on <a href="https://github.com/bcouetil/asciidoctor-maven-sample">my Github</a>.</p>
+</div>
+<div class="paragraph">
+<div class="title">File system tree</div>
+<p><span class="image"><img src="./images/tree-asciidoctor-maven-sample.png" alt="image"></span></p>
+</div>
 <div class="listingblock">
-<div class="title">AsciiDoctor plugin configuration</div>
+<div class="title">AsciiDoctor maven plugin configuration</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;!-- to generate asciidoc PDF + HTML documents --&gt;
 &lt;!-- single usage : mvn generate-resources -Dadoc.skip=false [- -non-recursive] --&gt;
@@ -615,7 +622,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 					&lt;toclevels&gt;5&lt;/toclevels&gt;
 					&lt;sectanchors&gt;true&lt;/sectanchors&gt;
 					&lt;docinfo1&gt;true&lt;/docinfo1&gt;
-					&lt;favicon&gt;images/zenika-logo.png&lt;/favicon&gt;
+					&lt;favicon&gt;themes/favicon.png&lt;/favicon&gt;
 					&lt;!-- custom style if default is not suitable --&gt;
 					&lt;!-- &lt;stylesheet&gt;rubygems.css&lt;/stylesheet&gt; --&gt;
 					&lt;!-- &lt;stylesdir&gt;themes&lt;/stylesdir&gt; --&gt;
@@ -651,9 +658,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> mvn generate-resources --non-recursive</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>You might have some some errors about the history : It will be automatically generated on Jenkins. If you want too see how it looks like, use the script asciidocHistory.sh in src &#8594; scripts, with cg-wm directory path in argument.</p>
 </div>
 </div>
 <div class="sect2">
@@ -732,7 +736,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-10 16:48:36 UTC
+Last updated 2018-09-11 15:01:04 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

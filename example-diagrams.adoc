@@ -1,10 +1,41 @@
 = Example diagrams
 
-ifndef::imagesdir[:imagesdir: ../../../../target/generated-docs/images]
+ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
 
 == File tree view
 
 NOTE: Sadly, this is only available in AsciidocFX for now. So use the editor to produce the image, then import it as-is in your document.
+
+ifdef::notdef[]
+//Sadly, this is only available in AsciidocFX for now. So use the editor to produce the image, then import it as-is in your document.
+[tree,file="tree-asciidoctor-maven-sample.png"]
+----
+cg-asciidoctor-sample
+|--pom.xml
+|--src
+   |--docs
+   |  `--asciidoc
+   |     |--asciidoc-syntax-reference.adoc
+   |     |--images
+   |     |  |--pause.png
+   |     |  |--play.png
+   |     |  `--sunset.jpg
+   |     |--themes
+   |     |  |--cg-theme.yml
+   |     |  |--favicon.png
+   |     |  `--logo-pdf.png
+   |     `--_includes
+   |        |--attrs-charref.adoc
+   |        |--attrs-env.adoc
+   |        |--ex-table-data.adoc
+   |        `--ex-table.adoc
+   `--scripts
+      `--asciidocHistory.sh
+----
+endif::notdef[]
+
+image:tree-asciidoctor-maven-sample.png[image, pdfwidth=30%]
+
 
 ifdef::notdef[]
 [tree, file="ex-tree-view-new.png"]
