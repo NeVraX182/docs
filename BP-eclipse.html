@@ -464,9 +464,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#pull-from-another-developer">6.2. Pull from another developer</a></li>
 <li><a href="#missing-change-id-in-commit-message-footer">6.3. Missing Change-Id in commit message footer</a></li>
 <li><a href="#classpath-and-other-not-to-push-files">6.4. .classpath and other not-to-push files</a></li>
-<li><a href="#see-sonarqube-for-an-older-build">6.5. See SonarQube for an older build</a></li>
-<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">6.6. Double remote : get latest commits from gitlab into gerrit</a></li>
-<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">6.7. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
+<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">6.5. Double remote : get latest commits from gitlab into gerrit</a></li>
+<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">6.6. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
 </ul>
 </li>
 </ul>
@@ -479,6 +478,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="icon"><a class="image" href="index.html"><i class="fa fa-home"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="BP-eclipse.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="BP-eclipse.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/turnoff-my-morning-routine.png" alt="turnoff my morning routine" width="50%">
+</div>
+<div class="title">Figure 1. Morning routine</div>
 </div>
 </div>
 </div>
@@ -822,9 +827,10 @@ target
 <div class="sect1">
 <h2 id="clone-a-git-repository"><a class="anchor" href="#clone-a-git-repository"></a>3. Clone a Git repository</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<div class="title">Git without Eclipse and Gerrit</div>
-<p><span class="image"><img src="./images/this-is-git.png" alt="this is git"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/this-is-git.png" alt="this is git" width="33%">
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -852,8 +858,10 @@ To generate your password in Gerrit, right click on your username &#8594; <stron
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/git-clone1.png" alt="git clone1"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/git-clone1.png" alt="git clone1" width="50%">
+</div>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -886,8 +894,10 @@ For Gerrit, the process to get the URL is described in <a href="BP-gerrit.html#p
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/git-clone2.png" alt="git clone2"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/git-clone2.png" alt="git clone2" width="50%">
+</div>
 </div>
 <div class="paragraph">
 <p>Enter your workspace in directory and then click on finish</p>
@@ -896,8 +906,10 @@ For Gerrit, the process to get the URL is described in <a href="BP-gerrit.html#p
 <p>After creating a new local Git repository, the Git repository of the project should
 have this structure:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/git-project.png" alt="git project"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/git-project.png" alt="git project" width="50%">
+</div>
 </div>
 <div class="paragraph">
 <p>To configure Git, go to <strong>Window</strong> &#8594; <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>Configuration</strong>, on <strong>User setting</strong> click on <strong>Open</strong> and add the following configuration :</p>
@@ -988,11 +1000,19 @@ After these Git configuration, you may need to restart Eclipse.
 <div class="sect1">
 <h2 id="git-common-usages"><a class="anchor" href="#git-common-usages"></a>5. Git common usages</h2>
 <div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/turnoff-ai-meets-git.png" alt="turnoff ai meets git" width="50%">
+</div>
+<div class="title">Figure 2. AI meets GIT</div>
+</div>
 <div class="sect2">
 <h3 id="keep-your-local-repository-up-to-date"><a class="anchor" href="#keep-your-local-repository-up-to-date"></a>5.1. Keep your local repository up to date</h3>
-<div class="paragraph">
-<div class="title">Life without an unbreakable build</div>
-<p><span class="image"><img src="./images/no-error-update.jpg" alt="no error update"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-no-error-update.jpg" alt="geek and poke no error update" width="50%">
+</div>
+<div class="title">Figure 3. Life before unbreakable builds</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1011,15 +1031,19 @@ After these Git configuration, you may need to restart Eclipse.
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/git-fetch_pull.png" alt="git fetch pull"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/git-fetch_pull.png" alt="git fetch pull" width="50%">
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="commit-push"><a class="anchor" href="#commit-push"></a>5.2. Commit / push</h3>
-<div class="paragraph">
-<div class="title">Life before Gerrit</div>
-<p><span class="image"><img src="./images/git-hell.jpg" alt="git hell"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/git-hell.jpg" alt="git hell" width="50%">
+</div>
+<div class="title">Figure 4. Life without Gerrit</div>
 </div>
 <div class="paragraph">
 <p>First of all, you have to understand the commit/push/review process described in <a href="BP-gerrit.html">Gerrit Best Practices</a>.</p>
@@ -1027,8 +1051,10 @@ After these Git configuration, you may need to restart Eclipse.
 <div class="paragraph">
 <p>In order to commit a change follow these steps:</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/gitAddChangeId.png" alt="gitAddChangeId"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/gitAddChangeId.png" alt="gitAddChangeId" width="50%">
+</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1043,12 +1069,21 @@ After these Git configuration, you may need to restart Eclipse.
 <div class="ulist">
 <ul>
 <li>
-<p>Click on amend if you want to amend a commit already started
+<p>Click on <strong>amend</strong> if you want to amend a commit already started (using Gerrit vocabulary, adding a <strong>patchset</strong> on a <strong>change</strong>)
 add your message and click on <strong>Add Change-Id</strong> to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)</p>
 </li>
 </ul>
 </div>
 </li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/git-amend_commit.png" alt="git amend commit" width="50%">
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>Click on :</p>
 <div class="ulist">
@@ -1064,14 +1099,22 @@ add your message and click on <strong>Add Change-Id</strong> to add an ID for yo
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/git-amend_commit.png" alt="git amend commit"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/avoid-merge-conflict.png" alt="avoid merge conflict" width="50%">
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="rebase"><a class="anchor" href="#rebase"></a>5.3. Rebase</h3>
 <div class="paragraph">
-<p>In order to get the last version of the git repository, or if one of your commit is in <strong>Merge Conflict</strong> on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team &#8594; fetch from upstream, then team &#8594; rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team &#8594; rebase &#8594; continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disapear.</p>
+<p>In order to get the last version of the git repository, or if one of your commit is in <strong>Merge Conflict</strong> on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team &#8594; fetch from upstream, then team &#8594; rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team &#8594; rebase &#8594; continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disappear.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/turnoff-commitland.png" alt="turnoff commitland" width="50%">
+</div>
+<div class="title">Figure 5. Commitland</div>
 </div>
 </div>
 <div class="sect2">
@@ -1089,8 +1132,10 @@ git reset soft/mixed/hard explained : <a href="https://git-scm.com/docs/git-rese
 </table>
 </div>
 <div class="paragraph">
-<p>In team &#8594; reset, you can find a usefull functionnality called Reset Mixed. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
-Reset Hard can be used if you want to cancel all your modifications. All modifications will be erased.</p>
+<p>In <strong>team</strong> &#8594; <strong>reset</strong>, you can find a usefull functionnality called <strong>Reset Mixed</strong>. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.</p>
+</div>
+<div class="paragraph">
+<p><strong>Reset Hard</strong> can be used if you want to cancel all your modifications. All modifications will be erased.</p>
 </div>
 </div>
 </div>
@@ -1109,8 +1154,10 @@ It works like this :
 If A is the last commit on the git repository, you can do a first commit B.
 To make a second commit C, reset mixed on commit A, then commit. If you want to amend your commit B, reset mixed on A before doing it, and copy the description and change id for your commit on gerrit, to paste it like it is a new commit. You also need to select again the files that were in this commit.</p>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/git-rebase.png" alt="git rebase"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/git-rebase.png" alt="git rebase" width="100%">
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1155,11 +1202,11 @@ To make a second commit C, reset mixed on commit A, then commit. If you want to 
 </li>
 </ul>
 </div>
-<div class="admonitionblock warning">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to the <strong>Git repositories</strong> view, under your repo, in <strong>Remotes</strong>, right click on <strong>origin</strong> and select <strong>Gerrit configuration&#8230;&#8203;</strong>. Check that everything is OK and click <strong>Finish</strong>. Now you should have the option.
@@ -1167,8 +1214,10 @@ If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to th
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p><span class="image"><img src="./images/fetch_from_gerrit.png" alt="fetch from gerrit"></span></p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/fetch_from_gerrit.png" alt="fetch from gerrit" width="50%">
+</div>
 </div>
 <div class="paragraph">
 <p>To keep this branch up to date with the master :</p>
@@ -1194,6 +1243,12 @@ If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to th
 </div>
 <div class="paragraph">
 <p>To switch back to your master, right click on your repo &#8594; <strong>Switch To</strong> &#8594; <strong>master</strong>.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/turnoff-your-code-is-ugly.png" alt="turnoff your code is ugly" width="50%">
+</div>
+<div class="title">Figure 6. Your code is ugly</div>
 </div>
 </div>
 <div class="sect2">
@@ -1270,64 +1325,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 <div class="sect2">
-<h3 id="see-sonarqube-for-an-older-build"><a class="anchor" href="#see-sonarqube-for-an-older-build"></a>6.5. See SonarQube for an older build</h3>
-<div class="paragraph">
-<p>SonarQube does not have history available for browsing, you can only see the last build. So you have to retrigger the gerrit patch to see specific data associated to your change.</p>
-</div>
-<div class="paragraph">
-<p>You can do an empty <strong>commit amend</strong> from Eclipse. But you can also retrigger from Jenkins.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Go to Jenkins homepage</p>
-</li>
-<li>
-<p>Navigate to the pipeline/job</p>
-</li>
-<li>
-<p>If your build is still in the history</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Open it</p>
-</li>
-<li>
-<p>Select <strong>Retrigger</strong></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Else if your build has been deleted</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Go to Jenkins homepage</p>
-</li>
-<li>
-<p>Click on <strong>Query and Trigger Gerrit Patches</strong></p>
-</li>
-<li>
-<p>In <strong>Query String</strong>, put your change-id</p>
-</li>
-<li>
-<p>Click <strong>SEARCH</strong></p>
-</li>
-<li>
-<p>Select the change</p>
-</li>
-<li>
-<p>Click <strong>TRIGGER SELECTED</strong></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="double-remote-get-latest-commits-from-gitlab-into-gerrit"><a class="anchor" href="#double-remote-get-latest-commits-from-gitlab-into-gerrit"></a>6.6. Double remote : get latest commits from gitlab into gerrit</h3>
+<h3 id="double-remote-get-latest-commits-from-gitlab-into-gerrit"><a class="anchor" href="#double-remote-get-latest-commits-from-gitlab-into-gerrit"></a>6.5. Double remote : get latest commits from gitlab into gerrit</h3>
 <div class="paragraph">
 <p>In the case of a gitlab to gerrit migration, you may have a common ancestor but commits on Gerrit and commits on Gitlab. It&#8217;s easy if you can replace the whole gerrit master, but here is the way to go for a clean merge :</p>
 </div>
@@ -1366,7 +1364,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 <div class="sect2">
-<h3 id="get-rid-of-orig_head-fetch_head-in-git-history"><a class="anchor" href="#get-rid-of-orig_head-fetch_head-in-git-history"></a>6.7. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</h3>
+<h3 id="get-rid-of-orig_head-fetch_head-in-git-history"><a class="anchor" href="#get-rid-of-orig_head-fetch_head-in-git-history"></a>6.6. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</h3>
 <div class="paragraph">
 <p>ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>History</strong> by deselecting <strong>Additional Refs</strong></p>
 </div>
@@ -1376,7 +1374,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-11 16:07:41 UTC
+Last updated 2018-09-15 17:31:00 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

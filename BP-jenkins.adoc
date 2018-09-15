@@ -4,6 +4,8 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
+image::turnoff-before-devops-after-devops.png[{half-width}]
+
 == Server configuration
 
 Connect to Jenkins homepage.
@@ -220,6 +222,9 @@ If you have a remote server where you deploy your artifacts for further developm
 * add the key to **~/.ssh/authorized_keys** file
 
 === Pipelines creations
+
+.Deployment pipeline
+image::turnoff-deployment-pipeline.png[{half-width}]
 
 ==== The Review pipeline
 

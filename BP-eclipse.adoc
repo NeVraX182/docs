@@ -3,6 +3,9 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
+.Morning routine
+image::turnoff-my-morning-routine.png[{half-width}]
+
 == Installation
 
 *  Install the latest Eclipse JEE. This documentation is not guaranteed to work below Neon version.
@@ -137,8 +140,7 @@ Go to Run/Debug -> Console.
 
 == Clone a Git repository
 
-.Git without Eclipse and Gerrit
-image:this-is-git.png[scaledwidth="35%"]
+image::this-is-git.png[{tier-width}]
 
 NOTE: To generate your password in Gerrit, right click on your username -> *Settings* -> *HTTP password* -> *Generate Password*
 
@@ -147,7 +149,7 @@ NOTE: To generate your password in Gerrit, right click on your username -> *Sett
 - Click on *Clone a Git repository*
 - Fill the required data :
 
-image:git-clone1.png[scaledwidth="50%"]
+image::git-clone1.png[{half-width}]
 
 TIP: For Gerrit, the process to get the URL is described in link:BP-gerrit.html#project-url[Gerrit BP].
 
@@ -157,14 +159,14 @@ TIP: For Gerrit, the process to get the URL is described in link:BP-gerrit.html#
 * Password generated from Gerrit
 * [x] Store in Secure Store
 
-image:git-clone2.png[scaledwidth="50%"]
+image::git-clone2.png[{half-width}]
 
 Enter your workspace in directory and then click on finish
 
 After creating a new local Git repository, the Git repository of the project should
 have this structure:
 
-image:git-project.png[scaledwidth="50%"]
+image::git-project.png[{half-width}]
 
 To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configuration*, on *User setting* click on *Open* and add the following configuration :
 
@@ -215,50 +217,60 @@ Once the repository is cloned, import the project in your Java JEE view. (*File*
 <<<
 == Git common usages
 
+.AI meets GIT
+image::turnoff-ai-meets-git.png[{half-width}]
+
 === Keep your local repository up to date
 
-.Life without an unbreakable build
-image:no-error-update.jpg[scaledwidth="50%"]
+.Life before unbreakable builds
+image::geek-and-poke-no-error-update.jpg[{half-width}]
 
 * To update your git repository, right-click on parent project and select
 ** "Pull" (If your  git  is  configured  to  do  a  fetch  and  rebase  on  "Pull")
 ** or "Fetch from upstream", and then "Rebase"
 
-image:git-fetch_pull.png[scaledwidth="50%"]
+image::git-fetch_pull.png[{half-width}]
 
 === Commit / push
 
-.Life before Gerrit
-image:git-hell.jpg[scaledwidth="75%"]
+.Life without Gerrit
+image::git-hell.jpg[{half-width}]
 
 First of all, you have to understand the commit/push/review process described in link:BP-gerrit.html[Gerrit Best Practices].
 
 In order to commit a change follow these steps:
 
 //TODO : make a smaller capture
-image:gitAddChangeId.png[]
+image::gitAddChangeId.png[{half-width}]
 
 * Show view *Git Staging* (or go to perspective Git and select *Git Staging* tab)
 * Drag your file not committed from Unstaged Changes to Staged Changes
 * On Commit message 
-** Click on amend if you want to amend a commit already started
+** Click on **amend** if you want to amend a commit already started (using Gerrit vocabulary, adding a **patchset** on a **change**)
 add your message and click on *Add Change-Id* to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)
+
+image::git-amend_commit.png[{half-width}]
+
 * Click on :
 ** *Commit* If you want to do a local commit (changes will be visible only by you)
 ** or *Commit and push* If you want to do a commit on the shared repository
 
-image:git-amend_commit.png[]
+image::avoid-merge-conflict.png[{half-width}]
 
 === Rebase
 
-In order to get the last version of the git repository, or if one of your commit is in *Merge Conflict* on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team -> fetch from upstream, then team -> rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team -> rebase -> continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disapear.
+In order to get the last version of the git repository, or if one of your commit is in *Merge Conflict* on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team -> fetch from upstream, then team -> rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team -> rebase -> continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disappear.
+
+.Commitland
+image::turnoff-commitland.png[{half-width}]
 
 === Reset Mixed
 
 NOTE: git reset soft/mixed/hard explained : https://git-scm.com/docs/git-reset
 
-In team -> reset, you can find a usefull functionnality called Reset Mixed. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
-Reset Hard can be used if you want to cancel all your modifications. All modifications will be erased.
+In **team** -> **reset**, you can find a usefull functionnality called **Reset Mixed**. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
+
+**Reset Hard** can be used if you want to cancel all your modifications. All modifications will be erased.
 
 == Troubleshooting
 
@@ -271,7 +283,7 @@ It works like this :
 If A is the last commit on the git repository, you can do a first commit B.
 To make a second commit C, reset mixed on commit A, then commit. If you want to amend your commit B, reset mixed on A before doing it, and copy the description and change id for your commit on gerrit, to paste it like it is a new commit. You also need to select again the files that were in this commit.
 
-image:git-rebase.png[scaledwidth="100%"]
+image::git-rebase.png[{full-width}]
 
 === Pull from another developer
 
@@ -289,9 +301,9 @@ To download a change of another developper from gerrit to your local :
 ** The small change number is visible in gerrit page in the upper left area (clickable)
 * Click on *finish*
 
-WARNING: If you don't have the option *fetch from Gerrit* : Go to the *Git repositories* view, under your repo, in *Remotes*, right click on *origin* and select *Gerrit configuration...*. Check that everything is OK and click *Finish*. Now you should have the option.
+TIP: If you don't have the option *fetch from Gerrit* : Go to the *Git repositories* view, under your repo, in *Remotes*, right click on *origin* and select *Gerrit configuration...*. Check that everything is OK and click *Finish*. Now you should have the option.
 
-image:fetch_from_gerrit.png[scaledwidth="50%"]
+image::fetch_from_gerrit.png[{half-width}]
 
 To keep this branch up to date with the master :
 
@@ -302,6 +314,9 @@ To keep this branch up to date with the master :
 * Resolve the conflicts if any
 
 To switch back to your master, right click on your repo -> *Switch To* -> *master*.
+
+.Your code is ugly
+image::turnoff-your-code-is-ugly.png[{half-width}]
 
 === Missing Change-Id in commit message footer
 
@@ -339,25 +354,6 @@ If there are files in git repository not to be pushed, remove them in your next 
 * Right click on the file -> *Team* -> *Untrack*
 * The file should be moved to *Staged changes* (it can take a few seconds)
 * This will be taken into account in next *Commit and Push...*
-
-=== See SonarQube for an older build
-
-SonarQube does not have history available for browsing, you can only see the last build. So you have to retrigger the gerrit patch to see specific data associated to your change.
-
-You can do an empty **commit amend** from Eclipse. But you can also retrigger from Jenkins.
-
-* Go to Jenkins homepage
-* Navigate to the pipeline/job
-* If your build is still in the history
-** Open it
-** Select *Retrigger*
-* Else if your build has been deleted
-** Go to Jenkins homepage
-** Click on *Query and Trigger Gerrit Patches*
-** In *Query String*, put your change-id
-** Click *SEARCH*
-** Select the change 
-** Click *TRIGGER SELECTED*
 
 === Double remote : get latest commits from gitlab into gerrit
 

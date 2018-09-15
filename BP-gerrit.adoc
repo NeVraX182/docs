@@ -5,7 +5,7 @@ ifndef::imagesdir[:imagesdir: images]
 
 == Server configuration
 
-image:dilbert-collaboration.png[]
+image::dilbert-collaboration.png[{half-width}]
 
 Connect to Gerrit homepage.
 
@@ -47,6 +47,8 @@ Now you can delete tags from your projects, for ex :
 *** Click btn:[Add]
 *** Save Changes
 
+image::geek-and-poke-only-idiot.jpg[{half-width}]
+
 ==== Verified status
 
 * Click on *Projects* -> *List* -> btn:[All-Projects] -> section *General* -> *Edit Config*
@@ -75,6 +77,9 @@ By default, when projet submissions are not fast forward, final submitting a cha
 * Click on *Projects* -> *List* -> btn:[All-Projects] -> *General*
 * Under *Submit Type*, select *Rebase if Necessary*
 
+.Life without code review
+image::devrant-git-blame.jpg[{half-width}]
+
 === User preferences
 
 Click on  *YourName* -> *Settings* -> *Diff Preferences* and set *columns = 120*
@@ -101,6 +106,8 @@ Example : https://my-url.com/gerrit/my-project.git
 
 NOTE: If you don't have access to Gitweb interface ("Not Found"), ask your admin to do <<gitweb-access>>.
 
+image::geek-and-poke-dont-update.jpg[{half-width}]
+
 ==== Users groups creation
 
 For each project, create a reviewer list and a validator list.
@@ -123,9 +130,12 @@ For each project, create a reviewer list and a validator list.
 ** check btn:[Make group visible to all registered users.]
 ** Click *Save Group Options*
 
+.Repository without code review
+image::turnoff-what-your-code-looks-like.png[{half-width}]
+
 == Code review golden rules (using Gerrit)
 
-image:gerrit-process.png[]
+image::gerrit-process.png[{full-width}]
 
 .These are rules to be followed for a smooth overall development process :
 . The team has to know that you are taking responsability of the current development task.
@@ -149,7 +159,7 @@ image:gerrit-process.png[]
 .. Check that there is UT specifically testing the new/modified code.
 . When one or two +1 from the team have been given (depending on the size of the team), add the *validators* list of reviewers for a final +2 review followed by a submit to the master branch.
 
-image:git-messages.png[scaledwidth="50%"]
+image::git-messages.png[{half-width}]
 
 == Troobleshootings
 
@@ -161,5 +171,8 @@ If the btn:[Submit] button is replaced with btn:[Submit including parents], ther
 * [x] Change parent revision
 * leave the field blank
 * Click btn:[Rebase]
+
+.Peer review is better than peer refactoring
+image::turnoff-refactoring.png[{tier-width}]
 
 include::subdocs/_closure.adoc[]

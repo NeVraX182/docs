@@ -25,7 +25,7 @@ Business Vision : the desired or intended future state of a specific organizatio
 
 La mission de la SNSV évolue vers une centralisation des données de carrières françaises.
 
-image:sge-mission.png[width=696,height=412]
+image::sge-mission.png[]
 
 === Business Strategy
 
@@ -110,7 +110,7 @@ _A short statement of principles that outlines and guides future decisions._
 The Context Diagram is usually a high-level picture, illustrating the mail parts of the entreprise and its interaction with external entities in the environment.
 ====
 
-image:sge-context-diagram.png[width=697,height=655]
+image::sge-context-diagram.png[]
 
 == Conceptual Business
 
@@ -175,11 +175,11 @@ include::subdocs/_df-sequence.adoc[]
 
 ===== Cas d’utilisation
 
-image:image8.png[image,width=456,height=395]image:image9.png[image,width=159,height=351]
+image:image8.png[{tier-width}]image:image9.png[{tier-width}]
 
-image:image10.png[image,width=399,height=187]
+image::image10.png[{half-width}]
 
-image:image11.png[image,width=372,height=124]
+image::image11.png[{half-width}]
 
 ===== Services webMethods et Java
 
@@ -203,7 +203,7 @@ include::subdocs/_dm-tiers-sequence.adoc[]
 
 ===== Cas d’utilisation
 
-image:image13.png[image,width=463,height=320]
+image::image13.png[{half-width}]
 
 image:image14.png[image,width=458,height=549]image:image15.png[image,width=171,height=506]
 
@@ -213,7 +213,7 @@ image:image16.png[image,width=424,height=245]image:image17.png[image,width=203,h
 
 image:image20.png[image,width=516,height=509]image:image21.png[image,width=154,height=452]
 
-image:image18.png[image,width=459,height=252]
+image::image18.png[{half-width}]
 
 ===== Services connecteur
 
@@ -238,17 +238,17 @@ include::subdocs/_dm-services-ordo.adoc[]
 
 Diagramme de séquence:
 
-image:image22.png[width=449,height=148]
+image::image22.png[{half-width}]
 
 Cas d’utilisation:
 
-image:image23.png[image,width=271,height=397]
+image::image23.png[{half-width}]
 
 === Détail par nature d’échange utilisatrice
 
-image:archi-cas-utilisations-natures-1.png[]
+image::archi-cas-utilisations-natures-1.png[]
 
-image:archi-cas-utilisations-natures-2.png[]
+image::archi-cas-utilisations-natures-2.png[]
 
 === Potentielles évolutions SGE V3
 
@@ -286,7 +286,7 @@ The LISC collaboration contract documents the agreed interaction between LISC co
 
 Ci-dessous le format pivot (interne) couplé avec l’utilisation (en interface externe) des champs par phase et par nature, extrait du document *[2]*.
 
-image:archi-contrat-interface-global.png[image,width=501,height=945]
+image::archi-contrat-interface-global.png[image,width=501,height=945]
 
 === Integration View
 
@@ -308,7 +308,7 @@ The view can be constructed to validate and communicate which integration mechan
 
 Interactions et agrégation des objets BDD catalogue:
 
-image:image27.png[width=696,height=368]
+image::image27.png[width=696,height=368]
 
 <<<
 == Physical Information System
@@ -348,7 +348,7 @@ Les composants sont en accord avec les choix de la SNSV : WebMethods + JBoss + W
 + WM Integration Server |WM 9.7
 |=========================================================
 
-image:archi-fonc-to-phys.png[image,width=535,height=945]
+image::archi-fonc-to-phys.png[image,width=535,height=945]
 
 === PISC Interaction Model [architecture logicielle]
 
@@ -632,7 +632,7 @@ Le dimensionnement reste à affiner avec des tests de charge et une décompositi
 
 Basé sur les chiffres du document *[1]*, la volumétrie simplifiée est la suivante:
 
-image:sge-archi-volumetrie.png[]
+image::sge-archi-volumetrie.png[]
 
 .Informations RGCU :
 * DF / Alimentation: Si nous prenons le cas métier le plus volumineux en terme d'assuré (la DSN), nous aurions en moyenne par assuré 2 éléments de carrière. En prenant l'encapsulation de la Norme R, on peut dire qu'en moyenne par assuré il faut compter 1,5 à 2 ko max. _[Bastien P.]_
@@ -864,11 +864,11 @@ This model is constructed in the same way as in the logical architecture. The re
 
 Ci-dessous l’architecture physique noeud1 / noeud2 obtenue.
 
-image:sge-archi-physique.png[]
+image::sge-archi-physique.png[]
 
 ==== Focus médiation
 
-image:sge-archi-physique-mediation.png[]
+image::sge-archi-physique-mediation.png[]
 
 La fonctionnalité de médiation ESTER est assurée par une succession de 3 modules:
 
@@ -889,6 +889,6 @@ Ci-dessous l’architecture réseau retenue.
 * VM ESB / BPM / UM dans le même VLAN _[Mathieu C.]_
 * VM WLS & JBOSS dans VLAN distinct des IS _[Mathieu C.]_
 
-image:sge-archi-reseau.png[]
+image::sge-archi-reseau.png[]
 
-include::subdocs/_closure-fr.adoc[]
+include::subdocs/_closure-fr.adoc[]i

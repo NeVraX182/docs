@@ -3,6 +3,9 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
+.Cloud autoscaling
+image::turnoff-cloud-autoscaling.png[{half-width}]
+
 == Installation
 
 Create an account on Google Cloud.
@@ -145,3 +148,7 @@ Start the Gitlab installation, example :
 === Nexus3
 
 WARNING: TODO
+
+.Journey to Cloud
+image::turnoff-enterprise-vs-startup-journey-to-cloud.png[{full-width}]
+

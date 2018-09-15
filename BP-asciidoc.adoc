@@ -9,7 +9,7 @@ All documentations on the project, including this one, are written as part of De
 
 To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF. You can consider Visual Studio Code too, it has a nice plugin but with less features.
 
-image:AsciidocFX.png[]
+image::AsciidocFX.png[{full-width}]
 
 Download and install :
 
@@ -71,7 +71,7 @@ cg-asciidoctor-sample
 endif::notdef[]
 
 .File system tree
-image:tree-asciidoctor-maven-sample.png[image, pdfwidth=30%]
+image::tree-asciidoctor-maven-sample.png[{tier-width}]
 
 .AsciiDoctor maven plugin configuration
 [source,xml]

@@ -3,6 +3,9 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
+.Test coverage versus...
+image::turnoff-test-coverage.png[{full-width}]
+
 == Server configuration
 
 === Quality Gates
@@ -76,5 +79,29 @@ This has to be done only for a new Production Line
 ** _This means that a tech debt < 1% is rated A, a tech debt > 5% is rated E._
 
 * Hit *save technical debt*
+
+== Troubleshooting
+
+=== See SonarQube for an older build
+
+SonarQube does not have history available for browsing, you can only see the last build. So you have to retrigger the gerrit patch to see specific data associated to your change.
+
+You can do an empty **commit amend** from Eclipse. But you can also retrigger from Jenkins.
+
+* Go to Jenkins homepage
+* Navigate to the pipeline/job
+* If your build is still in the history
+** Open it
+** Select *Retrigger*
+* Else if your build has been deleted
+** Go to Jenkins homepage
+** Click on *Query and Trigger Gerrit Patches*
+** In *Query String*, put your change-id
+** Click *SEARCH*
+** Select the change 
+** Click *TRIGGER SELECTED*
+
+.Test Driven Development
+image::turnoff-tdd-vs-ftt.png[{half-width}]
 
 include::subdocs/_closure.adoc[]

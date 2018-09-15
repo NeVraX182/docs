@@ -51,9 +51,13 @@ Here is how to protect it :
 ** Allowed to merge = *Maintainers*
 ** Allowed to push = *No one*
 
+image::commitstrip-wrong-project.jpg[{half-width}]
+
 === Configure Eclipse
 
 Clone the repository as you would do for any Git repository, see link:BP-Eclipse.html[Eclipse Best Practices] for details.
+
+image::geek-and-poke-russian-roulette.jpg[{half-width}]
 
 === Merge Requests workflow
 
@@ -118,6 +122,8 @@ Now a pipeline should be launched in Gitlab interface.
 * [x] Remove source branch
 * Pull in Eclipse to be up to date
 
+image::check-in-comments.jpg[{half-width}]
+
 === Pipeline creation
 
 [source, yaml]
@@ -125,5 +131,8 @@ Now a pipeline should be launched in Gitlab interface.
 ----
 include::../../../.gitlab-ci.yml[]
 ----
+
+.Homeworking
+image::dilbert-homeworking.png[{half-width}]
 
 include::subdocs/_closure.adoc[]

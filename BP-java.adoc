@@ -4,6 +4,9 @@ include::subdocs/_init.adoc[]
 ifndef::imagesdir[:imagesdir: images]
 ifndef::root-project-dir[:root-project-dir: ../../../]
 
+.Jhamlet
+image::turnoff-jhamlet.png[{tier-width}]
+
 == Useful Java libraries
 
 === Mockito / PowerMockito
@@ -457,5 +460,10 @@ include::{root-project-dir}/cg-utils/src/main/java/cg/wm/utils/CgPackage.java[]
 ==== Single Implementation Interfaces Are Evil
 
 See https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/
+
+
+.Java life expectancy
+image::turnoff-big-numbers.png[{full-width}]
+
 
 include::subdocs/_closure.adoc[]

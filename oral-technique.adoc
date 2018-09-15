@@ -153,7 +153,7 @@ h|Point|Note
 
 Traversez un tableau de n lignes et m colonnes en biais et afficher le contenu des cases.
 
-image:oral-zig-zag.png[]
+image::oral-zig-zag.png[{half-width}]
 
 .Affichage pour cet exemple
  a00, a10, a01, a20, a11, a02, a30, a21, a12, a03, a31, a22, a13, a32, a23, a33
