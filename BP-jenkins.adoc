@@ -4,7 +4,7 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
-image::turnoff-before-devops-after-devops.png[{half-width}]
+image::geek-and-poke-almost-green.jpg[{tier-width}]
 
 == Server configuration
 
@@ -134,6 +134,8 @@ On Jenkins :
 * Restart jenkins with : https://bpmfactory.s2-eu.nvx.com/jenkins/safeRestart
 * The Gerrit trigger should be up and running
 
+image::geek-and-poke-push-now.jpg[{half-width}]
+
 === Administration
 
 [NOTE]
@@ -223,10 +225,9 @@ If you have a remote server where you deploy your artifacts for further developm
 
 === Pipelines creations
 
-.Deployment pipeline
-image::turnoff-deployment-pipeline.png[{half-width}]
-
 ==== The Review pipeline
+
+image::geek-and-poke-another-red.jpg[{tier-width}]
 
 This will be the review pipeline with steps from checkout to quality check. This pipeline is a "pipeline as code".
 
@@ -277,6 +278,8 @@ include::../../../Jenkinsfile-1-review[]
 
 ==== The Deploy pipeline
 
+image::turnoff-deployment-pipeline.png[{half-width}]
+
 This will be the main pipeline with everything from checkout to deployment. This pipeline is a “pipeline as code”.
 
 Go to Jenkins home page :
@@ -318,9 +321,7 @@ None.
 include::../../../Jenkinsfile-2-deploy-to-dev[]
 ----
 
-==== The Deploy Int pipeline
-
-WARNING: Describe this pipeline when stable
+image::geek-and-poke-continuous-deployment.jpg[{tier-width}]
 
 ==== The Release pipeline
 
@@ -371,6 +372,8 @@ include::../../../Jenkinsfile-4-release[]
 
 === Troobleshooting
 
+image::geek-and-poke-job-is-red.jpg[{half-width}]
+
 ==== Disk space usage > 90 %
 
 If the disk space usage is too high and your build fails a the start for this reason, you can purge some folders with the below actions.
@@ -386,5 +389,7 @@ If the disk space usage is too high and your build fails a the start for this re
 * If there are some ws-cleanup directory, you can delete them safely :
 
  rm -rf /home/jenkins/workspace/\*ws-cleanup*/ ???
+
+image::geek-and-poke-screenshot.jpg[{tier-width}]
 
 include::subdocs/_closure.adoc[]

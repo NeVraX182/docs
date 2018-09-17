@@ -4,7 +4,6 @@ include::subdocs/_init.adoc[]
 ifndef::imagesdir[:imagesdir: images]
 ifndef::root-project-dir[:root-project-dir: ../../../]
 
-.Jhamlet
 image::turnoff-jhamlet.png[{tier-width}]
 
 == Useful Java libraries
@@ -161,6 +160,8 @@ Since slf4j does not accept multiple boot jars, you may have to exclude log4j fr
 include::{root-project-dir}/cg-utils\src\test\resources\log4j2.xml[]
 ----
 
+image::geek-and-poke-logging-is-important.jpg[{half-width}]
+
 === Aspect4log : Logging functions starts/stops with inputs/outputs
 
 NOTE: See http://aspect4log.sourceforge.net
@@ -291,6 +292,8 @@ public static void topLevelJarFunction(IData pipeline) throws ServiceException {
 }
 ----
 
+image::geek-and-poke-please-dont-ask-me.jpg[{tier-width}]
+
 === JUnit
 
 ==== JUnit 4.9+ : Real time status and duration
@@ -364,9 +367,9 @@ Awaitility.await("Broker radio button should be visible").until(() -> mCEditor.g
 
 == Best practices
 
-=== Java
+image::geek-and-poke-copied-from-stackoverflow.jpg[{tier-width}]
 
-==== Java packages & classes naming
+=== Java packages & classes naming
 
 * Best package organization is by fonctionnality first, and then technically when many classes of the same type
 * Always put classes in subpackage of the project
@@ -382,7 +385,7 @@ http://www.javapractices.com/topic/TopicAction.do?Id=205
 http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/overview-tree.html
 https://commons.apache.org/proper/commons-lang/apidocs/overview-tree.html
 
-==== Java 7 try with closable objects
+=== Java 7 try with closable objects
 
 Before Java 7, you had to close() streams and other closable objects in a try/catch/finally. Now Java handles everything if you use the right pattern :
 
@@ -409,7 +412,7 @@ try (
 }
 ----
 
-==== Static Java Maps
+=== Static Java Maps
 
 When a *Map* is static (and then accessed by multiple threads), declare it Map and instantiate it *ConcurrentHashMap* :
 
@@ -428,7 +431,7 @@ Set<String>
 mySet = Collections.newSetFromMap(new ConcurrentHashMap<String,Boolean>());
 ----
 
-==== Init on demand
+=== Init on demand
 
 For objects used by static functions, try to initialize them only once and do it in thread safe mode.
 
@@ -448,7 +451,7 @@ public class Something {
 }
 ----
 
-==== Enums and Strings
+=== Enums and Strings
 
 [source,java]
 .Enum Class Example
@@ -456,8 +459,7 @@ public class Something {
 include::{root-project-dir}/cg-utils/src/main/java/cg/wm/utils/CgPackage.java[]
 ----
 
-
-==== Single Implementation Interfaces Are Evil
+=== Single Implementation Interfaces Are Evil
 
 See https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/
 

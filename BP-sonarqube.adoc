@@ -3,7 +3,6 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
-.Test coverage versus...
 image::turnoff-test-coverage.png[{full-width}]
 
 == Server configuration
@@ -65,13 +64,7 @@ This has to be done only if you want to define a custom set of rules
 ** Click on *Activate More*
 ** Go to *Rules*, search one and change its value
 
-
 === Technical Debt
-
-[NOTE]
-====
-This has to be done only for a new Production Line
-====
 
 * Select *Administration* -> *Configuration* -> *General Settings* -> *Technical Debt*
 * Set Maintainability rating grid = 0.01,0.02,0.03,0.05
@@ -79,6 +72,8 @@ This has to be done only for a new Production Line
 ** _This means that a tech debt < 1% is rated A, a tech debt > 5% is rated E._
 
 * Hit *save technical debt*
+
+image::geek-and-poke-parenting-geeks.jpg[{tier-width}]
 
 == Troubleshooting
 

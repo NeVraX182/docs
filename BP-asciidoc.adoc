@@ -138,4 +138,6 @@ To use in Jenkins Pipelines, see link:BP-jenkins.html[Jenkins Best Practices]
 
 To use in Gitlab Pipelines, see link:BP-gitlab.html[Gitlab Best Practices]
 
+image::geek-and-poke-lorem-ipsum.jpg[{half-width}]
+
 include::subdocs/_closure.adoc[]

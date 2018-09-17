@@ -456,16 +456,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#best-practices">2. Best practices</a>
 <ul class="sectlevel2">
-<li><a href="#java">2.1. Java</a>
-<ul class="sectlevel3">
-<li><a href="#java-packages-classes-naming">2.1.1. Java packages &amp; classes naming</a></li>
-<li><a href="#java-7-try-with-closable-objects">2.1.2. Java 7 try with closable objects</a></li>
-<li><a href="#static-java-maps">2.1.3. Static Java Maps</a></li>
-<li><a href="#init-on-demand">2.1.4. Init on demand</a></li>
-<li><a href="#enums-and-strings">2.1.5. Enums and Strings</a></li>
-<li><a href="#single-implementation-interfaces-are-evil">2.1.6. Single Implementation Interfaces Are Evil</a></li>
-</ul>
-</li>
+<li><a href="#java-packages-classes-naming">2.1. Java packages &amp; classes naming</a></li>
+<li><a href="#java-7-try-with-closable-objects">2.2. Java 7 try with closable objects</a></li>
+<li><a href="#static-java-maps">2.3. Static Java Maps</a></li>
+<li><a href="#init-on-demand">2.4. Init on demand</a></li>
+<li><a href="#enums-and-strings">2.5. Enums and Strings</a></li>
+<li><a href="#single-implementation-interfaces-are-evil">2.6. Single Implementation Interfaces Are Evil</a></li>
 </ul>
 </li>
 </ul>
@@ -483,7 +479,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <img src="./images/turnoff-jhamlet.png" alt="turnoff jhamlet" width="33%">
 </div>
-<div class="title">Figure 1. Jhamlet</div>
 </div>
 </div>
 </div>
@@ -801,6 +796,11 @@ public class OpenPojoTest {
 &lt;/Configuration&gt;</code></pre>
 </div>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-logging-is-important.jpg" alt="geek and poke logging is important" width="50%">
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="aspect4log-logging-functions-starts-stops-with-inputs-outputs"><a class="anchor" href="#aspect4log-logging-functions-starts-stops-with-inputs-outputs"></a>1.5. Aspect4log : Logging functions starts/stops with inputs/outputs</h3>
@@ -980,6 +980,11 @@ public static void topLevelJarFunction(IData pipeline) throws ServiceException {
 }</code></pre>
 </div>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-please-dont-ask-me.jpg" alt="geek and poke please dont ask me" width="33%">
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1135,10 +1140,13 @@ public RuleChain chain = RuleChain.outerRule(new LogTestName()).around(new Retry
 <div class="sect1">
 <h2 id="best-practices"><a class="anchor" href="#best-practices"></a>2. Best practices</h2>
 <div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-copied-from-stackoverflow.jpg" alt="geek and poke copied from stackoverflow" width="33%">
+</div>
+</div>
 <div class="sect2">
-<h3 id="java"><a class="anchor" href="#java"></a>2.1. Java</h3>
-<div class="sect3">
-<h4 id="java-packages-classes-naming"><a class="anchor" href="#java-packages-classes-naming"></a>2.1.1. Java packages &amp; classes naming</h4>
+<h3 id="java-packages-classes-naming"><a class="anchor" href="#java-packages-classes-naming"></a>2.1. Java packages &amp; classes naming</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1173,8 +1181,8 @@ public RuleChain chain = RuleChain.outerRule(new LogTestName()).around(new Retry
 <a href="https://commons.apache.org/proper/commons-lang/apidocs/overview-tree.html" class="bare">https://commons.apache.org/proper/commons-lang/apidocs/overview-tree.html</a></p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="java-7-try-with-closable-objects"><a class="anchor" href="#java-7-try-with-closable-objects"></a>2.1.2. Java 7 try with closable objects</h4>
+<div class="sect2">
+<h3 id="java-7-try-with-closable-objects"><a class="anchor" href="#java-7-try-with-closable-objects"></a>2.2. Java 7 try with closable objects</h3>
 <div class="paragraph">
 <p>Before Java 7, you had to close() streams and other closable objects in a try/catch/finally. Now Java handles everything if you use the right pattern :</p>
 </div>
@@ -1202,8 +1210,8 @@ public RuleChain chain = RuleChain.outerRule(new LogTestName()).around(new Retry
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="static-java-maps"><a class="anchor" href="#static-java-maps"></a>2.1.3. Static Java Maps</h4>
+<div class="sect2">
+<h3 id="static-java-maps"><a class="anchor" href="#static-java-maps"></a>2.3. Static Java Maps</h3>
 <div class="paragraph">
 <p>When a <strong>Map</strong> is static (and then accessed by multiple threads), declare it Map and instantiate it <strong>ConcurrentHashMap</strong> :</p>
 </div>
@@ -1224,8 +1232,8 @@ mySet = Collections.newSetFromMap(new ConcurrentHashMap&lt;String,Boolean&gt;())
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="init-on-demand"><a class="anchor" href="#init-on-demand"></a>2.1.4. Init on demand</h4>
+<div class="sect2">
+<h3 id="init-on-demand"><a class="anchor" href="#init-on-demand"></a>2.4. Init on demand</h3>
 <div class="paragraph">
 <p>For objects used by static functions, try to initialize them only once and do it in thread safe mode.</p>
 </div>
@@ -1246,8 +1254,8 @@ mySet = Collections.newSetFromMap(new ConcurrentHashMap&lt;String,Boolean&gt;())
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="enums-and-strings"><a class="anchor" href="#enums-and-strings"></a>2.1.5. Enums and Strings</h4>
+<div class="sect2">
+<h3 id="enums-and-strings"><a class="anchor" href="#enums-and-strings"></a>2.5. Enums and Strings</h3>
 <div class="listingblock">
 <div class="title">Enum Class Example</div>
 <div class="content">
@@ -1307,8 +1315,8 @@ public enum CgPackage {
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="single-implementation-interfaces-are-evil"><a class="anchor" href="#single-implementation-interfaces-are-evil"></a>2.1.6. Single Implementation Interfaces Are Evil</h4>
+<div class="sect2">
+<h3 id="single-implementation-interfaces-are-evil"><a class="anchor" href="#single-implementation-interfaces-are-evil"></a>2.6. Single Implementation Interfaces Are Evil</h3>
 <div class="paragraph">
 <p>See <a href="https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/" class="bare">https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/</a></p>
 </div>
@@ -1316,8 +1324,7 @@ public enum CgPackage {
 <div class="content">
 <img src="./images/turnoff-big-numbers.png" alt="turnoff big numbers" width="100%">
 </div>
-<div class="title">Figure 2. Java life expectancy</div>
-</div>
+<div class="title">Figure 1. Java life expectancy</div>
 </div>
 </div>
 </div>
@@ -1325,7 +1332,7 @@ public enum CgPackage {
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-15 17:31:34 UTC
+Last updated 2018-09-17 10:52:03 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

@@ -40,6 +40,8 @@ WARNING: TODO
 ** [x] Only allow merge requests to be merged if the pipeline succeeds 
 ** [ ] Only allow merge requests to be merged if all discussions are resolved
 
+image::geek-and-poke-it-was-me.jpg[{tier-width}]
+
 === Protect master branch
 
 Gitlab workflow is not as straightforward as Gerrit's (see below). In Eclipse, it's too easy to push to master instead of our current Merge Request's branch.
@@ -122,7 +124,7 @@ Now a pipeline should be launched in Gitlab interface.
 * [x] Remove source branch
 * Pull in Eclipse to be up to date
 
-image::check-in-comments.jpg[{half-width}]
+image::geek-and-poke-avoid-merge-conflict.jpg[{tier-width}]
 
 === Pipeline creation
 
@@ -132,7 +134,6 @@ image::check-in-comments.jpg[{half-width}]
 include::../../../.gitlab-ci.yml[]
 ----
 
-.Homeworking
 image::dilbert-homeworking.png[{half-width}]
 
 include::subdocs/_closure.adoc[]

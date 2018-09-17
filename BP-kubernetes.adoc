@@ -3,7 +3,6 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
-.Cloud autoscaling
 image::turnoff-cloud-autoscaling.png[{half-width}]
 
 == Installation
@@ -103,6 +102,8 @@ plugins:
 ** SonarQube :: Plugins :: SCM :: Git (update)
 ====
 
+image::turnoff-before-devops-after-devops.png[{half-width}]
+
 === Jenkins
 
 [source, bash]
@@ -149,6 +150,5 @@ Start the Gitlab installation, example :
 
 WARNING: TODO
 
-.Journey to Cloud
 image::turnoff-enterprise-vs-startup-journey-to-cloud.png[{full-width}]
 

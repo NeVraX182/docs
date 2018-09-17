@@ -3,7 +3,6 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
-.Morning routine
 image::turnoff-my-morning-routine.png[{half-width}]
 
 == Installation
@@ -138,9 +137,9 @@ Go to Run/Debug -> Console.
 * [ ] Show when program writes to standard out
 * [ ] Show when program writes to standard error
 
-== Clone a Git repository
-
 image::this-is-git.png[{tier-width}]
+
+== Clone a Git repository
 
 NOTE: To generate your password in Gerrit, right click on your username -> *Settings* -> *HTTP password* -> *Generate Password*
 
@@ -255,13 +254,10 @@ image::git-amend_commit.png[{half-width}]
 ** *Commit* If you want to do a local commit (changes will be visible only by you)
 ** or *Commit and push* If you want to do a commit on the shared repository
 
-image::avoid-merge-conflict.png[{half-width}]
-
 === Rebase
 
 In order to get the last version of the git repository, or if one of your commit is in *Merge Conflict* on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team -> fetch from upstream, then team -> rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team -> rebase -> continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disappear.
 
-.Commitland
 image::turnoff-commitland.png[{half-width}]
 
 === Reset Mixed
@@ -315,7 +311,6 @@ To keep this branch up to date with the master :
 
 To switch back to your master, right click on your repo -> *Switch To* -> *master*.
 
-.Your code is ugly
 image::turnoff-your-code-is-ugly.png[{half-width}]
 
 === Missing Change-Id in commit message footer

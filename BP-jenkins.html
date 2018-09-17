@@ -465,8 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#pipeline-2">Pipeline</a></li>
 </ul>
 </li>
-<li><a href="#the-deploy-int-pipeline">1.8.3. The Deploy Int pipeline</a></li>
-<li><a href="#the-release-pipeline">1.8.4. The Release pipeline</a>
+<li><a href="#the-release-pipeline">1.8.3. The Release pipeline</a>
 <ul class="sectlevel4">
 <li><a href="#general-3">General</a></li>
 <li><a href="#build-triggers-3">Build Triggers</a></li>
@@ -496,7 +495,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="./images/turnoff-before-devops-after-devops.png" alt="turnoff before devops after devops" width="50%">
+<img src="./images/geek-and-poke-almost-green.jpg" alt="geek and poke almost green" width="33%">
 </div>
 </div>
 </div>
@@ -927,6 +926,11 @@ more /root/.ssh/id_rsa.pub</pre>
 </li>
 </ul>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-push-now.jpg" alt="geek and poke push now" width="50%">
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="administration"><a class="anchor" href="#administration"></a>1.4. Administration</h3>
@@ -1162,14 +1166,13 @@ println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))</pre>
 </div>
 <div class="sect2">
 <h3 id="pipelines-creations"><a class="anchor" href="#pipelines-creations"></a>1.8. Pipelines creations</h3>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="./images/turnoff-deployment-pipeline.png" alt="turnoff deployment pipeline" width="50%">
-</div>
-<div class="title">Figure 1. Deployment pipeline</div>
-</div>
 <div class="sect3">
 <h4 id="the-review-pipeline"><a class="anchor" href="#the-review-pipeline"></a>1.8.1. The Review pipeline</h4>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-another-red.jpg" alt="geek and poke another red" width="33%">
+</div>
+</div>
 <div class="paragraph">
 <p>This will be the review pipeline with steps from checkout to quality check. This pipeline is a "pipeline as code".</p>
 </div>
@@ -1413,6 +1416,11 @@ def version(text) {
 </div>
 <div class="sect3">
 <h4 id="the-deploy-pipeline"><a class="anchor" href="#the-deploy-pipeline"></a>1.8.2. The Deploy pipeline</h4>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/turnoff-deployment-pipeline.png" alt="turnoff deployment pipeline" width="50%">
+</div>
+</div>
 <div class="paragraph">
 <p>This will be the main pipeline with everything from checkout to deployment. This pipeline is a “pipeline as code”.</p>
 </div>
@@ -1650,25 +1658,15 @@ def version(text) {
 }</code></pre>
 </div>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-continuous-deployment.jpg" alt="geek and poke continuous deployment" width="33%">
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="the-deploy-int-pipeline"><a class="anchor" href="#the-deploy-int-pipeline"></a>1.8.3. The Deploy Int pipeline</h4>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Describe this pipeline when stable
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="the-release-pipeline"><a class="anchor" href="#the-release-pipeline"></a>1.8.4. The Release pipeline</h4>
+<h4 id="the-release-pipeline"><a class="anchor" href="#the-release-pipeline"></a>1.8.3. The Release pipeline</h4>
 <div class="paragraph">
 <p>This is the release pipeline launched manually at will when an external release is needed. This pipeline is a "pipeline as code".</p>
 </div>
@@ -1876,6 +1874,11 @@ def version(text) {
 </div>
 <div class="sect2">
 <h3 id="troobleshooting"><a class="anchor" href="#troobleshooting"></a>1.9. Troobleshooting</h3>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-job-is-red.jpg" alt="geek and poke job is red" width="50%">
+</div>
+</div>
 <div class="sect3">
 <h4 id="disk-space-usage-90"><a class="anchor" href="#disk-space-usage-90"></a>1.9.1. Disk space usage &gt; 90 %</h4>
 <div class="paragraph">
@@ -1911,6 +1914,11 @@ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print</pre>
 </li>
 </ul>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-screenshot.jpg" alt="geek and poke screenshot" width="33%">
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1918,7 +1926,7 @@ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-15 17:31:34 UTC
+Last updated 2018-09-17 10:52:03 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

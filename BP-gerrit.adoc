@@ -106,7 +106,7 @@ Example : https://my-url.com/gerrit/my-project.git
 
 NOTE: If you don't have access to Gitweb interface ("Not Found"), ask your admin to do <<gitweb-access>>.
 
-image::geek-and-poke-dont-update.jpg[{half-width}]
+image::geek-and-poke-dont-update.jpg[{tier-width}]
 
 ==== Users groups creation
 
@@ -131,7 +131,7 @@ For each project, create a reviewer list and a validator list.
 ** Click *Save Group Options*
 
 .Repository without code review
-image::turnoff-what-your-code-looks-like.png[{half-width}]
+image::turnoff-what-your-code-looks-like.png[{tier-width}]
 
 == Code review golden rules (using Gerrit)
 
@@ -159,7 +159,7 @@ image::gerrit-process.png[{full-width}]
 .. Check that there is UT specifically testing the new/modified code.
 . When one or two +1 from the team have been given (depending on the size of the team), add the *validators* list of reviewers for a final +2 review followed by a submit to the master branch.
 
-image::git-messages.png[{half-width}]
+image::git-messages.png[{tier-width}]
 
 == Troobleshootings
 
@@ -172,7 +172,7 @@ If the btn:[Submit] button is replaced with btn:[Submit including parents], ther
 * leave the field blank
 * Click btn:[Rebase]
 
-.Peer review is better than peer refactoring
+.Peer review is better for ego than peer refactoring
 image::turnoff-refactoring.png[{tier-width}]
 
 include::subdocs/_closure.adoc[]
