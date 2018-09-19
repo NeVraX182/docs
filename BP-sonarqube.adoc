@@ -3,6 +3,10 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
+image::dge-sonarqube.png[{full-width}]
+
+SonarQube helps you calculate and monitor in near real time your code quality for most development languages.
+
 image::turnoff-test-coverage.png[{full-width}]
 
 == Server configuration
@@ -95,6 +99,16 @@ You can do an empty **commit amend** from Eclipse. But you can also retrigger fr
 ** Click *SEARCH*
 ** Select the change 
 ** Click *TRIGGER SELECTED*
+
+=== Make sure I've got all the relevant new rules in my profile
+
+Each time a language plugin update is released, new rules are added, but they won't appear automatically in your profile unless you're using a built-in profile such as Sonar way.
+
+If you're not using a built-in profile, you can compare your profile to the built-in profile to see what new on-by-default rules you're missing.
+
+Another option is to go to the Rules space, and use the Available Since search facet to see what rules have been added to the platform since the day you upgraded the relevant plugin.
+
+And finally, the profile interface itself will help you be aware of rules added in a new plugin version in the Latest New Rules section on the right of the interface.
 
 .Test Driven Development
 image::turnoff-tdd-vs-ftt.png[{half-width}]

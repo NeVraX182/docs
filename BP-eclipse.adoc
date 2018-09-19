@@ -7,7 +7,7 @@ image::turnoff-my-morning-routine.png[{half-width}]
 
 == Installation
 
-*  Install the latest Eclipse JEE. This documentation is not guaranteed to work below Neon version.
+* Install the latest Eclipse JEE. This documentation is not guaranteed to work below Neon version.
 
 * Install SonarLint plugin
 ** in order to connect to its local SonarQube server and be warned of violations in Eclipse, in real time
@@ -17,72 +17,28 @@ image::turnoff-my-morning-routine.png[{half-width}]
 
 * Install Git if you don't already have it on your computer.
 
-<<<
-== Configuration
+== Plugins
 
-Go to *Window* -> *preferences*
+To install plugins, go to btn:[Help] -> btn:[Eclipse Marketplace...] -> search for your plugin and click on btn:[Finish].
 
-=== Formatter
-
-* Click on *formatter*
-* Import this file
-
-    src/docs/CG.Eclipse.Preferences.Java.CodeStyle.Formatter.xml
-
-=== Members Sort Order
-
-* *Java* -> *Appearance* -> *Members Sort Order*
-* Organize as follow
-** Static Fields
-** Fields
-** Types
-** Static Initializers
-** Initializers
-** Constructors
-** Static Methods
-** Methods
-
-=== Save actions
-
-* *Java* -> *Editor* -> *Save actions*
-* Check as follow :
-** [x] Perform the selected actions on save
-*** [x] Format source code
-**** [ ] Format all lines
-**** [x] Format edited lines
-*** [x] Organize imports
-*** [x] Additional actions
-**** Add missing @Override annotations
-**** Add missing @Override annotations to implementations of interface methods
-**** Add missing @Deprecated annotations
-**** Remove unnecessary casts
-**** Sort members excluding fields, enum constants, and initializers
-**** Remove redundant type arguments
-
-=== Encoding
-
-* Go to *Window* -> *Preferences* -> *General* -> *Workspace*
-* At the bottom, choose 
-** Other : UTF-8
-** Other : Unix
-
-=== Unnecessary Code Detector plugin
+=== Unnecessary Code Detector plugin (Java)
 
 * Install Unnecessary Code Detector plugin to see unused declarations or wrongs declarations (public when it could be private for example), with this configuration :
-** Window > preferences > UCDetector
+** btn:[Window] -> btn:[preferences] -> btn:[UCDetector]
 ** ActiveMode = MyMode
-** Ignore > [ ] Bean methods
-** Detect > File name pattern to search = 
+** Under btn:[Ignore], uncheck :
+*** [ ] Bean methods
+** btn:[Detect] -> File name pattern to search = 
 
-  *.xml,MANIFEST.MF,*.tld,*.properties,*.jsp,*.jspf
+  btn:*.xml,MANIFEST.MF,*.tld,*.properties,*.jsp,*.jspf
 
-=== JAutoDoc plugin
+=== JAutoDoc plugin (Java)
 
 * Install JautoDoc plugin to be able to :
-** add Javadoc with right click -> *Add Javadoc* on a class or a package
+** add Javadoc with right click -> btn:[Add Javadoc] on a class or a package
 ** add Javadoc on a function by selecting its name and pressing kbd:[Ctrl + Alt + j]
 
-=== AutoDeriv plugin
+=== AutoDeriv plugin (Maven)
 
 The target folder should always be marked as derived, not to appear in searches. Install the AutoDeriv plugin for this purpose, and configure it by creating the file below.
 
@@ -103,23 +59,84 @@ target
 !target/generated-sources
 
 # all files with a '.dep' extension are generated
-#*.dep
+#].dep
 
 # this specific file is also generated
 #src/include/version.h
 ------
 
+=== SonarLint
+
+Install SonarLint plugin and connect it to your local SonarQube server instance and be warned of violations in Eclipse, in real time.
+
+=== Jenkins Editor
+
+If you edit Jenkinsfiles, install Jenkins Editor plugin for coloration and auto-completion.
+
+=== Darkest Dark Theme
+
+Install Darkest Dark Theme for a nice black skin to Eclipse.
+
+<<<
+== Configuration
+
+Go to btn:[Window] -> btn:[preferences]
+
+=== Formatter
+
+* Click on btn:[formatter]
+* Import this file
+
+ src/docs/CG.Eclipse.Preferences.Java.CodeStyle.Formatter.xml
+
+=== Members Sort Order
+
+* btn:[Java] -> btn:[Appearance] -> btn:[Members Sort Order]
+* Organize as follow
+** Static Fields
+** Fields
+** Types
+** Static Initializers
+** Initializers
+** Constructors
+** Static Methods
+** Methods
+
+=== Save actions
+
+* btn:[Java] -> btn:[Editor] -> btn:[Save actions]
+* Check as follow :
+** [x] Perform the selected actions on save
+*** [x] Format source code
+**** [ ] Format all lines
+**** [x] Format edited lines
+*** [x] Organize imports
+*** [x] Additional actions
+**** Add missing @Override annotations
+**** Add missing @Override annotations to implementations of interface methods
+**** Add missing @Deprecated annotations
+**** Remove unnecessary casts
+**** Sort members excluding fields, enum constants, and initializers
+**** Remove redundant type arguments
+
+=== Encoding
+
+* Go to btn:[Window] -> btn:[Preferences] -> btn:[General] -> btn:[Workspace]
+* At the bottom, choose 
+** Other : UTF-8
+** Other : Unix
+
 === Commit timeout
 
-* Navigate to *Team* -> *Git*
-* set *Remote connection timeout (seconds)* = 120
+* Navigate to btn:[Team] -> btn:[Git]
+* set btn:[Remote connection timeout (seconds)] = 120
 
 === XML Line size
 
 The Eclipse XML Formatter split lines, and this is an issue for wagon plugin in pom.xml. 
 
-* Navigate to *XML* -> *Editor*
-* Set *Line width* = 200
+* Navigate to btn:[XML] -> btn:[Editor]
+* Set btn:[Line width] = 200
 
 === Disable stealing of focus by Console in Eclipse
 
@@ -141,11 +158,11 @@ image::this-is-git.png[{tier-width}]
 
 == Clone a Git repository
 
-NOTE: To generate your password in Gerrit, right click on your username -> *Settings* -> *HTTP password* -> *Generate Password*
+NOTE: To generate your password in Gerrit, right click on your username -> btn:[Settings] -> btn:[HTTP password] -> btn:[Generate Password]
 
 .On Eclipse
-- Open *Git perspective*
-- Click on *Clone a Git repository*
+- Open btn:[Git perspective]
+- Click on btn:[Clone a Git repository]
 - Fill the required data :
 
 image::git-clone1.png[{half-width}]
@@ -167,7 +184,7 @@ have this structure:
 
 image::git-project.png[{half-width}]
 
-To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configuration*, on *User setting* click on *Open* and add the following configuration :
+To configure Git, go to btn:[Window] -> btn:[Preferences] -> btn:[Team] -> btn:[Git] -> btn:[Configuration], on btn:[User setting] click on btn:[Open] and add the following configuration :
 
 .user .gitconfig settings
 [source, ini]
@@ -183,11 +200,11 @@ To configure Git, go to *Window* -> *Preferences* -> *Team* -> *Git* -> *Configu
 [NOTE]
 ====
 * These configurations are inherited to your repositories. You might have the [user] here too, if you have the same login/password for all your repositories
-* The *autosetuprebase = always* will allow you to do a fetch and a rebase by simply click on *pull*.
-* The *auStash = true* will allow you to *pull* while having some currently unstaged files (by automatically doing a *git stash* before and a *git stash apply* after).
+* The btn:[autosetuprebase = always] will allow you to do a fetch and a rebase by simply click on btn:[pull].
+* The btn:[auStash = true] will allow you to btn:[pull] while having some currently unstaged files (by automatically doing a btn:[git stash] before and a btn:[git stash apply] after).
 ====
 
-On *Repository Settings* click on *Open* and enter the following configuration :
+On btn:[Repository Settings] click on btn:[Open] and enter the following configuration :
 
 .repository config settings
 [source, ini]
@@ -197,7 +214,7 @@ On *Repository Settings* click on *Open* and enter the following configuration :
     	logallrefupdates = true
     [remote "origin"]
     	url = https://host.com/gerrit/p/cg-wm.git
-    	fetch = +refs/heads/*:refs/remotes/origin/*
+    	fetch = +refs/heads/*:refs/remotes/origin/]
     	push = HEAD:refs/for/master
     [branch "master"]
     	merge = refs/heads/master
@@ -211,7 +228,7 @@ TIP: After these Git configuration, you may need to restart Eclipse.
 
 == Import a project in Project Explorer
 
-Once the repository is cloned, import the project in your Java JEE view. (*File* -> *Import* -> type *maven* -> *Existing Maven Project*).
+Once the repository is cloned, import the project in your Java JEE view. (btn:[File] -> btn:[Import] -> type btn:[maven] -> btn:[Existing Maven Project]).
 
 <<<
 == Git common usages
@@ -225,10 +242,8 @@ image::turnoff-ai-meets-git.png[{half-width}]
 image::geek-and-poke-no-error-update.jpg[{half-width}]
 
 * To update your git repository, right-click on parent project and select
-** "Pull" (If your  git  is  configured  to  do  a  fetch  and  rebase  on  "Pull")
-** or "Fetch from upstream", and then "Rebase"
-
-image::git-fetch_pull.png[{half-width}]
+** `Pull` (If your  git  is  configured  to  do  a  fetch  and  rebase  on  `Pull`)
+** or `Fetch from upstream`, and then `Rebase`
 
 === Commit / push
 
@@ -242,21 +257,21 @@ In order to commit a change follow these steps:
 //TODO : make a smaller capture
 image::gitAddChangeId.png[{half-width}]
 
-* Show view *Git Staging* (or go to perspective Git and select *Git Staging* tab)
+* Show view btn:[Git Staging] (or go to perspective Git and select btn:[Git Staging] tab)
 * Drag your file not committed from Unstaged Changes to Staged Changes
 * On Commit message 
-** Click on **amend** if you want to amend a commit already started (using Gerrit vocabulary, adding a **patchset** on a **change**)
-add your message and click on *Add Change-Id* to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)
+* Click on btn:[amend] if you want to amend a commit already started (using Gerrit vocabulary, adding a *patchset* on a *change*)
+add your message and click on btn:[Add Change-Id] to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)
 
 image::git-amend_commit.png[{half-width}]
 
 * Click on :
-** *Commit* If you want to do a local commit (changes will be visible only by you)
-** or *Commit and push* If you want to do a commit on the shared repository
+** btn:[Commit] If you want to do a local commit (changes will be visible only by you)
+** or btn:[Commit and push] If you want to do a commit on the shared repository
 
-=== Rebase
+=== Pull/Rebase
 
-In order to get the last version of the git repository, or if one of your commit is in *Merge Conflict* on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team -> fetch from upstream, then team -> rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team -> rebase -> continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disappear.
+In order to get the last version of the git repository, or if one of your commit is in *Merge Conflict* on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on btn:[Team] -> btn:[fetch from upstream], then btn:[Team] -> btn:[Rebase...]. If your git is configured to do a fetch and rebase on pull, just select btn:[Pull]. If there is some conflicts during the rebase, correct them, stage your file (right click -> btn:[Add to Index] then btn:[Team] -> btn:[Rebase...] -> btn:[Continue rebase]. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the *Merge Conflict* on gerrit will disappear.
 
 image::turnoff-commitland.png[{half-width}]
 
@@ -264,56 +279,71 @@ image::turnoff-commitland.png[{half-width}]
 
 NOTE: git reset soft/mixed/hard explained : https://git-scm.com/docs/git-reset
 
-In **team** -> **reset**, you can find a usefull functionnality called **Reset Mixed**. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
+* In btn:[Team] -> btn:[Reset...], you can find a usefull functionnality called btn:[Reset Mixed]. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.
 
-**Reset Hard** can be used if you want to cancel all your modifications. All modifications will be erased.
+* btn:[Reset Hard] can be used if you want to cancel all your modifications. All modifications will be erased.
 
 == Troubleshooting
 
-=== Two commits at the same time
+=== Two changes at the same time (Gerrit)
 
-If you have a commit on gerrit, and if you want to change a file that is already in this commit, you should amend this commit instead of making a second commit.
+You can have two or more commits at the same time if they are not dependants.
 
-You can have two or more commits at the same time if they are not dependants. To do so, you have to do a reset mixed on the state before your first commit in order to commit the second one. 
+==== Preferred solution : local branch
+
+Eclipse / Gerrit blending makes it easy to handle multiple parallel local branches with only one remote branch.
+
+* Make sure you have commited (and eventually pushed) all file modifications for the first commit. Change A is then on branch *Local/master*.
+* Make sure masters are up to date with a global btn:[Pull].
+* Create a local branch for change B.
+** Righ click on *origin/master* -> btn:[Create Branch...]
+** Choose a name for your local branch related to change B.
+* Do whatever files modifications needed for change B.
+* The btn:[Commit and Push...] will handle the push to *origin/master* even if you are on a local branch.
+* Switch when you want between the local branch for changes A and B with right click on the repository -> btn:[Switch To...].
+
+==== Deprecated solution : reset Mixed between push
+
+You have to do a reset mixed on the state before your first commit in order to commit the second one. 
 It works like this :
 If A is the last commit on the git repository, you can do a first commit B.
 To make a second commit C, reset mixed on commit A, then commit. If you want to amend your commit B, reset mixed on A before doing it, and copy the description and change id for your commit on gerrit, to paste it like it is a new commit. You also need to select again the files that were in this commit.
 
-image::git-rebase.png[{full-width}]
-
-=== Pull from another developer
+=== Pull from another developer (Gerrit)
 
 To download a change of another developper from gerrit to your local :
 
-* go to *Git Repositories* on your Eclipse
+* go to btn:[Git Repositories] on your Eclipse
 * right click on your repository
-* select *fetch from Gerrit*
-* on **Change** press kbd:[Ctrl + Space]
+* select btn:[Fetch from Gerrit...]
+* on btn:[Change] press kbd:[Ctrl + Space]
 * select your change
 ** To change is of the form :
 
  <(small) change number> - <patchset number>
 
 ** The small change number is visible in gerrit page in the upper left area (clickable)
-* Click on *finish*
+* Action to perform after fetch
+** [x] Create a local branch
+* Click on btn:[finish]
 
-TIP: If you don't have the option *fetch from Gerrit* : Go to the *Git repositories* view, under your repo, in *Remotes*, right click on *origin* and select *Gerrit configuration...*. Check that everything is OK and click *Finish*. Now you should have the option.
+TIP: If you don't have the option btn:[Fetch from Gerrit...] : Go to the btn:[Git repositories] view, under your repo, in btn:[Remotes], right click on btn:[origin] and select btn:[Gerrit configuration...]. Check that everything is OK and click btn:[Finish]. Now you should have the option.
 
 image::fetch_from_gerrit.png[{half-width}]
 
 To keep this branch up to date with the master :
 
-* Go to *Git Repositories*
-* Right click on your repository > *Pull*
-* Navigate in you repository -> *Branches* -> *Local*
-* Rigth click on the *master* branch -> *Rebase On*
+* Go to btn:[Git Repositories]
+* Right click on your repository > btn:[Pull]
+* Navigate in you repository -> btn:[Branches] -> btn:[Local]
+* Rigth click on the btn:[master] branch -> btn:[Rebase On]
 * Resolve the conflicts if any
 
-To switch back to your master, right click on your repo -> *Switch To* -> *master*.
+To switch back to your master, right click on your repo -> btn:[Switch To] -> btn:[master].
 
 image::turnoff-your-code-is-ugly.png[{half-width}]
 
-=== Missing Change-Id in commit message footer
+=== Missing Change-Id in commit message footer (Gerrit)
 
 On your first push, you might get this error from Gerrit
 
@@ -326,7 +356,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
  And then amend the commit:
   git commit --amend 
 
-Doing a *reset mixed* on the initial commit would solve the problem.
+Doing a btn:[reset mixed] on the initial commit would solve the problem.
 
 If not, here is another solution :
 
@@ -345,22 +375,22 @@ Last solution, requiring Cygwin :
 If there are files in git repository not to be pushed, remove them in your next push :
 
 * Update the .gitignore file, if not already done
-* Go to *Git Staging* view
-* Right click on the file -> *Team* -> *Untrack*
-* The file should be moved to *Staged changes* (it can take a few seconds)
-* This will be taken into account in next *Commit and Push...*
+* Go to btn:[Git Staging] view
+* Right click on the file -> btn:[Team] -> btn:[Untrack]
+* The file should be moved to btn:[Staged changes] (it can take a few seconds)
+* This will be taken into account in next btn:[Commit and Push...]
 
-=== Double remote : get latest commits from gitlab into gerrit
+=== Double remote : get latest commits from Gitlab into Gerrit
 
 In the case of a gitlab to gerrit migration, you may have a common ancestor but commits on Gerrit and commits on Gitlab. It's easy if you can replace the whole gerrit master, but here is the way to go for a clean merge :
 
 * have your gerrit clone in Eclipse
-* Navigate to *Git* view
-* Right click on your *Remotes* where there is already a Gerrit *origin*
-* Choos* *Create Remote...*
-* Create your gitlab remote while configuring fetch with only the *master* branch. Name it *gitlab*
-* right click on the new remote and choose *fetch*
-* right click on your repository and select *pull*
+* Navigate to btn:[Git] view
+* Right click on your btn:[Remotes] where there is already a Gerrit btn:[origin]
+* Choos] btn:[Create Remote...]
+* Create your gitlab remote while configuring fetch with only the btn:[master] branch. Name it btn:[gitlab]
+* right click on the new remote and choose btn:[fetch]
+* right click on your repository and select btn:[pull]
 * Finish by this in command line :
 
 [source, bash]
@@ -368,6 +398,6 @@ In the case of a gitlab to gerrit migration, you may have a common ancestor but 
 
 === Get rid of ORIG_HEAD / FETCH_HEAD in Git history
 
-ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in *Preferences* -> *Team* -> *Git* -> *History* by deselecting *Additional Refs*
+ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in btn:[Preferences] -> btn:[Team] -> btn:[Git] -> btn:[History] by deselecting *Additional Refs*
 
 include::subdocs/_closure.adoc[]

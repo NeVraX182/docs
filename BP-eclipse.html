@@ -434,38 +434,50 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#installation">1. Installation</a></li>
-<li><a href="#configuration">2. Configuration</a>
+<li><a href="#plugins">2. Plugins</a>
 <ul class="sectlevel2">
-<li><a href="#formatter">2.1. Formatter</a></li>
-<li><a href="#members-sort-order">2.2. Members Sort Order</a></li>
-<li><a href="#save-actions">2.3. Save actions</a></li>
-<li><a href="#encoding">2.4. Encoding</a></li>
-<li><a href="#unnecessary-code-detector-plugin">2.5. Unnecessary Code Detector plugin</a></li>
-<li><a href="#jautodoc-plugin">2.6. JAutoDoc plugin</a></li>
-<li><a href="#autoderiv-plugin">2.7. AutoDeriv plugin</a></li>
-<li><a href="#commit-timeout">2.8. Commit timeout</a></li>
-<li><a href="#xml-line-size">2.9. XML Line size</a></li>
-<li><a href="#disable-stealing-of-focus-by-console-in-eclipse">2.10. Disable stealing of focus by Console in Eclipse</a></li>
+<li><a href="#unnecessary-code-detector-plugin-java">2.1. Unnecessary Code Detector plugin (Java)</a></li>
+<li><a href="#jautodoc-plugin-java">2.2. JAutoDoc plugin (Java)</a></li>
+<li><a href="#autoderiv-plugin-maven">2.3. AutoDeriv plugin (Maven)</a></li>
+<li><a href="#sonarlint">2.4. SonarLint</a></li>
+<li><a href="#jenkins-editor">2.5. Jenkins Editor</a></li>
+<li><a href="#darkest-dark-theme">2.6. Darkest Dark Theme</a></li>
 </ul>
 </li>
-<li><a href="#clone-a-git-repository">3. Clone a Git repository</a></li>
-<li><a href="#import-a-project-in-project-explorer">4. Import a project in Project Explorer</a></li>
-<li><a href="#git-common-usages">5. Git common usages</a>
+<li><a href="#configuration">3. Configuration</a>
 <ul class="sectlevel2">
-<li><a href="#keep-your-local-repository-up-to-date">5.1. Keep your local repository up to date</a></li>
-<li><a href="#commit-push">5.2. Commit / push</a></li>
-<li><a href="#rebase">5.3. Rebase</a></li>
-<li><a href="#reset-mixed">5.4. Reset Mixed</a></li>
+<li><a href="#formatter">3.1. Formatter</a></li>
+<li><a href="#members-sort-order">3.2. Members Sort Order</a></li>
+<li><a href="#save-actions">3.3. Save actions</a></li>
+<li><a href="#encoding">3.4. Encoding</a></li>
+<li><a href="#commit-timeout">3.5. Commit timeout</a></li>
+<li><a href="#xml-line-size">3.6. XML Line size</a></li>
+<li><a href="#disable-stealing-of-focus-by-console-in-eclipse">3.7. Disable stealing of focus by Console in Eclipse</a></li>
 </ul>
 </li>
-<li><a href="#troubleshooting">6. Troubleshooting</a>
+<li><a href="#clone-a-git-repository">4. Clone a Git repository</a></li>
+<li><a href="#import-a-project-in-project-explorer">5. Import a project in Project Explorer</a></li>
+<li><a href="#git-common-usages">6. Git common usages</a>
 <ul class="sectlevel2">
-<li><a href="#two-commits-at-the-same-time">6.1. Two commits at the same time</a></li>
-<li><a href="#pull-from-another-developer">6.2. Pull from another developer</a></li>
-<li><a href="#missing-change-id-in-commit-message-footer">6.3. Missing Change-Id in commit message footer</a></li>
-<li><a href="#classpath-and-other-not-to-push-files">6.4. .classpath and other not-to-push files</a></li>
-<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">6.5. Double remote : get latest commits from gitlab into gerrit</a></li>
-<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">6.6. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
+<li><a href="#keep-your-local-repository-up-to-date">6.1. Keep your local repository up to date</a></li>
+<li><a href="#commit-push">6.2. Commit / push</a></li>
+<li><a href="#pull-rebase">6.3. Pull/Rebase</a></li>
+<li><a href="#reset-mixed">6.4. Reset Mixed</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting">7. Troubleshooting</a>
+<ul class="sectlevel2">
+<li><a href="#two-changes-at-the-same-time-gerrit">7.1. Two changes at the same time (Gerrit)</a>
+<ul class="sectlevel3">
+<li><a href="#preferred-solution-local-branch">7.1.1. Preferred solution : local branch</a></li>
+<li><a href="#deprecated-solution-reset-mixed-between-push">7.1.2. Deprecated solution : reset Mixed between push</a></li>
+</ul>
+</li>
+<li><a href="#pull-from-another-developer-gerrit">7.2. Pull from another developer (Gerrit)</a></li>
+<li><a href="#missing-change-id-in-commit-message-footer-gerrit">7.3. Missing Change-Id in commit message footer (Gerrit)</a></li>
+<li><a href="#classpath-and-other-not-to-push-files">7.4. .classpath and other not-to-push files</a></li>
+<li><a href="#double-remote-get-latest-commits-from-gitlab-into-gerrit">7.5. Double remote : get latest commits from Gitlab into Gerrit</a></li>
+<li><a href="#get-rid-of-orig_head-fetch_head-in-git-history">7.6. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</a></li>
 </ul>
 </li>
 </ul>
@@ -519,21 +531,142 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="configuration"><a class="anchor" href="#configuration"></a>2. Configuration</h2>
+<h2 id="plugins"><a class="anchor" href="#plugins"></a>2. Plugins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Go to <strong>Window</strong> &#8594; <strong>preferences</strong></p>
+<p>To install plugins, go to <b class="button">Help</b> &#8594; <b class="button">Eclipse Marketplace&#8230;&#8203;</b> &#8594; search for your plugin and click on <b class="button">Finish</b>.</p>
 </div>
 <div class="sect2">
-<h3 id="formatter"><a class="anchor" href="#formatter"></a>2.1. Formatter</h3>
+<h3 id="unnecessary-code-detector-plugin-java"><a class="anchor" href="#unnecessary-code-detector-plugin-java"></a>2.1. Unnecessary Code Detector plugin (Java)</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Click on <strong>formatter</strong></p>
+<p>Install Unnecessary Code Detector plugin to see unused declarations or wrongs declarations (public when it could be private for example), with this configuration :</p>
+<div class="ulist">
+<ul>
+<li>
+<p><b class="button">Window</b> &#8594; <b class="button">preferences</b> &#8594; <b class="button">UCDetector</b></p>
+</li>
+<li>
+<p>ActiveMode = MyMode</p>
+</li>
+<li>
+<p>Under <b class="button">Ignore</b>, uncheck :</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Bean methods</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><b class="button">Detect</b> &#8594; File name pattern to search =</p>
+<div class="literalblock">
+<div class="content">
+<pre>btn:*.xml,MANIFEST.MF,*.tld,*.properties,*.jsp,*.jspf</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="jautodoc-plugin-java"><a class="anchor" href="#jautodoc-plugin-java"></a>2.2. JAutoDoc plugin (Java)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Install JautoDoc plugin to be able to :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>add Javadoc with right click &#8594; <b class="button">Add Javadoc</b> on a class or a package</p>
+</li>
+<li>
+<p>add Javadoc on a function by selecting its name and pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>j</kbd></span></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="autoderiv-plugin-maven"><a class="anchor" href="#autoderiv-plugin-maven"></a>2.3. AutoDeriv plugin (Maven)</h3>
+<div class="paragraph">
+<p>The target folder should always be marked as derived, not to appear in searches. Install the AutoDeriv plugin for this purpose, and configure it by creating the file below.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It can be placed in the project&#8217;s root directory, then it would be shared to others through the source code repository, but this works only for the current projects, not submodules !</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">&lt;WORKSPACE&gt;/.derived</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># set the 'target' and 'ext' folders as derived
+target
+#ext
+
+# but don't affect the 'keep' sub-folder
+!target/generated-sources
+
+# all files with a '.dep' extension are generated
+#].dep
+
+# this specific file is also generated
+#src/include/version.h</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sonarlint"><a class="anchor" href="#sonarlint"></a>2.4. SonarLint</h3>
+<div class="paragraph">
+<p>Install SonarLint plugin and connect it to your local SonarQube server instance and be warned of violations in Eclipse, in real time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="jenkins-editor"><a class="anchor" href="#jenkins-editor"></a>2.5. Jenkins Editor</h3>
+<div class="paragraph">
+<p>If you edit Jenkinsfiles, install Jenkins Editor plugin for coloration and auto-completion.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="darkest-dark-theme"><a class="anchor" href="#darkest-dark-theme"></a>2.6. Darkest Dark Theme</h3>
+<div class="paragraph">
+<p>Install Darkest Dark Theme for a nice black skin to Eclipse.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>3. Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Go to <b class="button">Window</b> &#8594; <b class="button">preferences</b></p>
+</div>
+<div class="sect2">
+<h3 id="formatter"><a class="anchor" href="#formatter"></a>3.1. Formatter</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on <b class="button">formatter</b></p>
 </li>
 <li>
 <p>Import this file</p>
@@ -547,11 +680,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="members-sort-order"><a class="anchor" href="#members-sort-order"></a>2.2. Members Sort Order</h3>
+<h3 id="members-sort-order"><a class="anchor" href="#members-sort-order"></a>3.2. Members Sort Order</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Java</strong> &#8594; <strong>Appearance</strong> &#8594; <strong>Members Sort Order</strong></p>
+<p><b class="button">Java</b> &#8594; <b class="button">Appearance</b> &#8594; <b class="button">Members Sort Order</b></p>
 </li>
 <li>
 <p>Organize as follow</p>
@@ -588,11 +721,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="save-actions"><a class="anchor" href="#save-actions"></a>2.3. Save actions</h3>
+<h3 id="save-actions"><a class="anchor" href="#save-actions"></a>3.3. Save actions</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Java</strong> &#8594; <strong>Editor</strong> &#8594; <strong>Save actions</strong></p>
+<p><b class="button">Java</b> &#8594; <b class="button">Editor</b> &#8594; <b class="button">Save actions</b></p>
 </li>
 <li>
 <p>Check as follow :</p>
@@ -653,11 +786,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="encoding"><a class="anchor" href="#encoding"></a>2.4. Encoding</h3>
+<h3 id="encoding"><a class="anchor" href="#encoding"></a>3.4. Encoding</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Go to <strong>Window</strong> &#8594; <strong>Preferences</strong> &#8594; <strong>General</strong> &#8594; <strong>Workspace</strong></p>
+<p>Go to <b class="button">Window</b> &#8594; <b class="button">Preferences</b> &#8594; <b class="button">General</b> &#8594; <b class="button">Workspace</b></p>
 </li>
 <li>
 <p>At the bottom, choose</p>
@@ -676,124 +809,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="unnecessary-code-detector-plugin"><a class="anchor" href="#unnecessary-code-detector-plugin"></a>2.5. Unnecessary Code Detector plugin</h3>
+<h3 id="commit-timeout"><a class="anchor" href="#commit-timeout"></a>3.5. Commit timeout</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Install Unnecessary Code Detector plugin to see unused declarations or wrongs declarations (public when it could be private for example), with this configuration :</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Window &gt; preferences &gt; UCDetector</p>
+<p>Navigate to <b class="button">Team</b> &#8594; <b class="button">Git</b></p>
 </li>
 <li>
-<p>ActiveMode = MyMode</p>
-</li>
-<li>
-<p>Ignore &gt; [ ] Bean methods</p>
-</li>
-<li>
-<p>Detect &gt; File name pattern to search =</p>
-<div class="literalblock">
-<div class="content">
-<pre>*.xml,MANIFEST.MF,*.tld,*.properties,*.jsp,*.jspf</pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
+<p>set <b class="button">Remote connection timeout (seconds)</b> = 120</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="jautodoc-plugin"><a class="anchor" href="#jautodoc-plugin"></a>2.6. JAutoDoc plugin</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Install JautoDoc plugin to be able to :</p>
-<div class="ulist">
-<ul>
-<li>
-<p>add Javadoc with right click &#8594; <strong>Add Javadoc</strong> on a class or a package</p>
-</li>
-<li>
-<p>add Javadoc on a function by selecting its name and pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>j</kbd></span></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="autoderiv-plugin"><a class="anchor" href="#autoderiv-plugin"></a>2.7. AutoDeriv plugin</h3>
-<div class="paragraph">
-<p>The target folder should always be marked as derived, not to appear in searches. Install the AutoDeriv plugin for this purpose, and configure it by creating the file below.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>It can be placed in the project&#8217;s root directory, then it would be shared to others through the source code repository, but this works only for the current projects, not submodules !</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">&lt;WORKSPACE&gt;/.derived</div>
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># set the 'target' and 'ext' folders as derived
-target
-#ext
-
-# but don't affect the 'keep' sub-folder
-!target/generated-sources
-
-# all files with a '.dep' extension are generated
-#*.dep
-
-# this specific file is also generated
-#src/include/version.h</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="commit-timeout"><a class="anchor" href="#commit-timeout"></a>2.8. Commit timeout</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Navigate to <strong>Team</strong> &#8594; <strong>Git</strong></p>
-</li>
-<li>
-<p>set <strong>Remote connection timeout (seconds)</strong> = 120</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="xml-line-size"><a class="anchor" href="#xml-line-size"></a>2.9. XML Line size</h3>
+<h3 id="xml-line-size"><a class="anchor" href="#xml-line-size"></a>3.6. XML Line size</h3>
 <div class="paragraph">
 <p>The Eclipse XML Formatter split lines, and this is an issue for wagon plugin in pom.xml.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Navigate to <strong>XML</strong> &#8594; <strong>Editor</strong></p>
+<p>Navigate to <b class="button">XML</b> &#8594; <b class="button">Editor</b></p>
 </li>
 <li>
-<p>Set <strong>Line width</strong> = 200</p>
+<p>Set <b class="button">Line width</b> = 200</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="disable-stealing-of-focus-by-console-in-eclipse"><a class="anchor" href="#disable-stealing-of-focus-by-console-in-eclipse"></a>2.10. Disable stealing of focus by Console in Eclipse</h3>
+<h3 id="disable-stealing-of-focus-by-console-in-eclipse"><a class="anchor" href="#disable-stealing-of-focus-by-console-in-eclipse"></a>3.7. Disable stealing of focus by Console in Eclipse</h3>
 <div class="paragraph">
 <p>There is one very annoying issue in Eclipse: stealing of focus by Console window.</p>
 </div>
@@ -829,7 +874,7 @@ target
 </div>
 </div>
 <div class="sect1">
-<h2 id="clone-a-git-repository"><a class="anchor" href="#clone-a-git-repository"></a>3. Clone a Git repository</h2>
+<h2 id="clone-a-git-repository"><a class="anchor" href="#clone-a-git-repository"></a>4. Clone a Git repository</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -838,7 +883,7 @@ target
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To generate your password in Gerrit, right click on your username &#8594; <strong>Settings</strong> &#8594; <strong>HTTP password</strong> &#8594; <strong>Generate Password</strong>
+To generate your password in Gerrit, right click on your username &#8594; <b class="button">Settings</b> &#8594; <b class="button">HTTP password</b> &#8594; <b class="button">Generate Password</b>
 </td>
 </tr>
 </table>
@@ -847,10 +892,10 @@ To generate your password in Gerrit, right click on your username &#8594; <stron
 <div class="title">On Eclipse</div>
 <ul>
 <li>
-<p>Open <strong>Git perspective</strong></p>
+<p>Open <b class="button">Git perspective</b></p>
 </li>
 <li>
-<p>Click on <strong>Clone a Git repository</strong></p>
+<p>Click on <b class="button">Clone a Git repository</b></p>
 </li>
 <li>
 <p>Fill the required data :</p>
@@ -911,7 +956,7 @@ have this structure:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>To configure Git, go to <strong>Window</strong> &#8594; <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>Configuration</strong>, on <strong>User setting</strong> click on <strong>Open</strong> and add the following configuration :</p>
+<p>To configure Git, go to <b class="button">Window</b> &#8594; <b class="button">Preferences</b> &#8594; <b class="button">Team</b> &#8594; <b class="button">Git</b> &#8594; <b class="button">Configuration</b>, on <b class="button">User setting</b> click on <b class="button">Open</b> and add the following configuration :</p>
 </div>
 <div class="listingblock">
 <div class="title">user .gitconfig settings</div>
@@ -939,10 +984,10 @@ have this structure:</p>
 <p>These configurations are inherited to your repositories. You might have the [user] here too, if you have the same login/password for all your repositories</p>
 </li>
 <li>
-<p>The <strong>autosetuprebase = always</strong> will allow you to do a fetch and a rebase by simply click on <strong>pull</strong>.</p>
+<p>The <b class="button">autosetuprebase = always</b> will allow you to do a fetch and a rebase by simply click on <b class="button">pull</b>.</p>
 </li>
 <li>
-<p>The <strong>auStash = true</strong> will allow you to <strong>pull</strong> while having some currently unstaged files (by automatically doing a <strong>git stash</strong> before and a <strong>git stash apply</strong> after).</p>
+<p>The <b class="button">auStash = true</b> will allow you to <b class="button">pull</b> while having some currently unstaged files (by automatically doing a <b class="button">git stash</b> before and a <b class="button">git stash apply</b> after).</p>
 </li>
 </ul>
 </div>
@@ -951,7 +996,7 @@ have this structure:</p>
 </table>
 </div>
 <div class="paragraph">
-<p>On <strong>Repository Settings</strong> click on <strong>Open</strong> and enter the following configuration :</p>
+<p>On <b class="button">Repository Settings</b> click on <b class="button">Open</b> and enter the following configuration :</p>
 </div>
 <div class="listingblock">
 <div class="title">repository config settings</div>
@@ -962,7 +1007,7 @@ have this structure:</p>
     	logallrefupdates = true
     [remote "origin"]
     	url = https://host.com/gerrit/p/cg-wm.git
-    	fetch = +refs/heads/*:refs/remotes/origin/*
+    	fetch = +refs/heads/*:refs/remotes/origin/]
     	push = HEAD:refs/for/master
     [branch "master"]
     	merge = refs/heads/master
@@ -988,16 +1033,16 @@ After these Git configuration, you may need to restart Eclipse.
 </div>
 </div>
 <div class="sect1">
-<h2 id="import-a-project-in-project-explorer"><a class="anchor" href="#import-a-project-in-project-explorer"></a>4. Import a project in Project Explorer</h2>
+<h2 id="import-a-project-in-project-explorer"><a class="anchor" href="#import-a-project-in-project-explorer"></a>5. Import a project in Project Explorer</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Once the repository is cloned, import the project in your Java JEE view. (<strong>File</strong> &#8594; <strong>Import</strong> &#8594; type <strong>maven</strong> &#8594; <strong>Existing Maven Project</strong>).</p>
+<p>Once the repository is cloned, import the project in your Java JEE view. (<b class="button">File</b> &#8594; <b class="button">Import</b> &#8594; type <b class="button">maven</b> &#8594; <b class="button">Existing Maven Project</b>).</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="git-common-usages"><a class="anchor" href="#git-common-usages"></a>5. Git common usages</h2>
+<h2 id="git-common-usages"><a class="anchor" href="#git-common-usages"></a>6. Git common usages</h2>
 <div class="sectionbody">
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1006,7 +1051,7 @@ After these Git configuration, you may need to restart Eclipse.
 <div class="title">Figure 1. AI meets GIT</div>
 </div>
 <div class="sect2">
-<h3 id="keep-your-local-repository-up-to-date"><a class="anchor" href="#keep-your-local-repository-up-to-date"></a>5.1. Keep your local repository up to date</h3>
+<h3 id="keep-your-local-repository-up-to-date"><a class="anchor" href="#keep-your-local-repository-up-to-date"></a>6.1. Keep your local repository up to date</h3>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="./images/geek-and-poke-no-error-update.jpg" alt="geek and poke no error update" width="50%">
@@ -1020,24 +1065,19 @@ After these Git configuration, you may need to restart Eclipse.
 <div class="ulist">
 <ul>
 <li>
-<p>"Pull" (If your  git  is  configured  to  do  a  fetch  and  rebase  on  "Pull")</p>
+<p><code>Pull</code> (If your  git  is  configured  to  do  a  fetch  and  rebase  on  <code>Pull</code>)</p>
 </li>
 <li>
-<p>or "Fetch from upstream", and then "Rebase"</p>
+<p>or <code>Fetch from upstream</code>, and then <code>Rebase</code></p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="./images/git-fetch_pull.png" alt="git fetch pull" width="50%">
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="commit-push"><a class="anchor" href="#commit-push"></a>5.2. Commit / push</h3>
+<h3 id="commit-push"><a class="anchor" href="#commit-push"></a>6.2. Commit / push</h3>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="./images/git-hell.jpg" alt="git hell" width="50%">
@@ -1058,21 +1098,17 @@ After these Git configuration, you may need to restart Eclipse.
 <div class="ulist">
 <ul>
 <li>
-<p>Show view <strong>Git Staging</strong> (or go to perspective Git and select <strong>Git Staging</strong> tab)</p>
+<p>Show view <b class="button">Git Staging</b> (or go to perspective Git and select <b class="button">Git Staging</b> tab)</p>
 </li>
 <li>
 <p>Drag your file not committed from Unstaged Changes to Staged Changes</p>
 </li>
 <li>
 <p>On Commit message</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Click on <strong>amend</strong> if you want to amend a commit already started (using Gerrit vocabulary, adding a <strong>patchset</strong> on a <strong>change</strong>)
-add your message and click on <strong>Add Change-Id</strong> to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)</p>
 </li>
-</ul>
-</div>
+<li>
+<p>Click on <b class="button">amend</b> if you want to amend a commit already started (using Gerrit vocabulary, adding a <strong>patchset</strong> on a <strong>change</strong>)
+add your message and click on <b class="button">Add Change-Id</b> to add an ID for your commit (you add a new change ID only when your previous is validated by the tech lead on Gerrit)</p>
 </li>
 </ul>
 </div>
@@ -1088,10 +1124,10 @@ add your message and click on <strong>Add Change-Id</strong> to add an ID for yo
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Commit</strong> If you want to do a local commit (changes will be visible only by you)</p>
+<p><b class="button">Commit</b> If you want to do a local commit (changes will be visible only by you)</p>
 </li>
 <li>
-<p>or <strong>Commit and push</strong> If you want to do a commit on the shared repository</p>
+<p>or <b class="button">Commit and push</b> If you want to do a commit on the shared repository</p>
 </li>
 </ul>
 </div>
@@ -1100,9 +1136,9 @@ add your message and click on <strong>Add Change-Id</strong> to add an ID for yo
 </div>
 </div>
 <div class="sect2">
-<h3 id="rebase"><a class="anchor" href="#rebase"></a>5.3. Rebase</h3>
+<h3 id="pull-rebase"><a class="anchor" href="#pull-rebase"></a>6.3. Pull/Rebase</h3>
 <div class="paragraph">
-<p>In order to get the last version of the git repository, or if one of your commit is in <strong>Merge Conflict</strong> on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on team &#8594; fetch from upstream, then team &#8594; rebase. If your git is configured to do a fetch and rebase on pull, just select pull. If there is some conflicts during the rebase, correct them, then team &#8594; rebase &#8594; continue rebase. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the "Merge Conflict" on gerrit will disappear.</p>
+<p>In order to get the last version of the git repository, or if one of your commit is in <strong>Merge Conflict</strong> on gerrit, you need to do a rebase. Before doing it, commit all your uncommited changes, otherwise you might lose it. After that you can click on <b class="button">Team</b> &#8594; <b class="button">fetch from upstream</b>, then <b class="button">Team</b> &#8594; <b class="button">Rebase&#8230;&#8203;</b>. If your git is configured to do a fetch and rebase on pull, just select <b class="button">Pull</b>. If there is some conflicts during the rebase, correct them, stage your file (right click &#8594; <b class="button">Add to Index</b> then <b class="button">Team</b> &#8594; <b class="button">Rebase&#8230;&#8203;</b> &#8594; <b class="button">Continue rebase</b>. The rebase is done, you have the lastest version of the git repository and your modifications. You can amend your commit and the <strong>Merge Conflict</strong> on gerrit will disappear.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1111,7 +1147,7 @@ add your message and click on <strong>Add Change-Id</strong> to add an ID for yo
 </div>
 </div>
 <div class="sect2">
-<h3 id="reset-mixed"><a class="anchor" href="#reset-mixed"></a>5.4. Reset Mixed</h3>
+<h3 id="reset-mixed"><a class="anchor" href="#reset-mixed"></a>6.4. Reset Mixed</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1124,53 +1160,93 @@ git reset soft/mixed/hard explained : <a href="https://git-scm.com/docs/git-rese
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>In <strong>team</strong> &#8594; <strong>reset</strong>, you can find a usefull functionnality called <strong>Reset Mixed</strong>. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.</p>
-</div>
-<div class="paragraph">
-<p><strong>Reset Hard</strong> can be used if you want to cancel all your modifications. All modifications will be erased.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>In <b class="button">Team</b> &#8594; <b class="button">Reset&#8230;&#8203;</b>, you can find a usefull functionnality called <b class="button">Reset Mixed</b>. The reset mixed will allow you to get the last version of the git repository (after a fetch from upstream), while keeping your modifications. It works like a rebase, except that your commit will be cancelled on your local workspace. You will be branched on the last commit on the git repository. Use it if you want to abandon a commit, do a fresh commit, or merge two of your commits in one for example.</p>
+</li>
+<li>
+<p><b class="button">Reset Hard</b> can be used if you want to cancel all your modifications. All modifications will be erased.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>6. Troubleshooting</h2>
+<h2 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>7. Troubleshooting</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="two-commits-at-the-same-time"><a class="anchor" href="#two-commits-at-the-same-time"></a>6.1. Two commits at the same time</h3>
+<h3 id="two-changes-at-the-same-time-gerrit"><a class="anchor" href="#two-changes-at-the-same-time-gerrit"></a>7.1. Two changes at the same time (Gerrit)</h3>
 <div class="paragraph">
-<p>If you have a commit on gerrit, and if you want to change a file that is already in this commit, you should amend this commit instead of making a second commit.</p>
+<p>You can have two or more commits at the same time if they are not dependants.</p>
 </div>
+<div class="sect3">
+<h4 id="preferred-solution-local-branch"><a class="anchor" href="#preferred-solution-local-branch"></a>7.1.1. Preferred solution : local branch</h4>
 <div class="paragraph">
-<p>You can have two or more commits at the same time if they are not dependants. To do so, you have to do a reset mixed on the state before your first commit in order to commit the second one.
+<p>Eclipse / Gerrit blending makes it easy to handle multiple parallel local branches with only one remote branch.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Make sure you have commited (and eventually pushed) all file modifications for the first commit. Change A is then on branch <strong>Local/master</strong>.</p>
+</li>
+<li>
+<p>Make sure masters are up to date with a global <b class="button">Pull</b>.</p>
+</li>
+<li>
+<p>Create a local branch for change B.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Righ click on <strong>origin/master</strong> &#8594; <b class="button">Create Branch&#8230;&#8203;</b></p>
+</li>
+<li>
+<p>Choose a name for your local branch related to change B.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Do whatever files modifications needed for change B.</p>
+</li>
+<li>
+<p>The <b class="button">Commit and Push&#8230;&#8203;</b> will handle the push to <strong>origin/master</strong> even if you are on a local branch.</p>
+</li>
+<li>
+<p>Switch when you want between the local branch for changes A and B with right click on the repository &#8594; <b class="button">Switch To&#8230;&#8203;</b>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deprecated-solution-reset-mixed-between-push"><a class="anchor" href="#deprecated-solution-reset-mixed-between-push"></a>7.1.2. Deprecated solution : reset Mixed between push</h4>
+<div class="paragraph">
+<p>You have to do a reset mixed on the state before your first commit in order to commit the second one.
 It works like this :
 If A is the last commit on the git repository, you can do a first commit B.
 To make a second commit C, reset mixed on commit A, then commit. If you want to amend your commit B, reset mixed on A before doing it, and copy the description and change id for your commit on gerrit, to paste it like it is a new commit. You also need to select again the files that were in this commit.</p>
 </div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="./images/git-rebase.png" alt="git rebase" width="100%">
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pull-from-another-developer"><a class="anchor" href="#pull-from-another-developer"></a>6.2. Pull from another developer</h3>
+<h3 id="pull-from-another-developer-gerrit"><a class="anchor" href="#pull-from-another-developer-gerrit"></a>7.2. Pull from another developer (Gerrit)</h3>
 <div class="paragraph">
 <p>To download a change of another developper from gerrit to your local :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>go to <strong>Git Repositories</strong> on your Eclipse</p>
+<p>go to <b class="button">Git Repositories</b> on your Eclipse</p>
 </li>
 <li>
 <p>right click on your repository</p>
 </li>
 <li>
-<p>select <strong>fetch from Gerrit</strong></p>
+<p>select <b class="button">Fetch from Gerrit&#8230;&#8203;</b></p>
 </li>
 <li>
-<p>on <strong>Change</strong> press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Space</kbd></span></p>
+<p>on <b class="button">Change</b> press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Space</kbd></span></p>
 </li>
 <li>
 <p>select your change</p>
@@ -1191,7 +1267,17 @@ To make a second commit C, reset mixed on commit A, then commit. If you want to 
 </div>
 </li>
 <li>
-<p>Click on <strong>finish</strong></p>
+<p>Action to perform after fetch</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-check-square-o"></i> Create a local branch</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click on <b class="button">finish</b></p>
 </li>
 </ul>
 </div>
@@ -1202,7 +1288,7 @@ To make a second commit C, reset mixed on commit A, then commit. If you want to 
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to the <strong>Git repositories</strong> view, under your repo, in <strong>Remotes</strong>, right click on <strong>origin</strong> and select <strong>Gerrit configuration&#8230;&#8203;</strong>. Check that everything is OK and click <strong>Finish</strong>. Now you should have the option.
+If you don&#8217;t have the option <b class="button">Fetch from Gerrit&#8230;&#8203;</b> : Go to the <b class="button">Git repositories</b> view, under your repo, in <b class="button">Remotes</b>, right click on <b class="button">origin</b> and select <b class="button">Gerrit configuration&#8230;&#8203;</b>. Check that everything is OK and click <b class="button">Finish</b>. Now you should have the option.
 </td>
 </tr>
 </table>
@@ -1218,16 +1304,16 @@ If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to th
 <div class="ulist">
 <ul>
 <li>
-<p>Go to <strong>Git Repositories</strong></p>
+<p>Go to <b class="button">Git Repositories</b></p>
 </li>
 <li>
-<p>Right click on your repository &gt; <strong>Pull</strong></p>
+<p>Right click on your repository &gt; <b class="button">Pull</b></p>
 </li>
 <li>
-<p>Navigate in you repository &#8594; <strong>Branches</strong> &#8594; <strong>Local</strong></p>
+<p>Navigate in you repository &#8594; <b class="button">Branches</b> &#8594; <b class="button">Local</b></p>
 </li>
 <li>
-<p>Rigth click on the <strong>master</strong> branch &#8594; <strong>Rebase On</strong></p>
+<p>Rigth click on the <b class="button">master</b> branch &#8594; <b class="button">Rebase On</b></p>
 </li>
 <li>
 <p>Resolve the conflicts if any</p>
@@ -1235,7 +1321,7 @@ If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to th
 </ul>
 </div>
 <div class="paragraph">
-<p>To switch back to your master, right click on your repo &#8594; <strong>Switch To</strong> &#8594; <strong>master</strong>.</p>
+<p>To switch back to your master, right click on your repo &#8594; <b class="button">Switch To</b> &#8594; <b class="button">master</b>.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -1244,7 +1330,7 @@ If you don&#8217;t have the option <strong>fetch from Gerrit</strong> : Go to th
 </div>
 </div>
 <div class="sect2">
-<h3 id="missing-change-id-in-commit-message-footer"><a class="anchor" href="#missing-change-id-in-commit-message-footer"></a>6.3. Missing Change-Id in commit message footer</h3>
+<h3 id="missing-change-id-in-commit-message-footer-gerrit"><a class="anchor" href="#missing-change-id-in-commit-message-footer-gerrit"></a>7.3. Missing Change-Id in commit message footer (Gerrit)</h3>
 <div class="paragraph">
 <p>On your first push, you might get this error from Gerrit</p>
 </div>
@@ -1261,7 +1347,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 <div class="paragraph">
-<p>Doing a <strong>reset mixed</strong> on the initial commit would solve the problem.</p>
+<p>Doing a <b class="button">reset mixed</b> on the initial commit would solve the problem.</p>
 </div>
 <div class="paragraph">
 <p>If not, here is another solution :</p>
@@ -1292,7 +1378,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 <div class="sect2">
-<h3 id="classpath-and-other-not-to-push-files"><a class="anchor" href="#classpath-and-other-not-to-push-files"></a>6.4. .classpath and other not-to-push files</h3>
+<h3 id="classpath-and-other-not-to-push-files"><a class="anchor" href="#classpath-and-other-not-to-push-files"></a>7.4. .classpath and other not-to-push files</h3>
 <div class="paragraph">
 <p>If there are files in git repository not to be pushed, remove them in your next push :</p>
 </div>
@@ -1302,22 +1388,22 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 <p>Update the .gitignore file, if not already done</p>
 </li>
 <li>
-<p>Go to <strong>Git Staging</strong> view</p>
+<p>Go to <b class="button">Git Staging</b> view</p>
 </li>
 <li>
-<p>Right click on the file &#8594; <strong>Team</strong> &#8594; <strong>Untrack</strong></p>
+<p>Right click on the file &#8594; <b class="button">Team</b> &#8594; <b class="button">Untrack</b></p>
 </li>
 <li>
-<p>The file should be moved to <strong>Staged changes</strong> (it can take a few seconds)</p>
+<p>The file should be moved to <b class="button">Staged changes</b> (it can take a few seconds)</p>
 </li>
 <li>
-<p>This will be taken into account in next <strong>Commit and Push&#8230;&#8203;</strong></p>
+<p>This will be taken into account in next <b class="button">Commit and Push&#8230;&#8203;</b></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="double-remote-get-latest-commits-from-gitlab-into-gerrit"><a class="anchor" href="#double-remote-get-latest-commits-from-gitlab-into-gerrit"></a>6.5. Double remote : get latest commits from gitlab into gerrit</h3>
+<h3 id="double-remote-get-latest-commits-from-gitlab-into-gerrit"><a class="anchor" href="#double-remote-get-latest-commits-from-gitlab-into-gerrit"></a>7.5. Double remote : get latest commits from Gitlab into Gerrit</h3>
 <div class="paragraph">
 <p>In the case of a gitlab to gerrit migration, you may have a common ancestor but commits on Gerrit and commits on Gitlab. It&#8217;s easy if you can replace the whole gerrit master, but here is the way to go for a clean merge :</p>
 </div>
@@ -1327,22 +1413,22 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 <p>have your gerrit clone in Eclipse</p>
 </li>
 <li>
-<p>Navigate to <strong>Git</strong> view</p>
+<p>Navigate to <b class="button">Git</b> view</p>
 </li>
 <li>
-<p>Right click on your <strong>Remotes</strong> where there is already a Gerrit <strong>origin</strong></p>
+<p>Right click on your <b class="button">Remotes</b> where there is already a Gerrit <b class="button">origin</b></p>
 </li>
 <li>
-<p>Choos* <strong>Create Remote&#8230;&#8203;</strong></p>
+<p>Choos] <b class="button">Create Remote&#8230;&#8203;</b></p>
 </li>
 <li>
-<p>Create your gitlab remote while configuring fetch with only the <strong>master</strong> branch. Name it <strong>gitlab</strong></p>
+<p>Create your gitlab remote while configuring fetch with only the <b class="button">master</b> branch. Name it <b class="button">gitlab</b></p>
 </li>
 <li>
-<p>right click on the new remote and choose <strong>fetch</strong></p>
+<p>right click on the new remote and choose <b class="button">fetch</b></p>
 </li>
 <li>
-<p>right click on your repository and select <strong>pull</strong></p>
+<p>right click on your repository and select <b class="button">pull</b></p>
 </li>
 <li>
 <p>Finish by this in command line :</p>
@@ -1356,9 +1442,9 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 </div>
 <div class="sect2">
-<h3 id="get-rid-of-orig_head-fetch_head-in-git-history"><a class="anchor" href="#get-rid-of-orig_head-fetch_head-in-git-history"></a>6.6. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</h3>
+<h3 id="get-rid-of-orig_head-fetch_head-in-git-history"><a class="anchor" href="#get-rid-of-orig_head-fetch_head-in-git-history"></a>7.6. Get rid of ORIG_HEAD / FETCH_HEAD in Git history</h3>
 <div class="paragraph">
-<p>ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in <strong>Preferences</strong> &#8594; <strong>Team</strong> &#8594; <strong>Git</strong> &#8594; <strong>History</strong> by deselecting <strong>Additional Refs</strong></p>
+<p>ORIG_HEAD is last value of HEAD before dangerous operation. This reference and FETCH_HEAD are not real commits, and can be hidden in <b class="button">Preferences</b> &#8594; <b class="button">Team</b> &#8594; <b class="button">Git</b> &#8594; <b class="button">History</b> by deselecting <strong>Additional Refs</strong></p>
 </div>
 </div>
 </div>
@@ -1366,7 +1452,7 @@ ERROR: [f57ea8b] missing Change-Id in commit message footer
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-17 10:52:03 UTC
+Last updated 2018-09-19 14:32:59 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

@@ -450,6 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#troubleshooting">2. Troubleshooting</a>
 <ul class="sectlevel2">
 <li><a href="#see-sonarqube-for-an-older-build">2.1. See SonarQube for an older build</a></li>
+<li><a href="#make-sure-i-ve-got-all-the-relevant-new-rules-in-my-profile">2.2. Make sure I&#8217;ve got all the relevant new rules in my profile</a></li>
 </ul>
 </li>
 </ul>
@@ -462,6 +463,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><span class="icon"><a class="image" href="index.html"><i class="fa fa-home"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="BP-sonarqube.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="BP-sonarqube.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/dge-sonarqube.png" alt="dge sonarqube" width="100%">
+</div>
+</div>
+<div class="paragraph">
+<p>SonarQube helps you calculate and monitor in near real time your code quality for most development languages.</p>
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -718,6 +727,21 @@ for an import to be successful, SonarQube must know the rules, so SonarJava and 
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="make-sure-i-ve-got-all-the-relevant-new-rules-in-my-profile"><a class="anchor" href="#make-sure-i-ve-got-all-the-relevant-new-rules-in-my-profile"></a>2.2. Make sure I&#8217;ve got all the relevant new rules in my profile</h3>
+<div class="paragraph">
+<p>Each time a language plugin update is released, new rules are added, but they won&#8217;t appear automatically in your profile unless you&#8217;re using a built-in profile such as Sonar way.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re not using a built-in profile, you can compare your profile to the built-in profile to see what new on-by-default rules you&#8217;re missing.</p>
+</div>
+<div class="paragraph">
+<p>Another option is to go to the Rules space, and use the Available Since search facet to see what rules have been added to the platform since the day you upgraded the relevant plugin.</p>
+</div>
+<div class="paragraph">
+<p>And finally, the profile interface itself will help you be aware of rules added in a new plugin version in the Latest New Rules section on the right of the interface.</p>
+</div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="./images/turnoff-tdd-vs-ftt.png" alt="turnoff tdd vs ftt" width="50%">
@@ -730,7 +754,7 @@ for an import to be successful, SonarQube must know the rules, so SonarJava and 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-17 10:52:03 UTC
+Last updated 2018-09-19 14:32:59 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
