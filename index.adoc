@@ -45,3 +45,6 @@ endif::backend-html5[]
 * link:STS-Gestion-du-routage.html[Documentation technique]
 
 * link:oral-technique.html[Oral technique]
+
+* link:PRES-asciidoc.html[Doc-as-code avec Asciidoc & PlantUml (Reveal.js)]
+

@@ -463,9 +463,6 @@ include::{root-project-dir}/cg-utils/src/main/java/cg/wm/utils/CgPackage.java[]
 
 See https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/
 
-
-.Java life expectancy
 image::turnoff-big-numbers.png[{full-width}]
-
 
 include::subdocs/_closure.adoc[]

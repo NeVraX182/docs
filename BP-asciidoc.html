@@ -634,6 +634,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 			&lt;/configuration&gt;
 		&lt;/execution&gt;
 		&lt;execution&gt;
+			&lt;id&gt;asciidoc-to-revealjs&lt;/id&gt;
+			&lt;!-- after html because it's also an html --&gt;
+			&lt;phase&gt;generate-resources&lt;/phase&gt;
+			&lt;goals&gt;
+				&lt;goal&gt;process-asciidoc&lt;/goal&gt;
+			&lt;/goals&gt;
+			&lt;configuration&gt;
+				&lt;backend&gt;revealjs&lt;/backend&gt;
+				&lt;sourceDocumentName&gt;PRES-asciidoc.adoc&lt;/sourceDocumentName&gt;
+                         &lt;outputDirectory&gt;${project.slides.directory}&lt;/outputDirectory&gt;
+                         &lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates/slim&lt;/templateDir&gt;
+                         &lt;sourceHighlighter&gt;coderay&lt;/sourceHighlighter&gt;
+                         &lt;attributes&gt;
+                             &lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
+                             &lt;revealjs_theme&gt;black&lt;/revealjs_theme&gt;
+                             &lt;revealjs_transition&gt;linear&lt;/revealjs_transition&gt;
+                         &lt;/attributes&gt;
+                     &lt;/configuration&gt;
+		&lt;/execution&gt;
+		&lt;execution&gt;
 			&lt;id&gt;asciidoc-to-pdf&lt;/id&gt;
 			&lt;phase&gt;generate-resources&lt;/phase&gt;
 			&lt;goals&gt;
@@ -745,7 +765,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-09-30 16:36:40 UTC
+Last updated 2018-09-30 20:25:32 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

@@ -1,0 +1,75 @@
+= Doc-as-code avec Aciidoc & PlantUml
+:example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+
+//Press the `*s*` key to access speaker notes.
+//You can press `*b*` or `*.*` to blank your current screen. Hit it again to bring it back.
+//Press the `*esc*` key to get an overview of your slides.
+
+== Introduction
+
+Asciidoc par la documentation de Asciidoctor : 
+https://asciidoctor.org/docs/user-manual/
+
+== Everything-as-code
+
+* Regroupe la configuration et les sources
+* Versionne avec le code
+* Profite de la revue de code collaborative
+* Facilite l'automatisation
+* Testable en pipeline CI/CD
+
+== Documentation-as-code
+
+[%step]
+* Markup Language
+** Latex
+* Lightweight/Simple Markup Language
+** Markdown
+** Asciidoc
+
+== PlantUML
+
+PlantUML est un outil diagram-as-code
+
+http://plantuml.com
+
+== Avantages d'Asciidoc sur Markdown
+
+* Standard
+* Extensible
+* Inclusion d'autres fichiers
+* Inclusion native de PlantUML
+
+[NOTE.speaker]
+--
+Plus de détail ici sur les défauts de Markdown : http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/
+--
+
+== Plusieurs formats de sortie
+
+* HTML
+* PDF
+* Docbook
+* Reveal.js
+
+== Générateurs basés sur Asciidoctor
+
+* Outil ligne de commande (Ruby)
+* Plugin Maven
+* Editeur AsciidocFX (sans options)
+
+== Cette présentation reveal.js est générée via asciidoctor
+
+Source : link:PRES-asciidoc.adoc[]
+
+== Example de site
+
+https://bcouetil.gitlab.io/academy/
+
+* Sans écrire de code frontend
+* Incluant différents formats
+** Source adoc
+** HTML
+** PDF
+** Reveal.js
