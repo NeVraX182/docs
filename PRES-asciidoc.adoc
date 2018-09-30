@@ -1,4 +1,4 @@
-= Doc-as-code avec Aciidoc & PlantUml
+= Asciidoc & PlantUml
 :example-caption!:
 ifndef::imagesdir[:imagesdir: images]
 
@@ -34,7 +34,7 @@ PlantUML est un outil diagram-as-code
 
 http://plantuml.com
 
-== Avantages d'Asciidoc sur Markdown
+== Avantages d'Asciidoc
 
 * Standard
 * Extensible
@@ -46,30 +46,29 @@ http://plantuml.com
 Plus de détail ici sur les défauts de Markdown : http://ericholscher.com/blog/2016/mar/15/dont-use-markdown-for-technical-docs/
 --
 
-== Plusieurs formats de sortie
+== Formats de sortie
 
 * HTML
 * PDF
 * Docbook
 * Reveal.js
 
-== Générateurs basés sur Asciidoctor
+== Générateurs
 
 * Outil ligne de commande (Ruby)
 * Plugin Maven
 * Editeur AsciidocFX (sans options)
 
-== Cette présentation reveal.js est générée via asciidoctor
+== A propos
 
-Source : link:PRES-asciidoc.adoc[]
+Cette présentation Reveal.js est générée via AsciiDoctor, source : link:PRES-asciidoc.adoc[]
 
-== Example de site
+== Example complet
 
-https://bcouetil.gitlab.io/academy/
+Mon site de partage technique : https://bcouetil.gitlab.io/academy/
 
 * Sans écrire de code frontend
-* Incluant différents formats
-** Source adoc
-** HTML
-** PDF
-** Reveal.js
+* Incluant différents formats : adoc, HTML, PDF, Reveal.js
+
+== Questions ?
+

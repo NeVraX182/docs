@@ -196,6 +196,9 @@ To configure Git, go to btn:[Window] -> btn:[Preferences] -> btn:[Team] -> btn:[
     	rebase = true
     [rebase]
     	autoStash = true
+    [core]
+	    eol = lf
+	    autocrlf = input
 
 [NOTE]
 ====
