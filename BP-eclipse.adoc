@@ -199,6 +199,9 @@ To configure Git, go to btn:[Window] -> btn:[Preferences] -> btn:[Team] -> btn:[
     [core]
 	    eol = lf
 	    autocrlf = input
+    [user]
+        name = jdoe
+        email = john.doe@gmail.com
 
 [NOTE]
 ====
@@ -223,9 +226,6 @@ On btn:[Repository Settings] click on btn:[Open] and enter the following configu
     	merge = refs/heads/master
     	rebase = true
     	remote = origin
-    [user]
-    	name = <user>
-    	email = <email>
 
 TIP: After these Git configuration, you may need to restart Eclipse.
 
