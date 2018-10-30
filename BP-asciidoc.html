@@ -433,21 +433,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#documentation-as-code-with-asciidoc">1. Documentation-as-code with AsciiDoc</a>
+<li><a href="#editor">1. Editor</a></li>
+<li><a href="#inline-icons">2. Inline icons</a></li>
+<li><a href="#custom-highlighter">3. Custom highlighter</a></li>
+<li><a href="#generation-using-maven">4. Generation using Maven</a></li>
+<li><a href="#doc-to-adoc">5. .doc to .adoc</a></li>
+<li><a href="#publish-html-pdf-to-github">6. Publish HTML &amp; PDF to github</a>
 <ul class="sectlevel2">
-<li><a href="#inline-icons">1.1. Inline icons</a></li>
-<li><a href="#custom-highlighter">1.2. Custom highlighter</a></li>
-<li><a href="#generation-using-maven">1.3. Generation using Maven</a></li>
-<li><a href="#doc-to-adoc">1.4. .doc to .adoc</a></li>
-<li><a href="#publish-html-pdf-to-github">1.5. Publish HTML &amp; PDF to github</a>
-<ul class="sectlevel3">
-<li><a href="#initialize-github-space">1.5.1. Initialize Github space</a></li>
-<li><a href="#configure-maven-plugin">1.5.2. Configure Maven plugin</a></li>
-<li><a href="#use-in-pipelines">1.5.3. Use in pipelines</a></li>
+<li><a href="#initialize-github-space">6.1. Initialize Github space</a></li>
+<li><a href="#configure-maven-plugin">6.2. Configure Maven plugin</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li><a href="#use-in-pipelines">7. Use in pipelines</a></li>
 </ul>
 </div>
 </div>
@@ -459,14 +456,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="icon"><a class="image" href="BP-asciidoc.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="BP-asciidoc.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-look-like-perl.jpg" alt="geek and poke look like perl" width="50%">
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation-as-code-with-asciidoc"><a class="anchor" href="#documentation-as-code-with-asciidoc"></a>1. Documentation-as-code with AsciiDoc</h2>
+<h2 id="editor"><a class="anchor" href="#editor"></a>1. Editor</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>All documentations on the project, including this one, are written as part of DevOps principle Documentation-As-Code using AsciiDocFX and compiled with Asciidoctor under maven to produce PDF.</p>
-</div>
 <div class="paragraph">
 <p>To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF. You can consider Visual Studio Code too, it has a nice plugin but with less features.</p>
 </div>
@@ -492,19 +491,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Rules to produce AsciiDoc files :</div>
 <ul>
 <li>
-<p>file names are in kebab-case, except the type at the beginning</p>
+<p>File names are in kebab-case, except the type at the beginning</p>
 </li>
 <li>
-<p>use <strong>kbd:[myShortcut]</strong> for keyboard shortcuts</p>
+<p>Use <strong>kbd:[myShortcut]</strong> for keyboard shortcuts</p>
 </li>
 <li>
-<p>use <strong>\btn[myButton]</strong> for buttons</p>
+<p>Use <strong>\btn[myButton]</strong> for buttons</p>
 </li>
 <li>
 <p>High level title should be on new pages (use <strong>&lt;&lt;&lt;</strong>)</p>
 </li>
 <li>
-<p>don&#8217;t forget init/closure includes at beginning/end of the adoc</p>
+<p>Don&#8217;t forget init/closure includes at beginning/end of the adoc</p>
 </li>
 <li>
 <p>For STS, use TMP-STS-webmethods-template.adoc as a template</p>
@@ -514,8 +513,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>To show a in progress diagram to colleagues, you can generate a web link using <a href="http://www.plantuml.com/plantuml/uml/">PlantUml generator</a>.</p>
 </div>
-<div class="sect2">
-<h3 id="inline-icons"><a class="anchor" href="#inline-icons"></a>1.1. Inline icons</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="inline-icons"><a class="anchor" href="#inline-icons"></a>2. Inline icons</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -534,8 +536,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="custom-highlighter"><a class="anchor" href="#custom-highlighter"></a>1.2. Custom highlighter</h3>
+</div>
+<div class="sect1">
+<h2 id="custom-highlighter"><a class="anchor" href="#custom-highlighter"></a>3. Custom highlighter</h2>
+<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
@@ -549,9 +553,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-whole-documentation.jpg" alt="geek and poke whole documentation" width="50%">
 </div>
-<div class="sect2">
-<h3 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>1.3. Generation using Maven</h3>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>4. Generation using Maven</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>You will find a sample Maven project generating both PDF and HTML, with current doc&#8217;s layout, on <a href="https://github.com/bcouetil/asciidoctor-maven-sample">my Github</a>.</p>
 </div>
@@ -570,6 +581,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 	&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
 	&lt;artifactId&gt;asciidoctor-maven-plugin&lt;/artifactId&gt;
 	&lt;version&gt;1.5.6&lt;/version&gt;
+	&lt;!-- if we don't want to execute in modules (this would work though) --&gt;
+	&lt;inherited&gt;false&lt;/inherited&gt;
 	&lt;dependencies&gt;
 		&lt;dependency&gt;
 			&lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;
@@ -643,15 +656,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 			&lt;configuration&gt;
 				&lt;backend&gt;revealjs&lt;/backend&gt;
 				&lt;sourceDocumentName&gt;PRES-asciidoc.adoc&lt;/sourceDocumentName&gt;
-                         &lt;outputDirectory&gt;${project.slides.directory}&lt;/outputDirectory&gt;
-                         &lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates/slim&lt;/templateDir&gt;
-                         &lt;sourceHighlighter&gt;coderay&lt;/sourceHighlighter&gt;
-                         &lt;attributes&gt;
-                             &lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
-                             &lt;revealjs_theme&gt;black&lt;/revealjs_theme&gt;
-                             &lt;revealjs_transition&gt;linear&lt;/revealjs_transition&gt;
-                         &lt;/attributes&gt;
-                     &lt;/configuration&gt;
+				&lt;outputDirectory&gt;${project.slides.directory}&lt;/outputDirectory&gt;
+				&lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates/slim&lt;/templateDir&gt;
+				&lt;sourceHighlighter&gt;coderay&lt;/sourceHighlighter&gt;
+				&lt;attributes&gt;
+					&lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
+					&lt;revealjs_theme&gt;black&lt;/revealjs_theme&gt;
+					&lt;revealjs_transition&gt;linear&lt;/revealjs_transition&gt;
+				&lt;/attributes&gt;
+			&lt;/configuration&gt;
 		&lt;/execution&gt;
 		&lt;execution&gt;
 			&lt;id&gt;asciidoc-to-pdf&lt;/id&gt;
@@ -684,8 +697,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>1.4. .doc to .adoc</h3>
+</div>
+<div class="sect1">
+<h2 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>5. .doc to .adoc</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If the initial documentation is of Microsoft Word, you have to first migrate it to AsciiDoc file.</p>
 </div>
@@ -700,11 +715,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> pandoc --from=docx --to=asciidoc --wrap=none --atx-headers --normalize --extract-media=images monDoc.docx &gt; monDoc.adoc</code></pre>
 </div>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-audit-coming.jpg" alt="geek and poke audit coming" width="50%">
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>6. Publish HTML &amp; PDF to github</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>1.5. Publish HTML &amp; PDF to github</h3>
-<div class="sect3">
-<h4 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>1.5.1. Initialize Github space</h4>
+<h3 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>6.1. Initialize Github space</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  mkdir docs
@@ -724,9 +746,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
   git push --set-upstream origin gh-pages</code></pre>
 </div>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-lorem-ipsum.jpg" alt="geek and poke lorem ipsum" width="50%">
 </div>
-<div class="sect3">
-<h4 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>1.5.2. Configure Maven plugin</h4>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>6.2. Configure Maven plugin</h3>
 <div class="listingblock">
 <div class="title">Maven SCM plugin configuration</div>
 <div class="content">
@@ -745,8 +772,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>1.5.3. Use in pipelines</h4>
+</div>
+</div>
+<div class="sect1">
+<h2 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>7. Use in pipelines</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>To use in Jenkins Pipelines, see <a href="BP-jenkins.html">Jenkins Best Practices</a></p>
 </div>
@@ -755,9 +785,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="./images/geek-and-poke-lorem-ipsum.jpg" alt="geek and poke lorem ipsum" width="50%">
-</div>
-</div>
+<img src="./images/geek-and-poke-huge-enough.jpg" alt="geek and poke huge enough" width="50%">
 </div>
 </div>
 </div>
@@ -765,7 +793,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-30 13:57:01 UTC
+Last updated 2018-10-30 14:06:22 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

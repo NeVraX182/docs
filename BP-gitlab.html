@@ -455,6 +455,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="icon"><a class="image" href="BP-gitlab.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="BP-gitlab.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
 </div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="./images/geek-and-poke-green-on-my-machine.jpg" alt="geek and poke green on my machine" width="33%">
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -823,7 +828,7 @@ build:
   script:
     - apt-get update -qq &amp;&amp; apt-get install -qq --assume-yes libc6-i386
     - mvn clean dependency:purge-local-repository
-    - mvn install -DskipTests -Dassembly.skipAssembly=true
+    - mvn install -DskipTests -Dassembly.skipAssembly=true -Dadoc.skip=true
 
 
 # the pipeline step must be named 'pages' for gitlab to deploy locally (in addition to github)
@@ -835,7 +840,7 @@ pages:
     - apt-get update -qq &amp;&amp; apt-get install -qq --assume-yes graphviz
     - git config --global user.email "gitlab@noreply.com"
     - git config --global user.name "GitLab"
-    - mvn generate-resources -Dadoc.skip=false --non-recursive
+    - mvn generate-resources --non-recursive
     - cp src/docs/asciidoc/*.adoc target/generated-docs/
     - cp -R src/docs/asciidoc/subdocs target/generated-docs/
     - mvn scm-publish:publish-scm
@@ -852,19 +857,19 @@ unit-test:
   stage: test
   script:
     - mvn clean
-    - mvn test -Dcheckstyle.skip=true -pl cg-utils
+    - mvn test -Dcheckstyle.skip=true -Dadoc.skip=true -pl cg-utils
 
 integration-test:
   stage: test
   script:
     - mvn clean
-    - mvn verify failsafe:verify -Dcg.ut.skip=true -Dcheckstyle.skip=true -pl cg-utils
+    - mvn verify failsafe:verify -Dcg.ut.skip=true -Dcheckstyle.skip=true -Dadoc.skip=true -pl cg-utils
 
 assembly:
   stage: deploy
   script:
     - mvn clean
-    - mvn install -DskipTests -Dcheckstyle.skip=true -pl cg-utils
+    - mvn install -DskipTests -Dcheckstyle.skip=true -Dadoc.skip=true -pl cg-utils
   #only:
   #  - master</code></pre>
 </div>
@@ -880,7 +885,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-30 13:57:01 UTC
+Last updated 2018-10-30 14:06:22 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

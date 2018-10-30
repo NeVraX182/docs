@@ -3,6 +3,8 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
+image::geek-and-poke-green-on-my-machine.jpg[{tier-width}]
+
 == Introduction
 
 Gitlab in his link:https://about.gitlab.com/pricing/#gitlab-com[free online plan] offers some nice features :

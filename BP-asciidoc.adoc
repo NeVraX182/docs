@@ -3,9 +3,9 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
-== Documentation-as-code with AsciiDoc
+image::geek-and-poke-look-like-perl.jpg[{half-width}]
 
-All documentations on the project, including this one, are written as part of DevOps principle Documentation-As-Code using AsciiDocFX and compiled with Asciidoctor under maven to produce PDF.
+== Editor
 
 To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF. You can consider Visual Studio Code too, it has a nice plugin but with less features.
 
@@ -17,28 +17,30 @@ Download and install :
 * Graphviz, to add the extension for your AsciidocFX installation
 
 .Rules to produce AsciiDoc files :
-* file names are in kebab-case, except the type at the beginning
-* use *\kbd:[myShortcut]* for keyboard shortcuts
-* use *\btn[myButton]* for buttons
+* File names are in kebab-case, except the type at the beginning
+* Use *\kbd:[myShortcut]* for keyboard shortcuts
+* Use *\btn[myButton]* for buttons
 * High level title should be on new pages (use *<<<*)
-* don't forget init/closure includes at beginning/end of the adoc
+* Don't forget init/closure includes at beginning/end of the adoc
 * For STS, use TMP-STS-webmethods-template.adoc as a template
 
 To show a in progress diagram to colleagues, you can generate a web link using link:http://www.plantuml.com/plantuml/uml/[PlantUml generator].
 
-=== Inline icons
+== Inline icons
 
 * See https://asciidoctor.org/docs/user-manual/#icons
 * Font Awesome 4.6.3 Class Explorer :  https://lab.artlung.com/font-awesome-sample/
 ** no need for :icons: font to use font awesome-font for icons
 
-=== Custom highlighter
+== Custom highlighter
 
 * See the maven configuration below, it speaks for itself
 * Highlight.js demo with all languages and all styles
 * Default highlight.js processor is too basic, instructions here to change : https://asciidoctor.org/docs/user-manual/#highlight-js
 
-=== Generation using Maven
+image::geek-and-poke-whole-documentation.jpg[{half-width}]
+
+== Generation using Maven
 
 You will find a sample Maven project generating both PDF and HTML, with current doc's layout, on link:https://github.com/bcouetil/asciidoctor-maven-sample[my Github].
 
@@ -84,7 +86,7 @@ To generate the PDF locally, use the maven command :
 [source, bash]
  mvn generate-resources --non-recursive
 
-=== .doc to .adoc
+== .doc to .adoc
 
 If the initial documentation is of Microsoft Word, you have to first migrate it to AsciiDoc file.
 
@@ -95,9 +97,11 @@ To migrate a document, use it in command line
 [source, bash]
  pandoc --from=docx --to=asciidoc --wrap=none --atx-headers --normalize --extract-media=images monDoc.docx > monDoc.adoc
 
-=== Publish HTML & PDF to github
+image::geek-and-poke-audit-coming.jpg[{half-width}]
 
-==== Initialize Github space
+== Publish HTML & PDF to github
+
+=== Initialize Github space
 
 [source, bash]
   mkdir docs
@@ -113,7 +117,9 @@ Copy a first version of the site in the directory, then :
   git remote add origin "https://github.com/NeVraX182/docs.git"
   git push --set-upstream origin gh-pages
 
-==== Configure Maven plugin
+image::geek-and-poke-lorem-ipsum.jpg[{half-width}]
+
+=== Configure Maven plugin
 
 .Maven SCM plugin configuration
 [source,xml]
@@ -132,12 +138,12 @@ Copy a first version of the site in the directory, then :
 </plugin>
 ------
 
-==== Use in pipelines
+== Use in pipelines
 
 To use in Jenkins Pipelines, see link:BP-jenkins.html[Jenkins Best Practices]
 
 To use in Gitlab Pipelines, see link:BP-gitlab.html[Gitlab Best Practices]
 
-image::geek-and-poke-lorem-ipsum.jpg[{half-width}]
+image::geek-and-poke-huge-enough.jpg[{half-width}]
 
 include::subdocs/_closure.adoc[]

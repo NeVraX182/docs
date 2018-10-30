@@ -135,7 +135,7 @@ Go to btn:[Window] -> btn:[preferences]
 
 The Eclipse XML Formatter split lines, and this is an issue for wagon plugin in pom.xml. 
 
-* Navigate to btn:[XML] -> btn:[Editor]
+* Navigate to btn:[XML] -> btn:[XML Files] -> btn:[Editor]
 * Set btn:[Line width] = 200
 
 === Disable stealing of focus by Console in Eclipse
