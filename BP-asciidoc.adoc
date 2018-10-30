@@ -40,7 +40,7 @@ image::geek-and-poke-whole-documentation.jpg[{half-width}]
 
 == init and closure
 
-Here are the sources of link:_init.adoc[init.adoc] and link:_closure.adoc[closure.adoc] included in various sources in this documentation.
+Here are the sources of link:subdocs/_init.adoc[init.adoc] and link:subdocs/_closure.adoc[closure.adoc] included in various sources in this documentation.
 
 They are here for generic configuration and data accross files.
 
