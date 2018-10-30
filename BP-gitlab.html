@@ -841,14 +841,14 @@ pages:
     - git config --global user.email "gitlab@noreply.com"
     - git config --global user.name "GitLab"
     - mvn generate-resources --non-recursive
-    - cp src/docs/asciidoc/*.adoc target/generated-docs/
-    - cp -R src/docs/asciidoc/subdocs target/generated-docs/
+    - cp --verbose src/docs/asciidoc/*.adoc target/generated-docs/
+    - cp --verbose -R src/docs/asciidoc/subdocs target/generated-docs/
     - mvn scm-publish:publish-scm
     - mkdir public
     - mv target/generated-docs/* public/
   artifacts:
     paths:
-      #nothing else than public folder will work :(
+      # nothing else than public folder will work :(
       - public
   #only:
   #  - master
@@ -886,7 +886,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-30 16:50:42 UTC
+Last updated 2018-10-30 16:59:30 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
