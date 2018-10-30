@@ -21,8 +21,6 @@ Download and install :
 * Use *\kbd:[myShortcut]* for keyboard shortcuts
 * Use *\btn[myButton]* for buttons
 * High level title should be on new pages (use *<<<*)
-* Don't forget init/closure includes at beginning/end of the adoc
-* For STS, use TMP-STS-webmethods-template.adoc as a template
 
 To show a in progress diagram to colleagues, you can generate a web link using link:http://www.plantuml.com/plantuml/uml/[PlantUml generator].
 
@@ -39,6 +37,12 @@ To show a in progress diagram to colleagues, you can generate a web link using l
 * Default highlight.js processor is too basic, instructions here to change : https://asciidoctor.org/docs/user-manual/#highlight-js
 
 image::geek-and-poke-whole-documentation.jpg[{half-width}]
+
+== init and closure
+
+Here are the sources of link:_init.adoc[init.adoc] and link:_closure.adoc[closure.adoc] included in various sources in this documentation.
+
+They are here for generic configuration and data accross files.
 
 == Generation using Maven
 

@@ -844,11 +844,12 @@ pages:
     - cp src/docs/asciidoc/*.adoc target/generated-docs/
     - cp -R src/docs/asciidoc/subdocs target/generated-docs/
     - mvn scm-publish:publish-scm
-    - mkdir public
-    - mv target/generated-docs/* public/
+    #- mkdir public
+    #- mv target/generated-docs/* public/
   artifacts:
     paths:
-      - public
+      #- public
+      - target/generated-docs
   #only:
   #  - master
 
@@ -885,7 +886,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-30 14:19:33 UTC
+Last updated 2018-10-30 16:35:05 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

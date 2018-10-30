@@ -436,15 +436,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#editor">1. Editor</a></li>
 <li><a href="#inline-icons">2. Inline icons</a></li>
 <li><a href="#custom-highlighter">3. Custom highlighter</a></li>
-<li><a href="#generation-using-maven">4. Generation using Maven</a></li>
-<li><a href="#doc-to-adoc">5. .doc to .adoc</a></li>
-<li><a href="#publish-html-pdf-to-github">6. Publish HTML &amp; PDF to github</a>
+<li><a href="#init-and-closure">4. init and closure</a></li>
+<li><a href="#generation-using-maven">5. Generation using Maven</a></li>
+<li><a href="#doc-to-adoc">6. .doc to .adoc</a></li>
+<li><a href="#publish-html-pdf-to-github">7. Publish HTML &amp; PDF to github</a>
 <ul class="sectlevel2">
-<li><a href="#initialize-github-space">6.1. Initialize Github space</a></li>
-<li><a href="#configure-maven-plugin">6.2. Configure Maven plugin</a></li>
+<li><a href="#initialize-github-space">7.1. Initialize Github space</a></li>
+<li><a href="#configure-maven-plugin">7.2. Configure Maven plugin</a></li>
 </ul>
 </li>
-<li><a href="#use-in-pipelines">7. Use in pipelines</a></li>
+<li><a href="#use-in-pipelines">8. Use in pipelines</a></li>
 </ul>
 </div>
 </div>
@@ -502,12 +503,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li>
 <p>High level title should be on new pages (use <strong>&lt;&lt;&lt;</strong>)</p>
 </li>
-<li>
-<p>Don&#8217;t forget init/closure includes at beginning/end of the adoc</p>
-</li>
-<li>
-<p>For STS, use TMP-STS-webmethods-template.adoc as a template</p>
-</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -561,7 +556,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>4. Generation using Maven</h2>
+<h2 id="init-and-closure"><a class="anchor" href="#init-and-closure"></a>4. init and closure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here are the sources of <a href="_init.adoc">init.adoc</a> and <a href="_closure.adoc">closure.adoc</a> included in various sources in this documentation.</p>
+</div>
+<div class="paragraph">
+<p>They are here for generic configuration and data accross files.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>5. Generation using Maven</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You will find a sample Maven project generating both PDF and HTML, with current doc&#8217;s layout, on <a href="https://github.com/bcouetil/asciidoctor-maven-sample">my Github</a>.</p>
@@ -699,7 +705,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>5. .doc to .adoc</h2>
+<h2 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>6. .doc to .adoc</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If the initial documentation is of Microsoft Word, you have to first migrate it to AsciiDoc file.</p>
@@ -723,10 +729,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>6. Publish HTML &amp; PDF to github</h2>
+<h2 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>7. Publish HTML &amp; PDF to github</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>6.1. Initialize Github space</h3>
+<h3 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>7.1. Initialize Github space</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  mkdir docs
@@ -753,7 +759,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>6.2. Configure Maven plugin</h3>
+<h3 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>7.2. Configure Maven plugin</h3>
 <div class="listingblock">
 <div class="title">Maven SCM plugin configuration</div>
 <div class="content">
@@ -775,7 +781,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>7. Use in pipelines</h2>
+<h2 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>8. Use in pipelines</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To use in Jenkins Pipelines, see <a href="BP-jenkins.html">Jenkins Best Practices</a></p>
@@ -793,7 +799,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-10-30 14:19:33 UTC
+Last updated 2018-10-30 16:35:05 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
