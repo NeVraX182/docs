@@ -169,6 +169,8 @@ Some options can be added in HTTP address :
 
 - link:PRES-asciidoc.html?transition=convex[PRES-asciidoc.html?transition=convex]
 - link:PRES-asciidoc-light.html?slideNumber=false[PRES-asciidoc-light.html?slideNumber=false]
+- https://revealjs.com/?parallaxBackgroundImage=https%3A%2F%2Fs3.amazonaws.com%2Fhakim-static%2Freveal-js%2Freveal-parallax-1.jpg&parallaxBackgroundSize=2100px%20900px
+
 
 image::geek-and-poke-huge-enough.jpg[{half-width}]
 

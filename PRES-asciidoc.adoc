@@ -75,6 +75,8 @@ Mon site de partage technique : https://bcouetil.gitlab.io/academy/
 [quote, Vivien (stagiaire 2017), ayant participé à un projet 100% Asciidoc]
 Avec le recul, je n'aurais pas dû faire mon rapport de stage sous Word, la mise en page est trop chronophage.
 
+{empty} +
+
 [quote, Yanis (stagiaire 2018), après avoir utilisé Asciidoc pour son rapport de stage]
 On devient vite accro !
 

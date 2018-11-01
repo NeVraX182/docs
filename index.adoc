@@ -46,5 +46,6 @@ endif::backend-html5[]
 
 * link:oral-technique.html[Oral technique]
 
-* link:PRES-asciidoc.html[Doc-as-code avec Asciidoc & PlantUml (Reveal.js)] (reverse theme link:PRES-asciidoc-light.html[here])
+* link:PRES-asciidoc.html[Doc-as-code avec Asciidoc & PlantUml] (Reveal.js)
+** Autres thèmes : link:PRES-asciidoc-light.html[light], link:PRES-asciidoc.html?parallaxBackgroundImage=themes%2Ftshirt-zenika-wide.jpg&parallaxBackgroundSize=2100px%20900px[parallax]
 
