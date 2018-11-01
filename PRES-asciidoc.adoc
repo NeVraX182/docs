@@ -1,4 +1,5 @@
-= Asciidoc & PlantUml
+= Asciidoc & PlantUml : documentation-as-code
+Benoit COUETIL
 :example-caption!:
 ifndef::imagesdir[:imagesdir: images]
 

@@ -126,34 +126,45 @@ body {
   hyphens: none;
   -ms-hyphens: none;
   -webkit-hyphens: none;
+  color: #b30c37;
+  font-family: "OpenSans Bold", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.02em;
 }
 
 .reveal h1 {
-  margin-top: 5%;
-  width: 600px;
-  float: right;
-  color: #b30c37;
-  text-align: right;
-  font-family: "OpenSans Bold", sans-serif;
-  font-size: 50px;
-  line-height: 130%;
+  height: 40%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  float: none;
+  font-size: 60px;
 }
 
 .reveal h2,
 .reveal h3 {
   margin: 0 -40px;
   padding: 40px 0 40px 20px;
-  color: #b30c37;
   text-align: left;
-  font-family: "OpenSans Bold", sans-serif;
   font-size: 40px;
-  font-weight: bold;
-  letter-spacing: 0.02em;
 }
 
-.reveal h2 small,
-.reveal h3 small {
-  vertical-align: bottom;
+/** Title's subtitle **/
+.reveal section.title h2 {
+  text-align: center;
+  font-style: italic;
+}
+
+.reveal p.author {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  justify-content: flex-end;
+}
+
+.reveal small {
+  text-align: right;
 }
 
 /*********************************************
