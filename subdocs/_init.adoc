@@ -1,7 +1,7 @@
 //NO BLANK LINE ALLOWED IN THE HEADER, here and before the include of this file
 //Only PDF
 ifdef::backend-pdf[]
-:title-logo-image: image:{root-project-dir}/src/docs/asciidoc/themes/logo-pdf.png[pdfwidth=3in,align=left]
+:title-logo-image: image:{root-project-dir}/src/docs/asciidoc/themes/logo-zenika.png[pdfwidth=3in,align=left]
 Version {project-version}
 {localdate}
 endif::backend-pdf[]

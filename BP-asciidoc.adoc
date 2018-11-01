@@ -30,11 +30,12 @@ To show a in progress diagram to colleagues, you can generate a web link using l
 * Font Awesome 4.6.3 Class Explorer :  https://lab.artlung.com/font-awesome-sample/
 ** no need for :icons: font to use font awesome-font for icons
 
-== Custom highlighter
+== Custom code highlighter
 
-* See the maven configuration below, it speaks for itself
-* Highlight.js demo with all languages and all styles
-* Default highlight.js processor is too basic, instructions here to change : https://asciidoctor.org/docs/user-manual/#highlight-js
+* To use a custom code highlighter, see the maven configuration in next paragraphs
+* Default highlight.js processor is too basic, instructions link:https://asciidoctor.org/docs/user-manual/#highlight-js[here] to change
+* link:https://highlightjs.org/static/demo/[Highlight.js demo] with all languages and all styles
+
 
 image::geek-and-poke-whole-documentation.jpg[{half-width}]
 

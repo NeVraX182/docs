@@ -19,7 +19,7 @@ https://asciidoctor.org/docs/user-manual/
 * Facilite l'automatisation
 * Testable en pipeline CI/CD
 
-== Documentation-as-code
+=== Documentation-as-code
 
 [%step]
 * Markup Language
@@ -53,7 +53,7 @@ Plus de détail ici sur les défauts de Markdown : http://ericholscher.com/blog/
 * Docbook
 * Reveal.js
 
-== Générateurs
+=== Générateurs
 
 * Outil ligne de commande (Ruby)
 * Plugin Maven
@@ -72,7 +72,7 @@ Mon site de partage technique : https://bcouetil.gitlab.io/academy/
 
 == Retours
 
-[quote, Vivien (stagiaire 2017), ayant participé à un projet 100% Asciidoc ]
+[quote, Vivien (stagiaire 2017), ayant participé à un projet 100% Asciidoc]
 Avec le recul, je n'aurais pas dû faire mon rapport de stage sous Word, la mise en page est trop chronophage.
 
 [quote, Yanis (stagiaire 2018), après avoir utilisé Asciidoc pour son rapport de stage]
