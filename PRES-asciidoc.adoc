@@ -24,10 +24,10 @@ https://asciidoctor.org/docs/user-manual/
 
 [%step]
 * Markup Language
-** Latex
+** LaTeX
 * Lightweight/Simple Markup Language
 ** Markdown
-** Asciidoc
+** AsciiDoc
 
 == PlantUML
 

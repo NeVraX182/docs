@@ -186,6 +186,11 @@ body {
   margin: 0.8em 0 0 0;
 }
 
+.reveal ul ul, .reveal ul ol, .reveal ol ol, .reveal ol ul {
+  display: block;
+  margin-left: 40px;
+}
+
 .reveal code {
   color: #b30c37;
 }
