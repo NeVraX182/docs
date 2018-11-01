@@ -46,5 +46,5 @@ endif::backend-html5[]
 
 * link:oral-technique.html[Oral technique]
 
-* link:PRES-asciidoc.html[Doc-as-code avec Asciidoc & PlantUml (Reveal.js)]
+* link:PRES-asciidoc.html[Doc-as-code avec Asciidoc & PlantUml (Reveal.js)] (reverse theme link:PRES-asciidoc-light.html[here])
 
