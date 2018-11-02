@@ -1,4 +1,4 @@
-|2018-11-01|bcouetil|- reorganized asciidoc best practices - added some Geek & Poke images - reveal.js themes Zenika dark + light + parallax - updated asciidoc/reveal versions in pom.xml
+|2018-11-02|bcouetil|- reorganized asciidoc best practices - added some Geek & Poke images - reveal.js themes Zenika dark + light + parallax - updated asciidoc/reveal versions in pom.xml
 |2018-09-19|bcouetil|- Sample asciidoctor maven project published on Github - Github & LinkedIn links - Sample project tree - new images + resizing and positioning
 |2018-08-29|bcouetil|Asciidoc HTML look & feel changes
 |2018-08-24|bcouetil|Icones added for download + favicon added for webpage
