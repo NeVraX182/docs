@@ -47,5 +47,5 @@ endif::backend-html5[]
 * link:oral-technique.html[Oral technique]
 
 * link:PRES-asciidoc-dark.html[Doc-as-code avec Asciidoc & PlantUml] (Reveal.js)
-** Autres thèmes : link:PRES-asciidoc-light.html[light], link:PRES-asciidoc-dark-parallax-wide.html[dark parallax wide], link:PRES-asciidoc-light-parallax.html[light parallax]
+** Autres thèmes : link:PRES-asciidoc-light.html[light], link:PRES-asciidoc-dark-parallax.html[dark parallax], link:PRES-asciidoc-light-parallax.html[light parallax]
 

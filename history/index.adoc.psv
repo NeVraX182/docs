@@ -1,4 +1,4 @@
-|2018-11-07|bcouetil|- Updated sample project with Reveal.js generation - Duplicated Reveal.js execution to have multiple styles
+|2018-11-07|bcouetil|- Updated sample project with Reveal.js generation - Duplicated Reveal.js execution to have multiple styles - Compromised layout between 4/3 and 16/9 - Minor changes in colors
 |2018-11-02|bcouetil|- reorganized asciidoc best practices - added some Geek & Poke images - reveal.js themes Zenika dark + light + parallax - updated asciidoc/reveal versions in pom.xml
 |2018-10-21|bcouetil|reveal.js presentation
 |2018-09-19|bcouetil|- Sample asciidoctor maven project published on Github - Github & LinkedIn links - Sample project tree - new images + resizing and positioning
