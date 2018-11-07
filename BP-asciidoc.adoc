@@ -24,6 +24,15 @@ Download and install :
 
 To show a in progress diagram to colleagues, you can generate a web link using link:http://www.plantuml.com/plantuml/uml/[PlantUml generator].
 
+=== Graphviz
+
+**Graphviz** has to be installed to use PlantUML diagrams.
+
+.On Windows
+* Download and install : http://www.graphviz.org/download/
+* add bin directory to windows path
+** C:\Program Files (x86)\Graphviz\bin
+
 == Inline icons
 
 * See https://asciidoctor.org/docs/user-manual/#icons
