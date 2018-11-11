@@ -81,5 +81,7 @@ Avec le recul, je n'aurais pas dû faire mon rapport de stage sous Word, la mise
 [quote, Yanis (stagiaire 2018), après avoir utilisé Asciidoc pour son rapport de stage]
 On devient vite accro !
 
-== Questions ?
+== Merci
+
+Des questions ?
 

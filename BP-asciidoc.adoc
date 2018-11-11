@@ -3,7 +3,7 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
-image::geek-and-poke-look-like-perl.jpg[{half-width}]
+image::geek-and-poke-look-like-perl.jpg[{tier-width}]
 
 == Editor
 
@@ -166,7 +166,11 @@ See link:https://asciidoctor.org/docs/asciidoctor-revealjs/[official documentati
 
 Official examples link:https://github.com/hakimel/reveal.js/wiki/Example-Presentations[here], especially link:https://cgi1.gitlab.io/g2scoring-presentation/[the G2 Scoring one].
 
-Personnal example : link:PRES-asciidoc.html[dark on light] and link:PRES-asciidoc-light.html[light on dark]
+Personnal examples : see at the end of the homepage.
+
+=== Fullscreen on smartphone
+
+On Android, common browsers have adress bar preventing reveal.js sites to go fullscreen. To get a real fullscreen, install **Full Screen Browser**.
 
 === Generation
 

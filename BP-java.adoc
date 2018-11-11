@@ -451,6 +451,8 @@ public class Something {
 }
 ----
 
+image::turnoff-big-numbers.png[{half-width}]
+
 === Enums and Strings
 
 [source,java]
@@ -463,6 +465,6 @@ include::{root-project-dir}/cg-utils/src/main/java/cg/wm/utils/CgPackage.java[]
 
 See https://www.symphonious.net/2011/06/18/the-single-implementation-fallacy/
 
-image::turnoff-big-numbers.png[{full-width}]
+image::turnoff-java-attacks.png[{half-width}]
 
 include::subdocs/_closure.adoc[]

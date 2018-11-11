@@ -70,6 +70,8 @@ if already initialized by mistake, use this command :
   helm reset --force
 ====
 
+image::turnoff-serverless-economic-impact.png[{half-width}]
+
 === SonarQube
 
 [source, bash]
@@ -117,6 +119,8 @@ To get the admin password :
 ==== Gerrit
 
 In progress, not in Helm/Charts yet. See ongoing project : https://github.com/Novitoll/charts/tree/master/incubator/gerrit
+
+image::turnoff-adam-eve.png[{half-width}]
 
 === Gitlab
 

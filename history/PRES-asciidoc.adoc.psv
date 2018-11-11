@@ -1,2 +1,3 @@
+|2018-11-11|bcouetil|- Updated sample project with Reveal.js generation - Duplicated Reveal.js execution to have multiple styles - Compromised layout between 4/3 and 16/9 - Minor changes in Reveal.js css
 |2018-11-02|bcouetil|- reorganized asciidoc best practices - added some Geek & Poke images - reveal.js themes Zenika dark + light + parallax - updated asciidoc/reveal versions in pom.xml
 |2018-10-21|bcouetil|reveal.js presentation
