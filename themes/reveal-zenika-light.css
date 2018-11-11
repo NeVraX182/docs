@@ -354,7 +354,7 @@ body {
   transition: color .15s ease;
 }
 
-.reveal a:not(.image):hover {
+.reveal div:not(.slide-number) a.bare:not(.image):hover {
   color: #b30c37;
   text-shadow: none;
   border: none;
