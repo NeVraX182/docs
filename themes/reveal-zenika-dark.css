@@ -84,30 +84,21 @@ body {
   text-shadow: none;
 }
 
-.reveal .slides table, .reveal .slides table th, .reveal .slides table td {
-  border: 1px solid #696969;
-  border-collapse: collapse;
+/** TABLES **/
+
+.reveal table th, .reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid;
 }
 
-.reveal .slides table th, .reveal .slides table td {
-  padding: 0px 10px;
+.reveal table th {
+  font-weight: bold;
+  color: #b30c37;
 }
 
-.reveal .slides table {
-  margin: 15px 0;
-  box-shadow: none;
-  border: 1px solid #b30c37;
-  border-left: 5px solid #b30c37;
-  border-collapse: collapse;
-}
-.reveal .slides table tr td {
-  border: 1px solid #AAAAAA;
-}
-.reveal .slides table tr th {
-  border: 1px solid #AAAAAA;
-  border-bottom: 5px solid #b30c37;
-/*  background-color: #AAAAAA;*/
-  color : #000000;
+.reveal table tbody tr:last-child th, .reveal table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .reveal .slides table.no-border,
@@ -203,45 +194,9 @@ body {
   font-weight: normal;
 }
 
-
-/*********************************************
- * CODE
- *********************************************/
-
-.reveal pre {
-  margin: 15px 0;
-  box-shadow: none;
-  border: 1px solid #b30c37;
-  border-left: 5px solid #b30c37;
-  width:100%;
-  white-space: pre-wrap;
-}
-
-.reveal h2 + pre,
-.reveal h3 + pre { /* Whole-slide code block */
-  border: none;
-}
-
-.reveal pre > code, .reveal .code {
-  color: black;
-  max-height: none;
-  font-family: 'Inconsolata', monospace;
-  font-size: 24px;
-  line-height: normal;
-}
-
 /*********************************************
  * SPECIALS PAGES
  *********************************************/
-
-/*.slides section:first-child::after {
-    color: white;
-    font-size: 13px;
-    content: "VERSION";
-    position: absolute;
-    bottom: 5mm;
-    right: 5mm;
-}*/
 
 .reveal section.page-title h1 {
   height: 90%;
