@@ -37,6 +37,8 @@ This has to be done only for a new Production Line
 - Findbugs : install
 - SoftVis3D : install
 
+image::dilbert-legacy-code.gif[{full-width}]
+
 === Rules / quality profile
 
 ==== Export
@@ -54,6 +56,8 @@ WARNING: for an import to be successful, SonarQube must know the rules, so Sonar
 * Navigate to *Quality Profiles* -> dropdown menu next to *Create* -> *Restore Profile*
 * Provide the saved XML
 
+image::dilbert-legacy-squirrels.jpg[{full-width}]
+
 ==== Create
 
 [NOTE]
@@ -67,6 +71,8 @@ This has to be done only if you want to define a custom set of rules
 ** Click on the number of active rules to deactivate some
 ** Click on *Activate More*
 ** Go to *Rules*, search one and change its value
+
+image::dilbert-technical-debt.gif[{full-width}]
 
 === Technical Debt
 
@@ -99,6 +105,8 @@ You can do an empty **commit amend** from Eclipse. But you can also retrigger fr
 ** Click *SEARCH*
 ** Select the change 
 ** Click *TRIGGER SELECTED*
+
+image::monkeyuser-technical-debt.jpg[{half-width}] 
 
 === Make sure I've got all the relevant new rules in my profile
 
