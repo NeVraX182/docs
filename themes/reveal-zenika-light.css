@@ -37,6 +37,10 @@ rose : 239/82/91
 
 /* keywords */
 .reveal *:not(pre)>code {
-  background-color: #ccc;
+  background-color: #eee;
   color: black;
+}
+
+.literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint {
+  background: #eee;
 }

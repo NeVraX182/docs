@@ -40,3 +40,7 @@ rose : 239/82/91
   background-color: #444;
   color: white;
 }
+
+.literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint {
+  background: #444;
+}

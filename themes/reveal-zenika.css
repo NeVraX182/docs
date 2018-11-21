@@ -263,6 +263,24 @@ body {
   letter-spacing: -.025em;
 }
 
+/** SPECIAL TEXT **/
+
+.reveal span.small {
+  font-size: smaller;
+}
+
+.reveal span.big {
+  font-size: larger;
+}
+
+.reveal span.underline {
+  text-decoration: underline;
+}
+
+.reveal span.line-through {
+  text-decoration: line-through;
+}
+
 /** FONT AWESOME **/
 
 .reveal div.admonitionblock table td.icon,
