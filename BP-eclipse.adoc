@@ -220,7 +220,7 @@ On btn:[Repository Settings] click on btn:[Open] and enter the following configu
     	logallrefupdates = true
     [remote "origin"]
     	url = https://host.com/gerrit/p/cg-wm.git
-    	fetch = +refs/heads/*:refs/remotes/origin/]
+    	fetch = +refs/heads/*:refs/remotes/origin/*
     	push = HEAD:refs/for/master
     [branch "master"]
     	merge = refs/heads/master
