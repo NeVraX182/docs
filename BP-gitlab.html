@@ -845,11 +845,16 @@ pages:
     - apt-get update -qq &amp;&amp; apt-get install -qq --assume-yes graphviz
     - git config --global user.email "gitlab@noreply.com"
     - git config --global user.name "GitLab"
-    - mvn generate-resources --non-recursive
-    - cp --verbose src/docs/asciidoc/*.adoc target/generated-docs/
-    - cp --verbose -R src/docs/asciidoc/subdocs target/generated-docs/
-    - mvn scm-publish:publish-scm
     - mkdir public
+    #SAMPLE
+    - mvn -f cg-asciidoctor-sample/pom.xml
+    - mv --verbose cg-asciidoctor-sample/src/docs/asciidoc/*.adoc cg-asciidoctor-sample/target/generated-docs/
+    - mv --verbose cg-asciidoctor-sample/target/generated-docs public/sample
+    #ACADEMY
+    - mvn generate-resources --non-recursive
+    - mv --verbose src/docs/asciidoc/*.adoc target/generated-docs/
+    - mv --verbose src/docs/asciidoc/subdocs target/generated-docs/subdocs
+    - mvn scm-publish:publish-scm
     - mv target/generated-docs/* public/
   artifacts:
     paths:
@@ -900,7 +905,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-21 18:49:50 UTC
+Last updated 2018-11-22 13:45:02 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

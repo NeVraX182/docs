@@ -5,6 +5,16 @@ ifndef::imagesdir[:imagesdir: images]
 
 image::geek-and-poke-look-like-perl.jpg[{tier-width}]
 
+== Demo
+
+.One source, multiple output formats
+* icon:file-text-o[link=sample/{docname}.adoc] Source
+* icon:globe[link={sample/docname}.html] Html
+* Slides (Reveal.js)
+** icon:video-camera[link=sample/PRES-{docname}-dark.html] dark
+** icon:video-camera[link=sample/PRES-{docname}-light-parallax.html] light on parallax
+* icon:file-pdf-o[link=sample/{docname}.pdf] PDF
+
 == Editor
 
 To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF. You can consider Visual Studio Code too, it has a nice plugin but with less features.

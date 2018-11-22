@@ -37,7 +37,7 @@ This has to be done only for a new Production Line
 - Findbugs : install
 - SoftVis3D : install
 
-image::dilbert-legacy-code.gif[{full-width}]
+image::dilbert-legacy-code.jpg[{full-width}]
 
 === Rules / quality profile
 
@@ -72,7 +72,7 @@ This has to be done only if you want to define a custom set of rules
 ** Click on *Activate More*
 ** Go to *Rules*, search one and change its value
 
-image::dilbert-technical-debt.gif[{full-width}]
+image::dilbert-technical-debt.jpg[{full-width}]
 
 === Technical Debt
 

@@ -1,4 +1,4 @@
-|2018-11-21|bcouetil|- Updated reveal css for all syntax elements, for both light and dark themes : asciidoc-syntax-quick-reference is now nicely output - Refactored light and dark css, extracting common items into reveal-zenika.css
+|2018-11-22|bcouetil|- Updated reveal css for all syntax elements, for both light and dark themes : asciidoc-syntax-quick-reference is now nicely output - Refactored light and dark css, extracting common items into reveal-zenika.css
 |2018-11-02|bcouetil|- reorganized asciidoc best practices - added some Geek & Poke images - reveal.js themes Zenika dark + light + parallax - updated asciidoc/reveal versions in pom.xml
 |2018-10-21|bcouetil|reveal.js presentation
 |2018-09-19|bcouetil|- Sample asciidoctor maven project published on Github - Github & LinkedIn links - Sample project tree - new images + resizing and positioning

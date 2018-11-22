@@ -433,29 +433,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#editor">1. Editor</a>
+<li><a href="#demo">1. Demo</a></li>
+<li><a href="#editor">2. Editor</a>
 <ul class="sectlevel2">
-<li><a href="#graphviz">1.1. Graphviz</a></li>
+<li><a href="#graphviz">2.1. Graphviz</a></li>
 </ul>
 </li>
-<li><a href="#inline-icons">2. Inline icons</a></li>
-<li><a href="#custom-code-highlighter">3. Custom code highlighter</a></li>
-<li><a href="#init-and-closure">4. init and closure</a></li>
-<li><a href="#generation-using-maven">5. Generation using Maven</a></li>
-<li><a href="#doc-to-adoc">6. .doc to .adoc</a></li>
-<li><a href="#publish-html-pdf-to-github">7. Publish HTML &amp; PDF to github</a>
+<li><a href="#inline-icons">3. Inline icons</a></li>
+<li><a href="#custom-code-highlighter">4. Custom code highlighter</a></li>
+<li><a href="#init-and-closure">5. init and closure</a></li>
+<li><a href="#generation-using-maven">6. Generation using Maven</a></li>
+<li><a href="#doc-to-adoc">7. .doc to .adoc</a></li>
+<li><a href="#publish-html-pdf-to-github">8. Publish HTML &amp; PDF to github</a>
 <ul class="sectlevel2">
-<li><a href="#initialize-github-space">7.1. Initialize Github space</a></li>
-<li><a href="#configure-maven-plugin">7.2. Configure Maven plugin</a></li>
+<li><a href="#initialize-github-space">8.1. Initialize Github space</a></li>
+<li><a href="#configure-maven-plugin">8.2. Configure Maven plugin</a></li>
 </ul>
 </li>
-<li><a href="#use-in-pipelines">8. Use in pipelines</a></li>
-<li><a href="#reveal-js">9. Reveal.js</a>
+<li><a href="#use-in-pipelines">9. Use in pipelines</a></li>
+<li><a href="#reveal-js">10. Reveal.js</a>
 <ul class="sectlevel2">
-<li><a href="#examples">9.1. Examples</a></li>
-<li><a href="#fullscreen-on-smartphone">9.2. Fullscreen on smartphone</a></li>
-<li><a href="#generation">9.3. Generation</a></li>
-<li><a href="#inline-options">9.4. Inline options</a></li>
+<li><a href="#examples">10.1. Examples</a></li>
+<li><a href="#fullscreen-on-smartphone">10.2. Fullscreen on smartphone</a></li>
+<li><a href="#generation">10.3. Generation</a></li>
+<li><a href="#inline-options">10.4. Inline options</a></li>
 </ul>
 </li>
 </ul>
@@ -477,7 +478,39 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="editor"><a class="anchor" href="#editor"></a>1. Editor</h2>
+<h2 id="demo"><a class="anchor" href="#demo"></a>1. Demo</h2>
+<div class="sectionbody">
+<div class="ulist">
+<div class="title">One source, multiple output formats</div>
+<ul>
+<li>
+<p><span class="icon"><a class="image" href="sample/BP-asciidoc.adoc"><i class="fa fa-file-text-o"></i></a></span> Source</p>
+</li>
+<li>
+<p><span class="icon"><a class="image" href="{sample/docname}.html"><i class="fa fa-globe"></i></a></span> Html</p>
+</li>
+<li>
+<p>Slides (Reveal.js)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><span class="icon"><a class="image" href="sample/PRES-BP-asciidoc-dark.html"><i class="fa fa-video-camera"></i></a></span> dark</p>
+</li>
+<li>
+<p><span class="icon"><a class="image" href="sample/PRES-BP-asciidoc-light-parallax.html"><i class="fa fa-video-camera"></i></a></span> light on parallax</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><span class="icon"><a class="image" href="sample/BP-asciidoc.pdf"><i class="fa fa-file-pdf-o"></i></a></span> PDF</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="editor"><a class="anchor" href="#editor"></a>2. Editor</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF. You can consider Visual Studio Code too, it has a nice plugin but with less features.</p>
@@ -521,7 +554,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>To show a in progress diagram to colleagues, you can generate a web link using <a href="http://www.plantuml.com/plantuml/uml/">PlantUml generator</a>.</p>
 </div>
 <div class="sect2">
-<h3 id="graphviz"><a class="anchor" href="#graphviz"></a>1.1. Graphviz</h3>
+<h3 id="graphviz"><a class="anchor" href="#graphviz"></a>2.1. Graphviz</h3>
 <div class="paragraph">
 <p><strong>Graphviz</strong> has to be installed to use PlantUML diagrams.</p>
 </div>
@@ -547,7 +580,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="inline-icons"><a class="anchor" href="#inline-icons"></a>2. Inline icons</h2>
+<h2 id="inline-icons"><a class="anchor" href="#inline-icons"></a>3. Inline icons</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -569,7 +602,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="custom-code-highlighter"><a class="anchor" href="#custom-code-highlighter"></a>3. Custom code highlighter</h2>
+<h2 id="custom-code-highlighter"><a class="anchor" href="#custom-code-highlighter"></a>4. Custom code highlighter</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -592,7 +625,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="init-and-closure"><a class="anchor" href="#init-and-closure"></a>4. init and closure</h2>
+<h2 id="init-and-closure"><a class="anchor" href="#init-and-closure"></a>5. init and closure</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Here are the sources of <a href="subdocs/_init.adoc">init.adoc</a> and <a href="subdocs/_closure.adoc">closure.adoc</a> included in various sources in this documentation.</p>
@@ -603,7 +636,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>5. Generation using Maven</h2>
+<h2 id="generation-using-maven"><a class="anchor" href="#generation-using-maven"></a>6. Generation using Maven</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You will find a sample Maven project generating both PDF and HTML, with current doc&#8217;s layout, on <a href="https://github.com/bcouetil/asciidoctor-maven-sample">my Github</a>.</p>
@@ -658,6 +691,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 			&lt;require&gt;asciidoctor-diagram&lt;/require&gt;
 		&lt;/requires&gt;
 		&lt;attributes&gt;
+			&lt;!-- for Font Awesome icons --&gt;
 			&lt;icons&gt;font&lt;/icons&gt;
 			&lt;idseparator&gt;-&lt;/idseparator&gt;
 			&lt;idprefix /&gt;
@@ -832,7 +866,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>6. .doc to .adoc</h2>
+<h2 id="doc-to-adoc"><a class="anchor" href="#doc-to-adoc"></a>7. .doc to .adoc</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If the initial documentation is of Microsoft Word, you have to first migrate it to AsciiDoc file.</p>
@@ -856,10 +890,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>7. Publish HTML &amp; PDF to github</h2>
+<h2 id="publish-html-pdf-to-github"><a class="anchor" href="#publish-html-pdf-to-github"></a>8. Publish HTML &amp; PDF to github</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>7.1. Initialize Github space</h3>
+<h3 id="initialize-github-space"><a class="anchor" href="#initialize-github-space"></a>8.1. Initialize Github space</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  mkdir docs
@@ -886,7 +920,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>7.2. Configure Maven plugin</h3>
+<h3 id="configure-maven-plugin"><a class="anchor" href="#configure-maven-plugin"></a>8.2. Configure Maven plugin</h3>
 <div class="listingblock">
 <div class="title">Maven SCM plugin configuration</div>
 <div class="content">
@@ -908,7 +942,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>8. Use in pipelines</h2>
+<h2 id="use-in-pipelines"><a class="anchor" href="#use-in-pipelines"></a>9. Use in pipelines</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>To use in Jenkins Pipelines, see <a href="BP-jenkins.html">Jenkins Best Practices</a></p>
@@ -919,13 +953,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="reveal-js"><a class="anchor" href="#reveal-js"></a>9. Reveal.js</h2>
+<h2 id="reveal-js"><a class="anchor" href="#reveal-js"></a>10. Reveal.js</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>See <a href="https://asciidoctor.org/docs/asciidoctor-revealjs/">official documentation</a> on Asciidoctor website.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>9.1. Examples</h3>
+<h3 id="examples"><a class="anchor" href="#examples"></a>10.1. Examples</h3>
 <div class="paragraph">
 <p>Official examples <a href="https://github.com/hakimel/reveal.js/wiki/Example-Presentations">here</a>, especially <a href="https://cgi1.gitlab.io/g2scoring-presentation/">the G2 Scoring one</a>.</p>
 </div>
@@ -934,19 +968,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="fullscreen-on-smartphone"><a class="anchor" href="#fullscreen-on-smartphone"></a>9.2. Fullscreen on smartphone</h3>
+<h3 id="fullscreen-on-smartphone"><a class="anchor" href="#fullscreen-on-smartphone"></a>10.2. Fullscreen on smartphone</h3>
 <div class="paragraph">
 <p>On Android, common browsers have adress bar preventing reveal.js sites to go fullscreen. To get a real fullscreen, install <strong>Full Screen Browser</strong>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="generation"><a class="anchor" href="#generation"></a>9.3. Generation</h3>
+<h3 id="generation"><a class="anchor" href="#generation"></a>10.3. Generation</h3>
 <div class="paragraph">
 <p>Maven plugin showed above include a reveal.js generation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inline-options"><a class="anchor" href="#inline-options"></a>9.4. Inline options</h3>
+<h3 id="inline-options"><a class="anchor" href="#inline-options"></a>10.4. Inline options</h3>
 <div class="paragraph">
 <p>Some options can be added in HTTP address :</p>
 </div>
@@ -974,7 +1008,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-21 18:49:50 UTC
+Last updated 2018-11-22 13:45:02 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
