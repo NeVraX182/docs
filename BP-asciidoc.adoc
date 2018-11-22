@@ -9,7 +9,7 @@ image::geek-and-poke-look-like-perl.jpg[{tier-width}]
 
 .One source, multiple output formats
 * icon:file-text-o[link=sample/asciidoc-syntax-quick-reference.adoc] Source
-* icon:globe[link=asciidoc-syntax-quick-reference.html] Html
+* icon:globe[link=sample/asciidoc-syntax-quick-reference.html] Html
 * Slides (Reveal.js)
 ** icon:video-camera[link=sample/PRES-asciidoc-syntax-quick-reference-dark.html] dark
 ** icon:video-camera[link=sample/PRES-asciidoc-syntax-quick-reference-light-parallax.html] light on parallax
