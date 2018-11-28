@@ -748,6 +748,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 				&lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates&lt;/templateDir&gt;
 				&lt;attributes&gt;
 					&lt;source-highlighter&gt;highlightjs&lt;/source-highlighter&gt;
+					&lt;highlightjs-theme&gt;highlight/styles/gruvbox-dark.min.css&lt;/highlightjs-theme&gt;
 					&lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
 					&lt;!-- default closest to Zenika's graphic chart : --&gt;
 					&lt;!-- &lt;revealjs_theme&gt;blood&lt;/revealjs_theme&gt; --&gt;
@@ -758,52 +759,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 					&lt;revealjs_slideNumber&gt;true&lt;/revealjs_slideNumber&gt;
 					&lt;!-- does not work T_T only solution is put a favicon.ico in the root folder of the website --&gt;
 					&lt;!-- &lt;favicon&gt;themes/favicon.png&lt;/favicon&gt; --&gt;
-					&lt;revealjs_width&gt;1100&lt;/revealjs_width&gt;
-					&lt;revealjs_height&gt;700&lt;/revealjs_height&gt;
-				&lt;/attributes&gt;
-			&lt;/configuration&gt;
-		&lt;/execution&gt;
-		&lt;execution&gt;
-			&lt;id&gt;asciidoc-to-revealjs-light&lt;/id&gt;
-			&lt;phase&gt;generate-resources&lt;/phase&gt;
-			&lt;goals&gt;
-				&lt;goal&gt;process-asciidoc&lt;/goal&gt;
-			&lt;/goals&gt;
-			&lt;configuration&gt;
-				&lt;backend&gt;revealjs&lt;/backend&gt;
-				&lt;sourceDocumentName&gt;PRES-asciidoc.adoc&lt;/sourceDocumentName&gt;
-				&lt;outputFile&gt;${project.slides.directory}/PRES-asciidoc-light.html&lt;/outputFile&gt;
-				&lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates&lt;/templateDir&gt;
-				&lt;attributes&gt;
-					&lt;source-highlighter&gt;highlightjs&lt;/source-highlighter&gt;
-					&lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
-					&lt;revealjs_customtheme&gt;themes/reveal-zenika-light.css&lt;/revealjs_customtheme&gt;
-					&lt;revealjs_transition&gt;slide&lt;/revealjs_transition&gt;
-					&lt;revealjs_slideNumber&gt;true&lt;/revealjs_slideNumber&gt;
-					&lt;revealjs_width&gt;1100&lt;/revealjs_width&gt;
-					&lt;revealjs_height&gt;700&lt;/revealjs_height&gt;
-				&lt;/attributes&gt;
-			&lt;/configuration&gt;
-		&lt;/execution&gt;
-		&lt;execution&gt;
-			&lt;id&gt;asciidoc-to-revealjs-dark-parallax&lt;/id&gt;
-			&lt;phase&gt;generate-resources&lt;/phase&gt;
-			&lt;goals&gt;
-				&lt;goal&gt;process-asciidoc&lt;/goal&gt;
-			&lt;/goals&gt;
-			&lt;configuration&gt;
-				&lt;backend&gt;revealjs&lt;/backend&gt;
-				&lt;sourceDocumentName&gt;PRES-asciidoc.adoc&lt;/sourceDocumentName&gt;
-				&lt;outputFile&gt;${project.slides.directory}/PRES-asciidoc-dark-parallax.html&lt;/outputFile&gt;
-				&lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates&lt;/templateDir&gt;
-				&lt;attributes&gt;
-					&lt;source-highlighter&gt;highlightjs&lt;/source-highlighter&gt;
-					&lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
-					&lt;revealjs_customtheme&gt;themes/reveal-zenika-dark.css&lt;/revealjs_customtheme&gt;
-					&lt;revealjs_transition&gt;slide&lt;/revealjs_transition&gt;
-					&lt;revealjs_slideNumber&gt;true&lt;/revealjs_slideNumber&gt;
-					&lt;revealjs_parallaxBackGroundImage&gt;themes/tshirt-zenika-wide.jpg&lt;/revealjs_parallaxBackGroundImage&gt;
-					&lt;revealjs_parallaxBackgroundSize&gt;2100px 900px&lt;/revealjs_parallaxBackgroundSize&gt;
 					&lt;revealjs_width&gt;1100&lt;/revealjs_width&gt;
 					&lt;revealjs_height&gt;700&lt;/revealjs_height&gt;
 				&lt;/attributes&gt;
@@ -822,6 +777,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 				&lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates&lt;/templateDir&gt;
 				&lt;attributes&gt;
 					&lt;source-highlighter&gt;highlightjs&lt;/source-highlighter&gt;
+					&lt;highlightjs-theme&gt;highlight/styles/gruvbox-dark.min.css&lt;/highlightjs-theme&gt;
 					&lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
 					&lt;revealjs_customtheme&gt;themes/reveal-zenika-light.css&lt;/revealjs_customtheme&gt;
 					&lt;revealjs_transition&gt;slide&lt;/revealjs_transition&gt;
@@ -1008,7 +964,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-27 22:00:42 UTC
+Last updated 2018-11-28 13:48:11 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
