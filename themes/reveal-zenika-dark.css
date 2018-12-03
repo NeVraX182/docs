@@ -41,6 +41,6 @@ rose : 239/82/91
   color: white;
 }
 
-.literalblock pre, .listingblock pre:not(.highlight), .listingblock pre[class="highlight"], .listingblock pre[class^="highlight "], .listingblock pre.CodeRay, .listingblock pre.prettyprint {
+.reveal pre {
   background: #444;
 }

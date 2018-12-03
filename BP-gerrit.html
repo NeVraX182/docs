@@ -433,34 +433,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#server-configuration">1. Server configuration</a>
+<li><a href="#server-installation">1. Server installation</a></li>
+<li><a href="#server-configuration">2. Server configuration</a>
 <ul class="sectlevel2">
-<li><a href="#initialization">1.1. Initialization</a>
+<li><a href="#initialization">2.1. Initialization</a>
 <ul class="sectlevel3">
-<li><a href="#permissions">1.1.1. Permissions</a>
+<li><a href="#permissions">2.1.1. Permissions</a>
 <ul class="sectlevel4">
 <li><a href="#jenkins-user-push">Jenkins user push</a></li>
 <li><a href="#deleting-tags">Deleting tags</a></li>
 <li><a href="#gitweb-access">Allow (gitweb) access for everyone</a></li>
 </ul>
 </li>
-<li><a href="#verified-status">1.1.2. Verified status</a></li>
-<li><a href="#fast-forward">1.1.3. Fast Forward</a></li>
+<li><a href="#verified-status">2.1.2. Verified status</a></li>
+<li><a href="#fast-forward">2.1.3. Fast Forward</a></li>
 </ul>
 </li>
-<li><a href="#user-preferences">1.2. User preferences</a></li>
-<li><a href="#project-creation">1.3. Project creation</a>
+<li><a href="#user-preferences">2.2. User preferences</a></li>
+<li><a href="#project-creation">2.3. Project creation</a>
 <ul class="sectlevel3">
-<li><a href="#project-url">1.3.1. Project git address/URL</a></li>
-<li><a href="#users-groups-creation">1.3.2. Users groups creation</a></li>
+<li><a href="#old-ui">2.3.1. Old UI</a></li>
+<li><a href="#polygerrit">2.3.2. PolyGerrit</a></li>
+<li><a href="#project-url">2.3.3. Project git address/URL</a></li>
+<li><a href="#users-groups-creation">2.3.4. Users groups creation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#code-review-golden-rules-using-gerrit">2. Code review golden rules (using Gerrit)</a></li>
-<li><a href="#troobleshootings">3. Troobleshootings</a>
+<li><a href="#code-review-golden-rules-using-gerrit">3. Code review golden rules (using Gerrit)</a></li>
+<li><a href="#troobleshootings">4. Troobleshootings</a>
 <ul class="sectlevel2">
-<li><a href="#submit-replaced-with-submit-including-parents">3.1. Submit replaced with Submit including parents</a></li>
+<li><a href="#submit-replaced-with-submit-including-parents">4.1. Submit replaced with Submit including parents</a></li>
 </ul>
 </li>
 </ul>
@@ -474,21 +477,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="icon"><a class="image" href="BP-gerrit.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="BP-gerrit.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="server-configuration"><a class="anchor" href="#server-configuration"></a>1. Server configuration</h2>
-<div class="sectionbody">
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="./images/dilbert-collaboration.png" alt="dilbert collaboration" width="50%">
 </div>
 </div>
-<div class="paragraph">
-<p>Connect to Gerrit homepage.</p>
 </div>
-<div class="sect2">
-<h3 id="initialization"><a class="anchor" href="#initialization"></a>1.1. Initialization</h3>
+</div>
+<div class="sect1">
+<h2 id="server-installation"><a class="anchor" href="#server-installation"></a>1. Server installation</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="title">Using docker</div>
+<div class="content">
+<pre>docker run -p 8080:8080 -p 29418:29418 gerritcodereview/gerrit</pre>
+</div>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -496,15 +500,124 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>This has to be done only for a new Production Line</p>
-</div>
+Updated with new UI
 </td>
 </tr>
 </table>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Connect to Gerrit homepage</p>
+<div class="ulist">
+<ul>
+<li>
+<p>First person to connect is the administrator</p>
+</li>
+<li>
+<p>Without LDAP, other users are added at first connection</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>So, as the administrator :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Skip the plugin configuration</p>
+</li>
+<li>
+<p>Click on the image in the top right corner &#8594; <b class="button">Settings</b>, and set</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p>Full name</p>
+</li>
+<li>
+<p>Changes per page = 100 rows</p>
+</li>
+<li>
+<p>Date/time format</p>
+</li>
+<li>
+<p><i class="fa fa-check-square-o"></i> Set new changes to "work in progress"</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <b class="button">Save changes</b></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Ignore Whitespace = All</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click <b class="button">Save changes</b></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>New email address = <a href="mailto:your@mail.com">your@mail.com</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>reload page</p>
+</li>
+<li>
+<p>select your mail in list</p>
+</li>
+<li>
+<p>delete <a href="mailto:email@example.com">email@example.com</a></p>
+</li>
+<li>
+<p>Click <b class="button">Save changes</b></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click <b class="button">Generate New Password</b></p>
+<div class="ulist">
+<ul>
+<li>
+<p>save it for later</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="server-configuration"><a class="anchor" href="#server-configuration"></a>2. Server configuration</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In further sections, actions are for old UI
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="initialization"><a class="anchor" href="#initialization"></a>2.1. Initialization</h3>
 <div class="sect3">
-<h4 id="permissions"><a class="anchor" href="#permissions"></a>1.1.1. Permissions</h4>
+<h4 id="permissions"><a class="anchor" href="#permissions"></a>2.1.1. Permissions</h4>
 <div class="sect4">
 <h5 id="jenkins-user-push"><a class="anchor" href="#jenkins-user-push"></a>Jenkins user push</h5>
 <div class="ulist">
@@ -595,7 +708,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="verified-status"><a class="anchor" href="#verified-status"></a>1.1.2. Verified status</h4>
+<h4 id="verified-status"><a class="anchor" href="#verified-status"></a>2.1.2. Verified status</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -649,7 +762,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="fast-forward"><a class="anchor" href="#fast-forward"></a>1.1.3. Fast Forward</h4>
+<h4 id="fast-forward"><a class="anchor" href="#fast-forward"></a>2.1.3. Fast Forward</h4>
 <div class="paragraph">
 <p>By default, when projet submissions are not fast forward, final submitting a change will create a merge commit. The history is potentially doubled.</p>
 </div>
@@ -672,21 +785,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-preferences"><a class="anchor" href="#user-preferences"></a>1.2. User preferences</h3>
+<h3 id="user-preferences"><a class="anchor" href="#user-preferences"></a>2.2. User preferences</h3>
 <div class="paragraph">
 <p>Click on  <strong>YourName</strong> &#8594; <strong>Settings</strong> &#8594; <strong>Diff Preferences</strong> and set <strong>columns = 120</strong>
 (you will probably have to paste it due to a GUI bug)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="project-creation"><a class="anchor" href="#project-creation"></a>1.3. Project creation</h3>
+<h3 id="project-creation"><a class="anchor" href="#project-creation"></a>2.3. Project creation</h3>
+<div class="sect3">
+<h4 id="old-ui"><a class="anchor" href="#old-ui"></a>2.3.1. Old UI</h4>
 <div class="paragraph">
 <p>Create your GIT project by clicking on <strong>Projects</strong> &#8594; <strong>Create New Project</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Project Name = <strong>cg-wm</strong></p>
+<p>Project Name = <strong>your-project-name</strong></p>
 </li>
 <li>
 <p>Rights Inherit From = <strong>All-Projects</strong></p>
@@ -696,8 +811,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </div>
+</div>
 <div class="sect3">
-<h4 id="project-url"><a class="anchor" href="#project-url"></a>1.3.1. Project git address/URL</h4>
+<h4 id="polygerrit"><a class="anchor" href="#polygerrit"></a>2.3.2. PolyGerrit</h4>
+<div class="paragraph">
+<p>Create your GIT project by clicking on <strong>Browse</strong> &#8594; <strong>Repositories &#8594; *Create New</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Repository Name = <strong>your-project-name</strong></p>
+</li>
+<li>
+<p>Rights Inherit From = <strong>All-Projects</strong></p>
+</li>
+<li>
+<p>Owner = Technical responsible</p>
+</li>
+<li>
+<p>Click <b class="button">Create</b></p>
+</li>
+<li>
+<p>Check that it has inherited correctly "Rebase if necessary", else change and click <b class="button">SAVE CHANGES</b></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="project-url"><a class="anchor" href="#project-url"></a>2.3.3. Project git address/URL</h4>
 <div class="paragraph">
 <p>To get the repo address of your project under Gerrit :</p>
 </div>
@@ -736,7 +877,7 @@ If you don&#8217;t have access to Gitweb interface ("Not Found"), ask your admin
 </div>
 </div>
 <div class="sect3">
-<h4 id="users-groups-creation"><a class="anchor" href="#users-groups-creation"></a>1.3.2. Users groups creation</h4>
+<h4 id="users-groups-creation"><a class="anchor" href="#users-groups-creation"></a>2.3.4. Users groups creation</h4>
 <div class="paragraph">
 <p>For each project, create a reviewer list and a validator list.</p>
 </div>
@@ -814,7 +955,7 @@ If you don&#8217;t have access to Gitweb interface ("Not Found"), ask your admin
 </div>
 </div>
 <div class="sect1">
-<h2 id="code-review-golden-rules-using-gerrit"><a class="anchor" href="#code-review-golden-rules-using-gerrit"></a>2. Code review golden rules (using Gerrit)</h2>
+<h2 id="code-review-golden-rules-using-gerrit"><a class="anchor" href="#code-review-golden-rules-using-gerrit"></a>3. Code review golden rules (using Gerrit)</h2>
 <div class="sectionbody">
 <div class="imageblock" style="text-align: center">
 <div class="content">
@@ -906,10 +1047,10 @@ If you don&#8217;t have access to Gitweb interface ("Not Found"), ask your admin
 </div>
 </div>
 <div class="sect1">
-<h2 id="troobleshootings"><a class="anchor" href="#troobleshootings"></a>3. Troobleshootings</h2>
+<h2 id="troobleshootings"><a class="anchor" href="#troobleshootings"></a>4. Troobleshootings</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="submit-replaced-with-submit-including-parents"><a class="anchor" href="#submit-replaced-with-submit-including-parents"></a>3.1. Submit replaced with Submit including parents</h3>
+<h3 id="submit-replaced-with-submit-including-parents"><a class="anchor" href="#submit-replaced-with-submit-including-parents"></a>4.1. Submit replaced with Submit including parents</h3>
 <div class="paragraph">
 <p>If the <b class="button">Submit</b> button is replaced with <b class="button">Submit including parents</b>, there is obviously a problem in the git tree. You have to rebase. You can ask the developer to do so in his IDE and push again. But you can also do it in the UI :</p>
 </div>
@@ -941,7 +1082,7 @@ If you don&#8217;t have access to Gitweb interface ("Not Found"), ask your admin
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-03 17:00:50 UTC
+Last updated 2018-12-03 17:21:20 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

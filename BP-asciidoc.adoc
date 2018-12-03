@@ -168,6 +168,18 @@ To use in Jenkins Pipelines, see link:BP-jenkins.html[Jenkins Best Practices]
 
 To use in Gitlab Pipelines, see link:BP-gitlab.html[Gitlab Best Practices]
 
+== Confluence to Asciidoc
+
+From link::https://confluence.atlassian.com/doc/export-content-to-word-pdf-html-and-xml-139475.html[Confluence HTML export] and 
+
+* Go to the space and choose btn:[Space tools] -> btn:[Content Tools] from the bottom of the sidebar
+* Choose btn:[Export] (you may need to zoom out to see it)
+* Choose btn:[HTML]
+* Click btn:[Unselect All] and choose specific pages
+* Click btn:[Export]
+
+WARNING: TODO: https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_includes/convert-from-confluence-xhtml.adoc
+
 == Reveal.js
 
 See link:https://asciidoctor.org/docs/asciidoctor-revealjs/[official documentation] on Asciidoctor website.

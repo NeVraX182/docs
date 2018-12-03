@@ -3,18 +3,43 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
-== Server configuration
-
 image::dilbert-collaboration.png[{half-width}]
 
-Connect to Gerrit homepage.
+== Server installation
+
+.Using docker
+ docker run -p 8080:8080 -p 29418:29418 gerritcodereview/gerrit
+
+NOTE: Updated with new UI
+
+* Connect to Gerrit homepage
+** First person to connect is the administrator
+** Without LDAP, other users are added at first connection
+
+So, as the administrator :
+
+* Skip the plugin configuration
+* Click on the image in the top right corner -> btn:[Settings], and set
+** Full name
+** Changes per page = 100 rows
+** Date/time format
+** [x] Set new changes to "work in progress"
+*** Click btn:[Save changes]
+** Ignore Whitespace = All
+*** Click btn:[Save changes]
+** New email address = your@mail.com
+*** reload page
+*** select your mail in list
+*** delete email@example.com
+*** Click btn:[Save changes]
+** Click btn:[Generate New Password]
+*** save it for later
+
+== Server configuration
+
+NOTE: In further sections, actions are for old UI
 
 === Initialization
-
-[NOTE]
-====
-This has to be done only for a new Production Line
-====
 
 ==== Permissions
 
@@ -87,11 +112,23 @@ Click on  *YourName* -> *Settings* -> *Diff Preferences* and set *columns = 120*
 
 === Project creation
 
+==== Old UI
+
 Create your GIT project by clicking on *Projects* -> *Create New Project*
 
-* Project Name = *cg-wm*
+* Project Name = *your-project-name*
 * Rights Inherit From = *All-Projects*
 * Check that it has inherited correctly "Rebase if necessary", else change and save
+
+==== PolyGerrit
+
+Create your GIT project by clicking on *Browse* -> *Repositories -> *Create New*
+
+* Repository Name = *your-project-name*
+* Rights Inherit From = *All-Projects*
+* Owner = Technical responsible
+* Click btn:[Create]
+* Check that it has inherited correctly "Rebase if necessary", else change and click btn:[SAVE CHANGES]
 
 [[project-url]]
 ==== Project git address/URL

@@ -1,0 +1,7 @@
+@import "reveal-zenika-light.css";
+
+body {
+  background: url('./backgrounds/mountain.jpg');
+  background-size: cover;
+  background-position: center;
+}

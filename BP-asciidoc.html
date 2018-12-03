@@ -451,12 +451,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#use-in-pipelines">9. Use in pipelines</a></li>
-<li><a href="#reveal-js">10. Reveal.js</a>
+<li><a href="#confluence-to-asciidoc">10. Confluence to Asciidoc</a></li>
+<li><a href="#reveal-js">11. Reveal.js</a>
 <ul class="sectlevel2">
-<li><a href="#examples">10.1. Examples</a></li>
-<li><a href="#fullscreen-on-smartphone">10.2. Fullscreen on smartphone</a></li>
-<li><a href="#generation">10.3. Generation</a></li>
-<li><a href="#inline-options">10.4. Inline options</a></li>
+<li><a href="#examples">11.1. Examples</a></li>
+<li><a href="#fullscreen-on-smartphone">11.2. Fullscreen on smartphone</a></li>
+<li><a href="#generation">11.3. Generation</a></li>
+<li><a href="#inline-options">11.4. Inline options</a></li>
 </ul>
 </li>
 </ul>
@@ -735,7 +736,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 			&lt;/configuration&gt;
 		&lt;/execution&gt;
 		&lt;execution&gt;
-			&lt;id&gt;asciidoc-to-revealjs-dark&lt;/id&gt;
+			&lt;id&gt;asciidoc-to-revealjs&lt;/id&gt;
 			&lt;!-- after html because it's also an html --&gt;
 			&lt;phase&gt;generate-resources&lt;/phase&gt;
 			&lt;goals&gt;
@@ -744,7 +745,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 			&lt;configuration&gt;
 				&lt;backend&gt;revealjs&lt;/backend&gt;
 				&lt;sourceDocumentName&gt;PRES-asciidoc.adoc&lt;/sourceDocumentName&gt;
-				&lt;outputFile&gt;${project.slides.directory}/PRES-asciidoc-dark.html&lt;/outputFile&gt;
+				&lt;outputFile&gt;${project.slides.directory}/PRES-asciidoc.html&lt;/outputFile&gt;
 				&lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates&lt;/templateDir&gt;
 				&lt;attributes&gt;
 					&lt;source-highlighter&gt;highlightjs&lt;/source-highlighter&gt;
@@ -761,31 +762,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 					&lt;!-- &lt;favicon&gt;themes/favicon.png&lt;/favicon&gt; --&gt;
 					&lt;revealjs_width&gt;1100&lt;/revealjs_width&gt;
 					&lt;revealjs_height&gt;700&lt;/revealjs_height&gt;
-				&lt;/attributes&gt;
-			&lt;/configuration&gt;
-		&lt;/execution&gt;
-		&lt;execution&gt;
-			&lt;id&gt;asciidoc-to-revealjs-light-parallax&lt;/id&gt;
-			&lt;phase&gt;generate-resources&lt;/phase&gt;
-			&lt;goals&gt;
-				&lt;goal&gt;process-asciidoc&lt;/goal&gt;
-			&lt;/goals&gt;
-			&lt;configuration&gt;
-				&lt;backend&gt;revealjs&lt;/backend&gt;
-				&lt;sourceDocumentName&gt;PRES-asciidoc.adoc&lt;/sourceDocumentName&gt;
-				&lt;outputFile&gt;${project.slides.directory}/PRES-asciidoc-light-parallax.html&lt;/outputFile&gt;
-				&lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates&lt;/templateDir&gt;
-				&lt;attributes&gt;
-					&lt;source-highlighter&gt;highlightjs&lt;/source-highlighter&gt;
-					&lt;highlightjs-theme&gt;highlight/styles/gruvbox-dark.min.css&lt;/highlightjs-theme&gt;
-					&lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
-					&lt;revealjs_customtheme&gt;themes/reveal-zenika-light.css&lt;/revealjs_customtheme&gt;
-					&lt;revealjs_transition&gt;slide&lt;/revealjs_transition&gt;
-					&lt;revealjs_slideNumber&gt;true&lt;/revealjs_slideNumber&gt;
-					&lt;revealjs_parallaxBackGroundImage&gt;themes/tshirt-zenika-wide.jpg&lt;/revealjs_parallaxBackGroundImage&gt;
-					&lt;revealjs_parallaxBackgroundSize&gt;2100px 900px&lt;/revealjs_parallaxBackgroundSize&gt;
-					&lt;revealjs_width&gt;1100&lt;/revealjs_width&gt;
-					&lt;revealjs_height&gt;700&lt;/revealjs_height&gt;
+					&lt;revealjs_plugins&gt;revealjs-plugins/revealjs-plugins.js&lt;/revealjs_plugins&gt;
+					&lt;revealjs_plugins_configuration&gt;revealjs-plugins/revealjs-plugins-conf.js&lt;/revealjs_plugins_configuration&gt;
 				&lt;/attributes&gt;
 			&lt;/configuration&gt;
 		&lt;/execution&gt;
@@ -909,13 +887,52 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="reveal-js"><a class="anchor" href="#reveal-js"></a>10. Reveal.js</h2>
+<h2 id="confluence-to-asciidoc"><a class="anchor" href="#confluence-to-asciidoc"></a>10. Confluence to Asciidoc</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From link::https://confluence.atlassian.com/doc/export-content-to-word-pdf-html-and-xml-139475.html[Confluence HTML export] and</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to the space and choose <b class="button">Space tools</b> &#8594; <b class="button">Content Tools</b> from the bottom of the sidebar</p>
+</li>
+<li>
+<p>Choose <b class="button">Export</b> (you may need to zoom out to see it)</p>
+</li>
+<li>
+<p>Choose <b class="button">HTML</b></p>
+</li>
+<li>
+<p>Click <b class="button">Unselect All</b> and choose specific pages</p>
+</li>
+<li>
+<p>Click <b class="button">Export</b></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+TODO: <a href="https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_includes/convert-from-confluence-xhtml.adoc" class="bare">https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_includes/convert-from-confluence-xhtml.adoc</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="reveal-js"><a class="anchor" href="#reveal-js"></a>11. Reveal.js</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>See <a href="https://asciidoctor.org/docs/asciidoctor-revealjs/">official documentation</a> on Asciidoctor website.</p>
 </div>
 <div class="sect2">
-<h3 id="examples"><a class="anchor" href="#examples"></a>10.1. Examples</h3>
+<h3 id="examples"><a class="anchor" href="#examples"></a>11.1. Examples</h3>
 <div class="paragraph">
 <p>Official examples <a href="https://github.com/hakimel/reveal.js/wiki/Example-Presentations">here</a>, especially <a href="https://cgi1.gitlab.io/g2scoring-presentation/">the G2 Scoring one</a>.</p>
 </div>
@@ -924,19 +941,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="fullscreen-on-smartphone"><a class="anchor" href="#fullscreen-on-smartphone"></a>10.2. Fullscreen on smartphone</h3>
+<h3 id="fullscreen-on-smartphone"><a class="anchor" href="#fullscreen-on-smartphone"></a>11.2. Fullscreen on smartphone</h3>
 <div class="paragraph">
 <p>On Android, common browsers have adress bar preventing reveal.js sites to go fullscreen. To get a real fullscreen, install <strong>Full Screen Browser</strong>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="generation"><a class="anchor" href="#generation"></a>10.3. Generation</h3>
+<h3 id="generation"><a class="anchor" href="#generation"></a>11.3. Generation</h3>
 <div class="paragraph">
 <p>Maven plugin showed above include a reveal.js generation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="inline-options"><a class="anchor" href="#inline-options"></a>10.4. Inline options</h3>
+<h3 id="inline-options"><a class="anchor" href="#inline-options"></a>11.4. Inline options</h3>
 <div class="paragraph">
 <p>Some options can be added in HTTP address :</p>
 </div>
@@ -964,7 +981,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-03 17:00:50 UTC
+Last updated 2018-12-03 17:21:20 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
