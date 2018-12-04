@@ -23,6 +23,8 @@ Gitlab in his link:https://about.gitlab.com/pricing/#gitlab-com[free online plan
 
 WARNING: TODO
 
+image::dilbert-homeworking.png[{half-width}]
+
 == Project creation
 
 * Create a project in web interface.
@@ -136,10 +138,19 @@ image::geek-and-poke-avoid-merge-conflict.jpg[{tier-width}]
 include::../../../.gitlab-ci.yml[]
 ----
 
-image::dilbert-homeworking.png[{half-width}]
-
 == Troobleshooting
 
-=== I accidently 
+=== I pushed on a deleted branch
+
+If you have accidently pushed on a merged branch, it will be recreated.
+
+You have to :
+
+* Reset mixed on the master
+* Configure your push to the good branch
+* Push
+* Delete the other branch
+
+image::monkeyuser-merging-branches.jpg[{half-width}]
 
 include::subdocs/_closure.adoc[]
