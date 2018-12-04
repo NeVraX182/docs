@@ -68,7 +68,7 @@ Update JIRA rights :
 
 BigPictures is a 10$ plugin that adds Gantt capabilities to JIRA. Install this plugin if you have a license or want to try it for a month.
 
-image:jira-bigpicture.png[]
+image::jira-bigpicture.png[]
 
 ==== Gantt
 
@@ -103,9 +103,7 @@ You can edit a ticket using "E" shortcuts when in GANTT view
 
 .To add a deadline in Gantt view
 * *Task* -> *Create task* -> *Artificial task*
-= Nexus3 Configuration Details
-include::subdocs/_init.adoc[]
 
-ifndef::imagesdir[:imagesdir: images]
+image::monkeyuser-bottom-of-backlog.jpg[{half-width}]
 
 include::subdocs/_closure.adoc[]

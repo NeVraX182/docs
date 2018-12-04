@@ -118,7 +118,8 @@ Another option is to go to the Rules space, and use the Available Since search f
 
 And finally, the profile interface itself will help you be aware of rules added in a new plugin version in the Latest New Rules section on the right of the interface.
 
-.Test Driven Development
-image::turnoff-tdd-vs-ftt.png[{half-width}]
+//image::turnoff-tdd-vs-ftt.png[{half-width}]
+image::monkeyuser-it-hell.jpg[{half-width}]
+
 
 include::subdocs/_closure.adoc[]
