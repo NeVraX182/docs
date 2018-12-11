@@ -1,0 +1,603 @@
+@font-face {
+  font-family: 'OpenSans Bold';
+  src: url("../fonts/Open_sans/OpenSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'OpenSans Regular';
+  src: url("../fonts/Open_sans/OpenSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'Lato Regular';
+  src: url("../fonts/Lato2/Lato-Regular.ttf") format("truetype");
+}
+
+/**
+ZENIKA COLORS :
+rouge : 170/30/62 #B11E3E
+vert : 141/191/68 #8DBF44
+noir : 70/70/70
+bleu : 81/155/200 #519BC8
+rose : 239/82/91 #EF525B
+**/
+
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+
+/* FOR A ZENIKA LOGO IN TOP RIGHT  
+body {
+  background: no-repeat center url('./logo-zenika.png'), no-repeat 98% 5% url('./favicon.png');
+  background-size: 60%, 3%;
+  background-color: black;
+}
+*/
+
+/* When using the shorthand property the order of the property values is: background-color, background-image, background-repeat, background-attachment, background-position */
+body {
+  background: black url('../logo-zenika.png') no-repeat center;
+  background-size: 60%;
+}
+
+.reveal {
+  font-family: 'Lato Regular', sans-serif;
+  font-size: 28px;
+  font-weight: normal;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 30px 30px;
+}
+
+/* stack of sub slides, must be hidden */
+.reveal .slides section.stack {
+  background: transparent;
+}
+
+/* general borders in slides */
+.reveal .slides section[data-state="title"],
+.reveal .slides section > section {
+  padding: 30px;
+}
+
+.reveal .slides section > section.full-page-image {
+  padding: 0 0;
+}
+
+/* trick for vertical align of full page image */
+.reveal .slides section > section.full-page-image div {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* trick for vertical align whole slide content */
+.reveal section > section.vertical-center {
+  padding-top: 220px;
+}
+
+/* moves the whole section slightly to the left */
+.reveal .slides section > section {
+  margin-left: -30px;
+}
+
+.reveal.overview .slides section {
+  height: 650px;
+}
+
+.reveal .slide-background {
+  background-size: contain;
+}
+
+::selection {
+  text-shadow: none;
+}
+
+/**** TABLES ****/
+
+.reveal table th, .reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+
+/* center column horizontally if explicited asked */
+.reveal table td.halign-center {
+  text-align: center;
+}
+
+/* center column vertically if explicited asked */
+.reveal table td.valign-middle {
+  vertical-align: middle;
+}
+
+/* titles always centered */
+.reveal table th {
+  font-weight: bold;
+  text-align: center;
+  color: rgb(141,191,68);
+}
+
+.reveal table tbody tr:last-child th, .reveal table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reveal .slides table.no-border,
+.reveal .slides table.no-border tr td,
+.reveal .slides table.no-border tr th {
+  border: none;
+}
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, 
+.reveal h[level="3"] {
+  hyphens: none;
+  -ms-hyphens: none;
+  -webkit-hyphens: none;
+  color: #B11E3E;
+  font-family: "OpenSans Bold", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.reveal h1 {
+  height: 40%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  float: none;
+  font-size: 60px;
+}
+
+/* slide title */
+.reveal h2, .reveal h3 {
+  margin: 0px 0px 40px -20px;
+  padding: 0 0 0px 20px;
+  text-align: left;
+  font-size: 40px;
+}
+
+/** subtitle in slide **/
+.reveal h[level="3"] {
+  margin: 0.8em 0 0.4em -0.4em;
+  display: inline-block;
+}
+
+/** Title slide's subtitle **/
+.reveal section.title h2 {
+  text-align: center;
+  font-style: italic;
+}
+
+.reveal p.author {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  justify-content: flex-end;
+  text-align: right;
+  color: #888;
+  font-style: italic;
+}
+
+/*********************************************
+ * CONTENT
+ *********************************************/
+
+/** bold **/
+.reveal strong {
+  /* font-weight: bold; => bold is not visible, a color is better */
+  /*color: rgb(81,155,200);  blue */
+  font-weight: bold;
+}
+
+/** forced colors **/
+
+.reveal .green {
+  color: rgb(141,191,68); /* green */
+}
+
+.reveal .blue {
+  color : rgb(81,155,200); /* blue */
+}
+
+.reveal .orange {
+  color: #bf6900; /* orange */
+}
+
+.reveal .red {
+  color: #B11E3E; /* red */
+}
+
+.reveal .pink {
+  color: rgb(239,82,91); /* pink */
+}
+
+/** italic **/
+.reveal em {
+  font-style: italic;
+}
+
+.reveal li {
+  margin: 0.2em 0 0 0;
+}
+
+/* moving text not to have bullet points outside current zone */
+.reveal ul, reveal ol {
+  margin-left: 1em;
+}
+
+/** QUOTE **/
+
+.quoteblock {
+  margin: 0 1em 1.25em 1.5em;
+  display: table
+}
+
+.quoteblock>.title {
+  margin-left: -1.5em;
+  margin-bottom: .75em
+}
+
+.reveal div.quoteblock {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: 3rem;
+}
+
+.quoteblock blockquote {
+  font-size: 120%;
+  word-spacing: .1em;
+  letter-spacing: 0;
+  font-style: italic;
+  text-align: justify
+}
+
+.quoteblock blockquote:before {
+  content: "\201c";
+  float: left;
+  font-size: 2.75em;
+  font-weight: bold;
+  line-height: .6em;
+  margin-left: -.6em;
+  color: rgb(141,191,68);/* green */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .1)
+}
+
+.quoteblock .attribution {
+  margin-top: .5em;
+  margin-right: .5ex;
+  text-align: right
+}
+
+/* author */
+.quoteblock .attribution, .verseblock .attribution {
+  font-style: italic;
+  color: #888
+}
+
+.quoteblock .attribution cite, .verseblock .attribution cite {
+  display: block;
+  letter-spacing: -.025em;
+}
+
+/** SPECIAL TEXT **/
+
+.reveal span.small {
+  font-size: smaller;
+}
+
+.reveal span.big {
+  font-size: larger;
+}
+
+.reveal span.underline {
+  text-decoration: underline;
+}
+
+.reveal span.line-through {
+  text-decoration: line-through;
+}
+
+/** FONT AWESOME **/
+
+.reveal div.admonitionblock table td.icon,
+.reveal div.admonitionblock table td.content {
+  vertical-align: middle;
+}
+
+.reveal div:not(.chalkboard-button) .fa {
+  font-size: 40px;
+}
+
+/* Font awesome images are blue by default */
+.reveal a.image i.fa,
+.reveal span.icon i.fa:not(.fa-check-circle):not(.fa-times-circle) {
+  color : rgb(81,155,200);/* blue */
+}
+
+/* OK symbol is green */
+.reveal i.fa-check-circle {
+  color: rgb(141,191,68); /* green */
+}
+
+/* KO symbol is red */
+.reveal i.fa-times-circle {
+  color: #B11E3E; /* red */
+}
+
+/* text in admonition blocks */
+.reveal div.admonitionblock td.content {
+  color: #888888;/* grey */
+  border-left: 1px solid #888888
+}
+
+/* a light bulb anything else than yellow is weird */
+.reveal div.admonitionblock.tip td.icon {
+  text-shadow: 0px 0px 10px black;
+  color: yellow;
+}
+
+/* NOTE icon */
+.reveal div.admonitionblock.note td.icon {
+  color : rgb(81,155,200);/* blue */
+}
+
+/* WARNING icon */
+.reveal div.admonitionblock.warning td.icon {
+  color: #bf6900;
+}
+
+/* IMPORTANT icon */
+.reveal div.admonitionblock.important td.icon {
+  color: #B11E3E;
+}
+
+/* CAUTION icon */ 
+.reveal div.admonitionblock.caution td.icon {
+  color: rgb(239,82,91); /* pink */
+}
+
+/**** MARGINS ****/
+
+.reveal .exampleblock table{
+  margin-bottom: 0;
+}
+
+/* paragraphs margin */
+.reveal table,
+.reveal .listingblock,
+/*.reveal div.paragraph.lead p,*/
+.reveal .paragraph,
+.reveal .exampleblock > div.content,
+.reveal section > .ulist, .reveal .olist,
+.reveal .literalblock {
+  margin-bottom: 1.25rem;
+}
+
+.reveal .exampleblock .content > .ulist > ul,
+.reveal .qlist > ol,
+.reveal .dlist,
+.reveal .olist {
+margin-left: 20px;
+}
+
+/** CODE **/
+
+.reveal code {
+  font-family: "Droid Sans Mono","DejaVu Sans Mono","Monospace",monospace;
+  font-size: 80%;
+  padding: 10px;
+  font-weight: normal;
+}
+
+.reveal pre:not(.highlight) {
+  font-family: "Droid Sans Mono","DejaVu Sans Mono","Monospace",monospace;
+  font-weight: normal;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5em;
+  font-size: 80%;
+  margin-bottom: 0.75rem;
+  /*background: #888;*/
+}
+
+/* title of code/image block */
+.reveal div.title, .reveal table > caption.title {
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  color: #B11E3E;
+  text-align: left;
+}
+
+/* keywords */
+.reveal *:not(pre)>code {
+  font-family: "Droid Sans Mono","DejaVu Sans Mono","Monospace",monospace;
+  font-size: .9em;
+  font-style: normal!important;
+  letter-spacing: 0;
+  word-spacing: -.15em;
+  line-height: 1.45;
+  text-rendering: optimizeSpeed;
+  word-wrap: break-word;
+  padding: 0;
+}
+
+/* lead paragraph is bigger */
+.reveal div.paragraph.lead {
+  font-size: 120%;
+}
+
+/** Super and sub **/
+
+.reveal sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.reveal sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+/** EXAMPLE BLOC **/
+
+.exampleblock>.content {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #888;
+  padding: 0.5em;
+  border-radius: 4px;
+  padding-bottom: 0.25em;
+}
+
+/*********************************************
+ * SPECIALS PAGES
+ *********************************************/
+
+.reveal section.page-title h1 {
+  height: 90%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  color: white;
+  float: none;
+}
+
+.reveal section.page-title ul {
+  margin-top: 620px;
+}
+
+/*********************************************
+ * LINKS
+ *********************************************/
+
+.reveal a:not(.image) {
+  color: rgb(81,155,200);
+}
+
+.reveal a:not(.image):hover {
+  color: #B11E3E;
+  text-shadow: none;
+  border: none;
+}
+
+.reveal .slides .toc a {
+  color: inherit;
+}
+
+/*******************************
+ * SLIDES NUMBERS, MENU & CHALKBOARD
+ ******************************/
+
+.reveal .slide-number, .reveal .slide-number-wrapper {
+  left: 8px;
+  right: 500px; /* without this shift, down arrow is visible but not clickable */
+  background-color: transparent;
+}
+
+.reveal .chalkboard-button[id="toggle-chalkboard"] {
+  left: 15px !important;
+  bottom: 140px !important;
+}
+
+.reveal .chalkboard-button[id="toggle-notes"] {
+  left: 17px !important;
+  bottom: 100px !important;
+}
+
+.reveal .slide-menu-button {
+  left: 15px !important;
+  bottom: 60px !important;
+}
+
+.reveal .slide-number a, .reveal .slide-number-wrapper a, 
+.reveal .chalkboard-button a, .reveal .slide-menu-button a {
+  position: unset; /* default is "relative" on "a", and then the slide numbers are out of the view */
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.reveal .slide-number a {
+  color: #B11E3E;
+}
+
+/*********************************************
+ * IMAGES
+ *********************************************/
+
+.reveal .imageblock img {
+  display: block;
+  margin: 30px auto;
+}
+
+.reveal section.full-page-image img {
+  margin: 0
+}
+
+.reveal section.maxed-image > div > img {
+  object-fit: contain;
+  height: 480px;
+  width: 950px;
+}
+
+.reveal section img.with-border {
+  border: 1px solid black;
+}
+
+.reveal section img #questions {
+  margin-top: 100px;
+}
+
+.reveal figcaption {
+  text-align: center;
+}
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+
+.reveal .controls .enabled {
+  color: #B11E3E;
+}
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  height: 1%;
+}
+
+.reveal .progress span {
+  background: #B11E3E;
+}
+
+/*********************************************
+ * DESCRIPTION NUMBERS
+ *********************************************/
+
+.conum[data-value] {
+  background-color: rgb(141,191,68) !important;
+}
+
+/*last slide*/ 
+.reveal section.questions.present {
+  background: no-repeat center url('../question-mark.svg');
+  background-size: 40%;
+}

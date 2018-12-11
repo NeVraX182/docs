@@ -5,6 +5,10 @@ ifndef::imagesdir[:imagesdir: images]
 
 image::dilbert-collaboration.png[{half-width}]
 
+== User documentation
+
+Official user documentation is link:https://gerrit-review.googlesource.com/Documentation/intro-user.html[here].
+
 == Server installation
 
 .Using docker

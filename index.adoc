@@ -1,4 +1,5 @@
 = Technical Documentations
+:toc-placement!:
 
 //Need this blank line after ifdef, don't know why...
 ifdef::backend-html5[]
@@ -47,5 +48,3 @@ endif::backend-html5[]
 * link:oral-technique.html[Oral technique]
 
 * link:PRES-asciidoc-dark.html[Doc-as-code avec Asciidoc & PlantUml] (Reveal.js)
-** Autre thème : link:PRES-asciidoc-light-parallax.html[light parallax]
-

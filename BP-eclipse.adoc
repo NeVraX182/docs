@@ -206,8 +206,8 @@ To configure Git, go to btn:[Window] -> btn:[Preferences] -> btn:[Team] -> btn:[
 [NOTE]
 ====
 * These configurations are inherited to your repositories. You might have the [user] here too, if you have the same login/password for all your repositories
-* The btn:[autosetuprebase = always] will allow you to do a fetch and a rebase by simply click on btn:[pull].
-* The btn:[auStash = true] will allow you to btn:[pull] while having some currently unstaged files (by automatically doing a btn:[git stash] before and a btn:[git stash apply] after).
+* The *autosetuprebase = always* will allow you to do a fetch and a rebase by simply click on btn:[pull].
+* The *autoStash = true* will allow you to btn:[pull] while having some currently unstaged files (by automatically doing a *git stash* before and a *git stash apply* after).
 ====
 
 On btn:[Repository Settings] click on btn:[Open] and enter the following configuration :
