@@ -316,7 +316,7 @@ include::{root-project-dir}/cg-msg-tracker/src/test/java/cg/msg/tracker/ui/utils
 ----
 
 [source,java]
-.Declare it's usage in the class with with @Rule
+.Declare it's usage in the class with @Rule
 ----
 @Rule
 public LogTestRule logTestRule = new LogTestRule());
