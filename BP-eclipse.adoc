@@ -251,7 +251,7 @@ image::geek-and-poke-no-error-update.jpg[{half-width}]
 === Commit / push
 
 .Life without Gerrit
-image::git-hell.jpg[{half-width}]
+image::geek-and-poke-git-hell.jpg[{half-width}]
 
 First of all, you have to understand the commit/push/review process described in link:BP-gerrit.html[Gerrit Best Practices].
 

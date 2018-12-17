@@ -309,7 +309,6 @@ node1 ~~ node4
 node1 == node5
 ....
 
-
 == Ditaa
 
 http://ditaa.sourceforge.net
@@ -345,9 +344,9 @@ Color codes
 
 == Meme
 
-meme::images/Asciidoctor.png[Doc writers,Y U NO \\ AsciiDoc]
+ meme::images/Asciidoctor.png[Doc writers,Y U NO \\ AsciiDoc]
 
-NOTE: Comment configurer ?
+TIP: Comment configurer ?
 
 //== Mermaid
 
