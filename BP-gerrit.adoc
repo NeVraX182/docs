@@ -274,7 +274,7 @@ image::turnoff-what-your-code-looks-like.png[{tier-width}]
 * Restart jenkins with : https://bpmfactory.s2-eu.nvx.com/jenkins/safeRestart
 * The Gerrit trigger should be up and running
 
-image::geek-and-poke-push-now.jpg[{half-width}]
+image::geek-and-poke-obfuscate.jpg[{half-width}]
 
 <<<
 == Code review golden rules (using Gerrit)

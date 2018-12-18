@@ -120,7 +120,7 @@ To get the admin password :
 
 In progress, not in Helm/Charts yet. See ongoing project : https://github.com/Novitoll/charts/tree/master/incubator/gerrit
 
-image::turnoff-adam-eve.png[{half-width}]
+image::turnoff-adam-eve.jpg[{half-width}]
 
 === Gitlab
 
