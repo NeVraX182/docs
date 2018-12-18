@@ -1,3 +1,4 @@
+|2018-12-18|bcouetil|Moved Gerrit plugin configuration from Jenkins to Gerrit page + Enhanced HTML CSS + Cropped some images + Improved PlantUML skin
 |2018-12-11|bcouetil|- Added reveal plugins and background - Fixed reveal css following change in structure in asciidoc-reveal master (from previous version : 1.1.3) - Implemented Zenika layout in HTML and PDF - Reported back reveal-js enhancements
 |2018-11-28|bcouetil|- Updated reveal css for all syntax elements, for both light and dark themes : asciidoc-syntax-quick-reference is now nicely output - Refactored light and dark css, extracting common items into reveal-zenika.css - Added syntax quick reference in all format generated and linked in asciidoc page
 |2018-11-13|bcouetil|- Updated sample project with Reveal.js generation - Duplicated Reveal.js execution to have multiple styles - Compromised layout between 4/3 and 16/9 - Minor changes in Reveal.js css - Added some web comics

@@ -34,9 +34,6 @@ cg-asciidoctor-sample
 ----
 endif::notdef[]
 
-image:tree-asciidoctor-maven-sample.png[image, pdfwidth=30%]
-
-
 ifdef::notdef[]
 [tree, file="ex-tree-view-new.png"]
 ----
@@ -68,7 +65,7 @@ image:ex-tree-view-new.png[image, pdfwidth=30%]
 
 == Sequence diagram
 
-[plantuml, diagram-sequence, png]
+[plantuml, diagram-sequence, svg]
 ....
 == Initialization ==
 
@@ -78,7 +75,7 @@ Bob --> Alice: Authentication Response
 == Repetition ==
 
 Alice -> Julie: Another authentication Request
-Alice <-- Julie: another authentication Response
+Alice <-- Julie: Another authentication Response
 ....
 
 More examples : http://plantuml.com/sequence-diagram
@@ -103,7 +100,7 @@ More examples : http://plantuml.com/use-case-diagram
 
 == Classes diagram
 
-[plantuml, diagram-classes, png]     
+[plantuml, diagram-classes, svg]     
 ....
 class BaseClass
 
@@ -128,7 +125,7 @@ More examples : http://plantuml.com/class-diagram
 
 == Activities diagram
 
-[plantuml, diagram-activities, png]     
+[plantuml, diagram-activities, svg]     
 ....
 start
 :ClickServlet.handleRequest();
@@ -168,22 +165,19 @@ More examples : http://plantuml.com/activity-diagram-beta
 
 == Components diagram
 
-[plantuml, diagram-components, png]     
+[plantuml, diagram-components, svg]     
 ....
 package "Some Group" {
   HTTP - [First Component]
   [Another Component]
 }
-
-node "Other Groups" {
+rectangle "Other Groups" {
   FTP - [Second Component]
   [First Component] --> FTP
 } 
-
 cloud {
   [Example 1]
 }
-
 database "MySql" {
   folder "This is my folder" {
     [Folder 3]
@@ -192,7 +186,6 @@ database "MySql" {
     [Frame 4]
   }
 }
-
 [Another Component] --> [Example 1]
 [Example 1] --> [Folder 3]
 [Folder 3] --> [Frame 4]
@@ -202,7 +195,7 @@ More examples : http://plantuml.com/component-diagram
 
 == States diagram
 
-[plantuml, diagram-states, png]     
+[plantuml, diagram-states, svg]     
 ....
 scale 600 width
 
@@ -227,7 +220,7 @@ More examples : http://plantuml.com/state-diagram
 
 == Objects diagram
 
-[plantuml, diagram-objects, png]     
+[plantuml, diagram-objects, svg]     
 ....
 object Object01
 object Object02
@@ -245,6 +238,10 @@ Object07 .. Object08 : some labels
 ....
 
 More examples : http://plantuml.com/object-diagram
+
+/!\ not compatible with skinparam in plantuml.cfg !
+
+////
 
 == User interface
 
@@ -268,9 +265,11 @@ More examples : http://plantuml.com/object-diagram
 
 More examples : http://plantuml.com/salt
 
+////
+
 == Deployment diagram
 
-[plantuml, diagram-deployment, png]
+[plantuml, diagram-deployment, svg]
 ....
 actor actor
 agent agent
@@ -313,7 +312,7 @@ node1 == node5
 
 http://ditaa.sourceforge.net
 
-[ditaa, ditaa, png]
+[ditaa, ditaa, svg]
 ....
                    +-------------+
                    | Asciidoctor |-------+

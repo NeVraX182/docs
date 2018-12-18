@@ -1,4 +1,4 @@
-|2018-12-18|bcouetil|Moved Gerrit plugin configuration from Jenkins to Gerrit page + Enhanced HTML CSS + Cropped some images
+|2018-12-18|bcouetil|Moved Gerrit plugin configuration from Jenkins to Gerrit page + Enhanced HTML CSS + Cropped some images + Improved PlantUML skin
 |2018-09-19|bcouetil|- Sample asciidoctor maven project published on Github - Github & LinkedIn links - Sample project tree - new images + resizing and positioning
 |2018-08-29|bcouetil|Asciidoc HTML look & feel changes
 |2018-08-23|bcouetil|Initial commit

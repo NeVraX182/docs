@@ -18,7 +18,7 @@ Il s'agit du dossier d'étude d'architecture du RSCU de point de vue du pôle ex
 <<<
 == Diagramme de séquence macro
 
-[plantuml, diagram-sequence, png]
+[plantuml, rscu-diagram-sequence, png]
 ....
 box "Partenaires" #White
 	participant Régime
@@ -87,7 +87,7 @@ Dans l'hypothèse de Spring Batch en masse, notre préconisation est d'abandonne
 Ce processus regroupe les opérations faites au niveau fichier, et délègue au processus "Carrière" au fil de l'eau pendant le
 découpage.
 
-[plantuml, activites-fichier, png]
+[plantuml, rscu-activites-fichier, png]
 ....
 start
 :Recevoir un fichier;
@@ -145,7 +145,7 @@ Dans cette proposition, les carrières sont stockées en base. Ceci est plus ava
 
 Sinon privilégier le transport via le bus, hors proposition.
 
-[plantuml, activites-carriere, png]     
+[plantuml, rscu-activites-carriere, png]     
 ....
 start
 :Stocker la carrière

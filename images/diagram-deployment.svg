@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="474px" preserveAspectRatio="none" style="width:1158px;height:474px;" version="1.1" viewBox="0 0 1158 474" width="1158px" zoomAndPan="magnify"><defs/><g><!--cluster Concept Model--><rect fill="#EEEEEE" height="120" rx="12.5" ry="12.5" style="stroke: #888888; stroke-width: 1.5;" width="335" x="812.5" y="24"/><text fill="#519BC8" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="84" x="938" y="38.9951">«Concept»</text><text fill="#888888" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="118" x="921" y="55.292">Concept Model</text><!--entity ex1--><rect fill="#EEEEEE" height="52.5938" rx="12.5" ry="12.5" style="stroke: #888888; stroke-width: 1.5;" width="104" x="1027.5" y="75"/><text fill="#519BC8" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="84" x="1037.5" y="97.9951">«Concept»</text><text fill="#888888" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="80" x="1039.5" y="114.292">Example 1</text><!--entity Another rectangle--><rect fill="#EEEEEE" height="36.2969" style="stroke: #888888; stroke-width: 1.5;" width="164" x="828.5" y="83.5"/><text fill="#888888" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="838.5" y="106.4951">Another rectangle</text><!--entity actor--><ellipse cx="53.5" cy="72" fill="#EF525B" rx="8" ry="8" style="stroke: #EF525B; stroke-width: 2.0;"/><path d="M53.5,80 L53.5,107 M40.5,88 L66.5,88 M53.5,107 L40.5,122 M53.5,107 L66.5,122 " fill="none" style="stroke: #EF525B; stroke-width: 2.0;"/><text fill="#EF525B" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="41" x="33" y="137.9951">actor</text><!--entity agent--><rect fill="#8DBF44" height="36.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="65" x="109" y="83.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="45" x="119" y="106.4951">agent</text><!--entity boundary--><path d="M226,81.5 L226,105.5 M226,93.5 L243,93.5 " fill="none" style="stroke: #B30C37; stroke-width: 2.0;"/><ellipse cx="255" cy="93.5" fill="#EF525B" rx="12" ry="12" style="stroke: #B30C37; stroke-width: 2.0;"/><text fill="#519BC8" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="209" y="122.4951">boundary</text><!--entity cloud--><path d="M322,90.5 C322,87.5 324,85.5 327,85.5 C330,85.5 332,87.5 332,90.5 C332,87.5 334,85.5 337,85.5 C340,85.5 342,87.5 342,90.5 C342,87.5 344,85.5 347,85.5 C350,85.5 352,87.5 352,90.5 C352,87.5 354,85.5 357,85.5 C360,85.5 362,87.5 362,90.5 C362,87.5 364,85.5 367,85.5 C370,85.5 372,87.5 372,90.5 C372,87.5 374,85.5 377,85.5 C380,85.5 382,87.5 382,90.5 C385,90.5 387,92.5 387,95.5 C387,98.5 385,100.5 382,100.5 C385,100.5 387,102.5 387,105.5 C387,108.5 385,110.5 382,110.5 C382,113.5 379,115.5 377,115.5 C374,115.5 372,113.5 372,110.5 C372,113.5 369,115.5 367,115.5 C364,115.5 362,113.5 362,110.5 C362,113.5 359,115.5 357,115.5 C354,115.5 352,113.5 352,110.5 C352,113.5 349,115.5 347,115.5 C344,115.5 342,113.5 342,110.5 C342,113.5 339,115.5 337,115.5 C334,115.5 332,113.5 332,110.5 C332,113.5 329,115.5 327,115.5 C324,115.5 322,113.5 322,110.5 C319,110.5 317,108.5 317,105.5 C317,102.5 319,100.5 322,100.5 C319,100.5 317,98.5 317,95.5 C317,92.5 319,90.5 322,90.5 " fill="#EEEEEE" style="stroke: #888888; stroke-width: 1.5;"/><text fill="#888888" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="329" y="106.4951">cloud</text><!--entity component--><rect fill="#8DBF44" height="36.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="109" x="417" y="83.5"/><rect fill="#8DBF44" height="5" style="stroke: #FFFFFF; stroke-width: 1.5;" width="10" x="412" y="88.5"/><rect fill="#8DBF44" height="5" style="stroke: #FFFFFF; stroke-width: 1.5;" width="10" x="412" y="109.7969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="427" y="106.4951">component</text><!--entity control--><ellipse cx="53.5" cy="217" fill="#EF525B" rx="12" ry="12" style="stroke: #B30C37; stroke-width: 2.0;"/><polygon fill="#B30C37" points="49.5,205,55.5,200,53.5,205,55.5,210,49.5,205" style="stroke: #B30C37; stroke-width: 1.0;"/><text fill="#519BC8" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="56" x="25.5" y="245.9951">control</text><!--entity database--><path d="M116.5,212.5 C116.5,202.5 162.5,202.5 162.5,202.5 C162.5,202.5 208.5,202.5 208.5,212.5 L208.5,237.7969 C208.5,247.7969 162.5,247.7969 162.5,247.7969 C162.5,247.7969 116.5,247.7969 116.5,237.7969 L116.5,212.5 " fill="#8DBF44" style="stroke: #FFFFFF; stroke-width: 1.5;"/><path d="M116.5,212.5 C116.5,222.5 162.5,222.5 162.5,222.5 C162.5,222.5 208.5,222.5 208.5,212.5 " fill="none" style="stroke: #FFFFFF; stroke-width: 1.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="72" x="126.5" y="239.4951">database</text><!--entity entity--><ellipse cx="266.5" cy="217" fill="#EF525B" rx="12" ry="12" style="stroke: #B30C37; stroke-width: 2.0;"/><line style="stroke: #B30C37; stroke-width: 2.0;" x1="254.5" x2="278.5" y1="231" y2="231"/><text fill="#519BC8" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="45" x="244" y="245.9951">entity</text><!--entity file--><polygon fill="#8DBF44" points="324.5,207,324.5,243.2969,368.5,243.2969,368.5,217,358.5,207,324.5,207" style="stroke: #FFFFFF; stroke-width: 1.5;"/><path d="M358.5,207 L358.5,217 L368.5,217 " fill="#8DBF44" style="stroke: #FFFFFF; stroke-width: 1.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="24" x="334.5" y="229.9951">file</text><!--entity folder--><polygon fill="#EEEEEE" points="404,205.5,457,205.5,464,227.7969,481,227.7969,481,244.7969,404,244.7969,404,205.5" style="stroke: #888888; stroke-width: 1.5;"/><line style="stroke: #888888; stroke-width: 1.5;" x1="404" x2="464" y1="227.7969" y2="227.7969"/><text fill="#888888" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="47" x="408" y="221.4951">folder</text><!--entity frame--><rect fill="#EEEEEE" height="46.2969" style="stroke: #888888; stroke-width: 1.5;" width="86" x="10.5" y="315"/><path d="M39.1667,316 L39.1667,320 L32.1667,327 L10.5,327 " fill="none" style="stroke: #888888; stroke-width: 1.5;"/><text fill="#888888" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="46" x="25.5" y="347.9951">frame</text><!--entity interface--><ellipse cx="174.5" cy="338" fill="#EF525B" rx="8" ry="8" style="stroke: #B30C37; stroke-width: 2.0;"/><text fill="#519BC8" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="71" x="139" y="367.9951">interface</text><!--entity package--><polygon fill="#EEEEEE" points="252.5,318.5,324.5,318.5,331.5,340.7969,348.5,340.7969,348.5,357.7969,252.5,357.7969,252.5,318.5" style="stroke: #888888; stroke-width: 1.5;"/><line style="stroke: #888888; stroke-width: 1.5;" x1="252.5" x2="331.5" y1="340.7969" y2="340.7969"/><text fill="#888888" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="66" x="256.5" y="334.4951">package</text><!--entity queue--><path d="M388.5,325 L448.5,325 C453.5,325 453.5,338.1484 453.5,338.1484 C453.5,338.1484 453.5,351.2969 448.5,351.2969 L388.5,351.2969 C383.5,351.2969 383.5,338.1484 383.5,338.1484 C383.5,338.1484 383.5,325 388.5,325 " fill="#8DBF44" style="stroke: #FFFFFF; stroke-width: 1.5;"/><path d="M448.5,325 C443.5,325 443.5,338.1484 443.5,338.1484 C443.5,351.2969 448.5,351.2969 448.5,351.2969 " fill="none" style="stroke: #FFFFFF; stroke-width: 1.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="388.5" y="342.9951">queue</text><!--entity artifact--><rect fill="#8DBF44" height="39.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="86" x="488.5" y="318.5"/><polygon fill="#8DBF44" points="557.5,323.5,557.5,337.5,569.5,337.5,569.5,329.5,563.5,323.5,557.5,323.5" style="stroke: #FFFFFF; stroke-width: 1.5;"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="563.5" x2="563.5" y1="323.5" y2="329.5"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="569.5" x2="563.5" y1="329.5" y2="329.5"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="56" x="498.5" y="344.4951">artifact</text><!--entity rectangle--><rect fill="#EEEEEE" height="36.2969" style="stroke: #888888; stroke-width: 1.5;" width="95" x="6" y="427"/><text fill="#888888" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="75" x="16" y="449.9951">rectangle</text><!--entity storage--><rect fill="#8DBF44" height="36.2969" rx="35" ry="35" style="stroke: #FFFFFF; stroke-width: 1.5;" width="81" x="136" y="427"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="61" x="146" y="449.9951">storage</text><ellipse cx="301.669" cy="445.0236" fill="#8DBF44" rx="49.669" ry="14.5236" style="stroke: #FFFFFF; stroke-width: 1.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="66" x="268.669" y="449.6721">usecase</text><!--entity node1--><polygon fill="#8DBF44" points="703.5,88.5,713.5,78.5,793.5,78.5,793.5,114.7969,783.5,124.7969,703.5,124.7969,703.5,88.5" style="stroke: #FFFFFF; stroke-width: 1.5;"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="783.5" x2="792.5" y1="88.5" y2="79.5"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="703.5" x2="783.5" y1="88.5" y2="88.5"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="783.5" x2="783.5" y1="88.5" y2="124.7969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="718.5" y="111.4951">node1</text><!--entity node2--><polygon fill="#8DBF44" points="516.5,212,526.5,202,606.5,202,606.5,238.2969,596.5,248.2969,516.5,248.2969,516.5,212" style="stroke: #FFFFFF; stroke-width: 1.5;"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="596.5" x2="605.5" y1="212" y2="203"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="516.5" x2="596.5" y1="212" y2="212"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="596.5" x2="596.5" y1="212" y2="248.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="531.5" y="234.9951">node2</text><!--entity node3--><polygon fill="#8DBF44" points="641.5,212,651.5,202,731.5,202,731.5,238.2969,721.5,248.2969,641.5,248.2969,641.5,212" style="stroke: #FFFFFF; stroke-width: 1.5;"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="721.5" x2="730.5" y1="212" y2="203"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="641.5" x2="721.5" y1="212" y2="212"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="721.5" x2="721.5" y1="212" y2="248.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="656.5" y="234.9951">node3</text><!--entity node4--><polygon fill="#8DBF44" points="766.5,212,776.5,202,856.5,202,856.5,238.2969,846.5,248.2969,766.5,248.2969,766.5,212" style="stroke: #FFFFFF; stroke-width: 1.5;"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="846.5" x2="855.5" y1="212" y2="203"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="766.5" x2="846.5" y1="212" y2="212"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="846.5" x2="846.5" y1="212" y2="248.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="781.5" y="234.9951">node4</text><!--entity node5--><polygon fill="#8DBF44" points="891.5,212,901.5,202,981.5,202,981.5,238.2969,971.5,248.2969,891.5,248.2969,891.5,212" style="stroke: #FFFFFF; stroke-width: 1.5;"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="971.5" x2="980.5" y1="212" y2="203"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="891.5" x2="971.5" y1="212" y2="212"/><line style="stroke: #FFFFFF; stroke-width: 1.5;" x1="971.5" x2="971.5" y1="212" y2="248.2969"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="50" x="906.5" y="234.9951">node5</text><!--link node1 to node2--><path d="M714.636,124.503 C680.85,146.454 629.236,179.99 595.428,201.956 " fill="none" id="node1-node2" style="stroke: #519BC8; stroke-width: 2.0;"/><!--link node1 to node3--><path d="M737.272,124.503 C726.106,146.386 709.064,179.781 697.854,201.75 " fill="none" id="node1-node3" style="stroke: #519BC8; stroke-width: 2.0; stroke-dasharray: 7.0,7.0;"/><!--link node1 to node4--><path d="M759.909,124.503 C771.256,146.386 788.572,179.781 799.963,201.75 " fill="none" id="node1-node4" style="stroke: #519BC8; stroke-width: 2.0; stroke-dasharray: 1.0,3.0;"/><!--link node1 to node5--><path d="M775.318,124.513 C786.556,133.399 799.913,143.532 812.5,152 C839.351,170.064 870.908,188.349 895.467,201.972 " fill="none" id="node1-node5" style="stroke: #519BC8; stroke-width: 2.0;"/><!--link actor to agent--><!--link agent to boundary--><!--link boundary to cloud--><!--link cloud to component--><!--link actor to control--><!--link control to database--><!--link database to entity--><!--link entity to file--><!--link file to folder--><!--link control to frame--><!--link frame to interface--><!--link interface to package--><!--link package to queue--><!--link queue to artifact--><!--link frame to rectangle--><!--link rectangle to storage--><!--link storage to usecase--><!--
+@startuml
+
+skinparam backgroundColor transparent
+skinparam defaultFontColor #519BC8
+skinparam defaultFontStyle bold
+skinparam arrowColor #519BC8
+skinparam arrowThickness 2
+skinparam shadowing false
+
+skinparam actor {
+    borderColor #EF525B
+    backgroundColor #EF525B
+    fontColor #EF525B
+}
+skinparam agent {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam database {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+} 
+skinparam rectangle {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam cloud {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam folder {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam package {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam frame {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam component {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam artifact {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam node {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam queue {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam file {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam storage {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam interface {
+    borderColor #B30C37
+    backGroundcolor #EF525B
+}
+skinparam boundary {
+    borderColor #B30C37
+    backGroundcolor #EF525B
+}
+skinparam entity {
+    borderColor #B30C37
+    backGroundcolor #EF525B
+}
+skinparam control {
+    borderColor #B30C37
+    backGroundcolor #EF525B
+}
+skinparam sequence {
+    BoxFontColor white
+    ParticipantFontColor white
+    ParticipantBackgroundColor #8DBF44
+    ParticipantBorderColor white
+	LifeLineBorderColor #888888
+	LifeLineBorderThickness 2
+    DividerFontColor #555555
+    DividerBorderColor #888888
+    DividerBackGroundcolor #EEEEEE
+}
+skinparam usecase {
+    borderColor white
+    fontColor white
+    backgroundColor #8DBF44
+}
+skinparam activity {
+    startColor #B30C37
+    endColor #B30C37
+    borderColor white
+    fontColor white
+    backgroundColor #8DBF44
+    diamondBackgroundColor #EEEEEE
+    diamondBorderColor #888888
+    diamondFontColor #888888
+}
+actor actor
+agent agent
+boundary boundary
+cloud cloud
+component component
+control control
+database database
+entity entity
+file file
+folder folder
+frame frame
+interface  interface
+package package
+queue queue
+artifact artifact
+rectangle rectangle
+storage storage
+usecase usecase
+skinparam rectangle {
+    roundCorner<<Concept>> 25
+}
+
+rectangle "Concept Model" <<Concept>> {
+	rectangle "Example 1" <<Concept>> as ex1
+	rectangle "Another rectangle"
+}
+node node1
+node node2
+node node3
+node node4
+node node5
+node1 - - node2
+node1 .. node3
+node1 ~~ node4
+node1 == node5
+@enduml
+
+PlantUML version 1.2018.01(Sun Jan 28 18:08:22 UTC 2018)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_181-8u181-b13-2~deb9u1-b13
+Operating System: Linux
+OS Version: 4.14.48-coreos-r2
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>

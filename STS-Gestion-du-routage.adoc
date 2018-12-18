@@ -44,7 +44,7 @@ include::subdocs/_dm-routage-services-wm.adoc[]
 
 L’IHM de simulation se présente sous la forme suivante :
 
-include::subdocs/_simulateur.adoc[]
+//include::subdocs/_simulateur.adoc[]
 
 * Liste déroulante « *Nature* » permettant de choisir entre « DF », « DM », « ABT CRUD » et « ABT CHGT »
 * Liste déroulante « *Mode* », filtrante, avec choix possibles : 

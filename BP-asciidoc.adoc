@@ -32,6 +32,8 @@ Download and install :
 * Use *\btn[myButton]* for buttons
 * High level title should be on new pages (use *<<<*)
 
+Diagrams are generated using PlantUML. link:diagrams-examples.html[Here] are some examples with Zenika's style.
+
 To show a in progress diagram to colleagues, you can generate a web link using link:http://www.plantuml.com/plantuml/uml/[PlantUml generator]. There is also link:https://www.planttext.com[PlantText].
 
 === Graphviz

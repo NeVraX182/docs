@@ -2,17 +2,129 @@ ifndef::imagesdir[:imagesdir: ../../../target/generated-docs/images]
 [plantuml, diagram-archi-fonc, png]
 .Architecture fonctionnelle
 ....
+'red : #B30C37 '
+'blue : #519BC8 '
+'green : #8DBF44 '
+'pink : #EF525B '
+'grey : #888888 '
+'light grey : #EEEEEE '
+
+skinparam backgroundColor transparent
+skinparam defaultFontColor #519BC8
+skinparam defaultFontStyle bold
+skinparam arrowColor #519BC8
+skinparam arrowThickness 2
+skinparam shadowing false
+
+skinparam actor {
+    borderColor #EF525B
+    backgroundColor #EF525B
+    fontColor #EF525B
+}
+skinparam agent {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam database {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam rectangle {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam cloud {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam folder {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+'package folder style'
+skinparam package {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam frame {
+    borderColor #888888
+    backGroundcolor #EEEEEE
+    fontColor #888888
+}
+skinparam component {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam interface {
+    borderColor #B30C37
+    backGroundcolor #EF525B
+}
+skinparam artifact {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam node {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam queue {
+    borderColor white
+    backGroundcolor #8DBF44
+    fontColor white
+}
+skinparam sequence {
+    BoxFontColor white
+    'Participants'
+    ParticipantFontColor white
+    ParticipantBackgroundColor #8DBF44
+    ParticipantBorderColor white
+    'Participants lines'
+	LifeLineBorderColor #888888
+	LifeLineBorderThickness 2
+    'Sections'
+    DividerFontColor #555555
+    DividerBorderColor #888888
+    DividerBackGroundcolor #EEEEEE
+}
+skinparam usecase {
+    borderColor white
+    fontColor white
+    backgroundColor #8DBF44
+}
+skinparam activity {
+    startColor #B30C37
+    endColor #B30C37
+    'circles'
+    borderColor white
+    fontColor white
+    backgroundColor #8DBF44
+    'if'
+    diamondBackgroundColor #EEEEEE
+    diamondBorderColor #888888
+    diamondFontColor #888888
+}
+
+
 left to right direction
 rectangle "Partenaires" as part {
-    rectangle "Partenaires WS" as pWs
-    rectangle "Partenaires Batch" as pBatch
+    agent "Partenaires WS" as pWs
+    agent "Partenaires Batch" as pBatch
 }
-rectangle "Sécurité" as secur
+agent "Sécurité" as secur
 artifact "C:X/SFG/SAA" as saa
 rectangle Applications as apps {
-    rectangle SNGI
-    rectangle DCR
-    rectangle RFO
+    agent SNGI
+    agent DCR
+    agent RFO
 }
 rectangle "Dispositif de Gestion des Echanges" as dge #LightBlue {
     artifact "Serveur FTP" as sFtp
@@ -39,8 +151,8 @@ rectangle "Dispositif de Gestion des Echanges" as dge #LightBlue {
         queue "UM ESB" as umEsb
     } 
     node "MWS\nIS Monitor" as isMonitor
-    rectangle "Suivi" as sSuivi
-    rectangle "Catalogue" as sCat
+    agent "Suivi" as sSuivi
+    agent "Catalogue" as sCat
 }
 actor Exploit
 actor CDS
