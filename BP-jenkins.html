@@ -20,19 +20,17 @@
 <ul class="sectlevel2">
 <li><a href="#plugins-installation">1.1. Plugins installation</a></li>
 <li><a href="#change-theme">1.2. Change Theme</a></li>
-<li><a href="#gerrit-trigger-configuration">1.3. Gerrit Trigger Configuration</a></li>
-<li><a href="#administration">1.4. Administration</a>
+<li><a href="#administration">1.3. Administration</a>
 <ul class="sectlevel3">
-<li><a href="#overall-configuration">1.4.1. Overall configuration</a></li>
-<li><a href="#tools-configuration">1.4.2. Tools configuration</a></li>
+<li><a href="#overall-configuration">1.3.1. Overall configuration</a></li>
+<li><a href="#tools-configuration">1.3.2. Tools configuration</a></li>
 </ul>
 </li>
-<li><a href="#allow-css-on-published-html">1.5. Allow CSS on published HTML</a></li>
-<li><a href="#sonarqube-token">1.6. SonarQube token</a></li>
-<li><a href="#ssh-key-on-remote-server">1.7. ssh key on remote server</a></li>
-<li><a href="#pipelines-creations">1.8. Pipelines creations</a>
+<li><a href="#allow-css-on-published-html">1.4. Allow CSS on published HTML</a></li>
+<li><a href="#sonarqube-token">1.5. SonarQube token</a></li>
+<li><a href="#pipelines-creations">1.6. Pipelines creations</a>
 <ul class="sectlevel3">
-<li><a href="#the-review-pipeline">1.8.1. The Review pipeline</a>
+<li><a href="#the-review-pipeline">1.6.1. The Review pipeline</a>
 <ul class="sectlevel4">
 <li><a href="#general">General</a></li>
 <li><a href="#build-triggers">Build Triggers</a></li>
@@ -40,7 +38,7 @@
 <li><a href="#pipeline">Pipeline</a></li>
 </ul>
 </li>
-<li><a href="#the-deploy-pipeline">1.8.2. The Deploy pipeline</a>
+<li><a href="#the-deploy-pipeline">1.6.2. The Deploy pipeline</a>
 <ul class="sectlevel4">
 <li><a href="#general-2">General</a></li>
 <li><a href="#build-triggers-2">Build Triggers</a></li>
@@ -48,7 +46,7 @@
 <li><a href="#pipeline-2">Pipeline</a></li>
 </ul>
 </li>
-<li><a href="#the-release-pipeline">1.8.3. The Release pipeline</a>
+<li><a href="#the-release-pipeline">1.6.3. The Release pipeline</a>
 <ul class="sectlevel4">
 <li><a href="#general-3">General</a></li>
 <li><a href="#build-triggers-3">Build Triggers</a></li>
@@ -58,9 +56,9 @@
 </li>
 </ul>
 </li>
-<li><a href="#troobleshooting">1.9. Troobleshooting</a>
+<li><a href="#troobleshooting">1.7. Troobleshooting</a>
 <ul class="sectlevel3">
-<li><a href="#disk-space-usage-90">1.9.1. Disk space usage &gt; 90 %</a></li>
+<li><a href="#disk-space-usage-90">1.7.1. Disk space usage &gt; 90 %</a></li>
 </ul>
 </li>
 </ul>
@@ -146,16 +144,6 @@
 <ul>
 <li>
 <p>For retry on failure</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Gerrit Trigger</p>
-<div class="ulist">
-<ul>
-<li>
-<p>To launch job on gerrit update</p>
 </li>
 </ul>
 </div>
@@ -248,20 +236,6 @@
 </div>
 <div class="sect2">
 <h3 id="change-theme"><a class="anchor" href="#change-theme"></a>1.2. Change Theme</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This has to be done only for a new Production Line</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 <div class="ulist">
 <ul>
 <li>
@@ -291,248 +265,9 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="gerrit-trigger-configuration"><a class="anchor" href="#gerrit-trigger-configuration"></a>1.3. Gerrit Trigger Configuration</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This has to be done only for a new Production Line</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>On Jenkins :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Create the console-master job if not already existing</p>
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>Create a new freestyle job.</p>
-</li>
-<li>
-<p>Name it console-master</p>
-</li>
-<li>
-<p>General</p>
-</li>
-<li>
-<p><i class="fa fa-check-square-o"></i> <b class="button">Restreindre où le projet peut être exécuté</b></p>
-<div class="ulist">
-<ul>
-<li>
-<p>master</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Put this <strong>Build</strong> &#8594; <b class="button">Ajouter une étape au build</b> &#8594; <b class="button">Exécuter un script shell</b> &#8594; paste this and save :</p>
-<div class="literalblock">
-<div class="content">
-<pre>ssh-keygen -y -f /root/.ssh/id_rsa &gt; /root/.ssh/id_rsa.pub
-ls -lart /root/.ssh/
-more /root/.ssh/id_rsa.pub</pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Add 1 executor on the master node</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Home</strong> &#8594; <b class="button">État du lanceur de compilations</b> &#8594; <b class="button">maître</b> &#8594; <strong>Configurer</strong></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Execute the console-master</p>
-</li>
-<li>
-<p>Keep track of what the execution gave for later Gerrit configuration, example :</p>
-<div class="literalblock">
-<div class="content">
-<pre>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKGER5oLwkNhcCYtTzmUQooA+1mdrjIGi84AVsOHyNpsMqFBhkpxfImvopvKlYiztXUA15dwwDsPWq1tUcy/4NWqKnMTQA57xxxT2r8suF/DVlH6fNn8T73mGz9+kT77FXHuaMfmDTqrwPngUYQMm2Y9kTjGhIcH/jseq6jCUawITAOs/6EUbs7jtJ/S+jMb6Ed60S7S/nR3IzQwVrXMiQjDdFsL8RWEBQ54T4cNia/HMI8MK7mEEF5K008g4Ru3Bidk+VSisPUYFPmNc/tE12RyAjvkcwWxrYqFEB5h6RlS0yWXAjCUzjv8T0ov4Wus+ZqNgqUMYtBBf+zQvQC1ub</pre>
-</div>
-</div>
-</li>
-<li>
-<p>When finished, remove the executor from master node</p>
-</li>
-<li>
-<p>Create a local trigger server</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Home</strong> &#8594; <strong>Administrer Jenkins</strong> &#8594; <strong>Gerrit Trigger</strong> &#8594; <strong>Add New Server</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Gerrit Connection Setting</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Name = local_server</p>
-</li>
-<li>
-<p>Hostname = gerrit</p>
-</li>
-<li>
-<p>Frontend URL = <a href="http://gerrit/" class="bare">http://gerrit/</a></p>
-</li>
-<li>
-<p>SSH Port = 29418</p>
-</li>
-<li>
-<p>Username = svc-fr-bpmfact</p>
-</li>
-<li>
-<p>SSH Keyfile = /root/.ssh/id_rsa</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Gerrit Reporting Values</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Verify = &lt;vide&gt;, 1, -1, -1, -1</p>
-</li>
-<li>
-<p>Code Review = &lt;vide&gt;, 1, -1, -1, -1</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Gerrit Verified Commandes</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Started = vide</p>
-</li>
-<li>
-<p>Successful =</p>
-<div class="literalblock">
-<div class="content">
-<pre>gerrit review &lt;CHANGE&gt;,&lt;PATCHSET&gt; --message 'Build Successful (◕‿◕) &lt;BUILDS_STATS&gt;' --verified &lt;VERIFIED&gt;</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Failed =</p>
-<div class="literalblock">
-<div class="content">
-<pre>gerrit review &lt;CHANGE&gt;,&lt;PATCHSET&gt; --message 'Build Failed (ಠ_ಠ) &lt;BUILDS_STATS&gt;' --verified &lt;VERIFIED&gt;</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Unstable =</p>
-<div class="literalblock">
-<div class="content">
-<pre>gerrit review &lt;CHANGE&gt;,&lt;PATCHSET&gt; --message 'Build Unstable ( ͠° ͟ʖ ͡°)  &lt;BUILDS_STATS&gt;' --verified &lt;VERIFIED&gt;</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Not Built =</p>
-<div class="literalblock">
-<div class="content">
-<pre>gerrit review &lt;CHANGE&gt;,&lt;PATCHSET&gt; --message 'No Builds Executed (╯︵╰,)  &lt;BUILDS_STATS&gt;' --verified &lt;VERIFIED&gt;</pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Save</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>On Gerrit :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Connect with the technical user (svc-fr-bpmfact / Bpm-fact0ry)</p>
-<div class="ulist">
-<ul>
-<li>
-<p>You may have to use a secondary browser, since authentication is very persistent on Gerrit</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Click on the user top right &#8594; <strong>Settings</strong> &#8594; <strong>SSH Public Keys</strong> &#8594; <b class="button">Add Key&#8230;&#8203;</b></p>
-</li>
-<li>
-<p>Add the public key content from Jenkins server (the one asked to be kept track earlier), starting with <strong>ssh-rsa</strong></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>On Jenkins :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Test the earlier configured connection of the trigger with <strong>Test Connection</strong> while editing local_server</p>
-</li>
-<li>
-<p>Restart jenkins with : <a href="https://bpmfactory.s2-eu.nvx.com/jenkins/safeRestart" class="bare">https://bpmfactory.s2-eu.nvx.com/jenkins/safeRestart</a></p>
-</li>
-<li>
-<p>The Gerrit trigger should be up and running</p>
-</li>
-</ul>
-</div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="./images/geek-and-poke-push-now.jpg" alt="geek and poke push now" width="50%">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="administration"><a class="anchor" href="#administration"></a>1.4. Administration</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This has to be done only for a new Production Line</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
+<h3 id="administration"><a class="anchor" href="#administration"></a>1.3. Administration</h3>
 <div class="sect3">
-<h4 id="overall-configuration"><a class="anchor" href="#overall-configuration"></a>1.4.1. Overall configuration</h4>
+<h4 id="overall-configuration"><a class="anchor" href="#overall-configuration"></a>1.3.1. Overall configuration</h4>
 <div class="paragraph">
 <p>Connect to Jenkins configuration page : <a href="https://bpmfactory.s2-eu.nvx.com/jenkins/configure" class="bare">https://bpmfactory.s2-eu.nvx.com/jenkins/configure</a></p>
 </div>
@@ -591,7 +326,7 @@ more /root/.ssh/id_rsa.pub</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="tools-configuration"><a class="anchor" href="#tools-configuration"></a>1.4.2. Tools configuration</h4>
+<h4 id="tools-configuration"><a class="anchor" href="#tools-configuration"></a>1.3.2. Tools configuration</h4>
 <div class="paragraph">
 <p>Connect to Jenkins tools configuration page : <a href="https://bpmfactory.s2-eu.nvx.com/jenkins/configureTools/" class="bare">https://bpmfactory.s2-eu.nvx.com/jenkins/configureTools/</a></p>
 </div>
@@ -637,21 +372,7 @@ more /root/.ssh/id_rsa.pub</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="allow-css-on-published-html"><a class="anchor" href="#allow-css-on-published-html"></a>1.5. Allow CSS on published HTML</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This has to be done only for a new Production Line</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
+<h3 id="allow-css-on-published-html"><a class="anchor" href="#allow-css-on-published-html"></a>1.4. Allow CSS on published HTML</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -695,7 +416,7 @@ println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="sonarqube-token"><a class="anchor" href="#sonarqube-token"></a>1.6. SonarQube token</h3>
+<h3 id="sonarqube-token"><a class="anchor" href="#sonarqube-token"></a>1.5. SonarQube token</h3>
 <div class="paragraph">
 <p>To be able to upload quality results to SonarQube, you have to create a token.</p>
 </div>
@@ -705,27 +426,10 @@ println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))</pre>
 <div class="paragraph">
 <p>Now maven can upload results to SonarQube with something like :</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>mvn sonar:sonar -Dsonar.login=ab7451586619e21d0e2bb50389899ce3595e3 -Dsonar.host.url=http://sonarqube:9000/sonarqube</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> mvn sonar:sonar -Dsonar.login=ab7451586619e21d0e2bb50389899ce3595e3 -Dsonar.host.url=http://sonarqube:9000/sonarqube</code></pre>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="ssh-key-on-remote-server"><a class="anchor" href="#ssh-key-on-remote-server"></a>1.7. ssh key on remote server</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This has to be done only for a new remote server</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>If you have a remote server where you deploy your artifacts for further developments or tests :
@@ -748,9 +452,9 @@ println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="pipelines-creations"><a class="anchor" href="#pipelines-creations"></a>1.8. Pipelines creations</h3>
+<h3 id="pipelines-creations"><a class="anchor" href="#pipelines-creations"></a>1.6. Pipelines creations</h3>
 <div class="sect3">
-<h4 id="the-review-pipeline"><a class="anchor" href="#the-review-pipeline"></a>1.8.1. The Review pipeline</h4>
+<h4 id="the-review-pipeline"><a class="anchor" href="#the-review-pipeline"></a>1.6.1. The Review pipeline</h4>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="./images/geek-and-poke-another-red.jpg" alt="geek and poke another red" width="33%">
@@ -810,7 +514,7 @@ println(System.getProperty("hudson.model.DirectoryBrowserSupport.CSP"))</pre>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-In the field <strong>Choose a Server</strong>, <strong>Any Server</strong> won&#8217;t work
+In the field <strong>Choose a Server</strong>, <code>Any Server</code> won&#8217;t work
 </td>
 </tr>
 </table>
@@ -998,7 +702,7 @@ def version(text) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="the-deploy-pipeline"><a class="anchor" href="#the-deploy-pipeline"></a>1.8.2. The Deploy pipeline</h4>
+<h4 id="the-deploy-pipeline"><a class="anchor" href="#the-deploy-pipeline"></a>1.6.2. The Deploy pipeline</h4>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="./images/turnoff-deployment-pipeline.png" alt="turnoff deployment pipeline" width="50%">
@@ -1249,7 +953,7 @@ def version(text) {
 </div>
 </div>
 <div class="sect3">
-<h4 id="the-release-pipeline"><a class="anchor" href="#the-release-pipeline"></a>1.8.3. The Release pipeline</h4>
+<h4 id="the-release-pipeline"><a class="anchor" href="#the-release-pipeline"></a>1.6.3. The Release pipeline</h4>
 <div class="paragraph">
 <p>This is the release pipeline launched manually at will when an external release is needed. This pipeline is a "pipeline as code".</p>
 </div>
@@ -1456,14 +1160,14 @@ def version(text) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="troobleshooting"><a class="anchor" href="#troobleshooting"></a>1.9. Troobleshooting</h3>
+<h3 id="troobleshooting"><a class="anchor" href="#troobleshooting"></a>1.7. Troobleshooting</h3>
 <div class="imageblock" style="text-align: center">
 <div class="content">
 <img src="./images/geek-and-poke-job-is-red.jpg" alt="geek and poke job is red" width="50%">
 </div>
 </div>
 <div class="sect3">
-<h4 id="disk-space-usage-90"><a class="anchor" href="#disk-space-usage-90"></a>1.9.1. Disk space usage &gt; 90 %</h4>
+<h4 id="disk-space-usage-90"><a class="anchor" href="#disk-space-usage-90"></a>1.7.1. Disk space usage &gt; 90 %</h4>
 <div class="paragraph">
 <p>If the disk space usage is too high and your build fails a the start for this reason, you can purge some folders with the below actions.</p>
 </div>
@@ -1509,7 +1213,7 @@ find /home/jenkins/workspace/ -maxdepth 1 -mtime +90 -type d -depth -print</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-17 09:12:53 UTC
+Last updated 2018-12-18 10:42:58 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

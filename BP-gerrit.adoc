@@ -1,18 +1,48 @@
-= Gerrit Configuration & Code Review Best Practices
+= Gerrit Code Review
 include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
 image::dilbert-collaboration.png[{half-width}]
 
+== History
+
+The initial development of Gerrit started when a code review system for *Android* was requested. Because many Google developers were involved in the development of Android, the new system needed to have a feature set similar to the Google internal review system *Mondrian*. For this purpose, *Rietveld* was started. Because the development of Rietveld was not fast enough, Rietveld was forked and developed separately, then as *Gerrit*.
+
+The name originates from that of the Dutch architect Gerrit Rietveld.
+
 == User documentation
 
 Official user documentation is link:https://gerrit-review.googlesource.com/Documentation/intro-user.html[here].
 
-== Server installation
+== Installation
+
+TIP: With the openfrontier/gerrit image, you can start a ready-to-use dockerized server with persistant data in a local folder, SMTP and replication configuration. More information/examples link:https://github.com/openfrontier/docker-gerrit[here].
 
 .Using docker
- docker run -p 8080:8080 -p 29418:29418 gerritcodereview/gerrit
+[source,bash]
+----
+$ docker run -d --name gerrit-of -p 8080:8080 -p 29418:29418 \
+-e AUTH_TYPE=DEVELOPMENT_BECOME_ANY_ACCOUNT \
+-e WEBURL=http://my.public.url:8080 \
+-e SMTP_SERVER=my.smtp.server \
+-e USER_NAME="Gerrit CodeReview" \
+-e USER_EMAIL=gerrit@my-provider.com \
+-v ~/gerrit_volume:/var/gerrit/review_site \
+-e GERRIT_INIT_ARGS="--install-plugin=analytics" \
+-e GERRIT_INIT_ARGS="--install-plugin=replication" \
+-e REPLICATION_REMOTES=gitlab \
+-e GITLAB_REMOTE=https://oauth2:ACCESS_TOKEN@my.gitlab.server:MY_GROUP/${name}.git \
+-e GITLAB_REPLICATE_ON_STARTUP=true \
+docker.io/openfrontier/gerrit
+----
+
+<<<
+== Configuration
+
+TIP: You can switch from new UI (PolyGerrit) to old UI with the link at the bottom of any page, and you can switch back to PolyGerrit by adding `?polygerrit=1` in the URL.
+
+=== Initialization
 
 NOTE: Updated with new UI
 
@@ -39,25 +69,21 @@ So, as the administrator :
 ** Click btn:[Generate New Password]
 *** save it for later
 
-== Server configuration
+==== Permissions
 
 NOTE: In further sections, actions are for old UI
 
-=== Initialization
-
-==== Permissions
-
 ===== Jenkins user push
 
-* Click on *People* -> *List Groups* -> *Non-interactive Users* 
-* Add Jenkins (your technical account) in the list
+* Click on btn:[People] -> btn:[List Groups] -> btn:[Non-interactive Users]
+* Add Jenkins' technical account in the list
 
 ===== Deleting tags
 
-* Click on *Projects* -> *List* -> btn:[All-projects] -> section *Access* -> *Edit*
-* Under btn:[Reference: refs/tags/*]
-** Click on btn:[Add Permission...] and select *Push*
-** Select group *Administrator* and click *Force Push*
+* Click on btn:[Projects] -> btn:[List] -> btn:[All-projects] -> section btn:[Access] -> btn:[Edit]
+* Under `Reference: refs/tags/*`
+** Click on btn:[Add Permission...] and select btn:[Push]
+** Select group btn:[Administrator] and click btn:[Force Push]
 ** Save Changes
 
 Now you can delete tags from your projects, for ex :
@@ -68,11 +94,11 @@ Now you can delete tags from your projects, for ex :
 [[gitweb-access]]
 ===== Allow (gitweb) access for everyone
 
-* Click on *Projects* -> *List* -> btn:[All-projects] -> section *Access* -> *Edit*
-* Under *Reference: refs/meta/config*
-** Under *Read*
+* Click on btn:[Projects] -> btn:[List] -> btn:[All-projects] -> section btn:[Access] -> btn:[Edit]
+* Under `Reference: refs/meta/config`
+** Under `Read`
 *** Click on btn:[Add Group]
-*** Enter *Registered Users*
+*** Enter `Registered Users`
 *** Click btn:[Add]
 *** Save Changes
 
@@ -80,22 +106,21 @@ image::geek-and-poke-only-idiot.jpg[{half-width}]
 
 ==== Verified status
 
-* Click on *Projects* -> *List* -> btn:[All-Projects] -> section *General* -> *Edit Config*
+* Click on btn:[Projects] -> btn:[List] -> btn:[All-Projects] -> section btn:[General] -> btn:[Edit Config]
 * Add this
 
-[source, ini]
  [label "Verified"]
     function = MaxWithBlock
     value = -1 Fails
     value =  0 No score
     value = +1 Verified
-       
-* Click on *Save*, then *Close*
-* Click on *Publish Edit*, then *Publish*, btn:[Code-Review+2], *Submit*
-* Click on *Projects* -> *List* -> btn:[All-Projects] -> *Access* -> *Edit*
+
+* Click on btn:[Save], then btn:[Close]
+* Click on btn:[Publish Edit], then btn:[Publish], btn:[Code-Review+2], btn:[Submit]
+* Click on btn:[Projects] -> btn:[List] -> btn:[All-Projects] -> btn:[Access] -> btn:[Edit]
 * Under btn:[Reference:	refs/heads/*]
-** Click on btn:[Add Permission...] and select *Label Verified*
-** Select group *Administrator*
+** Click on btn:[Add Permission...] and select btn:[Label Verified]
+** Select group btn:[Administrator]
 ** Select group btn:[Non-Interactive Users]
 ** Save Changes
 
@@ -103,34 +128,34 @@ image::geek-and-poke-only-idiot.jpg[{half-width}]
 
 By default, when projet submissions are not fast forward, final submitting a change will create a merge commit. The history is potentially doubled.
 
-* Click on *Projects* -> *List* -> btn:[All-Projects] -> *General*
-* Under *Submit Type*, select *Rebase if Necessary*
+* Click on btn:[Projects] -> btn:[List] -> btn:[All-Projects] -> btn:[General]
+* Under btn:[Submit Type], select btn:[Rebase if Necessary]
 
 .Life without code review
 image::devrant-git-blame.jpg[{half-width}]
 
 === User preferences
 
-Click on  *YourName* -> *Settings* -> *Diff Preferences* and set *columns = 120*
+Click on  btn:[YourName] -> btn:[Settings] -> btn:[Diff Preferences] and set *columns* = `120`
 (you will probably have to paste it due to a GUI bug)
 
 === Project creation
 
 ==== Old UI
 
-Create your GIT project by clicking on *Projects* -> *Create New Project*
+Create your GIT project by clicking on btn:[Projects] -> btn:[Create New Project]
 
-* Project Name = *your-project-name*
-* Rights Inherit From = *All-Projects*
+* Project Name = `your-project-name`
+* Rights Inherit From = `All-Projects`
 * Check that it has inherited correctly "Rebase if necessary", else change and save
 
 ==== PolyGerrit
 
-Create your GIT project by clicking on *Browse* -> *Repositories -> *Create New*
+Create your GIT project by clicking on btn:[Browse] -> btn:[Repositories] -> btn:[Create New]
 
-* Repository Name = *your-project-name*
-* Rights Inherit From = *All-Projects*
-* Owner = Technical responsible
+* Repository Name = `your-project-name`
+* Rights Inherit From = `All-Projects`
+* Owner = `the-code-owner`
 * Click btn:[Create]
 * Check that it has inherited correctly "Rebase if necessary", else change and click btn:[SAVE CHANGES]
 
@@ -153,27 +178,105 @@ image::geek-and-poke-dont-update.jpg[{tier-width}]
 
 For each project, create a reviewer list and a validator list.
 
-* Go to *Projects* -> *Create New Group*
+* Go to btn:[Projects] -> btn:[Create New Group]
 * Reviewers list
 ** Give a name, for example btn:[dge-reviewers]
 ** Add every developers / primary reviewers on the project
-** Click on *General*
-** Description = Reviewers (first level : +1)
-** Click *Save Description*
-** Check btn:[Make group visible to all registered users.]
-** Click *Save Group Options*
+** Click on btn:[General]
+** Description = Reviewers (+1)
+** Click btn:[Save Description]
+** Check btn:[Make group visible to all registered users]
+** Click btn:[Save Group Options]
 * Validators list
 ** Give a name for example btn:[dge-validators]
 ** Add technical responsible and a backup
-** Click on *General*
-** Description = "Validators (level 2 : +2)"
-** Click *Save Description*
-** check btn:[Make group visible to all registered users.]
-** Click *Save Group Options*
+** Click on btn:[General]
+** Description = Validators (+2)
+** Click btn:[Save Description]
+** check btn:[Make group visible to all registered users]
+** Click btn:[Save Group Options]
 
 .Repository without code review
 image::turnoff-what-your-code-looks-like.png[{tier-width}]
 
+<<<
+== Jenkins configuration
+
+=== Plugin installation
+
+* Go to btn:[Jenkins] -> btn:[Administration Jenkins] -> btn:[Gestion des plugins]
+* Install Gerrit Trigger
+
+=== Plugin Configuration
+
+* Create the console-master job if not already existing
+** Create a new freestyle job.
+** Name it console-master
+** General
+** [x] btn:[Restreindre où le projet peut être exécuté]
+*** master
+** In btn:[Build] -> btn:[Ajouter une étape au build] -> btn:[Exécuter un script shell] -> paste this and save :
+
+[source,batch]
+ ssh-keygen -y -f /root/.ssh/id_rsa > /root/.ssh/id_rsa.pub
+ ls -lart /root/.ssh/
+ more /root/.ssh/id_rsa.pub
+
+* Add 1 executor on the master node
+** btn:[Home] -> btn:[État du lanceur de compilations] -> btn:[maître] -> btn:[Configurer]
+* Execute the console-master
+* Keep track of what the execution gave for later Gerrit configuration, example :
+
+ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKGER5oLwkNhcCYtTzmUQooA+1mdrjIGi84AVsOHyNpsMqFBhkpxfImvopvKlYiztXUA15dwwDsPWq1tUcy/4NWqKnMTQA57xxxT2r8suF/DVlH6fNn8T73mGz9+kT77FXHuaMfmDTqrwPngUYQMm2Y9kTjGhIcH/jseq6jCUawITAOs/6EUbs7jtJ/S+jMb6Ed60S7S/nR3IzQwVrXMiQjDdFsL8RWEBQ54T4cNia/HMI8MK7mEEF5K008g4Ru3Bidk+VSisPUYFPmNc/tE12RyAjvkcwWxrYqFEB5h6RlS0yWXAjCUzjv8T0ov4Wus+ZqNgqUMYtBBf+zQvQC1ub
+
+* When finished, remove the executor from master node
+* Create a local trigger server
+** btn:[Home] -> btn:[Administrer Jenkins] -> btn:[Gerrit Trigger] -> btn:[Add New Server]
+*** Gerrit Connection Setting
+**** Name = local_server
+**** Hostname = your.gerrit.server
+**** Frontend URL = http://your.gerrit.server:8080/
+**** SSH Port = 29418
+**** Username = your-technical-user
+**** SSH Keyfile = /root/.ssh/id_rsa
+*** Gerrit Reporting Values
+**** Verify = <vide>, 1, -1, -1, -1
+**** Code Review = <vide>, 1, -1, -1, -1
+*** Gerrit Verified Commandes
+**** Started = vide
+**** Successful =
+
+ gerrit review <CHANGE>,<PATCHSET> --message 'Build Successful (◕‿◕) <BUILDS_STATS>' --verified <VERIFIED>
+
+**** Failed =
+
+ gerrit review <CHANGE>,<PATCHSET> --message 'Build Failed (ಠ_ಠ) <BUILDS_STATS>' --verified <VERIFIED>
+
+**** Unstable =
+
+ gerrit review <CHANGE>,<PATCHSET> --message 'Build Unstable ( ͠° ͟ʖ ͡°)  <BUILDS_STATS>' --verified <VERIFIED>
+
+**** Not Built =
+
+ gerrit review <CHANGE>,<PATCHSET> --message 'No Builds Executed (╯︵╰,)  <BUILDS_STATS>' --verified <VERIFIED>
+
+*** Save
+
+.On Gerrit
+
+* Connect with the technical user (svc-fr-bpmfact / Bpm-fact0ry)
+* Click on the user top right -> btn:[Settings] -> btn:[SSH Public Keys] -> btn:[Add Key...]
+* Add the public key content from Jenkins server (the one asked to be kept track earlier), starting with `ssh-rsa`
+
+.On Jenkins
+
+* Test the earlier configured connection of the trigger with btn:[Test Connection] while editing local_server
+* Restart jenkins with : https://bpmfactory.s2-eu.nvx.com/jenkins/safeRestart
+* The Gerrit trigger should be up and running
+
+image::geek-and-poke-push-now.jpg[{half-width}]
+
+<<<
 == Code review golden rules (using Gerrit)
 
 image::gerrit-process.png[{full-width}]
@@ -186,22 +289,23 @@ image::gerrit-process.png[{full-width}]
 . Do not group functionnalities in commit, to avoid long run reviews.
 .. It is possible to handle multiple review in parallel.
 . Commit text has to be explicit, complete, and synthetic.
-.. Commit text must be one line for the sake of history and documentation readability (replace ':' with '()' and '-' with '+'). No limit to the lengh of the line.
+.. Commit text must be one line for the sake of history and documentation readability (replace `:` with `()` and `-` with `+`). No limit to the lengh of the line.
 .. If the commit include documentation, set a first line commit text suitable for documentation. Put other information on other lines (they won't appear in documentation history)
 . Commit often, at least on tuesdays and thursdays (even on unfinished current task).
-. No "related changes" should appear on the change in Gerrit, or you did not handle multiple review properly.
+. No `related changes` should appear on the change in Gerrit, or you did not handle multiple review properly.
 . Fixing Jenkins failures is always a top priority.
-. On "Cannot merge" Gerrit message, you have to pull/commit/push to rebase properly
-. When Jenkins give a +1, add the *reviewers* list as reviewers, this should add all reviewing people.
+. On `Cannot merge` Gerrit message, you have to pull/commit/push to rebase properly
+. When Jenkins give a `+1`, add the `reviewers` list as reviewers, this should add all reviewing people.
 . When added as a reviewer, try to give a review in the next half day, knowing that it blocks the process.
 .. You don't have to be an expert to do a review. At least try to spot pieces of code not well explained and missing javadoc. Try to imagine yourself as a future bug fixer who needs clean code to work properly.
 .. If suitable, test the application or check the auto IT tests.
 .. If any, check that the generated documention looks good in PDF.
 .. Check that there is UT specifically testing the new/modified code.
-. When one or two +1 from the team have been given (depending on the size of the team), add the *validators* list of reviewers for a final +2 review followed by a submit to the master branch.
+. When at least 25% of the team gave a `+1`, add the `validators` list of reviewers for a final `+2` review followed by a submit to the master branch.
 
 image::git-messages.png[{tier-width}]
 
+<<<
 == Troobleshootings
 
 === Submit replaced with Submit including parents
