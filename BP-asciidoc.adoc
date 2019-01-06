@@ -14,7 +14,7 @@ endif::backend-pdf[]
 
 And also an advanced everything-as-code Reveal.js demo : link:sample/reveal/reveal-my-asciidoc.html[Reveal my Asciidoc]. 
 
-== Editor
+== Editor 
 
 To help you to write your documentation, use AsciidocFX. It will allows you to visualize your documentation without having to generate the PDF. You can consider Visual Studio Code too, it has a nice plugin but with less features.
 

@@ -10,12 +10,10 @@
 <link rel="stylesheet" href="themes/css/html-zenika.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js" charset="utf-8"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-<script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+      <link rel="stylesheet" href="lib/c3.v0-6-11.min.css">
+      <script src="lib/d3.v5-7-0.min.js" charset="utf-8"></script>
+      <script src="lib/c3.v0-6-11.min.js"></script>
+    
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -262,7 +260,7 @@
 		&lt;sourceDirectory&gt;src/docs/asciidoc&lt;/sourceDirectory&gt;
 		&lt;requires&gt;
 			&lt;require&gt;asciidoctor-diagram&lt;/require&gt;
-			&lt;require&gt;./src/docs/asciidoc/lib/chart-block-macro.rb&lt;/require&gt;
+			&lt;require&gt;./src/docs/asciidoc/lib/c3js-block-macro.rb&lt;/require&gt;
 		&lt;/requires&gt;
 		&lt;attributes&gt;
 			&lt;!-- for Font Awesome icons --&gt;
@@ -296,7 +294,7 @@
 				&lt;sourceHighlighter&gt;highlight.js&lt;/sourceHighlighter&gt;
 				&lt;attributes&gt;
 					&lt;!-- local version to go beyond basic languages (for ex groovy) --&gt;
-					&lt;highlightjsdir&gt;highlight&lt;/highlightjsdir&gt;
+					&lt;highlightjsdir&gt;lib/highlight&lt;/highlightjsdir&gt;
 					&lt;!-- explore here https://highlightjs.org/static/demo/ --&gt;
 					&lt;highlightjs-theme&gt;gruvbox-dark&lt;/highlightjs-theme&gt;
 					&lt;imagesdir&gt;./images&lt;/imagesdir&gt;
@@ -325,7 +323,7 @@
 				&lt;templateDir&gt;${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates&lt;/templateDir&gt;
 				&lt;attributes&gt;
 					&lt;source-highlighter&gt;highlightjs&lt;/source-highlighter&gt;
-					&lt;highlightjs-theme&gt;highlight/styles/gruvbox-dark.min.css&lt;/highlightjs-theme&gt;
+					&lt;highlightjs-theme&gt;lib/highlight/styles/gruvbox-dark.min.css&lt;/highlightjs-theme&gt;
 					&lt;revealjsdir&gt;reveal.js-${revealjs.version}&lt;/revealjsdir&gt;
 					&lt;!-- default closest to Zenika's graphic chart : --&gt;
 					&lt;!-- &lt;revealjs_theme&gt;blood&lt;/revealjs_theme&gt; --&gt;
@@ -558,11 +556,11 @@ TODO: <a href="https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-06 19:13:27 UTC
+Last updated 2019-01-06 19:33:06 UTC
 </div>
 </div>
-<link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">
-<script src="highlight/highlight.min.js"></script>
+<link rel="stylesheet" href="lib/highlight/styles/gruvbox-dark.min.css">
+<script src="lib/highlight/highlight.min.js"></script>
 <script>hljs.initHighlighting()</script>
 </body>
 </html>

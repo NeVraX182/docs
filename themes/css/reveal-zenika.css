@@ -10,15 +10,40 @@
   font-family: 'Lato Regular';
   src: url("../fonts/Lato2/Lato-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: 'M+ 1m';
+  src: url("../fonts/M+1m/mplus-1m-regular.ttf") format("truetype");
+}
 
 /**
 ZENIKA COLORS :
-rouge : 170/30/62 #B11E3E
-vert : 141/191/68 #8DBF44
-noir : 70/70/70
-bleu : 81/155/200 #519BC8
-rose : 239/82/91 #EF525B
+rouge / deep carmine : 177/30/62 #B11E3E
+vert / android green : 141/191/68 #8DBF44
+bleu / carolina blue : #53A3DA
+gris clair / davy's grey : #888888
+gris foncé / arsenic : #444444
+
+rose / sunset orange : 239/82/91 #EF525B => 
+vermillon : #E43238
+violet : #9D145F
+
+rose 2 / indian red : #E8575C
+blue ciel / colombia blue : BFDCD0
+beige pastel gray : #D6D6B1
+black olive : #3F3F37
+orange : #F58231
+jaune / vivid yellow : #FFE119
+menthe / polished pine : #56A29A
+bleu nuit / navy : #000075
+
+rouge - gris foncé - beige - bleu - vert
+https://coolors.co/B11E3E-444444-D6D6B1-53A3DA-8DBF44
+
+violet - jaune - bleu nuit - rose - menthe
+https://coolors.co/9D145F-FFE119-000075-E8575C-56A29A
+
 **/
+
 
 /*********************************************
  * GLOBAL STYLES
@@ -58,6 +83,7 @@ body {
 /* stack of sub slides, must be hidden */
 .reveal .slides section.stack {
   background: transparent;
+  box-shadow: none;
 }
 
 /* general borders in slides */
@@ -139,10 +165,7 @@ body {
  *********************************************/
 
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6, 
-.reveal h[level="3"] {
-  hyphens: none;
-  -ms-hyphens: none;
-  -webkit-hyphens: none;
+.reveal h[level="3"], #toctitle {
   color: #B11E3E;
   font-family: "OpenSans Bold", sans-serif;
   font-weight: bold;
@@ -159,7 +182,7 @@ body {
 }
 
 /* slide title */
-.reveal h2, .reveal h3 {
+.reveal h2, .reveal h3, #toctitle {
   margin: 0px 0px 40px -20px;
   padding: 0 0 0px 20px;
   text-align: left;
@@ -168,7 +191,7 @@ body {
 
 /** subtitle in slide **/
 .reveal h[level="3"] {
-  margin: 0.8em 0 0.4em -0.4em;
+  margin: 0.6em 0 0.8em -0.4em;
   display: inline-block;
 }
 
@@ -198,6 +221,17 @@ body {
   /* font-weight: bold; => bold is not visible, a color is better */
   /*color: rgb(81,155,200);  blue */
   font-weight: bold;
+}
+
+/** comments in italic **/
+span.hljs-comment, span.hljs-emphasis {
+  font-style: italic;
+}
+
+/* explicitely pushed to bottom */
+.reveal .bottom {
+  position: absolute;
+  bottom: 20px;
 }
 
 /** forced colors **/
@@ -232,7 +266,7 @@ body {
 }
 
 /* moving text not to have bullet points outside current zone */
-.reveal ul, reveal ol {
+.reveal ul, .reveal ol {
   margin-left: 1em;
 }
 
@@ -292,15 +326,15 @@ body {
 
 /** SPECIAL TEXT **/
 
-.reveal span.small {
+.reveal .small {
   font-size: smaller;
 }
 
-.reveal span.big {
+.reveal .big {
   font-size: larger;
 }
 
-.reveal span.underline {
+.reveal .underline {
   text-decoration: underline;
 }
 
@@ -394,13 +428,13 @@ margin-left: 20px;
 /** CODE **/
 
 .reveal code {
-  font-family: "Droid Sans Mono","DejaVu Sans Mono","Monospace",monospace;
+  font-family: "M+ 1m";
   font-size: 80%;
   padding: 10px;
   font-weight: normal;
 }
 
-.reveal pre:not(.highlight) {
+.reveal pre:not(.ght) {
   font-family: "Droid Sans Mono","DejaVu Sans Mono","Monospace",monospace;
   font-weight: normal;
   overflow-x: auto;
@@ -413,6 +447,7 @@ margin-left: 20px;
 
 /* title of code/image block */
 .reveal div.title, .reveal table > caption.title {
+  font-size: 26px;
   font-style: italic;
   font-weight: bold;
   margin-bottom: 0.25rem;
@@ -485,7 +520,7 @@ margin-left: 20px;
  * LINKS
  *********************************************/
 
-.reveal a:not(.image) {
+.reveal .slides a:not(.image), .chalkboard-button a, .slide-menu-button a {
   color: rgb(81,155,200);
 }
 
@@ -495,17 +530,13 @@ margin-left: 20px;
   border: none;
 }
 
-.reveal .slides .toc a {
-  color: inherit;
-}
-
 /*******************************
  * SLIDES NUMBERS, MENU & CHALKBOARD
  ******************************/
 
 .reveal .slide-number, .reveal .slide-number-wrapper {
   left: 8px;
-  right: 500px; /* without this shift, down arrow is visible but not clickable */
+  right: 85%; /* without this shift, down arrow is visible but not clickable */
   background-color: transparent;
 }
 
@@ -524,6 +555,7 @@ margin-left: 20px;
   bottom: 60px !important;
 }
 
+/* Slide number and other clickable objects */
 .reveal .slide-number a, .reveal .slide-number-wrapper a, 
 .reveal .chalkboard-button a, .reveal .slide-menu-button a {
   position: unset; /* default is "relative" on "a", and then the slide numbers are out of the view */
@@ -532,6 +564,7 @@ margin-left: 20px;
   font-weight: bold;
 }
 
+/* Slide number color */
 .reveal .slide-number a {
   color: #B11E3E;
 }
@@ -542,25 +575,22 @@ margin-left: 20px;
 
 .reveal .imageblock img {
   display: block;
-  margin: 30px auto;
+  margin: 20px auto;
 }
 
 .reveal section.full-page-image img {
   margin: 0
 }
 
-.reveal section.maxed-image > div > img {
-  object-fit: contain;
-  height: 480px;
-  width: 950px;
+/* [.maxed-image] on section or image block */
+.reveal section.maxed-image > div > img, .imageblock.maxed-image img {
+    object-fit: contain;
+    height: 550px;
+    width: 1040px;
 }
 
 .reveal section img.with-border {
   border: 1px solid black;
-}
-
-.reveal section img #questions {
-  margin-top: 100px;
 }
 
 .reveal figcaption {
@@ -588,16 +618,290 @@ margin-left: 20px;
   background: #B11E3E;
 }
 
-/*********************************************
- * DESCRIPTION NUMBERS
- *********************************************/
-
+/* DESCRIPTION NUMBERS */
 .conum[data-value] {
   background-color: rgb(141,191,68) !important;
 }
 
-/*last slide*/ 
+/***********************
+* last slide 
+************************/ 
+
+/* .questions */
+
 .reveal section.questions.present {
   background: no-repeat center url('../question-mark.svg');
   background-size: 40%;
+  box-shadow: none;
 }
+
+/* .bubbles */
+
+.reveal section.bubbles.present {
+  background: no-repeat center url('../speak-bubbles.svg');
+  background-size: 60%;
+  box-shadow: none;
+}
+
+/* .red-hands (.layers) */
+
+.reveal section.red-hands.present {
+  background: none;
+  box-shadow: none;
+}
+
+/* foreground in ::before (needs to go outside the div) */
+.reveal section.red-hands.present:before {
+  content: "";
+  display: inline-block;
+  width: 180%;
+  height: 180%;
+  background: no-repeat center url(../red-hands.png);
+  background-size: 50%;
+  position: inherit;
+  left: -40%;
+  bottom: -75%;
+  opacity: 1;
+}
+
+/* background in ::after (needs to go outside the div) */
+.reveal section.red-hands.layers.present:after {
+  content: "";
+  display: inline-block;
+  width: 180%;
+  height: 200%;
+  background: no-repeat center url(../red-hands.png);
+  background-size: 55%;
+  position: relative;
+  left: -45%;
+  bottom: 25%;
+  opacity: 0.4;
+}
+
+/* .hands */
+
+.reveal section.hands.present {
+  background: none;
+  box-shadow: none;
+}
+
+/* foreground in ::before (needs to go outside the div) */
+.reveal section.hands.present:before {
+  content: "";
+  display: inline-block;
+  width: 180%;
+  height: 180%;
+  background: no-repeat center url(../real-hands.png);
+  background-size: 50%;
+  position: inherit;
+  left: -45%;
+  bottom: -30%;
+  opacity: 1;
+}
+
+/****************
+* C3.JS
+*****************/
+
+.c3 svg g {
+  font-size: 18px;
+}
+g.c3-legend-item text, g.c3-chart-arc text {
+  font-size:20px;
+}
+table.c3-tooltip td {
+  font-size:25px;
+  color: black;
+}
+table.c3-tooltip th {
+  background-color: #aaa;
+  font-size: 25px;
+  padding: 2px 5px;
+  text-align: left;
+  color: #FFF;
+}
+text.c3-axis-y-label, text.c3-axis-y2-label {
+  font-size: 12px;
+}
+.c3-lines path {
+  stroke-width: 3px;
+}
+
+/*******************
+* Timeline
+********************/
+
+.timeline ul {
+  position: relative;
+  overflow: auto;
+}
+ 
+/* vertical bar */
+.timeline ul:before {
+  content: '';
+  background: #B11E3E;
+  width: 5px;
+  position: absolute;
+  height: 98%;
+  left: 50%;
+}
+
+/* arrow */
+.timeline ul:after {
+  content: '';
+  border: solid #B11E3E;
+  border-width: 0 5px 5px 0;
+  padding: 10px;
+  transform: rotate(45deg);
+  position: absolute;
+  left: 49.05%;
+  bottom: 2%;
+}
+  
+/* bubble list */
+.timeline  ul {
+  list-style: none;
+  padding: 0 0 0 1em;
+  z-index: 1;
+  padding-left: 0;
+  margin: 0;
+}
+  
+/* bubble */
+.timeline li {
+  border-radius: .4em;
+  padding: 0.5em;
+  margin-top: 0.8em;
+  margin-bottom: 1em;
+  position: relative;
+  width: 44%;
+}
+
+/* special shift for first right bubble */
+.timeline li:nth-of-type(2) {
+  margin-top: 2em;
+}
+
+.timeline li:nth-child(even) {
+  float: right;
+  clear: right;
+}
+
+.timeline li:nth-child(odd) {
+  float: left;
+  clear: left;
+}
+
+/* bubble arrow */
+.timeline ul li:before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  margin-top: -20px;
+  margin-right: -20px;
+}
+
+/* right bubble arrow */
+.timeline ul li:nth-child(even):before {
+  left: -18px;
+  border-left: 0;
+}
+
+/* left bubble arrow */
+.timeline ul li:nth-child(odd):before {
+	right: 1px;
+	border-right: 0;
+} 
+
+/* point on timeline */
+.timeline ul li:after {
+  content: '';
+  position: absolute;
+  transform: translateX(-50%);
+  border: 4px solid;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: inherit;
+  top: 16px;
+}
+
+/* right bubble point on timeline */
+.timeline ul li:nth-child(even):after {
+  left: -32px;
+}
+
+/* left bubble point on timeline */
+.timeline ul li:nth-child(odd):after {
+  left: 522px;
+}
+
+/*******************
+* Footer
+********************/
+
+.reveal footer {
+  text-shadow: 0 0 10px black;
+	opacity: 1;
+  position: fixed;
+  top: 0;
+	height: 22px;
+	z-index: 0; /* "next slide down" button has to be in front */
+	width: 100%;
+	font-size: 3vh;
+	text-align: center;
+	letter-spacing: 0em;
+	padding-top: 0.5vh;
+  background: none !important;
+}
+
+/* footer text */
+.reveal footer > p > a {
+  margin-bottom: 2px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+/* Make Title-Footer invisible if explicitly indicated, no-toc, overview mode */
+.no-title-footer #title-footer, .no-toc-progress #title-footer, .overview #title-footer {
+	opacity: 0;
+}
+
+/******************
+* Table of content
+******************/
+
+/* in our reveal.js setup, last slide has no title, so we hide the "!" title in TOC */
+.toc ol li:last-child {
+  display: none;
+}
+
+/*****************
+* Pyramid-as-code
+*****************/
+
+/* bubble arrow */
+.pyramid li {
+  display: block;
+  border-radius: .4em;
+  padding: 0.4em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.pyramid li:nth-child(1){ width: 50%; }
+.pyramid li:nth-child(2){ width: 55%; }
+.pyramid li:nth-child(3){ width: 60%; }
+.pyramid li:nth-child(4){ width: 65%; }
+.pyramid li:nth-child(5){ width: 70%; }
+.pyramid li:nth-child(6){ width: 75%; }
+.pyramid li:nth-child(7){ width: 80%; }
+.pyramid li:nth-child(8){ width: 85%; }
+.pyramid li:nth-child(9){ width: 90%; }
+.pyramid li:nth-child(10){ width: 95%; }

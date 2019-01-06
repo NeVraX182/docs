@@ -5,7 +5,12 @@ body {
   background-size: cover;
 }
 
-/* last slide with snow */ 
+/***********************
+* last slide 
+************************/ 
+
+/* fireflies */ 
+
 /* added ".fireflies" condition, because it's GPU heavy */
 .reveal section.questions.fireflies.present {
   background: no-repeat center url('../question-mark.svg'),
@@ -13,4 +18,10 @@ body {
   seed=39ef6cf1642b7a, color=#ffffff, firefly=10, diversity=0, maxDistance=6, maxRadius=2, minDistance=4, minRadius=2, background=transparent, speed=10, width=354, height=200 */
   no-repeat center url('../fireflies-10-white.svg');
   background-size: 35%, cover;
+}
+
+/* .bubbles */
+
+.reveal section.bubbles.present {
+  background-position: 20% -60%;
 }

@@ -118,3 +118,131 @@ b.button::before, b.button::after {
 .literalblock pre, .literalblock pre[class], .listingblock pre, .listingblock pre[class] {
   font-size: small;
 }
+
+/****************
+C3JS
+*****************/
+
+.c3 svg{
+  font:15px
+}
+
+/****************
+* C3.JS
+*****************/
+
+.c3 svg g {
+  font-size: 18px;
+  fill: black;
+}
+g.c3-legend-item text, g.c3-chart-arc text {
+  font-size:20px;
+}
+table.c3-tooltip td {
+  font-size:25px;
+  color: black;
+}
+table.c3-tooltip th {
+  background-color: #aaa;
+  font-size: 25px;
+  padding: 2px 5px;
+  text-align: left;
+  color: #FFF;
+}
+text.c3-axis-y-label, text.c3-axis-y2-label {
+  font-size: 12px;
+}
+
+/*******************
+* Timeline
+********************/
+
+.timeline ul {
+  position: relative;
+  overflow: auto;
+}
+ 
+/* vertical bar */
+.timeline ul:before {
+  content: '';
+  background: #B11E3E;
+  width: 5px;
+  position: absolute;
+  height: 98%;
+  left: 50%;
+}
+
+/* arrow */
+.timeline ul:after {
+  content: '';
+  border: solid #B11E3E;
+  border-width: 0 5px 5px 0;
+  padding: 10px;
+  transform: rotate(45deg);
+  position: absolute;
+  left: 48.6%;
+  bottom: 2%;
+}
+
+
+/* bubble list */
+.timeline  ul {
+  list-style: none;
+  padding: 0 0 0 1em;
+  z-index: 1;
+  padding-left: 0;
+  margin: 0;
+  color: white;
+}
+  
+/* bubble */
+.timeline li {
+  border-radius: .4em;
+  padding: 0.5em;
+  margin-top: 0.8em;
+  margin-bottom: 1em;
+  position: relative;
+  width: 44%;
+  background: #999999;
+}
+
+/* special shift for first right bubble */
+.timeline li:nth-of-type(2) {
+  margin-top: 2em;
+}
+
+.timeline li:nth-child(even) {
+  float: right;
+  clear: right;
+}
+
+.timeline li:nth-child(odd) {
+  float: left;
+  clear: left;
+}
+
+/* bubble arrow */
+.timeline ul li:before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  margin-top: -20px;
+  margin-right: -20px;
+}
+
+/* right bubble arrow */
+.timeline ul li:nth-child(even):before {
+  left: -18px;
+  border-left: 0;
+  border-right-color: #999999;
+}
+
+/* left bubble arrow */
+.timeline ul li:nth-child(odd):before {
+	right: 1px;
+  border-right: 0;
+  border-left-color: #999999;
+} 

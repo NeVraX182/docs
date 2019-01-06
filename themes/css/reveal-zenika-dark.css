@@ -13,14 +13,12 @@ rose : 239/82/91
   color: white;
 }
 
-.reveal .slides section {
-  background: #222;
-}
-
+.reveal .slides section,
 .reveal .slides section[data-state="title"],
 .reveal .slides section > section,
 .reveal .slides section.stack > section.stack {
   background: #222;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 ::selection {
@@ -44,4 +42,54 @@ rose : 239/82/91
 
 .reveal pre {
   background: #444;
+}
+
+/****************
+* C3JS
+*****************/
+
+.c3 svg {
+  fill: white;
+}
+
+.c3 .c3-axis path, .c3 .c3-axis line {
+  stroke: white;
+}
+
+/*******************
+* Timeline dark
+********************/
+
+.timeline ul, .pyramid ul {
+  color: #777777;
+}
+
+/* bubble */
+.timeline li, .pyramid li {
+    background: white;
+}
+
+/* right bubble arrow */
+.timeline ul li:nth-child(even):before {
+  border-right-color: white;
+}
+
+/* left bubble arrow */
+.timeline ul li:nth-child(odd):before {
+	border-left-color: white;
+} 
+
+/* point on timeline */
+.timeline ul li:after {
+  border-color: #222;
+}
+
+/***********************
+* last slide 
+************************/ 
+
+/* .bubbles */
+
+.reveal section.bubbles.present {
+  background-position: 45% -400%;
 }
