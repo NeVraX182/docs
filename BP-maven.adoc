@@ -3,6 +3,23 @@ include::subdocs/_init.adoc[]
 
 ifndef::imagesdir[:imagesdir: images]
 
+== Installation
+
+=== Java
+
+Install Java 8+ and configure JAVA_HOME.
+
+=== Maven Wrapper
+
+Use Maven Wrapper on your project to avoid Maven installation by team members.
+
+NOTE: Maven is still needed to create the wrapper
+
+[source, shell]
+$ mvn -N io.takari:maven:wrapper
+
+This will create standalone Maven launchers , `mvnw` for unix and `mvnw.cmd` for Windows.
+
 == Config files location
 
 Config files have to be put in the right folder in Eclipse.
@@ -94,6 +111,21 @@ With Checkstyle, you can enforce continuous javadoc check
   </module>
 </module>
 ----
+
+== Maven watcher
+
+You can launch Maven once with a plugin that watches a given folder for auto-refresh. This can be used for  front end artifact generation or documentation-as-code as shown below :
+
+.Watcher plugin configuration for Asciidoctor
+[source,xml]
+------
+include::../../../pom.xml[tags=watcher,indent=0]
+------
+
+Then just run with following command :
+
+[source, shell]
+$ mvn fizzed-watcher:run
 
 == Add version and date to Asciidoc PDFs
 

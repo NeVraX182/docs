@@ -9,6 +9,13 @@
 <title>Example diagrams</title>
 <link rel="stylesheet" href="themes/css/html-zenika.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js" charset="utf-8"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -24,9 +31,15 @@
 <li><a href="#components-diagram">Components diagram</a></li>
 <li><a href="#states-diagram">States diagram</a></li>
 <li><a href="#objects-diagram">Objects diagram</a></li>
+<li><a href="#user-interface">User interface</a></li>
 <li><a href="#deployment-diagram">Deployment diagram</a></li>
 <li><a href="#ditaa">Ditaa</a></li>
 <li><a href="#meme">Meme</a></li>
+<li><a href="#c3js">c3js</a>
+<ul class="sectlevel2">
+<li><a href="#bar-chart-with-text-x-axis">Bar chart with text x axis</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -56,8 +69,9 @@ Sadly, this is only available in AsciidocFX for now. So use the editor to produc
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagram-sequence.svg" alt="diagram sequence" width="344" height="297">
+<img src="./images/diagram-sequence.svg" alt="diagram sequence" width="450" height="838">
 </div>
+<div class="title">Figure 1. DM : Diagramme de séquence</div>
 </div>
 <div class="paragraph">
 <p>More examples : <a href="http://plantuml.com/sequence-diagram" class="bare">http://plantuml.com/sequence-diagram</a></p>
@@ -69,7 +83,7 @@ Sadly, this is only available in AsciidocFX for now. So use the editor to produc
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="./images/diagram-use-cases.png" alt="diagram use cases" width="366" height="277">
+<img src="./images/diagram-use-cases.svg" alt="diagram use cases" width="367" height="278">
 </div>
 </div>
 <div class="paragraph">
@@ -146,6 +160,19 @@ Sadly, this is only available in AsciidocFX for now. So use the editor to produc
 </div>
 </div>
 <div class="sect1">
+<h2 id="user-interface"><a class="anchor" href="#user-interface"></a>User interface</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="./images/diagram-user-interface.svg" alt="diagram user interface" width="282" height="140">
+</div>
+</div>
+<div class="paragraph">
+<p>More examples : <a href="http://plantuml.com/salt" class="bare">http://plantuml.com/salt</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="deployment-diagram"><a class="anchor" href="#deployment-diagram"></a>Deployment diagram</h2>
 <div class="sectionbody">
 <div class="imageblock">
@@ -171,29 +198,60 @@ Sadly, this is only available in AsciidocFX for now. So use the editor to produc
 <div class="sect1">
 <h2 id="meme"><a class="anchor" href="#meme"></a>Meme</h2>
 <div class="sectionbody">
-<div class="literalblock">
+<div class="paragraph">
+<p><a href="https://www.rubydoc.info/gems/asciidoctor-diagram/1.4.0" class="bare">https://www.rubydoc.info/gems/asciidoctor-diagram/1.4.0</a></p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>meme::images/Asciidoctor.png[Doc writers,Y U NO \\ AsciiDoc]</pre>
+<pre>Failed to generate image: Could not find the 'convert' executable in PATH; add it to the PATH or specify its location using the 'convert' document attribute</pre>
 </div>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Comment configurer ?
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="c3js"><a class="anchor" href="#c3js"></a>c3js</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="bar-chart-with-text-x-axis"><a class="anchor" href="#bar-chart-with-text-x-axis"></a>Bar chart with text x axis</h3>
+  <div id="experience"></div>
+  <script type="text/javascript">
+c3.generate({
+  bindto: '#experience',
+  size: { height: 500, width: 1000 },
+  data: {
+    x: 'x',
+    columns:[ ['x', 'Profil idéal'],
+              ['Expérience (années) en java', 5],
+              ['Durée (mois) sur la version', 5.5],
+              ['Expérience (années) en CI-CD', 5] ],
+    onclick: function (d, element) {
+      this.load({
+      columns: [
+        ['x', 'Profil idéal', 'Dev n°1','Dev n°2','Dev n°3','Dev n°4','Dev n°5','Dev n°6','Dev n°7','Dev n°8'],
+        ['Expérience (années) en java', 5, 5, 4, 0.5, 0.25, 0, 0, 0, 0 ],
+        ['Durée (mois) sur la version', 5.5, 5.5, 2, 2, 5.5, 5.5, 2.5, 2.5, 2.5 ],
+        ['Expérience (années) en CI-CD', 5, 0, 0, 0, 0, 0, 0, 0, 0]
+      ]});
+    },
+    type: 'bar'
+  },
+  axis: {
+    x: {
+      type: 'category',
+    }
+  },
+    color: {
+      pattern: ['#B11E3E','#444444','#D6D6B1','#53A3DA','#8DBF44','#9D145F','#FFE119','#000075','#E8575C','#56A29A']
+    }
+});
+</script>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-05 18:52:19 UTC
+Last updated 2019-01-06 17:28:10 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

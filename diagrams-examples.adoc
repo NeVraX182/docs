@@ -66,23 +66,78 @@ image:ex-tree-view-new.png[image, pdfwidth=30%]
 == Sequence diagram
 
 [plantuml, diagram-sequence, svg]
+.DM : Diagramme de séquence
 ....
-== Initialization ==
+participant Producteur
+participant C1
+participant Cn
+participant SAA
+participant DGE #orange
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+==Entrée Fichier==
+activate Producteur
+Producteur -> SAA : DM_ENTREE
+activate SAA
+deactivate Producteur
+SAA -> DGE : DM_ENTREE
+deactivate SAA
+activate DGE
+DGE -> SAA : DM_ARLE
+activate SAA
+SAA -> Producteur : DM_ARLE
+deactivate SAA
+activate Producteur
+DGE -> SAA : DM_CRF
+deactivate Producteur
+deactivate DGE
+activate SAA
+SAA -> Producteur : DM_CRF
+deactivate SAA
+activate Producteur
 
-== Repetition ==
+==Entrée WS==
+Producteur -> DGE : DM_ENTREE
+activate DGE
+DGE -> Producteur : DM_ENTREE (retour WS)
+deactivate Producteur
+DGE -> SAA : DM_CRF
+activate SAA
+deactivate DGE
+SAA -> Producteur : DM_CRF
+deactivate SAA
+activate Producteur
 
-Alice -> Julie: Another authentication Request
-Alice <-- Julie: Another authentication Response
+==Sortie Fichier==
+activate DGE
+DGE -> SAA : DM_SORTIE
+deactivate Producteur
+activate SAA
+SAA -> C1 : DM_SORTIE
+deactivate SAA
+activate C1
+DGE -> SAA : DM_SORTIE
+activate SAA
+SAA -> Cn : DM_SORTIE
+deactivate SAA
+activate Cn
+C1 -> SAA : DM_ARLS
+deactivate C1
+activate SAA
+SAA -> DGE : DM_ARLS
+deactivate SAA
+Cn -> SAA : DM_ARLS
+activate SAA
+deactivate Cn
+SAA -> DGE : DM_ARLS
+deactivate SAA
+deactivate DGE
 ....
 
 More examples : http://plantuml.com/sequence-diagram
 
 == Use cases diagram
 
-[plantuml, diagram-use-cases, png]
+[plantuml, diagram-use-cases, svg]
 ....
 left to right direction
 skinparam packageStyle rectangle
@@ -241,13 +296,10 @@ More examples : http://plantuml.com/object-diagram
 
 /!\ not compatible with skinparam in plantuml.cfg !
 
-////
-
 == User interface
 
-[plantuml, diagram-user-interface, png]
+[salt, diagram-user-interface, svg]
 ----
-@startsalt
 {+
 {* File | Edit | Source | Refactor 
  Refactor | New | Open File | - | Close | Close All }
@@ -260,12 +312,9 @@ More examples : http://plantuml.com/object-diagram
 }
 [Close]
 }
-@endsalt
 ----
 
 More examples : http://plantuml.com/salt
-
-////
 
 == Deployment diagram
 
@@ -341,11 +390,51 @@ Color codes
 \-------------+-------------/
 ....
 
+
 == Meme
 
- meme::images/Asciidoctor.png[Doc writers,Y U NO \\ AsciiDoc]
+https://www.rubydoc.info/gems/asciidoctor-diagram/1.4.0
 
-TIP: Comment configurer ?
+meme::images/dont-reboot-it-just-patch.jpg[Don't revert it,Just FLIP]
+
+== c3js
+
+=== Bar chart with text x axis
+
+++++
+  <div id="experience"></div>
+  <script type="text/javascript">
+c3.generate({ 
+  bindto: '#experience',
+  size: { height: 500, width: 1000 },
+  data: {
+    x: 'x',
+    columns:[ ['x', 'Profil idéal'],
+              ['Expérience (années) en java', 5],
+              ['Durée (mois) sur la version', 5.5],
+              ['Expérience (années) en CI-CD', 5] ],
+    onclick: function (d, element) {
+      this.load({
+      columns: [
+        ['x', 'Profil idéal', 'Dev n°1','Dev n°2','Dev n°3','Dev n°4','Dev n°5','Dev n°6','Dev n°7','Dev n°8'],
+        ['Expérience (années) en java', 5, 5, 4, 0.5, 0.25, 0, 0, 0, 0 ],
+        ['Durée (mois) sur la version', 5.5, 5.5, 2, 2, 5.5, 5.5, 2.5, 2.5, 2.5 ],
+        ['Expérience (années) en CI-CD', 5, 0, 0, 0, 0, 0, 0, 0, 0]
+      ]});
+    },
+    type: 'bar'
+  },
+  axis: {
+    x: {
+      type: 'category',
+    }
+  },
+    color: {
+      pattern: ['#B11E3E','#444444','#D6D6B1','#53A3DA','#8DBF44','#9D145F','#FFE119','#000075','#E8575C','#56A29A']
+    }
+});
+</script>
+++++
 
 //== Mermaid
 

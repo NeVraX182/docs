@@ -9,6 +9,13 @@
 <title>AsciiDoc &amp; doc-as-code Best Practices</title>
 <link rel="stylesheet" href="themes/css/html-zenika.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js" charset="utf-8"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -64,22 +71,11 @@
 <div class="sect1">
 <h2 id="demo"><a class="anchor" href="#demo"></a>1. Demo</h2>
 <div class="sectionbody">
-<div class="ulist">
-<div class="title">One source, multiple output formats</div>
-<ul>
-<li>
-<p><span class="icon"><a class="image" href="sample/asciidoc-syntax-quick-reference.adoc"><i class="fa fa-file-text-o"></i></a></span> Source</p>
-</li>
-<li>
-<p><span class="icon"><a class="image" href="sample/asciidoc-syntax-quick-reference.html"><i class="fa fa-globe"></i></a></span> Html</p>
-</li>
-<li>
-<p><span class="icon"><a class="image" href="sample/PRES-asciidoc-syntax-quick-reference.html"><i class="fa fa-video-camera"></i></a></span> Slides Reveal.js</p>
-</li>
-<li>
-<p><span class="icon"><a class="image" href="sample/asciidoc-syntax-quick-reference.pdf"><i class="fa fa-file-pdf-o"></i></a></span> PDF</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>One source, multiple output formats : <a href="sample/reveal/asciidoc-syntax-quick-reference.html"><span class="icon"><i class="fa fa-video-camera"></i></span> Slides Reveal.js</a>  <a href="sample/asciidoc-syntax-quick-reference.pdf"><span class="icon"><i class="fa fa-file-pdf-o"></i></span> PDF</a> <a href="sample/asciidoc-syntax-quick-reference.adoc"><span class="icon"><i class="fa fa-file-text-o"></i></span> Source</a> <a href="sample/asciidoc-syntax-quick-reference.html"><span class="icon"><i class="fa fa-globe"></i></span> Html</a></p>
+</div>
+<div class="paragraph">
+<p>And also an advanced everything-as-code Reveal.js demo : <a href="sample/reveal/reveal-my-asciidoc.html">Reveal my Asciidoc</a>.</p>
 </div>
 </div>
 </div>
@@ -266,6 +262,7 @@
 		&lt;sourceDirectory&gt;src/docs/asciidoc&lt;/sourceDirectory&gt;
 		&lt;requires&gt;
 			&lt;require&gt;asciidoctor-diagram&lt;/require&gt;
+			&lt;require&gt;./src/docs/asciidoc/lib/chart-block-macro.rb&lt;/require&gt;
 		&lt;/requires&gt;
 		&lt;attributes&gt;
 			&lt;!-- for Font Awesome icons --&gt;
@@ -279,7 +276,8 @@
 			&lt;root-project-dir&gt;${user.dir}&lt;/root-project-dir&gt;
 			&lt;history-dir&gt;${project.build.directory}/generated-docs/history&lt;/history-dir&gt;
 			&lt;project-images-dir&gt;${project.basedir}/src/main/resources/images&lt;/project-images-dir&gt;
-			&lt;plantumlconfig&gt;themes/plantuml.cfg&lt;/plantumlconfig&gt;
+			&lt;!-- 'plantuml-config' for plantuml, 'salt-config' for salt, 'plantumlconfig' for both --&gt;
+			&lt;plantuml-config&gt;themes/plantuml.cfg&lt;/plantuml-config&gt;
 		&lt;/attributes&gt;
 	&lt;/configuration&gt;
 	&lt;executions&gt;
@@ -560,7 +558,7 @@ TODO: <a href="https://github.com/asciidoctor/asciidoctor.org/blob/master/docs/_
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-05 18:52:19 UTC
+Last updated 2019-01-06 17:28:10 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

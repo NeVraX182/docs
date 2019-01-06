@@ -9,6 +9,13 @@
 <title>Maven Best Practices</title>
 <link rel="stylesheet" href="themes/css/html-zenika.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js" charset="utf-8"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/c3/0.3.0/c3.min.js"></script>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -16,13 +23,20 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#config-files-location">1. Config files location</a></li>
-<li><a href="#checkstyle-check-javadoc">2. Checkstyle : check javadoc</a></li>
-<li><a href="#add-version-and-date-to-asciidoc-pdfs">3. Add version and date to Asciidoc PDFs</a></li>
-<li><a href="#javadoc-generation-with-uml-diagrams">4. Javadoc generation with UML diagrams</a></li>
-<li><a href="#install-provided-dependencies-in-local-repository">5. Install provided dependencies in local repository</a></li>
-<li><a href="#to-generate-asciidoc-pdf-files">6. To generate AsciiDoc PDF files</a></li>
-<li><a href="#sonarqube-with-jacoco-for-coverage">7. SonarQube with Jacoco for coverage</a></li>
+<li><a href="#installation">1. Installation</a>
+<ul class="sectlevel2">
+<li><a href="#java">1.1. Java</a></li>
+<li><a href="#maven-wrapper">1.2. Maven Wrapper</a></li>
+</ul>
+</li>
+<li><a href="#config-files-location">2. Config files location</a></li>
+<li><a href="#checkstyle-check-javadoc">3. Checkstyle : check javadoc</a></li>
+<li><a href="#maven-watcher">4. Maven watcher</a></li>
+<li><a href="#add-version-and-date-to-asciidoc-pdfs">5. Add version and date to Asciidoc PDFs</a></li>
+<li><a href="#javadoc-generation-with-uml-diagrams">6. Javadoc generation with UML diagrams</a></li>
+<li><a href="#install-provided-dependencies-in-local-repository">7. Install provided dependencies in local repository</a></li>
+<li><a href="#to-generate-asciidoc-pdf-files">8. To generate AsciiDoc PDF files</a></li>
+<li><a href="#sonarqube-with-jacoco-for-coverage">9. SonarQube with Jacoco for coverage</a></li>
 </ul>
 </div>
 </div>
@@ -37,7 +51,44 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="config-files-location"><a class="anchor" href="#config-files-location"></a>1. Config files location</h2>
+<h2 id="installation"><a class="anchor" href="#installation"></a>1. Installation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="java"><a class="anchor" href="#java"></a>1.1. Java</h3>
+<div class="paragraph">
+<p>Install Java 8+ and configure JAVA_HOME.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="maven-wrapper"><a class="anchor" href="#maven-wrapper"></a>1.2. Maven Wrapper</h3>
+<div class="paragraph">
+<p>Use Maven Wrapper on your project to avoid Maven installation by team members.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Maven is still needed to create the wrapper
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mvn -N io.takari:maven:wrapper</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create standalone Maven launchers , <code>mvnw</code> for unix and <code>mvnw.cmd</code> for Windows.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="config-files-location"><a class="anchor" href="#config-files-location"></a>2. Config files location</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Config files have to be put in the right folder in Eclipse.</p>
@@ -133,7 +184,7 @@ Never write programmatically files outside of <strong>target/</strong> directory
 </div>
 </div>
 <div class="sect1">
-<h2 id="checkstyle-check-javadoc"><a class="anchor" href="#checkstyle-check-javadoc"></a>2. Checkstyle : check javadoc</h2>
+<h2 id="checkstyle-check-javadoc"><a class="anchor" href="#checkstyle-check-javadoc"></a>3. Checkstyle : check javadoc</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>With Checkstyle, you can enforce continuous javadoc check</p>
@@ -186,7 +237,47 @@ Never write programmatically files outside of <strong>target/</strong> directory
 </div>
 </div>
 <div class="sect1">
-<h2 id="add-version-and-date-to-asciidoc-pdfs"><a class="anchor" href="#add-version-and-date-to-asciidoc-pdfs"></a>3. Add version and date to Asciidoc PDFs</h2>
+<h2 id="maven-watcher"><a class="anchor" href="#maven-watcher"></a>4. Maven watcher</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can launch Maven once with a plugin that watches a given folder for auto-refresh. This can be used for  front end artifact generation or documentation-as-code as shown below :</p>
+</div>
+<div class="listingblock">
+<div class="title">Watcher plugin configuration for Asciidoctor</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;!-- modifications watcher https://github.com/fizzed/maven-plugins --&gt;
+&lt;!-- usage : mvn fizzed-watcher:run --&gt;
+&lt;plugin&gt;
+	&lt;groupId&gt;com.fizzed&lt;/groupId&gt;
+	&lt;artifactId&gt;fizzed-watcher-maven-plugin&lt;/artifactId&gt;
+	&lt;version&gt;1.0.6&lt;/version&gt;
+	&lt;configuration&gt;
+		&lt;touchFile&gt;target/watcher.touchfile&lt;/touchFile&gt;
+		&lt;watches&gt;
+			&lt;watch&gt;
+				&lt;directory&gt;src/docs/asciidoc&lt;/directory&gt;
+			&lt;/watch&gt;
+		&lt;/watches&gt;
+		&lt;goals&gt;
+			&lt;goal&gt;clean&lt;/goal&gt;
+			&lt;goal&gt;generate-resources&lt;/goal&gt;
+		&lt;/goals&gt;
+	&lt;/configuration&gt;
+     	&lt;/plugin&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then just run with following command :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ mvn fizzed-watcher:run</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="add-version-and-date-to-asciidoc-pdfs"><a class="anchor" href="#add-version-and-date-to-asciidoc-pdfs"></a>5. Add version and date to Asciidoc PDFs</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="title">pom.xml</div>
@@ -244,7 +335,7 @@ Never write programmatically files outside of <strong>target/</strong> directory
 </div>
 </div>
 <div class="sect1">
-<h2 id="javadoc-generation-with-uml-diagrams"><a class="anchor" href="#javadoc-generation-with-uml-diagrams"></a>4. Javadoc generation with UML diagrams</h2>
+<h2 id="javadoc-generation-with-uml-diagrams"><a class="anchor" href="#javadoc-generation-with-uml-diagrams"></a>6. Javadoc generation with UML diagrams</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="title">pom.xml</div>
@@ -277,7 +368,7 @@ Never write programmatically files outside of <strong>target/</strong> directory
 </div>
 </div>
 <div class="sect1">
-<h2 id="install-provided-dependencies-in-local-repository"><a class="anchor" href="#install-provided-dependencies-in-local-repository"></a>5. Install provided dependencies in local repository</h2>
+<h2 id="install-provided-dependencies-in-local-repository"><a class="anchor" href="#install-provided-dependencies-in-local-repository"></a>7. Install provided dependencies in local repository</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="title">pom.xml</div>
@@ -313,7 +404,7 @@ Never write programmatically files outside of <strong>target/</strong> directory
 </div>
 </div>
 <div class="sect1">
-<h2 id="to-generate-asciidoc-pdf-files"><a class="anchor" href="#to-generate-asciidoc-pdf-files"></a>6. To generate AsciiDoc PDF files</h2>
+<h2 id="to-generate-asciidoc-pdf-files"><a class="anchor" href="#to-generate-asciidoc-pdf-files"></a>8. To generate AsciiDoc PDF files</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>See <a href="BP-asciidoc.html">Asciidoc Best Practices</a></p>
@@ -321,7 +412,7 @@ Never write programmatically files outside of <strong>target/</strong> directory
 </div>
 </div>
 <div class="sect1">
-<h2 id="sonarqube-with-jacoco-for-coverage"><a class="anchor" href="#sonarqube-with-jacoco-for-coverage"></a>7. SonarQube with Jacoco for coverage</h2>
+<h2 id="sonarqube-with-jacoco-for-coverage"><a class="anchor" href="#sonarqube-with-jacoco-for-coverage"></a>9. SonarQube with Jacoco for coverage</h2>
 <div class="sectionbody">
 <div class="admonitionblock note">
 <table>
@@ -582,7 +673,7 @@ Never write programmatically files outside of <strong>target/</strong> directory
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-05 18:52:19 UTC
+Last updated 2019-01-06 17:28:10 UTC
 </div>
 </div>
 <link rel="stylesheet" href="highlight/styles/gruvbox-dark.min.css">

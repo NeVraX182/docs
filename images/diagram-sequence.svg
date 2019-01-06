@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="297px" preserveAspectRatio="none" style="width:344px;height:297px;" version="1.1" viewBox="0 0 344 297" width="344px" zoomAndPan="magnify"><defs/><g><line style="stroke: #888888; stroke-width: 2.0; stroke-dasharray: 5.0,5.0;" x1="34" x2="34" y1="34.2969" y2="257.0938"/><line style="stroke: #888888; stroke-width: 2.0; stroke-dasharray: 5.0,5.0;" x1="242" x2="242" y1="34.2969" y2="257.0938"/><line style="stroke: #888888; stroke-width: 2.0; stroke-dasharray: 5.0,5.0;" x1="304" x2="304" y1="34.2969" y2="257.0938"/><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="52" x="8" y="3"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="38" x="15" y="22.9951">Alice</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="52" x="8" y="256.0938"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="38" x="15" y="276.0889">Alice</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="44" x="220" y="3"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="30" x="227" y="22.9951">Bob</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="44" x="220" y="256.0938"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="30" x="227" y="276.0889">Bob</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="46" x="281" y="3"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="288" y="22.9951">Julie</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="46" x="281" y="256.0938"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="288" y="276.0889">Julie</text><rect fill="#EEEEEE" height="3" style="stroke: #EEEEEE; stroke-width: 1.0;" width="329" x="3" y="64.8633"/><line style="stroke: #888888; stroke-width: 1.0;" x1="3" x2="332" y1="64.8633" y2="64.8633"/><line style="stroke: #888888; stroke-width: 1.0;" x1="3" x2="332" y1="67.8633" y2="67.8633"/><rect fill="#EEEEEE" height="23.1328" style="stroke: #888888; stroke-width: 2.0;" width="108" x="113.5" y="54.2969"/><text fill="#555555" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="119.5" y="70.3638">Initialization</text><polygon fill="#519BC8" points="230,104.4297,240,108.4297,230,112.4297,234,108.4297" style="stroke: #519BC8; stroke-width: 1.0;"/><line style="stroke: #519BC8; stroke-width: 2.0;" x1="34" x2="236" y1="108.4297" y2="108.4297"/><text fill="#519BC8" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="173" x="41" y="103.4966">Authentication Request</text><polygon fill="#519BC8" points="45,133.5625,35,137.5625,45,141.5625,41,137.5625" style="stroke: #519BC8; stroke-width: 1.0;"/><line style="stroke: #519BC8; stroke-width: 2.0; stroke-dasharray: 2.0,2.0;" x1="39" x2="241" y1="137.5625" y2="137.5625"/><text fill="#519BC8" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="184" x="51" y="132.6294">Authentication Response</text><rect fill="#EEEEEE" height="3" style="stroke: #EEEEEE; stroke-width: 1.0;" width="329" x="3" y="166.2617"/><line style="stroke: #888888; stroke-width: 1.0;" x1="3" x2="332" y1="166.2617" y2="166.2617"/><line style="stroke: #888888; stroke-width: 1.0;" x1="3" x2="332" y1="169.2617" y2="169.2617"/><rect fill="#EEEEEE" height="23.1328" style="stroke: #888888; stroke-width: 2.0;" width="95" x="120" y="155.6953"/><text fill="#555555" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="76" x="126" y="171.7622">Repetition</text><polygon fill="#519BC8" points="292,205.8281,302,209.8281,292,213.8281,296,209.8281" style="stroke: #519BC8; stroke-width: 1.0;"/><line style="stroke: #519BC8; stroke-width: 2.0;" x1="34" x2="298" y1="209.8281" y2="209.8281"/><text fill="#519BC8" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="235" x="41" y="204.895">Another authentication Request</text><polygon fill="#519BC8" points="45,234.9609,35,238.9609,45,242.9609,41,238.9609" style="stroke: #519BC8; stroke-width: 1.0;"/><line style="stroke: #519BC8; stroke-width: 2.0; stroke-dasharray: 2.0,2.0;" x1="39" x2="303" y1="238.9609" y2="238.9609"/><text fill="#519BC8" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="246" x="51" y="234.0278">Another authentication Response</text><!--
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="838px" preserveAspectRatio="none" style="width:450px;height:838px;" version="1.1" viewBox="0 0 450 838" width="450px" zoomAndPan="magnify"><defs/><g><rect fill="#FFFFFF" height="94.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="54.5" y="44.2969"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="54.5" y="225.8281"/><rect fill="#FFFFFF" height="101.3984" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="54.5" y="284.0938"/><rect fill="#FFFFFF" height="72.2656" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="54.5" y="473.7578"/><rect fill="#FFFFFF" height="87.3984" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="133.5" y="575.1563"/><rect fill="#FFFFFF" height="117.3984" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="178.5" y="633.4219"/><rect fill="#FFFFFF" height="59.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="108.4297"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="196.6953"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="254.9609"/><rect fill="#FFFFFF" height="59.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="414.625"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="546.0234"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="604.2891"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="662.5547"/><rect fill="#FFFFFF" height="59.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="720.8203"/><rect fill="#FFFFFF" height="87.3984" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="405.5" y="167.5625"/><rect fill="#FFFFFF" height="88.2656" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="405.5" y="356.3594"/><rect fill="#FFFFFF" height="306.1953" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="405.5" y="473.7578"/><line style="stroke: #B11E3E; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="59" x2="59" y1="34.2969" y2="798.0859"/><line style="stroke: #B11E3E; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="138" x2="138" y1="34.2969" y2="798.0859"/><line style="stroke: #B11E3E; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="183" x2="183" y1="34.2969" y2="798.0859"/><line style="stroke: #B11E3E; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="294.5" x2="294.5" y1="34.2969" y2="798.0859"/><line style="stroke: #B11E3E; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="410.5" x2="410.5" y1="34.2969" y2="798.0859"/><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="103" x="8" y="3"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="15" y="22.9951">Producteur</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="103" x="8" y="797.0859"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="15" y="817.0811">Producteur</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="35" x="121" y="3"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="128" y="22.9951">C1</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="35" x="121" y="797.0859"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="128" y="817.0811">C1</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="35" x="166" y="3"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="173" y="22.9951">Cn</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="35" x="166" y="797.0859"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="21" x="173" y="817.0811">Cn</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="46" x="271.5" y="3"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="278.5" y="22.9951">SAA</text><rect fill="#8DBF44" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="46" x="271.5" y="797.0859"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="278.5" y="817.0811">SAA</text><rect fill="#FFA500" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="46" x="387.5" y="3"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="394.5" y="22.9951">DGE</text><rect fill="#FFA500" height="30.2969" style="stroke: #FFFFFF; stroke-width: 1.5;" width="46" x="387.5" y="797.0859"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="32" x="394.5" y="817.0811">DGE</text><rect fill="#FFFFFF" height="94.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="54.5" y="44.2969"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="54.5" y="225.8281"/><rect fill="#FFFFFF" height="101.3984" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="54.5" y="284.0938"/><rect fill="#FFFFFF" height="72.2656" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="54.5" y="473.7578"/><rect fill="#FFFFFF" height="87.3984" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="133.5" y="575.1563"/><rect fill="#FFFFFF" height="117.3984" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="178.5" y="633.4219"/><rect fill="#FFFFFF" height="59.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="108.4297"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="196.6953"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="254.9609"/><rect fill="#FFFFFF" height="59.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="414.625"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="546.0234"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="604.2891"/><rect fill="#FFFFFF" height="29.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="662.5547"/><rect fill="#FFFFFF" height="59.1328" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="289.5" y="720.8203"/><rect fill="#FFFFFF" height="87.3984" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="405.5" y="167.5625"/><rect fill="#FFFFFF" height="88.2656" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="405.5" y="356.3594"/><rect fill="#FFFFFF" height="306.1953" style="stroke: #B11E3E; stroke-width: 1.0;" width="10" x="405.5" y="473.7578"/><rect fill="#EEEEEE" height="3" style="stroke: #EEEEEE; stroke-width: 1.0;" width="435.5" x="3" y="64.8633"/><line style="stroke: #555555; stroke-width: 1.0;" x1="3" x2="438.5" y1="64.8633" y2="64.8633"/><line style="stroke: #555555; stroke-width: 1.0;" x1="3" x2="438.5" y1="67.8633" y2="67.8633"/><rect fill="#EEEEEE" height="23.1328" style="stroke: #555555; stroke-width: 2.0;" width="116" x="162.75" y="54.2969"/><text fill="#555555" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="102" x="168.75" y="70.3638">Entrée Fichier</text><polygon fill="#53A3DA" points="277.5,104.4297,287.5,108.4297,277.5,112.4297,281.5,108.4297" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="64.5" x2="283.5" y1="108.4297" y2="108.4297"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="87" x="71.5" y="103.4966">DM_ENTREE</text><polygon fill="#53A3DA" points="393.5,163.5625,403.5,167.5625,393.5,171.5625,397.5,167.5625" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="294.5" x2="399.5" y1="167.5625" y2="167.5625"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="87" x="301.5" y="162.6294">DM_ENTREE</text><polygon fill="#53A3DA" points="310.5,192.6953,300.5,196.6953,310.5,200.6953,306.5,196.6953" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="304.5" x2="404.5" y1="196.6953" y2="196.6953"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="316.5" y="191.7622">DM_ARLE</text><polygon fill="#53A3DA" points="75.5,221.8281,65.5,225.8281,75.5,229.8281,71.5,225.8281" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="69.5" x2="293.5" y1="225.8281" y2="225.8281"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="81.5" y="220.895">DM_ARLE</text><polygon fill="#53A3DA" points="310.5,250.9609,300.5,254.9609,310.5,258.9609,306.5,254.9609" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="304.5" x2="409.5" y1="254.9609" y2="254.9609"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="60" x="316.5" y="250.0278">DM_CRF</text><polygon fill="#53A3DA" points="75.5,280.0938,65.5,284.0938,75.5,288.0938,71.5,284.0938" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="69.5" x2="293.5" y1="284.0938" y2="284.0938"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="60" x="81.5" y="279.1606">DM_CRF</text><rect fill="#EEEEEE" height="3" style="stroke: #EEEEEE; stroke-width: 1.0;" width="435.5" x="3" y="312.793"/><line style="stroke: #555555; stroke-width: 1.0;" x1="3" x2="438.5" y1="312.793" y2="312.793"/><line style="stroke: #555555; stroke-width: 1.0;" x1="3" x2="438.5" y1="315.793" y2="315.793"/><rect fill="#EEEEEE" height="23.1328" style="stroke: #555555; stroke-width: 2.0;" width="90" x="175.75" y="302.2266"/><text fill="#555555" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="76" x="181.75" y="318.2935">Entrée WS</text><polygon fill="#53A3DA" points="393.5,352.3594,403.5,356.3594,393.5,360.3594,397.5,356.3594" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="64.5" x2="399.5" y1="356.3594" y2="356.3594"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="87" x="71.5" y="351.4263">DM_ENTREE</text><polygon fill="#53A3DA" points="70.5,381.4922,60.5,385.4922,70.5,389.4922,66.5,385.4922" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="64.5" x2="404.5" y1="385.4922" y2="385.4922"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="177" x="76.5" y="380.5591">DM_ENTREE (retour WS)</text><polygon fill="#53A3DA" points="310.5,410.625,300.5,414.625,310.5,418.625,306.5,414.625" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="304.5" x2="404.5" y1="414.625" y2="414.625"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="60" x="316.5" y="409.6919">DM_CRF</text><polygon fill="#53A3DA" points="75.5,469.7578,65.5,473.7578,75.5,477.7578,71.5,473.7578" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="69.5" x2="293.5" y1="473.7578" y2="473.7578"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="60" x="81.5" y="468.8247">DM_CRF</text><rect fill="#EEEEEE" height="3" style="stroke: #EEEEEE; stroke-width: 1.0;" width="435.5" x="3" y="502.457"/><line style="stroke: #555555; stroke-width: 1.0;" x1="3" x2="438.5" y1="502.457" y2="502.457"/><line style="stroke: #555555; stroke-width: 1.0;" x1="3" x2="438.5" y1="505.457" y2="505.457"/><rect fill="#EEEEEE" height="23.1328" style="stroke: #555555; stroke-width: 2.0;" width="111" x="165.25" y="491.8906"/><text fill="#555555" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="97" x="171.25" y="507.9575">Sortie Fichier</text><polygon fill="#53A3DA" points="310.5,542.0234,300.5,546.0234,310.5,550.0234,306.5,546.0234" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="304.5" x2="404.5" y1="546.0234" y2="546.0234"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="316.5" y="541.0903">DM_SORTIE</text><polygon fill="#53A3DA" points="154.5,571.1563,144.5,575.1563,154.5,579.1563,150.5,575.1563" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="148.5" x2="293.5" y1="575.1563" y2="575.1563"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="160.5" y="570.2231">DM_SORTIE</text><polygon fill="#53A3DA" points="310.5,600.2891,300.5,604.2891,310.5,608.2891,306.5,604.2891" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="304.5" x2="404.5" y1="604.2891" y2="604.2891"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="316.5" y="599.356">DM_SORTIE</text><polygon fill="#53A3DA" points="199.5,629.4219,189.5,633.4219,199.5,637.4219,195.5,633.4219" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="193.5" x2="293.5" y1="633.4219" y2="633.4219"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="82" x="205.5" y="628.4888">DM_SORTIE</text><polygon fill="#53A3DA" points="277.5,658.5547,287.5,662.5547,277.5,666.5547,281.5,662.5547" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="138.5" x2="283.5" y1="662.5547" y2="662.5547"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="145.5" y="657.6216">DM_ARLS</text><polygon fill="#53A3DA" points="393.5,687.6875,403.5,691.6875,393.5,695.6875,397.5,691.6875" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="294.5" x2="399.5" y1="691.6875" y2="691.6875"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="301.5" y="686.7544">DM_ARLS</text><polygon fill="#53A3DA" points="277.5,716.8203,287.5,720.8203,277.5,724.8203,281.5,720.8203" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="188.5" x2="283.5" y1="720.8203" y2="720.8203"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="195.5" y="715.8872">DM_ARLS</text><polygon fill="#53A3DA" points="398.5,775.9531,408.5,779.9531,398.5,783.9531,402.5,779.9531" style="stroke: #53A3DA; stroke-width: 1.0;"/><line style="stroke: #53A3DA; stroke-width: 2.0;" x1="294.5" x2="404.5" y1="779.9531" y2="779.9531"/><text fill="#53A3DA" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="68" x="301.5" y="775.02">DM_ARLS</text><!--
 @startuml
 
 skinparam backgroundColor transparent
-skinparam defaultFontColor #519BC8
+skinparam defaultFontColor #53A3DA
 skinparam defaultFontStyle bold
-skinparam arrowColor #519BC8
+skinparam arrowColor #53A3DA
 skinparam arrowThickness 2
 skinparam shadowing false
 
@@ -79,31 +79,38 @@ skinparam storage {
     fontColor white
 }
 skinparam interface {
-    borderColor #B30C37
+    borderColor #B11E3E
     backGroundcolor #EF525B
 }
 skinparam boundary {
-    borderColor #B30C37
+    borderColor #B11E3E
     backGroundcolor #EF525B
 }
 skinparam entity {
-    borderColor #B30C37
+    borderColor #B11E3E
     backGroundcolor #EF525B
 }
 skinparam control {
-    borderColor #B30C37
+    borderColor #B11E3E
     backGroundcolor #EF525B
 }
 skinparam sequence {
     BoxFontColor white
-    ParticipantFontColor white
-    ParticipantBackgroundColor #8DBF44
-    ParticipantBorderColor white
-	LifeLineBorderColor #888888
-	LifeLineBorderThickness 2
-    DividerFontColor #555555
-    DividerBorderColor #888888
-    DividerBackGroundcolor #EEEEEE
+    participant {
+        FontColor white
+        BackgroundColor #8DBF44
+        BorderColor white
+    }
+    lifeLine {
+	    BorderColor #B11E3E
+	    BorderThickness 1
+	    BackgroundColor #FFFFFF
+	}
+    divider {
+        FontColor #555555
+        BorderColor #555555
+        BackGroundcolor #EEEEEE
+    }
 }
 skinparam usecase {
     borderColor white
@@ -111,24 +118,80 @@ skinparam usecase {
     backgroundColor #8DBF44
 }
 skinparam activity {
-    startColor #B30C37
-    endColor #B30C37
+    startColor #B11E3E
+    endColor #B11E3E
     borderColor white
     fontColor white
     backgroundColor #8DBF44
-    diamondBackgroundColor #EEEEEE
-    diamondBorderColor #888888
-    diamondFontColor #888888
+    diamond {
+        backgroundColor #EEEEEE
+        borderColor #888888
+        fontColor #888888
+    }
 }
-== Initialization ==
+participant Producteur
+participant C1
+participant Cn
+participant SAA
+participant DGE #orange
 
-Alice -> Bob: Authentication Request
-Bob - -> Alice: Authentication Response
+==Entrée Fichier==
+activate Producteur
+Producteur -> SAA : DM_ENTREE
+activate SAA
+deactivate Producteur
+SAA -> DGE : DM_ENTREE
+deactivate SAA
+activate DGE
+DGE -> SAA : DM_ARLE
+activate SAA
+SAA -> Producteur : DM_ARLE
+deactivate SAA
+activate Producteur
+DGE -> SAA : DM_CRF
+deactivate Producteur
+deactivate DGE
+activate SAA
+SAA -> Producteur : DM_CRF
+deactivate SAA
+activate Producteur
 
-== Repetition ==
+==Entrée WS==
+Producteur -> DGE : DM_ENTREE
+activate DGE
+DGE -> Producteur : DM_ENTREE (retour WS)
+deactivate Producteur
+DGE -> SAA : DM_CRF
+activate SAA
+deactivate DGE
+SAA -> Producteur : DM_CRF
+deactivate SAA
+activate Producteur
 
-Alice -> Julie: Another authentication Request
-Alice <- - Julie: Another authentication Response
+==Sortie Fichier==
+activate DGE
+DGE -> SAA : DM_SORTIE
+deactivate Producteur
+activate SAA
+SAA -> C1 : DM_SORTIE
+deactivate SAA
+activate C1
+DGE -> SAA : DM_SORTIE
+activate SAA
+SAA -> Cn : DM_SORTIE
+deactivate SAA
+activate Cn
+C1 -> SAA : DM_ARLS
+deactivate C1
+activate SAA
+SAA -> DGE : DM_ARLS
+deactivate SAA
+Cn -> SAA : DM_ARLS
+activate SAA
+deactivate Cn
+SAA -> DGE : DM_ARLS
+deactivate SAA
+deactivate DGE
 @enduml
 
 PlantUML version 1.2018.01(Sun Jan 28 18:08:22 UTC 2018)
