@@ -1,4 +1,4 @@
-|2019-01-06|bcouetil|reveal my asciidoc + last slide animated bubbles + updated reveal theme + css c3js fix
+|2019-01-10|bcouetil|reveal my asciidoc + last slide animated bubbles + updated reveal theme + css c3js fix + maven wrapper
 |2018-12-18|bcouetil|Moved Gerrit plugin configuration from Jenkins to Gerrit page + Enhanced HTML CSS + Cropped some images + Improved PlantUML skin
 |2018-11-13|bcouetil|- Updated sample project with Reveal.js generation - Duplicated Reveal.js execution to have multiple styles - Compromised layout between 4/3 and 16/9 - Minor changes in Reveal.js css - Added some web comics
 |2018-09-19|bcouetil|- Sample asciidoctor maven project published on Github - Github & LinkedIn links - Sample project tree - new images + resizing and positioning

@@ -246,3 +246,36 @@ text.c3-axis-y-label, text.c3-axis-y2-label {
   border-right: 0;
   border-left-color: #999999;
 } 
+
+/*****************
+* Pyramid-as-code 
+*****************/
+
+.pyramid ul {
+  color: white;
+}
+
+.pyramid li {
+    background: #999999;
+}
+
+/* bubble arrow */
+.pyramid li {
+  display: block;
+  border-radius: .4em;
+  padding: 0.4em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.pyramid li:nth-child(1){ width: 50%; }
+.pyramid li:nth-child(2){ width: 55%; }
+.pyramid li:nth-child(3){ width: 60%; }
+.pyramid li:nth-child(4){ width: 65%; }
+.pyramid li:nth-child(5){ width: 70%; }
+.pyramid li:nth-child(6){ width: 75%; }
+.pyramid li:nth-child(7){ width: 80%; }
+.pyramid li:nth-child(8){ width: 85%; }
+.pyramid li:nth-child(9){ width: 90%; }
+.pyramid li:nth-child(10){ width: 95%; }
