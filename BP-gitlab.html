@@ -413,13 +413,14 @@ stages:
   - deploy
 
 variables:
+  # https://gitlab.com/gitlab-org/gitlab-ce/blob/master/lib/gitlab/ci/templates/Maven.gitlab-ci.yml
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   #MAVEN_CLI_OPTS: "-s cg-settings.xml --batch-mode"
   MAVEN_CLI_OPTS: "--batch-mode"
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
 cache:
   paths:
-    - .m2/repository/
+    - .m2/repository
 
 build:
   stage: build
@@ -442,15 +443,15 @@ pages:
     - mkdir public
     # SAMPLE (launched from his folder to avoid ./ problems)
     - cd cg-asciidoctor-sample
-    - mvn
+    - mvn $MAVEN_CLI_OPTS
     - cd ..
     - mv --verbose cg-asciidoctor-sample/src/docs/asciidoc/*.adoc cg-asciidoctor-sample/target/generated-docs/
     - mv --verbose cg-asciidoctor-sample/target/generated-docs public/sample
     # ACADEMY
-    - mvn generate-resources --non-recursive
+    - mvn $MAVEN_CLI_OPTS generate-resources --non-recursive
     - mv --verbose src/docs/asciidoc/*.adoc target/generated-docs/
     - mv --verbose src/docs/asciidoc/subdocs target/generated-docs/subdocs
-    - mvn scm-publish:publish-scm
+    - mvn $MAVEN_CLI_OPTS scm-publish:publish-scm
     - mv target/generated-docs/* public/
   artifacts:
     paths:
@@ -526,7 +527,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-10 17:11:49 UTC
+Last updated 2019-01-10 17:22:49 UTC
 </div>
 </div>
 <link rel="stylesheet" href="lib/highlight/styles/gruvbox-dark.min.css">
