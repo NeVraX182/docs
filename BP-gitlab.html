@@ -427,7 +427,8 @@ build:
     - apt-get update -qq &amp;&amp; apt-get install -qq --assume-yes libc6-i386
     - mvn clean dependency:purge-local-repository
     - mvn install -DskipTests -Dassembly.skipAssembly=true -Dadoc.skip=true
-
+  only:
+    - master
 
 # the pipeline step must be named 'pages' for gitlab to deploy locally (in addition to github)
 pages:
@@ -464,20 +465,24 @@ unit-test:
   script:
     - mvn clean
     - mvn test -Dcheckstyle.skip=true -Dadoc.skip=true -pl cg-utils
+  only:
+    - master
 
 integration-test:
   stage: test
   script:
     - mvn clean
     - mvn verify failsafe:verify -Dcg.ut.skip=true -Dcheckstyle.skip=true -Dadoc.skip=true -pl cg-utils
+  only:
+    - master
 
 assembly:
   stage: deploy
   script:
     - mvn clean
     - mvn install -DskipTests -Dcheckstyle.skip=true -Dadoc.skip=true -pl cg-utils
-  #only:
-  #  - master</code></pre>
+  only:
+    - master</code></pre>
 </div>
 </div>
 </div>
@@ -521,7 +526,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-10 16:18:26 UTC
+Last updated 2019-01-10 16:47:34 UTC
 </div>
 </div>
 <link rel="stylesheet" href="lib/highlight/styles/gruvbox-dark.min.css">
