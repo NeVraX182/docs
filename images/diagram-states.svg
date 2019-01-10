@@ -20,7 +20,7 @@ skinparam agent {
 }
 skinparam database {
     borderColor white
-    backGroundcolor #8DBF44
+    backGroundcolor #519BC8
     fontColor white
 } 
 skinparam rectangle {
@@ -44,9 +44,9 @@ skinparam package {
     fontColor #888888
 }
 skinparam frame {
-    borderColor #888888
-    backGroundcolor #EEEEEE
-    fontColor #888888
+    borderColor black
+    backGroundcolor white
+    fontColor 888888
 }
 skinparam component {
     borderColor white
@@ -70,7 +70,7 @@ skinparam queue {
 }
 skinparam file {
     borderColor white
-    backGroundcolor #8DBF44
+    backGroundcolor #888888
     fontColor white
 }
 skinparam storage {

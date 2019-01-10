@@ -132,8 +132,8 @@ Reveal.initialize({
       
       
       
-      { src: 'revealjs-plugins/reveal.js-menu/menu.js' },
-{ src: 'revealjs-plugins/chalkboard/chalkboard.js' },
+      { src: 'revealjs-plugins/reveal.js-menu/menu.js', async: true },
+{ src: 'revealjs-plugins/chalkboard/chalkboard.js', async: true },
 { src: 'revealjs-plugins/title-footer/title-footer.js', async: true, callback: function() { title_footer.initialize(); } }
 
   ],
@@ -149,11 +149,13 @@ chalkboard: {
 	background: [ 'rgba(141,191,68,.1)' , 'revealjs-plugins/chalkboard/img/blackboard.png' ] // The first value expects a (semi-)transparent color which is used to provide visual feedback that the notes canvas is enabled, the second value expects a filename to a background image for the chalkboard.
 },
 keyboard: {
+	//List of codes here : https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
 	    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
 	    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
 	    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
 	     8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
-	    68: function() { RevealChalkboard.download() },	// download recorded chalkboard drawing when 'd' is pressed
+		68: function() { RevealChalkboard.download() },	// download recorded chalkboard drawing when 'd' is pressed
+		72: function() { window.open("../index.html","_self") } // 'H' to index page
 },
 //
 // MENU PLUGIN https://github.com/denehyg/reveal.js-menu
@@ -198,6 +200,10 @@ menu: {
 			<p>END : Bottom</p>
 			<p>SPACE or RETURN : Selection</p>
 			<p>ESC : Close menu</p>
+		</li>
+		<li class="slide-menu-item">
+			<h3>Custom</h3>
+			<p>H : ../index.html</p>
 		</li></ul>` }
 	],
   	themes: // Specifies the themes that will be available in the themes menu panel. Set to 'true' to show the themes menu panel with the default themes list. 

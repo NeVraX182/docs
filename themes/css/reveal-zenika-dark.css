@@ -90,6 +90,6 @@ rose : 239/82/91
 
 /* .bubbles */
 
-.reveal section.bubbles.present {
-  background-position: 45% -400%;
+.reveal section.bubbles {
+  background-position: 45% -400% !important;
 }

@@ -263,7 +263,6 @@ text.c3-axis-y-label, text.c3-axis-y2-label {
 .pyramid li {
   display: block;
   border-radius: .4em;
-  padding: 0.4em;
   margin-left: auto;
   margin-right: auto;
   text-align: center;

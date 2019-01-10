@@ -103,9 +103,14 @@ body {
   transform: translateY(-50%);
 }
 
-/* trick for vertical align whole slide content */
-.reveal section > section.vertical-center {
+/* [.title-vcenter] - trick for vertical align whole slide content */
+.reveal section > section.title-vcenter {
   padding-top: 220px;
+}
+
+/* [.halign-center] -center horizontally if explicited asked */
+.reveal .halign-center {
+  text-align: center;
 }
 
 /* moves the whole section slightly to the left */
@@ -330,6 +335,10 @@ span.hljs-comment, span.hljs-emphasis {
   font-size: smaller;
 }
 
+.reveal .x-small {
+  font-size: 20px;
+}
+
 .reveal .big {
   font-size: larger;
 }
@@ -403,7 +412,7 @@ span.hljs-comment, span.hljs-emphasis {
 
 /**** MARGINS ****/
 
-.reveal .exampleblock table{
+.reveal .exampleblock table {
   margin-bottom: 0;
 }
 
@@ -422,7 +431,7 @@ span.hljs-comment, span.hljs-emphasis {
 .reveal .qlist > ol,
 .reveal .dlist,
 .reveal .olist {
-margin-left: 20px;
+  margin-left: 20px;
 }
 
 /** CODE **/
@@ -629,29 +638,50 @@ margin-left: 20px;
 
 /* .questions */
 
-.reveal section.questions.present {
-  background: no-repeat center url('../question-mark.svg');
-  background-size: 40%;
-  box-shadow: none;
+.reveal section.questions {
+  background: no-repeat center url('../question-mark.svg') !important;
+  background-size: 40% !important;
+  box-shadow: none !important;
 }
 
 /* .bubbles */
 
-.reveal section.bubbles.present {
-  background: no-repeat center url('../speak-bubbles.svg');
-  background-size: 60%;
-  box-shadow: none;
+.reveal section.bubbles {
+  background: no-repeat center url('../speak-bubbles.svg') !important;
+  background-size: 60% !important;
+  box-shadow: none !important;
+}
+
+/* .hands */ 
+
+.reveal section.hands {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* foreground in ::before (needs to go outside the div) */
+.reveal section.hands:before {
+  content: "";
+  display: inline-block;
+  width: 180%;
+  height: 180%;
+  background: no-repeat center url(../real-hands.png);
+  background-size: 50%;
+  position: inherit;
+  left: -45%;
+  bottom: -30%;
+  opacity: 1;
 }
 
 /* .red-hands (.layers) */
 
-.reveal section.red-hands.present {
+.reveal section.red-hands {
   background: none;
   box-shadow: none;
 }
 
 /* foreground in ::before (needs to go outside the div) */
-.reveal section.red-hands.present:before {
+.reveal section.red-hands:before {
   content: "";
   display: inline-block;
   width: 180%;
@@ -665,7 +695,7 @@ margin-left: 20px;
 }
 
 /* background in ::after (needs to go outside the div) */
-.reveal section.red-hands.layers.present:after {
+.reveal section.red-hands.layers:after {
   content: "";
   display: inline-block;
   width: 180%;
@@ -678,26 +708,6 @@ margin-left: 20px;
   opacity: 0.4;
 }
 
-/* .hands */
-
-.reveal section.hands.present {
-  background: none;
-  box-shadow: none;
-}
-
-/* foreground in ::before (needs to go outside the div) */
-.reveal section.hands.present:before {
-  content: "";
-  display: inline-block;
-  width: 180%;
-  height: 180%;
-  background: no-repeat center url(../real-hands.png);
-  background-size: 50%;
-  position: inherit;
-  left: -45%;
-  bottom: -30%;
-  opacity: 1;
-}
 
 /****************
 * C3.JS
