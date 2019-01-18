@@ -23,7 +23,16 @@
 <ul class="sectlevel1">
 <li><a href="#history">1. History</a></li>
 <li><a href="#user-documentation">2. User documentation</a></li>
-<li><a href="#installation">3. Installation</a></li>
+<li><a href="#installation">3. Installation</a>
+<ul class="sectlevel2">
+<li><a href="#files">3.1. Files</a>
+<ul class="sectlevel3">
+<li><a href="#etc">3.1.1. /etc/</a></li>
+<li><a href="#logs">3.1.2. /logs/</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#configuration">4. Configuration</a>
 <ul class="sectlevel2">
 <li><a href="#initialization">4.1. Initialization</a>
@@ -127,12 +136,45 @@ With the openfrontier/gerrit image, you can start a ready-to-use dockerized serv
 -e GERRIT_INIT_ARGS="--install-plugin=analytics" \
 -e GERRIT_INIT_ARGS="--install-plugin=replication" \
 -e REPLICATION_REMOTES=gitlab \
--e GITLAB_REMOTE=https://oauth2:ACCESS_TOKEN@my.gitlab.server:MY_GROUP/${name}.git \
+-e GITLAB_REMOTE=https://oauth2:ACCESS_TOKEN@my.gitlab.server:MY_GROUP/\${name}.git \
 -e GITLAB_REPLICATE_ON_STARTUP=true \
 docker.io/openfrontier/gerrit</code></pre>
 </div>
 </div>
+<div class="sect2">
+<h3 id="files"><a class="anchor" href="#files"></a>3.1. Files</h3>
+<div class="paragraph">
+<p>Files are persisted, you can delete your container, and popup a new one, without loosing your files.</p>
+</div>
+<div class="paragraph">
+<p>If unmodified from the <code>docker run</code> command, they are stored in ~/gerrit_volume on current server.</p>
+</div>
+<div class="sect3">
+<h4 id="etc"><a class="anchor" href="#etc"></a>3.1.1. /etc/</h4>
+<div class="paragraph">
+<p>Configuration files are stored there. They are created and automatically populated and updated on <code>docker run/start</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@jks-gerrit-jenkins etc]# ls
+gerrit.config  mail  GerritSite.css  replication.config  GerritSiteFooter.html   secure.config</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="logs"><a class="anchor" href="#logs"></a>3.1.2. /logs/</h4>
+<div class="paragraph">
+<p>Log files are stored there. Tail <code>replication_log</code> at startup if it does not work as expected.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@jks-gerrit-jeg  nkins logs]# ls
+delete_log  gc_log  httpd_log  import_log  replication_log  sshd_log</code></pre>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -428,7 +470,6 @@ In further sections, actions are for old UI
 <div class="content">
 <img src="./images/devrant-git-blame.jpg" alt="devrant git blame" width="50%">
 </div>
-<div class="title">Figure 1. Life without code review</div>
 </div>
 </div>
 </div>
@@ -474,13 +515,13 @@ In further sections, actions are for old UI
 <p>Rights Inherit From = <code>All-Projects</code></p>
 </li>
 <li>
-<p>Owner = <code>the-code-owner</code></p>
+<p>Create initial empty commit = <code>True</code></p>
 </li>
 <li>
 <p>Click <b class="button">Create</b></p>
 </li>
 <li>
-<p>Check that it has inherited correctly "Rebase if necessary", else change and click <b class="button">SAVE CHANGES</b></p>
+<p>Check that it has inherited correctly <code>Rebase if necessary</code>, else change and click <b class="button">SAVE CHANGES</b></p>
 </li>
 </ul>
 </div>
@@ -596,7 +637,7 @@ If you don&#8217;t have access to Gitweb interface ("Not Found"), ask your admin
 <div class="content">
 <img src="./images/turnoff-what-your-code-looks-like.png" alt="turnoff what your code looks like" width="33%">
 </div>
-<div class="title">Figure 2. Repository without code review</div>
+<div class="title">Figure 1. Repository without code review</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -944,7 +985,7 @@ If you don&#8217;t have access to Gitweb interface ("Not Found"), ask your admin
 <div class="content">
 <img src="./images/turnoff-refactoring.png" alt="turnoff refactoring" width="33%">
 </div>
-<div class="title">Figure 3. Peer review is better for ego than peer refactoring</div>
+<div class="title">Figure 2. Peer review is better for ego than peer refactoring</div>
 </div>
 </div>
 </div>
@@ -952,7 +993,7 @@ If you don&#8217;t have access to Gitweb interface ("Not Found"), ask your admin
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-11 16:46:56 UTC
+Last updated 2019-01-18 15:46:38 UTC
 </div>
 </div>
 <link rel="stylesheet" href="lib/highlight/styles/gruvbox-dark.min.css">

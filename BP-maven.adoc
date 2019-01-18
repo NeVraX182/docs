@@ -241,6 +241,7 @@ $ mvn fizzed-watcher:run
           <packaging>jar</packaging>
         </configuration>
       </execution>
+    </executions>
   </plugin>
 </plugins>
 ----

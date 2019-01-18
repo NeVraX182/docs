@@ -116,7 +116,14 @@
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ parted
-$ print free</code></pre>
+(parted) $ print free
+
+Number  Start   End     Size    Type     File system  Flags
+        32.3kB  1049kB  1016kB           Free Space
+ 1      1049kB  85.9GB  85.9GB  primary  xfs          boot
+        85.9GB  85.9GB  16.9kB           Free Space
+
+(parted) $ quit</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -248,13 +255,26 @@ $ sudo dockerd</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Start Docker Daemon</p>
+<p>Start/restart Docker Daemon</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
+<div class="title">Ubuntu</div>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ sudo dockerd</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ service docker restart</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">centos</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ systemctl enable docker
+$ systemctl start docker</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -1373,7 +1393,7 @@ $ sudo dpkg -i grafana_4.4.3_amd64.deb</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-11 16:46:56 UTC
+Last updated 2019-01-18 15:46:38 UTC
 </div>
 </div>
 <link rel="stylesheet" href="lib/highlight/styles/gruvbox-dark.min.css">

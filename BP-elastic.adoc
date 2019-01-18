@@ -22,8 +22,17 @@ $ visudo
 * Checking FS size
 
 [source, shell]
+----
 $ parted
-$ print free
+(parted) $ print free
+
+Number  Start   End     Size    Type     File system  Flags
+        32.3kB  1049kB  1016kB           Free Space
+ 1      1049kB  85.9GB  85.9GB  primary  xfs          boot
+        85.9GB  85.9GB  16.9kB           Free Space
+
+(parted) $ quit
+----
 
 ** Example
 
@@ -84,10 +93,21 @@ $ vi /etc/default/docker
 [source, shell]
 $ DOCKER_OPTS="-H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock"
 
-* Start Docker Daemon
+* Start/restart Docker Daemon
+
+.Ubuntu
 
 [source, shell]
 $ sudo dockerd
+
+[source, shell]
+$ service docker restart
+
+.centos
+
+[source, shell]
+$ systemctl enable docker
+$ systemctl start docker
 
 ** To restart (as root)
 

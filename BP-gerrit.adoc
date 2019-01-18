@@ -32,9 +32,35 @@ $ docker run -d --name gerrit-of -p 8080:8080 -p 29418:29418 \
 -e GERRIT_INIT_ARGS="--install-plugin=analytics" \
 -e GERRIT_INIT_ARGS="--install-plugin=replication" \
 -e REPLICATION_REMOTES=gitlab \
--e GITLAB_REMOTE=https://oauth2:ACCESS_TOKEN@my.gitlab.server:MY_GROUP/${name}.git \
+-e GITLAB_REMOTE=https://oauth2:ACCESS_TOKEN@my.gitlab.server:MY_GROUP/\${name}.git \
 -e GITLAB_REPLICATE_ON_STARTUP=true \
 docker.io/openfrontier/gerrit
+----
+
+=== Files
+
+Files are persisted, you can delete your container, and popup a new one, without loosing your files.
+
+If unmodified from the `docker run` command, they are stored in ~/gerrit_volume on current server.
+
+==== /etc/
+
+Configuration files are stored there. They are created and automatically populated and updated on `docker run/start`.
+
+[source,bash]
+----
+[root@jks-gerrit-jenkins etc]# ls
+gerrit.config  mail  GerritSite.css  replication.config  GerritSiteFooter.html   secure.config
+----
+
+==== /logs/
+
+Log files are stored there. Tail `replication_log` at startup if it does not work as expected.
+
+[source,bash]
+----
+[root@jks-gerrit-jeg  nkins logs]# ls
+delete_log  gc_log  httpd_log  import_log  replication_log  sshd_log
 ----
 
 <<<
@@ -131,7 +157,6 @@ By default, when projet submissions are not fast forward, final submitting a cha
 * Click on btn:[Projects] -> btn:[List] -> btn:[All-Projects] -> btn:[General]
 * Under btn:[Submit Type], select btn:[Rebase if Necessary]
 
-.Life without code review
 image::devrant-git-blame.jpg[{half-width}]
 
 === User preferences
@@ -155,9 +180,10 @@ Create your GIT project by clicking on btn:[Browse] -> btn:[Repositories] -> btn
 
 * Repository Name = `your-project-name`
 * Rights Inherit From = `All-Projects`
-* Owner = `the-code-owner`
+//* Owner = `the-code-owner`
+* Create initial empty commit = `True`
 * Click btn:[Create]
-* Check that it has inherited correctly "Rebase if necessary", else change and click btn:[SAVE CHANGES]
+* Check that it has inherited correctly `Rebase if necessary`, else change and click btn:[SAVE CHANGES]
 
 [[project-url]]
 ==== Project git address/URL
