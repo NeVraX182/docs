@@ -453,6 +453,7 @@ pages:
     - mv --verbose src/docs/asciidoc/subdocs target/generated-docs/subdocs
     - mvn $MAVEN_CLI_OPTS scm-publish:publish-scm
     - mv target/generated-docs/* public/
+    - find public/ -print
   artifacts:
     paths:
       # nothing else than public folder will work :(
@@ -527,7 +528,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-20 16:19:12 UTC
+Last updated 2019-01-20 16:50:57 UTC
 </div>
 </div>
 <link rel="stylesheet" href="lib/highlight/styles/gruvbox-dark.min.css">
