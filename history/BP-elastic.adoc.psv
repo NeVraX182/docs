@@ -1,4 +1,4 @@
-|2019-01-22|bcouetil|plugins slides + fragmented examples + text wrapping near images + screenshot-as-code + big-image + charts axis labels + css fixes
+|2019-01-22|bcouetil|plugins slides + fragmented examples + text wrapping near images + screenshot-as-code + big-image + charts axis labels + plantuml remaining skins + css fixes
 |2018-12-18|bcouetil|Moved Gerrit plugin configuration from Jenkins to Gerrit page + Enhanced HTML CSS + Cropped some images + Improved PlantUML skin
 |2018-08-29|bcouetil|Asciidoc HTML look & feel changes
 |2018-08-24|bcouetil|Icones added for download + favicon added for webpage

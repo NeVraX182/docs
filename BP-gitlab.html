@@ -443,8 +443,7 @@ pages:
     - mkdir public
     # SAMPLE (launched from his folder to avoid ./ problems)
     - cd cg-asciidoctor-sample
-    # installing jars not in maven central on the clean phase
-    - mvn clean
+    - mvn clean # installing jars not in maven central on the clean phase
     - mvn $MAVEN_CLI_OPTS
     - cd ..
     - mv --verbose cg-asciidoctor-sample/src/docs/asciidoc/*.adoc cg-asciidoctor-sample/target/generated-docs/
@@ -458,8 +457,7 @@ pages:
     - find public/ -print
   artifacts:
     paths:
-      # nothing else than public folder will work :(
-      - public
+      - public # nothing else than public folder will work :(
   #only:
   #  - master
 
@@ -530,7 +528,7 @@ assembly:
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-01-22 10:25:28 UTC
+Last updated 2019-01-22 16:00:34 UTC
 </div>
 </div>
 <link rel="stylesheet" href="lib/highlight/styles/gruvbox-dark.min.css">
