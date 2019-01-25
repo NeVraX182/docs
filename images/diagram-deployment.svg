@@ -120,6 +120,32 @@ skinparam activity {
     diamondBorderColor #888888
     diamondFontColor #888888
 }
+skinparam class {
+    fontColor white
+    backgroundColor white
+    borderColor #8DBF44
+    headerBackgroundColor #8DBF44
+    headerFontColor #8DBF44
+    stereotypeBorderColor #B11E3E
+}
+skinparam stereotype {
+    cBackgroundColor physical
+    cBorderColor white
+    eBackgroundColor pink
+    eBorderColor white
+    iBackgroundColor moccasin
+    iBorderColor white
+    aBackgroundColor lavender
+    aBorderColor white
+}
+skinparam state {
+    attributeFontColor white
+    backgroundColor #8DBF44
+    fontColor white
+    borderColor white
+    startColor #B30C37
+    endColor #B30C37
+}
 actor actor
 agent agent
 boundary boundary

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<link rel="shortcut icon" type="image/png" href="themes/favicon-white.png">
+<title>EKS Configuration &amp; Best Practices</title>
+<link rel="stylesheet" href="themes/css/html-zenika.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+      <link rel="stylesheet" href="lib/c3.v0-6-11.min.css">
+      <script src="lib/d3.v5-7-0.min.js" charset="utf-8"></script>
+      <script src="lib/c3.v0-6-11.min.js"></script>
+    
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>EKS Configuration &amp; Best Practices</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#prerequisite">2. Prerequisite</a></li>
+<li><a href="#target-architecture">3. Target architecture</a>
+<ul class="sectlevel2">
+<li><a href="#environments">3.1. environments</a></li>
+</ul>
+</li>
+<li><a href="#deployments">4. Deployments</a>
+<ul class="sectlevel2">
+<li><a href="#elasticsearch">4.1. Elasticsearch</a>
+<ul class="sectlevel3">
+<li><a href="#file">4.1.1. File</a></li>
+<li><a href="#commands">4.1.2. Commands</a></li>
+</ul>
+</li>
+<li><a href="#kibana">4.2. Kibana</a>
+<ul class="sectlevel3">
+<li><a href="#file-2">4.2.1. File</a></li>
+<li><a href="#commands-2">4.2.2. Commands</a></li>
+</ul>
+</li>
+<li><a href="#api-backend">4.3. Api / backend</a>
+<ul class="sectlevel3">
+<li><a href="#prerequisites">4.3.1. Prerequisites</a></li>
+<li><a href="#file-3">4.3.2. File</a></li>
+<li><a href="#commands-3">4.3.3. Commands</a></li>
+</ul>
+</li>
+<li><a href="#client-frontend">4.4. Client / frontend</a>
+<ul class="sectlevel3">
+<li><a href="#prerequisites-2">4.4.1. Prerequisites</a></li>
+<li><a href="#file-4">4.4.2. File</a></li>
+<li><a href="#commands-4">4.4.3. Commands</a></li>
+<li><a href="#access-the-frontend-in-a-browser">4.4.4. Access the frontend in a browser</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="icon"><a class="image" href="index.html"><i class="fa fa-home"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-aws-eks.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="BP-aws-eks.pdf"><i class="fa fa-file-pdf-o"></i></a></span></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>1. Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We configure the cluster from scratch with following steps :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provision an Amazon EKS cluster</p>
+</li>
+<li>
+<p>Deploy worker nodes (Cloud Formation)</p>
+</li>
+<li>
+<p>Connect to EKS (kubectl)</p>
+</li>
+<li>
+<p>Run Kubernetes apps on EKS cluster</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisite"><a class="anchor" href="#prerequisite"></a>2. Prerequisite</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Have an admin account on AWS.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can switch menu language at the bottom left of any page. Select english.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Follow <code>Getting Started with Amazon EKS</code> of <a href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html">Official documentation</a> to :</div>
+<ul>
+<li>
+<p>Create your Amazon EKS Service Role</p>
+</li>
+<li>
+<p>Create your Amazon EKS Cluster VPC</p>
+</li>
+<li>
+<p>Install and Configure kubectl for Amazon EKS</p>
+</li>
+<li>
+<p>Download and Install the Latest AWS CLI</p>
+</li>
+<li>
+<p>Create Your Amazon EKS Cluster</p>
+</li>
+<li>
+<p>Configure kubectl for Amazon EKS</p>
+</li>
+<li>
+<p>Launch and Configure Amazon EKS Worker Nodes</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="target-architecture"><a class="anchor" href="#target-architecture"></a>3. Target architecture</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="./images/archi-doc.svg" alt="archi doc" width="663" height="238">
+</div>
+</div>
+<div class="sect2">
+<h3 id="environments"><a class="anchor" href="#environments"></a>3.1. environments</h3>
+<div class="paragraph">
+<p>The AWS cluster will host multiple environments, so we first create and use a <code>develop</code> namespace :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ kubectl create namespace develop
+$ kubectl config current-context
+arn:aws:eks:us-east-2:***:cluster/adx-cluster
+$ kubectl config set-context arn:aws:eks:us-east-2:***:cluster/adx-cluster --namespace=develop</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deployments"><a class="anchor" href="#deployments"></a>4. Deployments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kubernetes deployments and services are stored in the same file for each module.</p>
+</div>
+<div class="sect2">
+<h3 id="elasticsearch"><a class="anchor" href="#elasticsearch"></a>4.1. Elasticsearch</h3>
+<div class="paragraph">
+<p>We start with the elasticsearch database.</p>
+</div>
+<div class="ulist">
+<div class="title">Some explanation :</div>
+<ul>
+<li>
+<p>This is the OSS image, simpler, no need for X-Pack</p>
+</li>
+<li>
+<p>Note the system command in <code>initContainers</code> section</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="file"><a class="anchor" href="#file"></a>4.1.1. File</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">#
+# database (elasticsearch) service and deployement
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+  labels:
+    app: db
+    tier: backend
+    group: adx
+spec:
+  ports:
+    - port: 9200 # External port
+      targetPort: http # Port exposed by the pod/container from the deployment
+  selector:
+    app: db
+    group: adx
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: db-dpl
+  labels:
+    app: db
+    tier: backend
+    group: adx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: db
+        tier: backend
+        group: adx
+    spec:
+      initContainers:
+      - name: "sysctl"
+        image: "busybox"
+        imagePullPolicy: "IfNotPresent"
+        command: ["sysctl", "-w", "vm.max_map_count=262144"]
+        securityContext:
+          privileged: true
+      containers:
+      - name: elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.4
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 9200
+          name: http
+        env:
+          - name: ES_JAVA_OPTS
+            value: "-Xms512m -Xmx512m"
+        resources:
+          limits:
+            memory: 1024Mi
+          requests:
+            memory: 512Mi</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commands"><a class="anchor" href="#commands"></a>4.1.2. Commands</h4>
+<div class="paragraph">
+<p>Launch (or update) the deployment :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ kubectl apply -f adx.db.svc-dpl.yml
+service/api created
+deployment.extensions/api-dpl created
+
+$ kubectl get rs
+NAME                   DESIRED   CURRENT   READY     AGE
+db-dpl-5c767f46c7      1         1         1         32m
+
+$ kubectl get pods
+NAME                         READY     STATUS             RESTARTS   AGE
+db-dpl-5c767f46c7-tkqkv      1/1       Running            0          32m</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kibana"><a class="anchor" href="#kibana"></a>4.2. Kibana</h3>
+<div class="paragraph">
+<p>Kibana is included, only for elasticsearch administration in test environements.</p>
+</div>
+<div class="ulist">
+<div class="title">Some explanation :</div>
+<ul>
+<li>
+<p>This is the OSS image, simpler, no need for X-Pack</p>
+</li>
+<li>
+<p>This will not be accessible from external network, for security reasons</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="file-2"><a class="anchor" href="#file-2"></a>4.2.1. File</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">#
+# kibana (elastic admin) service and deployement
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana
+  labels:
+    app: kibana
+    tier: backend
+    group: adx
+spec:
+  # pour protéger, pas de type et pas de port + proxy forward
+  # type: NodePort # Make the service externally visible via the node
+  ports:
+    - port: 5601 # External port
+      targetPort: http # Port exposed by the pod/container from the deployment
+  selector:
+    app: kibana
+    group: adx
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kibana-dpl
+  labels:
+    app: kibana
+    tier: backend
+    group: adx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kibana
+        tier: backend
+        group: adx
+    spec:
+      containers:
+      - name: kibana
+        image: docker.elastic.co/kibana/kibana-oss:6.5.4
+        env:
+        - name: ELASTICSEARCH_URL
+          value: http://elasticsearch:9200
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            memory: 256Mi
+        ports:
+        - containerPort: 5601
+          name: http</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commands-2"><a class="anchor" href="#commands-2"></a>4.2.2. Commands</h4>
+<div class="paragraph">
+<p>Launch (or update) the deployment :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ kubectl apply -f adx.db.svc-dpl.yml
+service/api created
+deployment.extensions/api-dpl created
+
+$ kubectl get rs
+NAME                   DESIRED   CURRENT   READY     AGE
+db-dpl-5c767f46c7      1         1         1         32m
+kibana-dpl-8d76c6dd8   1         1         1         26m
+
+$ kubectl get pods
+NAME                         READY     STATUS             RESTARTS   AGE
+db-dpl-5c767f46c7-tkqkv      1/1       Running            0          32m
+kibana-dpl-8d76c6dd8-cmrvz   1/1       Running            0          27m</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To access the UI, we use port forwarding in a dedicated shell :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> $ kubectl port-forward svc/kibana 5601:5601</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="api-backend"><a class="anchor" href="#api-backend"></a>4.3. Api / backend</h3>
+<div class="ulist">
+<div class="title">Some explanation :</div>
+<ul>
+<li>
+<p>The backend is pulled from AWS/ECR registry</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="prerequisites"><a class="anchor" href="#prerequisites"></a>4.3.1. Prerequisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Get the full image name in EKR</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Got to AWS Admin UI</p>
+</li>
+<li>
+<p>Choose the zone containing your registry</p>
+</li>
+<li>
+<p><b class="button">Services</b> &#8594; <b class="button">ECR</b> &#8594; api repository</p>
+</li>
+<li>
+<p>Get the <code>Image URI</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>get the registry password</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ aws ecr get-login
+docker login -u AWS -p &lt;PASSWORD&gt; -e none https://***.dkr.ecr.eu-west-3.amazonaws.com</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>create a secret using it</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ kubectl delete secret ecr-registry-secret
+
+$ kubectl create secret docker-registry ecr-registry-secret --docker-username="AWS" --docker-password="&lt;PASSWORD&gt;" --docker-server="***.dkr.ecr.eu-west-3.amazonaws.com" --docker-email="my.email@my-provider.com"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can update the file and deploy it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="file-3"><a class="anchor" href="#file-3"></a>4.3.2. File</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">#
+# api (back-end) service and deployement
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: adx-api
+  labels:
+    app: api
+    tier: backend
+    group: adx
+spec:
+  ports:
+    - port: 8080 # External port
+      targetPort: http # Port exposed by the pod/container from the deployment
+  selector:
+    app: api
+    group: adx
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: api-dpl
+  labels:
+    app: api
+    tier: backend
+    group: adx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api
+        tier: backend
+        group: adx
+    spec:
+      # initContainers:
+      #   - name: "sysctl"
+      #     image: "busybox"
+      #     imagePullPolicy: "IfNotPresent"
+      #     command: ["curl", "-XGET", "http://elasticsearch:9200/_cluster/health?pretty=true"]
+      containers:
+      - name: api
+        image: ***.dkr.ecr.eu-west-3.amazonaws.com/adx/adx-api:develop
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: ELASTICSEARCH_REST_URIS
+          value: http://elasticsearch:9200
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: ecr-registry-secret</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commands-3"><a class="anchor" href="#commands-3"></a>4.3.3. Commands</h4>
+<div class="paragraph">
+<p>Launch (or update) the deployment :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ kubectl apply -f adx.api.svc-dpl.yml</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client-frontend"><a class="anchor" href="#client-frontend"></a>4.4. Client / frontend</h3>
+<div class="sect3">
+<h4 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>4.4.1. Prerequisites</h4>
+<div class="paragraph">
+<p>Same as Api module.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="file-4"><a class="anchor" href="#file-4"></a>4.4.2. File</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">#
+# client (front-end) service and deployement
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: client
+  labels:
+    app: client
+    tier: frontend
+    group: adx
+spec:
+  type: LoadBalancer # Make the service visible to the world
+  ports:
+    - port: 10080 # External port
+      targetPort: http # Port exposed by the pod/container from the deployment
+  selector:
+    app: client
+    group: adx
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: client-dpl
+  labels:
+    app: client
+    tier: frontend
+    group: adx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: client
+        tier: frontend
+        group: adx
+    spec:
+      containers:
+      - name: client
+        image: ***.dkr.ecr.eu-west-3.amazonaws.com/adx/adx-client:develop
+        ports:
+        - containerPort: 80
+          name: http
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: ecr-registry-secret</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="commands-4"><a class="anchor" href="#commands-4"></a>4.4.3. Commands</h4>
+<div class="paragraph">
+<p>Launch (or update) the deployment :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ kubectl apply -f adx.client.svc-dpl.yml</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="access-the-frontend-in-a-browser"><a class="anchor" href="#access-the-frontend-in-a-browser"></a>4.4.4. Access the frontend in a browser</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Get the host/port</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">$ get services -o wide
+NAME            TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)           AGE       SELECTOR
+adx-api         ClusterIP      10.100.78.159    &lt;none&gt;                                                                   8080/TCP          2h        app=api,group=adx
+client          LoadBalancer   10.100.145.183   &lt;host&gt;.us-east-2.elb.amazonaws.com   10080:30587/TCP   2h        app=client,group=adx
+elasticsearch   ClusterIP      10.100.15.82     &lt;none&gt;                                                                   9200/TCP          23h       app=db,group=adx
+kibana          ClusterIP      10.100.114.147   &lt;none&gt;                                                                   5601/TCP          23h       app=kibana,group=adx</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to <a href="http://&lt;host&gt;.us-east-2.elb.amazonaws.com:10080" class="bare">http://&lt;host&gt;.us-east-2.elb.amazonaws.com:10080</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2019-01-25 16:47:04 UTC
+</div>
+</div>
+<link rel="stylesheet" href="lib/highlight/styles/gruvbox-dark.min.css">
+<script src="lib/highlight/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

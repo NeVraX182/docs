@@ -17,6 +17,8 @@ endif::backend-html5[]
 
 * link:BP-eclipse.html[Eclipse] - Integrated Development Environment
 
+* link:BP-aws-eks.html[EKS] - Kubernetes management on AWS
+
 * link:BP-elastic.html[Elastic Stack] - Distributed search and analytics engine
 
 * link:BP-gerrit.html[Gerrit Code Review] - Collaborative code review and git hosting

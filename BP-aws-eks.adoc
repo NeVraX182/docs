@@ -1,0 +1,247 @@
+= EKS Configuration & Best Practices
+include::subdocs/_init.adoc[]
+
+ifndef::imagesdir[:imagesdir: images]
+
+== Introduction
+
+We configure the cluster from scratch with following steps :
+
+* Provision an Amazon EKS cluster
+* Deploy worker nodes (Cloud Formation)
+* Connect to EKS (kubectl)
+* Run Kubernetes apps on EKS cluster 
+
+== Prerequisite
+
+Have an admin account on AWS.
+
+TIP: You can switch menu language at the bottom left of any page. Select english.
+
+//https://us-east-2.console.aws.amazon.com/eks/home?region=us-east-2#/home
+
+////
+* click on btn:[Services] -> btn:[IAM] ->  btn:[Roles] -> btn:[Create role]
+* Select btn:[EKS] and then btn:[Next]
+* 2 policies appears, just click btn:[next]
+* No need for key/value pairs, just click btn:[next]
+* Enter the role name `` Click on btn:[Create role]
+
+=== Cloud formation
+
+* click on btn:[Services] -> btn:[CloudFormation] -> btn:[Create Stack] -> btn:[Create role]
+////
+
+.Follow `Getting Started with Amazon EKS` of link:https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html[Official documentation] to :
+* Create your Amazon EKS Service Role
+* Create your Amazon EKS Cluster VPC
+* Install and Configure kubectl for Amazon EKS
+* Download and Install the Latest AWS CLI 
+* Create Your Amazon EKS Cluster
+* Configure kubectl for Amazon EKS 
+* Launch and Configure Amazon EKS Worker Nodes
+
+== Target architecture
+
+[plantuml,archi-doc,svg]
+....
+left to right direction
+actor user
+rectangle cluster {
+    frame frontend as "client\n(front-end)"
+    agent backend as "api\n(back-end)"
+    database elastic as "elasticsearch\n(database)"
+    frame kibana as "kibana\n(database UI)"
+}
+user --> frontend
+user ..> kibana : by port forwarding
+frontend --> backend
+backend --> elastic
+kibana --> elastic
+....
+
+=== environments
+
+The AWS cluster will host multiple environments, so we first create and use a `develop` namespace :
+
+[source,shell]
+----
+$ kubectl create namespace develop
+$ kubectl config current-context
+arn:aws:eks:us-east-2:***:cluster/adx-cluster
+$ kubectl config set-context arn:aws:eks:us-east-2:***:cluster/adx-cluster --namespace=develop
+----
+
+// delete all ?
+
+// TODO : 
+// Donner accès à TLM
+// Unifier les hosts
+// gérer la connexion pérène avec ECR
+
+
+== Deployments
+
+Kubernetes deployments and services are stored in the same file for each module.
+
+=== Elasticsearch
+
+We start with the elasticsearch database.
+
+.Some explanation :
+* This is the OSS image, simpler, no need for X-Pack
+* Note the system command in `initContainers` section
+
+==== File
+
+[source,yaml]
+------
+include::../../kubernetes/adx.db.svc-dpl.yml[]
+------
+
+==== Commands
+
+Launch (or update) the deployment :
+
+[source,shell]
+----
+$ kubectl apply -f adx.db.svc-dpl.yml
+service/api created
+deployment.extensions/api-dpl created
+
+$ kubectl get rs
+NAME                   DESIRED   CURRENT   READY     AGE
+db-dpl-5c767f46c7      1         1         1         32m
+
+$ kubectl get pods
+NAME                         READY     STATUS             RESTARTS   AGE
+db-dpl-5c767f46c7-tkqkv      1/1       Running            0          32m
+----
+
+=== Kibana
+
+Kibana is included, only for elasticsearch administration in test environements. 
+
+.Some explanation :
+* This is the OSS image, simpler, no need for X-Pack
+* This will not be accessible from external network, for security reasons
+
+==== File
+
+[source,yaml]
+------
+include::../../kubernetes/adx.kibana.svc-dpl.yml[]
+------
+
+==== Commands
+
+Launch (or update) the deployment :
+
+[source,shell]
+----
+$ kubectl apply -f adx.db.svc-dpl.yml
+service/api created
+deployment.extensions/api-dpl created
+
+$ kubectl get rs
+NAME                   DESIRED   CURRENT   READY     AGE
+db-dpl-5c767f46c7      1         1         1         32m
+kibana-dpl-8d76c6dd8   1         1         1         26m
+
+$ kubectl get pods
+NAME                         READY     STATUS             RESTARTS   AGE
+db-dpl-5c767f46c7-tkqkv      1/1       Running            0          32m
+kibana-dpl-8d76c6dd8-cmrvz   1/1       Running            0          27m
+----
+
+To access the UI, we use port forwarding in a dedicated shell :
+
+[source,shell]
+ $ kubectl port-forward svc/kibana 5601:5601
+
+=== Api / backend
+
+.Some explanation :
+* The backend is pulled from AWS/ECR registry
+
+==== Prerequisites
+
+* Get the full image name in EKR
+** Got to AWS Admin UI
+** Choose the zone containing your registry
+** btn:[Services] -> btn:[ECR] -> api repository
+** Get the `Image URI`
+
+* get the registry password
+
+[source,shell]
+----
+$ aws ecr get-login
+docker login -u AWS -p <PASSWORD> -e none https://***.dkr.ecr.eu-west-3.amazonaws.com
+----
+
+* create a secret using it
+
+[source,shell]
+----
+$ kubectl delete secret ecr-registry-secret
+
+$ kubectl create secret docker-registry ecr-registry-secret --docker-username="AWS" --docker-password="<PASSWORD>" --docker-server="***.dkr.ecr.eu-west-3.amazonaws.com" --docker-email="my.email@my-provider.com"
+----
+
+Now we can update the file and deploy it.
+
+==== File
+
+[source,yaml]
+------
+include::../../kubernetes/adx.api.svc-dpl.yml[]
+------
+
+==== Commands
+
+Launch (or update) the deployment :
+
+[source,shell]
+----
+$ kubectl apply -f adx.api.svc-dpl.yml
+----
+
+=== Client / frontend
+
+==== Prerequisites
+
+Same as Api module.
+
+==== File
+
+[source,yaml]
+------
+include::../../kubernetes/adx.client.svc-dpl.yml[]
+------
+
+==== Commands
+
+Launch (or update) the deployment :
+
+[source,shell]
+----
+$ kubectl apply -f adx.client.svc-dpl.yml
+----
+
+==== Access the frontend in a browser
+
+* Get the host/port
+
+[source,shell]
+----
+$ get services -o wide
+NAME            TYPE           CLUSTER-IP       EXTERNAL-IP                                                              PORT(S)           AGE       SELECTOR
+adx-api         ClusterIP      10.100.78.159    <none>                                                                   8080/TCP          2h        app=api,group=adx
+client          LoadBalancer   10.100.145.183   <host>.us-east-2.elb.amazonaws.com   10080:30587/TCP   2h        app=client,group=adx
+elasticsearch   ClusterIP      10.100.15.82     <none>                                                                   9200/TCP          23h       app=db,group=adx
+kibana          ClusterIP      10.100.114.147   <none>                                                                   5601/TCP          23h       app=kibana,group=adx
+----
+
+* Go to http://<host>.us-east-2.elb.amazonaws.com:10080
+
