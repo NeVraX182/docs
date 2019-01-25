@@ -54,7 +54,8 @@ rectangle cluster {
     frame kibana as "kibana\n(database UI)"
 }
 user --> frontend
-user ..> kibana : by port forwarding
+admin --> frontend
+admin ..> kibana : by port forwarding
 frontend --> backend
 backend --> elastic
 kibana --> elastic
